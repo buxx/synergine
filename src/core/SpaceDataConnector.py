@@ -1,0 +1,2 @@
+class SpaceDataConnector(object):
+  pass
