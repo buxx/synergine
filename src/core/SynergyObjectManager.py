@@ -3,8 +3,7 @@ class SynergyObjectManager(object):
   def __init__(self):
     self._collections = []
   
-  def initCollection(self, name, collection):
-    # TODO: name ?
+  def initCollection(self, collection):
     self._collections.append(collection)
   
   def getComputableObjects(self):

@@ -11,9 +11,12 @@ class Core(object):
   
   def run(self):
     self.initSyngeries()
+    # TODO: Boucle avec FPS etc
     self._cycle_calculator.compute(self._synergy_object_manager.getComputableObjects())
-    pass
+    self._cycle_calculator.end()
   
   def initSyngeries(self):
+    # TODO: systeme de config et d'import auto
     from src.synergy.collection.BaseSynergyCollection import BaseSynergyCollection
-    self._synergy_object_manager.initCollection(name='BaseSynergyCollection', collection=BaseSynergyCollection());
+    collection_class = BaseSynergyCollection
+    self._synergy_object_manager.initCollection(collection=collection_class());
