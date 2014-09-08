@@ -1,7 +1,7 @@
-from src.synergy.collection.BaseSynergyCollection import BaseSynergyCollection
+from src.synergy.collection.SynergyCollection import SynergyCollection
 
 config = {
   'simulation' : {
-    'collections' : (BaseSynergyCollection,)
+    'collections' : (SynergyCollection,)
   }
 }

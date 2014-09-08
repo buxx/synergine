@@ -13,6 +13,7 @@ class CycleCalculator(object):
   
   def _process_compute(self, objects):
     for object in objects:
+      object.think()
       print(getpid(), object)
       
   def end(self):
