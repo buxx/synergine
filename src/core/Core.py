@@ -2,6 +2,7 @@ from src.core.SynergyObjectManager import SynergyObjectManager
 from src.core.CycleCalculator import CycleCalculator
 from src.core.SpaceDataConnector import SpaceDataConnector
 from src.core.config.ConfigurationManager import ConfigurationManager
+from src.core.cycle.PipePackage import PipePackage
 from lib.factory.factory import Factory
 from config import config
 
@@ -15,11 +16,20 @@ class Core(object):
     self._space_data_connector = SpaceDataConnector()
   
   def run(self):
-    self.initSyngeries()
+    self._initSyngeries()
     # TODO: Boucle avec FPS etc
-    self._cycle_calculator.compute(self._synergy_object_manager.getComputableObjects())
+    computed_objects = self._cycle_calculator.compute(self._getCyclePackageForCompute())
+    print(computed_objects)
+    computed_objects = self._cycle_calculator.compute(self._getCyclePackageForCompute())
+    print(computed_objects)
     self._cycle_calculator.end()
   
-  def initSyngeries(self):
+  def _initSyngeries(self):
     for collection_class in self._configuration_manager.getInitialCollectionsClasss():
       self._synergy_object_manager.initCollection(collection=collection_class());
+  
+  def _getCyclePackageForCompute(self):
+    # FUTURE: test si garder le package en attribut de core ameliore les perfs
+    pipe_package = PipePackage(self._synergy_object_manager.getComputableObjects())
+    pipe_package.setMap({'foo':'map'})
+    return pipe_package

@@ -14,37 +14,25 @@ def chunk(seq,m):
      x.append(seq[a:j])
    return x
 
-class ProcessManager(object):
+class PipePackage(object):
   
-  def __init__(self, nb_process, target):
-    self.target = target
-    self.nb_process = nb_process
-    self.readers_pipes = []
-    
-  def _start(self, chunked_things):
-    self.readers_pipes = []
-    for i in range(self.nb_process):
-      local_read_pipe, local_write_pipe = Pipe(duplex=False)
-      self.readers_pipes.append(local_read_pipe)
-      p = Process(target=run_process, args=(self.target, local_write_pipe, chunked_things[i]))
-      p.start()
-      local_write_pipe.close()
+  def __init__(self, objects):
+    self._objects = objects
+    self._chunkeds_objects = []
+    self._current_process_id = None
   
-  def get_their_work(self, things_to_do):
-    chunked_things = chunk(things_to_do, self.nb_process)
-    self._start(chunked_things)
-    things_done_collection = []
-    while self.readers_pipes:
-      for r in wait(self.readers_pipes):
-        try:
-          things_dones = r.recv()
-        except EOFError:
-          self.readers_pipes.remove(r)
-        else:
-          self.readers_pipes.remove(r)
-          things_done_collection.append(things_dones)
-    return things_done_collection
-
+  def setCurrentProcessId(self, current_process_id):
+    self._current_process_id = current_process_id
+  
+  def setChunkedsObjects(self, chunkeds_objects):
+    self._chunkeds_objects = chunkeds_objects
+  
+  def getChunkedObjects(self):
+    return self._chunkeds_objects[self._current_process_id]
+  
+  def getObjects(self):
+    return self._objects
+  
 
 class KeepedAliveProcessManager(object):
   
@@ -55,13 +43,14 @@ class KeepedAliveProcessManager(object):
     self.readers_pipes = []
     self.writers_pipes = []
     
-  def _start(self, chunked_things):
+  def _start(self, pipe_package):
     for i in range(self.nb_process):
       local_read_pipe, local_write_pipe = Pipe(duplex=False)
       process_read_pipe, process_write_pipe = Pipe(duplex=False)
       self.readers_pipes.append(local_read_pipe)
       self.writers_pipes.append(process_write_pipe)
-      p = Process(target=run_keeped_process, args=(self.target, local_write_pipe, process_read_pipe, chunked_things[i]))
+      pipe_package.setCurrentProcessId(i)
+      p = Process(target=run_keeped_process, args=(self.target, local_write_pipe, process_read_pipe, pipe_package))
       p.start()
       self.processs.append(p)
       local_write_pipe.close()
@@ -71,14 +60,15 @@ class KeepedAliveProcessManager(object):
     for writer_pipe in self.writers_pipes:
       writer_pipe.send('stop')
       
-  def get_their_work(self, things_to_do):
-    chunked_things = chunk(things_to_do, self.nb_process)
+  def get_their_work(self, pipe_package):
+    pipe_package.setChunkedsObjects(chunk(pipe_package.getObjects(), self.nb_process))
     if not self.processs:
-      self._start(chunked_things)
+      self._start(pipe_package)
     else:
       for i in range(self.nb_process):
         #print('send things')
-        self.writers_pipes[i].send(chunked_things[i])
+        pipe_package.setCurrentProcessId(i)
+        self.writers_pipes[i].send(pipe_package)
     things_done_collection = []
     reader_useds = []
     while self.readers_pipes:
@@ -116,7 +106,3 @@ def run_keeped_process(target, main_write_pipe, process_read_pipe, things):
   #print('p: continue')
   if new_things != 'stop':
     run_keeped_process(target, main_write_pipe, process_read_pipe, new_things)
-
-def run_process(target, main_write_pipe, things):
-  things_dones = target(things)
-  main_write_pipe.send(things_dones)
