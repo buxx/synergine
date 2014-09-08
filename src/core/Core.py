@@ -12,7 +12,7 @@ class Core(object):
     self._configuration_manager = ConfigurationManager(config)
     self._factory = Factory()
     self._synergy_object_manager =  SynergyObjectManager()
-    self._cycle_calculator = CycleCalculator()
+    self._cycle_calculator = CycleCalculator(force_main_process=True) # TODO: debug in conf
     self._space_data_connector = SpaceDataConnector()
   
   def run(self):
@@ -29,7 +29,7 @@ class Core(object):
       self._synergy_object_manager.initCollection(collection=collection_class());
   
   def _getCyclePackageForCompute(self):
-    # FUTURE: test si garder le package en attribut de core ameliore les perfs
+    # FUTURE: test si garder le package en attribut de core ameliore les perfs (attention a l'index de current_process)
     pipe_package = PipePackage(self._synergy_object_manager.getComputableObjects())
     pipe_package.setMap({'foo':'map'})
     return pipe_package

@@ -28,7 +28,9 @@ class PipePackage(object):
     self._chunkeds_objects = chunkeds_objects
   
   def getChunkedObjects(self):
-    return self._chunkeds_objects[self._current_process_id]
+    if self._current_process_id is not None:
+      return self._chunkeds_objects[self._current_process_id]
+    return self.getObjects()
   
   def getObjects(self):
     return self._objects
