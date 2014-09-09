@@ -83,7 +83,9 @@ class KeepedAliveProcessManager(object):
         else:
           reader_useds.append(r)
           self.readers_pipes.remove(r)
-          things_done_collection.append(things_dones)
+          for thing_done in things_dones:
+            things_done_collection.append(thing_done)
+          
     self.readers_pipes = reader_useds
     return things_done_collection
 

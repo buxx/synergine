@@ -3,10 +3,13 @@ from src.synergy.object.SynergyObject import SynergyObject
 
 class SynergyCollection(SynergyCollectionInterface):
   
-  def __init__(self):
-    super(SynergyCollection, self).__init__()
-    for i in range(20):
-      self._objects.append(SynergyObject())
+  #def __init__(self):
+  #  super(SynergyCollection, self).__init__()
+  #  for i in range(20):
+  #    self._objects.append(SynergyObject())
+  
+  def setObjects(self, objects):
+    self._objects = objects
   
   def getComputableObjects(self):
     return self._objects
@@ -16,4 +19,5 @@ class SynergyCollection(SynergyCollectionInterface):
     Calculs propre a la collection. Les calculs pour chaques objets
     se font ailleur (voir CycleCalculator)
     """
-    print(len(self._objects))
+    for sobject in self._objects:
+      print('main', sobject.test)

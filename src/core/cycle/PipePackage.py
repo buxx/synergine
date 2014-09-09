@@ -2,8 +2,8 @@ from lib.process.processmanager import PipePackage as BasePipePackage
 
 class PipePackage(BasePipePackage):
   
-  def setMap(self, map):
-    self._map = map
+  def setContext(self, context):
+    self._context = context
   
-  def getMap(self):
-    return self._map
+  def getContext(self):
+    return self._context
