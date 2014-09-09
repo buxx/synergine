@@ -1,7 +1,7 @@
-from src.synergy.collection.SynergyCollection import SynergyCollection
+from module.lifegame.synergy.collection.LifeGameCollection import LifeGameCollection
 
 config = {
   'simulation' : {
-    'collections' : (SynergyCollection,)
+    'collections' : (LifeGameCollection,)
   }
 }
