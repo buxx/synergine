@@ -18,9 +18,9 @@ class Core(object):
   def run(self):
     self._initSyngeries()
     # TODO: Boucle avec FPS etc
-    computed_objects = self._cycle_calculator.compute(self._getCyclePackageForCompute())
+    computed_objects = self._cycle_calculator.compute(self._getCyclePackageForCompute(), self._synergy_object_manager.getCollections())
     print(computed_objects)
-    computed_objects = self._cycle_calculator.compute(self._getCyclePackageForCompute())
+    computed_objects = self._cycle_calculator.compute(self._getCyclePackageForCompute(), self._synergy_object_manager.getCollections())
     print(computed_objects)
     self._cycle_calculator.end()
   

@@ -6,6 +6,9 @@ class SynergyObjectManager(object):
   def initCollection(self, collection):
     self._collections.append(collection)
   
+  def getCollections(self):
+    return self._collections
+  
   def getComputableObjects(self):
     computable_objects = []
     for collection in self._collections:
