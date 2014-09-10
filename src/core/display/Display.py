@@ -9,6 +9,9 @@ class Display(object):
   def initializeScreen(self, screen):
     pass
   
+  def startOfCycle(self):
+    pass
+  
   def endOfCycle(self):
     raise NotImplementedError
   

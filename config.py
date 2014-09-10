@@ -4,7 +4,7 @@ from display.CursesDisplay import CursesDisplay
 
 config = {
   'engine': {
-    'fpsmax': 1, # 25
+    'fpsmax': 12, # 25
     'debug': {
       'mainprocess': True
     }

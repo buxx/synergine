@@ -20,6 +20,9 @@ class CursesDisplay(Display):
     curses.cbreak()
     self._screen.keypad(True)
   
+  def startOfCycle(self):
+    self._screen.clear()
+  
   def endOfCycle(self):
     self._screen.refresh()
   
@@ -28,6 +31,7 @@ class CursesDisplay(Display):
     self._screen.keypad(False)
     curses.echo()
     curses.endwin()
+    self._screen = None
   
   def drawPoints(self, points):
     for point in points:

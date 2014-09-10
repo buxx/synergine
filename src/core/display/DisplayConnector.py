@@ -14,6 +14,7 @@ class DisplayConnector(object):
   def _sendToConnections(self):
     # On fait tourner l'affichage avec des commandes generiques
     for connected_display in self._connecteds_displays:
+      connected_display.startOfCycle()
       for object_to_display in self._getObjectsToDisplay():
         connected_display.drawPoints(object_to_display.getTrace())
       connected_display.endOfCycle()
