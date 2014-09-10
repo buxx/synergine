@@ -14,7 +14,7 @@ class Core(object):
     self._configuration_manager = ConfigurationManager(config)
     self._factory = Factory()
     self._synergy_object_manager =  SynergyObjectManager()
-    self._cycle_calculator = CycleCalculator(force_main_process=False) # TODO: debug in conf
+    self._cycle_calculator = CycleCalculator(force_main_process=self._configuration_manager.get('engine.debug.mainprocess')) # TODO: debug in conf
     self._space_data_connector = SpaceDataConnector()
     self._last_cycle_time = time()
     self._maxfps = self._configuration_manager.get('engine.fpsmax')
@@ -24,10 +24,12 @@ class Core(object):
   def _getDisplaysToConnect(self):
     displays = []
     for display_class in self._configuration_manager.get('display.displays'):
-      displays.append(display_class())
+      displays.append(display_class()) # TODO: Donner de la config au display ?
     return displays
   
-  def run(self):
+  def run(self, screen = None): # TODO: screen: Rendre pour le cas ou le display n'a pas besoin de ca
+    if screen:
+      self._display_connector.sendScreenToDisplay(screen)
     self._initSyngeries()
     for i in range(100): # TODO: remplacer la valeur de test 100 par qqch qui surveille l'ordre d'arret
       self._updateLastCycleTime()
@@ -35,7 +37,11 @@ class Core(object):
                                                 context=self._getContext())
       self._runDisplay()
       self._waitForNextCycle()
+    self._end()
+  
+  def _end(self):
     self._cycle_calculator.end()
+    self._display_connector.terminate()
   
   def _updateLastCycleTime(self):
     self._last_cycle_time = time()
@@ -61,4 +67,7 @@ class Core(object):
     # TODO: Ne le faire que max 25 fps (issue de config)
     self._display_connector.prepare(self._synergy_object_manager)
     self._display_connector.cycle()
+  
+  def haveToBeRunnedBy(self):
+    return self._display_connector.getDisplayWhoHaveToRunCore()
   

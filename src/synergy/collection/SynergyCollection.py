@@ -26,4 +26,4 @@ class SynergyCollection(SynergyCollectionInterface):
     se font ailleur (voir CycleCalculator)
     """
     for sobject in self._objects:
-      print('main', sobject.test)
+      pass
