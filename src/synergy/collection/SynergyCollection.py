@@ -18,9 +18,13 @@ class SynergyCollection(SynergyCollectionInterface):
     return self._objects
   
   def getObjectsToDisplay(self):
+    
+    #import pdb; pdb.set_trace()
     return self._objects
   
   def compute(self):
+    
+    #import pdb; pdb.set_trace()
     """
     Calculs propre a la collection. Les calculs pour chaques objets
     se font ailleur (voir CycleCalculator)

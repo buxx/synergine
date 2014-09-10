@@ -20,7 +20,9 @@ class CycleCalculator(object):
         computeds_objects = self._process_compute(pipe_package)
       collection.setObjects(computeds_objects)
     for collection in collections:
-      collection.compute()
+      
+      #import pdb; pdb.set_trace()
+      collection.compute(context)
   
   def _getPipePackageForCollection(self, collection, context):
     # FUTURE: test si garder le package en attribut de core ameliore les perfs (attention a l'index de current_process)

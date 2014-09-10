@@ -31,7 +31,7 @@ class Core(object):
     if screen:
       self._display_connector.sendScreenToDisplay(screen)
     self._initSyngeries()
-    for i in range(100): # TODO: remplacer la valeur de test 100 par qqch qui surveille l'ordre d'arret
+    for i in range(5): # TODO: remplacer la valeur de test 100 par qqch qui surveille l'ordre d'arret
       self._updateLastCycleTime()
       self._cycle_calculator.computeCollections(collections=self._synergy_object_manager.getCollections(),\
                                                 context=self._getContext())
