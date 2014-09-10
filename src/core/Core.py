@@ -2,6 +2,7 @@ from src.core.SynergyObjectManager import SynergyObjectManager
 from src.core.CycleCalculator import CycleCalculator
 from src.core.SpaceDataConnector import SpaceDataConnector
 from src.core.config.ConfigurationManager import ConfigurationManager
+from src.core.display.DisplayConnector import DisplayConnector
 from lib.factory.factory import Factory
 from time import time, sleep
 from config import config
@@ -16,6 +17,13 @@ class Core(object):
     self._space_data_connector = SpaceDataConnector()
     self._last_cycle_time = time()
     self._maxfps = self._configuration_manager.getMaxFpsEngine()
+    self._display_connector = DisplayConnector(self._getDisplaysToConnect())
+  
+  def _getDisplaysToConnect(self):
+    displays = []
+    for display_class in self._configuration_manager.getDisplayClasss():
+      displays.append(display_class())
+    return displays
   
   def run(self):
     self._initSyngeries()
@@ -23,6 +31,7 @@ class Core(object):
       self._updateLastCycleTime()
       self._cycle_calculator.computeCollections(collections=self._synergy_object_manager.getCollections(),\
                                                 context=self._getContext())
+      self._runDisplay()
       self._waitForNextCycle()
     self._cycle_calculator.end()
   
@@ -40,3 +49,13 @@ class Core(object):
     # On construit ici in tableau/objet qui permet au sous processus d'utiliser
     # des objets a jour
     return {'map': {'foo': 'bar'}}
+  
+  def _runDisplay(self):
+    # 1: Ici on recup les donnees des objets AFFICHABLE (etre generique bien sur)
+    # 2: penser a implementer que les objets informe de si ils sont a redessiner ou non
+    # 3: Si dessein progressif: garder a l'esprit qu'il faudra l'ancienne pos. d'un
+    # objet pour leffacer avant de le r edessiner
+    # TODO: Ne le faire que max 25 fps (issue de config)
+    self._display_connector.prepare(self._synergy_object_manager)
+    self._display_connector.cycle()
+  

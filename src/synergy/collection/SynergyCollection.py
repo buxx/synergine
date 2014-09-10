@@ -14,6 +14,9 @@ class SynergyCollection(SynergyCollectionInterface):
   def getComputableObjects(self):
     return self._objects
   
+  def getObjectsToDisplay(self):
+    return self._objects
+  
   def compute(self):
     """
     Calculs propre a la collection. Les calculs pour chaques objets

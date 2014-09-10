@@ -1,4 +1,5 @@
 from module.lifegame.synergy.collection.LifeGameCollection import LifeGameCollection
+from display.TestDisplay import TestDisplay
 
 config = {
   'engine': {
@@ -6,5 +7,8 @@ config = {
   },
   'simulation' : {
     'collections' : (LifeGameCollection,)
+  },
+  'display': {
+    'displays': [TestDisplay]
   }
 }

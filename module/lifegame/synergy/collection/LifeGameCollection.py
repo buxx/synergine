@@ -6,4 +6,6 @@ class LifeGameCollection(SynergyCollection):
   def __init__(self):
     super(LifeGameCollection, self).__init__()
     for i in range(10):
-      self._objects.append(Cell())
+      cell = Cell()
+      cell.addTrace((0, i, i))
+      self._objects.append(cell)

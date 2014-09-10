@@ -33,8 +33,7 @@ class CycleCalculator(object):
     context = pipe_package.getContext()
     objects_to_compute = pipe_package.getChunkedObjects()
     for object in objects_to_compute:
-      object.think()
-      print(getpid(), object)
+      object.cycle()
       object.test = getpid()
     return objects_to_compute
       
