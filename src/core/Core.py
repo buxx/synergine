@@ -16,12 +16,12 @@ class Core(object):
     self._cycle_calculator = CycleCalculator(force_main_process=False) # TODO: debug in conf
     self._space_data_connector = SpaceDataConnector()
     self._last_cycle_time = time()
-    self._maxfps = self._configuration_manager.getMaxFpsEngine()
+    self._maxfps = self._configuration_manager.get('engine.fpsmax')
     self._display_connector = DisplayConnector(self._getDisplaysToConnect())
   
   def _getDisplaysToConnect(self):
     displays = []
-    for display_class in self._configuration_manager.getDisplayClasss():
+    for display_class in self._configuration_manager.get('display.displays'):
       displays.append(display_class())
     return displays
   
@@ -42,7 +42,7 @@ class Core(object):
     sleep(max(1./self._maxfps - (time() - self._last_cycle_time), 0))
   
   def _initSyngeries(self):
-    for collection_class in self._configuration_manager.getInitialCollectionsClasss():
+    for collection_class in self._configuration_manager.get('simulation.collections'):
       self._synergy_object_manager.initCollection(collection=collection_class());
   
   def _getContext(self):
