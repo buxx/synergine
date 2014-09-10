@@ -15,5 +15,5 @@ class SynergyObject(SynergyObjectInterface):
   
   # TODO: qui execute le calcul du cycle ? Utiliser les objets de la simulation
   # le chergerai de trop de responsabilite
-  def cycle(self):
+  def cycle(self, context):
     pass
