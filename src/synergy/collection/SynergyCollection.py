@@ -8,6 +8,9 @@ class SynergyCollection(SynergyCollectionInterface):
   #  for i in range(20):
   #    self._objects.append(SynergyObject())
   
+  def getObjects(self):
+    return self._objects
+  
   def setObjects(self, objects):
     self._objects = objects
   

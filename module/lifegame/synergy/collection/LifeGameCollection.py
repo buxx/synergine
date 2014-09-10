@@ -5,7 +5,13 @@ class LifeGameCollection(SynergyCollection):
   
   def __init__(self):
     super(LifeGameCollection, self).__init__()
-    for i in range(10):
+    traces = (
+      (0,0,0),
+      (0,1,1),
+      (0,2,1),
+      (0,1,2),
+    )
+    for i in range(4):
       cell = Cell()
-      cell.addTrace((0, i, i))
+      cell.addTrace(traces[i])
       self._objects.append(cell)

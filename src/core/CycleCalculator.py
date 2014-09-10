@@ -31,6 +31,7 @@ class CycleCalculator(object):
   def _process_compute(self, pipe_package):
     # TODO: Ici le package nous donne des trucs a jours depuis le process a jour
     context = pipe_package.getContext()
+    print(context.getMap())
     objects_to_compute = pipe_package.getChunkedObjects()
     for object in objects_to_compute:
       object.cycle()

@@ -3,6 +3,7 @@ from src.core.CycleCalculator import CycleCalculator
 from src.core.SpaceDataConnector import SpaceDataConnector
 from src.core.config.ConfigurationManager import ConfigurationManager
 from src.core.display.DisplayConnector import DisplayConnector
+from src.core.cycle.Context import Context
 from lib.factory.factory import Factory
 from time import time, sleep
 from config import config
@@ -18,6 +19,7 @@ class Core(object):
     self._last_cycle_time = time()
     self._maxfps = self._configuration_manager.get('engine.fpsmax')
     self._display_connector = DisplayConnector(self._getDisplaysToConnect())
+    self._context = Context(self._synergy_object_manager)
   
   def _getDisplaysToConnect(self):
     displays = []
@@ -48,7 +50,8 @@ class Core(object):
   def _getContext(self):
     # On construit ici in tableau/objet qui permet au sous processus d'utiliser
     # des objets a jour
-    return {'map': {'foo': 'bar'}}
+    self._context.update()
+    return self._context
   
   def _runDisplay(self):
     # 1: Ici on recup les donnees des objets AFFICHABLE (etre generique bien sur)
