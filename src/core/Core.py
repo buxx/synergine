@@ -31,10 +31,13 @@ class Core(object):
     if screen:
       self._display_connector.sendScreenToDisplay(screen)
     self._initSyngeries()
-    for i in range(50): # TODO: remplacer la valeur de test 100 par qqch qui surveille l'ordre d'arret
+    self._runDisplay()
+    self._waitForNextCycle()
+    for i in range(100): # TODO: remplacer la valeur de test 100 par qqch qui surveille l'ordre d'arret
       self._updateLastCycleTime()
+      self._context.update()
       self._cycle_calculator.computeCollections(collections=self._synergy_object_manager.getCollections(),\
-                                                context=self._getContext())
+                                                context=self._context)
       self._runDisplay()
       self._waitForNextCycle()
     self._end()
@@ -52,12 +55,6 @@ class Core(object):
   def _initSyngeries(self):
     for collection_class in self._configuration_manager.get('simulation.collections'):
       self._synergy_object_manager.initCollection(collection=collection_class());
-  
-  def _getContext(self):
-    # On construit ici in tableau/objet qui permet au sous processus d'utiliser
-    # des objets a jour
-    self._context.update()
-    return self._context
   
   def _runDisplay(self):
     # 1: Ici on recup les donnees des objets AFFICHABLE (etre generique bien sur)

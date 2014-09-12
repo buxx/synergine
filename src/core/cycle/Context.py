@@ -13,6 +13,8 @@ class Context(object):
     # il faut cependant trouver un moyen performant de savoir qui est a faire disparaitre (avant de redessiner)
     self._map = {}
     for object in self._synergy_object_manager.getObjects():
+      if object.getWill() is 'die':
+        pass#raise Exception('NoNo ', object)
       for point in object.getTrace():
         if point in self._map:
           self._map[point].append(object)

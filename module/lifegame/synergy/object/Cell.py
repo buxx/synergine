@@ -19,13 +19,15 @@ class Cell(SynergyObject):
     arround_points = self.getArroundPoints()
     count_arround = 0
     
+    arrounds = []
     for arround_point in arround_points:
       if arround_point in map:
-        
-        
         if isinstance(map[arround_point], Cell) or True: # or True: isinstance repond False arf ||| c'est une liste gors beta !
           count_arround += 1
-    #import pdb; pdb.set_trace()
+          arrounds.append(map[arround_point])
+    print(self.getPoint() )
+    #if self.getPoint() == (0, 23, 20):
+    #  import pdb; pdb.set_trace()
     if count_arround < 2 or count_arround > 3:
       self._will = 'die'
   

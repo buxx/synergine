@@ -36,4 +36,7 @@ class CursesDisplay(Display):
   def drawPoints(self, points):
     for point in points:
       # todo: z ... au moins valeur par defaut (generique !)
-      self._screen.addstr(point[1], point[2], "*")
+      if point == (0,23,20): # TEST
+        self._screen.addstr(point[1], point[2], "*")
+      else:
+        self._screen.addstr(point[1], point[2], "*")
