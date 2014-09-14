@@ -13,6 +13,9 @@ class Cell(SynergyObject):
   
   
   def cycle(self, context):
+    pass
+  
+    ## Reecriture !
     self._will = None
     # TODO: deleguer changement de position (genre self.will_do(machin) ?) 
     map = context.getMap()

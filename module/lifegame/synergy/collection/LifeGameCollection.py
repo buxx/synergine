@@ -26,6 +26,42 @@ class LifeGameCollection(SynergyCollection):
   def compute(self, context):
     super(LifeGameCollection, self).compute()
     
+    # cycle n
+    # etape 1: on determine qui va mourrir  (sans les faire disparaitre)
+    # etape deux: on regarde ou il va en apparaitre
+    # etape 3: on retire les mourantes
+    # la collection d'objet doit a se moment la representer le cycle n +1
+    
+    # etape 1
+    cells_will_die = []
+    for cell in self.getObjects():
+      arround_cell = self._getCellArroundOfPosition(cell.getPoint())
+      if arround_cell < 2 or arround_cell > 3:
+        cell.setWill('die')
+        cell_will_die.append(cell)
+    
+    # etape 2
+    for empty_point in self._getEmptyPoints():
+      if not self._cellExistOnThisPoint():
+        arround_cell = self._getCellArroundOfPosition(cell.getPoint())
+        if arround_cell is 3:
+          new_cell = Cell()
+          new_cell.setPoint(empty_point)
+    
+    # etape 3
+    for cell_die in cells_will_die:
+      self._objects.remove(cell_die)
+    
+    # a ce stade la collection doit etre fidele
+    # la map qui SERA genere aussi (mais la on ne l'utilise meme pas
+    # ce qui ne peut pas marcher si on a plusieurs collections ou si
+    # on passe ce self.seompte dans un sous prcess)
+    
+    
+    pass
+    
+    
+    ## Reecriture !!!
     map = context.getMap()
     
     
