@@ -3,10 +3,8 @@ from src.synergy.object.SynergyObject import SynergyObject
 
 class SynergyCollection(SynergyCollectionInterface):
   
-  #def __init__(self):
-  #  super(SynergyCollection, self).__init__()
-  #  for i in range(20):
-  #    self._objects.append(SynergyObject())
+  def __init__(self):
+    self._objects = []
   
   def getObjects(self):
     return self._objects
@@ -22,7 +20,7 @@ class SynergyCollection(SynergyCollectionInterface):
     #import pdb; pdb.set_trace()
     return self._objects
   
-  def compute(self):
+  def compute(self, context):
     
     #import pdb; pdb.set_trace()
     """

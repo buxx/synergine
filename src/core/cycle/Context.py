@@ -13,8 +13,8 @@ class Context(object):
     # il faut cependant trouver un moyen performant de savoir qui est a faire disparaitre (avant de redessiner)
     self._map = {}
     for object in self._synergy_object_manager.getObjects():
-      if object.getWill() is 'die':
-        pass#raise Exception('NoNo ', object)
+      #if object.getWill() is 'die':
+      #  pass#raise Exception('NoNo ', object)
       for point in object.getTrace():
         if point in self._map:
           self._map[point].append(object)
@@ -23,3 +23,27 @@ class Context(object):
   
   def getMap(self):
     return self._map
+  
+  def getObjectsNearPoint(self, point, distance=1): # TODO distance
+    objects_arrounds = []
+    for point_arround in self.getArroundPointsOfPoint(point):
+      if point_arround in self._map:
+        for obj in self._map[point_arround]:
+          objects_arrounds.append(obj)
+    return objects_arrounds
+  
+  def getArroundPointsOfPoint(self, point):
+    pos = point
+    pz = pos[0]
+    px = pos[1]
+    py = pos[2]
+    return (
+      (pz, px-1, py-1),
+      (pz, px,   py-1),
+      (pz, px+1, py+1),
+      (pz, px-1, py  ),
+      (pz, px+1, py  ),
+      (pz, px-1, py+1),
+      (pz, px,   py+1),
+      (pz, px+1, py-1)
+    )
