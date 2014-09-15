@@ -1,4 +1,5 @@
 from module.lifegame.synergy.collection.LifeGameCollection import LifeGameCollection
+from module.lifegame.synergy.collection.LifeGameCollectionConfiguration import LifeGameCollectionConfiguration
 from module.lifegame.test.LifeGameTestSuite import LifeGameTestSuite
 from display.TestDisplay import TestDisplay
 from display.CursesDisplay import CursesDisplay
@@ -12,7 +13,7 @@ config = {
     }
   },
   'simulation' : {
-    'collections' : (LifeGameCollection,) # TODO: distinction Class (et pas objet)
+    'collections' : (LifeGameCollection(LifeGameCollectionConfiguration()),)
   },
   'connections': [TestDisplay(), CursesDisplay()],
   'test': {

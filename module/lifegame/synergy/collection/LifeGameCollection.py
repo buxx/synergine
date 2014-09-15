@@ -3,38 +3,9 @@ from module.lifegame.synergy.object.Cell import Cell
 
 class LifeGameCollection(SynergyCollection):
   
-  def __init__(self):
-    super(LifeGameCollection, self).__init__()
-    traces = (
-      #(0,0,0),
-      #(0,1,0),
-      #(0,0,1),
-      #(0,1,1),
-      #
-      #(0,20,30),
-      #(0,19,31),
-      #(0,19,32),
-      #(0,20,32),
-      #(0,21,32),
-      
-      (0, 20, 20),
-      (0, 21, 20),
-      (0, 22, 20),
-      (0, 22, 21),
-      (0, 22, 22),
-      (0, 21, 22),
-      (0, 20, 22),
-      
-      #(0,20,20),
-      #(0,21,19),
-      #(0,22,19),
-      #(0,22,20),
-      #(0,22,21),
-    )
-    for trace in traces:
-      cell = Cell()
-      cell.addTrace(trace)
-      self._objects.append(cell)
+  def __init__(self, configuration):
+    super(LifeGameCollection, self).__init__(configuration)
+    
   
   def compute(self, context):
     super(LifeGameCollection, self).compute(context)

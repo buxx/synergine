@@ -1,10 +1,7 @@
 class SynergyObjectManager(object):
   
-  def __init__(self):
-    self._collections = []
-  
-  def initCollection(self, collection):
-    self._collections.append(collection)
+  def __init__(self, collections):
+    self._collections = collections
   
   def getCollections(self):
     return self._collections

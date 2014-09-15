@@ -12,7 +12,7 @@ class Core(object):
   def __init__(self, config):
     self._configuration_manager = ConfigurationManager(config)
     self._factory = Factory()
-    self._synergy_object_manager =  SynergyObjectManager()
+    self._synergy_object_manager =  SynergyObjectManager(self._configuration_manager.get('simulation.collections'))
     self._cycle_calculator = CycleCalculator(force_main_process=self._configuration_manager.get('engine.debug.mainprocess')) # TODO: debug in conf
     self._space_data_connector = SpaceDataConnector()
     self._last_cycle_time = time()
@@ -23,7 +23,6 @@ class Core(object):
   def run(self, screen = None): # TODO: screen: Rendre pour le cas ou le display n'a pas besoin de ca
     if screen:
       self._connector.sendScreenToConnection(screen)
-    self._initSyngeries()
     self._runConnecteds()
     self._waitForNextCycle()
     for i in self._configuration_manager.get('engine.debug.cycles', True):
@@ -45,10 +44,6 @@ class Core(object):
   def _waitForNextCycle(self):
     if self._maxfps is not True:
       sleep(max(1./self._maxfps - (time() - self._last_cycle_time), 0))
-  
-  def _initSyngeries(self):
-    for collection_class in self._configuration_manager.get('simulation.collections'):
-      self._synergy_object_manager.initCollection(collection=collection_class());
   
   def _runConnecteds(self):
     self._connector.prepare(self._synergy_object_manager)

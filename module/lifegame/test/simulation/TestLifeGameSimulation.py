@@ -1,5 +1,6 @@
 import unittest
 from module.lifegame.synergy.collection.LifeGameCollection import LifeGameCollection
+from module.lifegame.test.LifeGameCollectionConfiguration import LifeGameCollectionConfiguration as TestCollectionConfiguration
 from src.core.Core import Core
 from src.core.connection.Terminal import Terminal
 
@@ -33,7 +34,7 @@ class TestLifeGameSimulation(unittest.TestCase):
         }
       },
       'simulation' : {
-        'collections' : (LifeGameCollection,)
+        'collections' : (LifeGameCollection(TestCollectionConfiguration()),)
       },
       'connections': [self._connection]
     })

@@ -3,8 +3,9 @@ from src.synergy.object.SynergyObject import SynergyObject
 
 class SynergyCollection(SynergyCollectionInterface):
   
-  def __init__(self):
-    self._objects = []
+  def __init__(self, configuration):
+    self._configuration = configuration
+    self._objects = self._configuration.getStartObjects()
   
   def getObjects(self):
     return self._objects
