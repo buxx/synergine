@@ -20,12 +20,6 @@ class Core(object):
     self._connector = Connector(self._configuration_manager.get('connections'))
     self._context = Context(self._synergy_object_manager)
   
-  #def _getConnectionsToConnect(self):
-  #  connections = []
-  #  for connection_class in self._configuration_manager.get('connections'):
-  #    connections.append(connection_class()) # TODO: Donner de la config au display ?
-  #  return connections
-  
   def run(self, screen = None): # TODO: screen: Rendre pour le cas ou le display n'a pas besoin de ca
     if screen:
       self._connector.sendScreenToConnection(screen)
@@ -49,18 +43,14 @@ class Core(object):
     self._last_cycle_time = time()
   
   def _waitForNextCycle(self):
-    sleep(max(1./self._maxfps - (time() - self._last_cycle_time), 0))
+    if self._maxfps is not True:
+      sleep(max(1./self._maxfps - (time() - self._last_cycle_time), 0))
   
   def _initSyngeries(self):
     for collection_class in self._configuration_manager.get('simulation.collections'):
       self._synergy_object_manager.initCollection(collection=collection_class());
   
   def _runConnecteds(self):
-    # 1: Ici on recup les donnees des objets AFFICHABLE (etre generique bien sur)
-    # 2: penser a implementer que les objets informe de si ils sont a redessiner ou non
-    # 3: Si dessein progressif: garder a l'esprit qu'il faudra l'ancienne pos. d'un
-    # objet pour leffacer avant de le r edessiner
-    # TODO: Ne le faire que max 25 fps (issue de config)
     self._connector.prepare(self._synergy_object_manager)
     self._connector.cycle()
   

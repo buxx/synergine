@@ -20,12 +20,13 @@ class TestLifeGameSimulation(unittest.TestCase):
   
   def setUp(self):
     self._connection = TestTerminal()
+    # TODO: Configuration ici de Cell par defaut sur LifeGameCollection
     
   # TODO: remonter plus haut
   def getCore(self, cycles, main_process = True):
     return Core({
       'engine': {
-        'fpsmax': 99999, # TODO: Valeur infini ? True
+        'fpsmax': True,
         'debug': {
           'mainprocess': main_process,
           'cycles': range(cycles)
@@ -38,7 +39,26 @@ class TestLifeGameSimulation(unittest.TestCase):
     })
   
   def test_cycles_in_main_process(self):
-    core = self.getCore(cycles=1, main_process=True)
+    self._testCycles(True)
+  
+  def test_cycles_in_sub_process(self):
+    self._testCycles(False)
+    
+  def _testCycles(self, main_process):
+    for cycle_count in (
+      (0, 7),
+      (1, 7),
+      (2, 9),
+      (3, 9),
+      (4, 10),
+      (5, 12),
+      (10, 20),
+      (50, 101),
+      (100, 103),
+    ):
+      self.assertEqual(cycle_count[1], len(self._getSynergyObjectManagerForCycle(cycles=cycle_count[0], main_process=main_process).getObjects()))
+  
+  def _getSynergyObjectManagerForCycle(self, cycles, main_process=True):
+    core = self.getCore(cycles, main_process=True)
     core.run()
-    synergy_object_manager = self._connection.getSynergyObjectManager()
-    self.assertEqual(7, len(synergy_object_manager.getObjects()))
+    return self._connection.getSynergyObjectManager()
