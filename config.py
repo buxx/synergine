@@ -6,13 +6,12 @@ config = {
   'engine': {
     'fpsmax': 25, # 25
     'debug': {
-      'mainprocess': True
+      'mainprocess': True,
+      'cycles': range(100)
     }
   },
   'simulation' : {
-    'collections' : (LifeGameCollection,)
+    'collections' : (LifeGameCollection,) # TODO: distinction Class (et pas objet)
   },
-  'display': {
-    'displays': [TestDisplay, CursesDisplay]
-  }
+  'connections': [TestDisplay(), CursesDisplay()]
 }

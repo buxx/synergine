@@ -1,11 +1,14 @@
-from src.core.display.Display import Display
+from src.core.connection.Display import Display
 
 class TestDisplay(Display):
   
   def drawPoints(self, points):
     pass
   
-  def endOfCycle(self):
+  def _startOfCycle(self):
+    pass
+  
+  def _endOfCycle(self):
     pass
   
   def terminate(self):

@@ -2,15 +2,14 @@ from src.core.SynergyObjectManager import SynergyObjectManager
 from src.core.CycleCalculator import CycleCalculator
 from src.core.SpaceDataConnector import SpaceDataConnector
 from src.core.config.ConfigurationManager import ConfigurationManager
-from src.core.display.DisplayConnector import DisplayConnector
+from src.core.connection.Connector import Connector
 from src.core.cycle.Context import Context
 from lib.factory.factory import Factory
 from time import time, sleep
-from config import config
 
 class Core(object):
   
-  def __init__(self):
+  def __init__(self, config):
     self._configuration_manager = ConfigurationManager(config)
     self._factory = Factory()
     self._synergy_object_manager =  SynergyObjectManager()
@@ -18,33 +17,33 @@ class Core(object):
     self._space_data_connector = SpaceDataConnector()
     self._last_cycle_time = time()
     self._maxfps = self._configuration_manager.get('engine.fpsmax')
-    self._display_connector = DisplayConnector(self._getDisplaysToConnect())
+    self._connector = Connector(self._configuration_manager.get('connections'))
     self._context = Context(self._synergy_object_manager)
   
-  def _getDisplaysToConnect(self):
-    displays = []
-    for display_class in self._configuration_manager.get('display.displays'):
-      displays.append(display_class()) # TODO: Donner de la config au display ?
-    return displays
+  #def _getConnectionsToConnect(self):
+  #  connections = []
+  #  for connection_class in self._configuration_manager.get('connections'):
+  #    connections.append(connection_class()) # TODO: Donner de la config au display ?
+  #  return connections
   
   def run(self, screen = None): # TODO: screen: Rendre pour le cas ou le display n'a pas besoin de ca
     if screen:
-      self._display_connector.sendScreenToDisplay(screen)
+      self._connector.sendScreenToConnection(screen)
     self._initSyngeries()
-    self._runDisplay()
+    self._runConnecteds()
     self._waitForNextCycle()
-    for i in range(100): # TODO: remplacer la valeur de test 100 par qqch qui surveille l'ordre d'arret
+    for i in self._configuration_manager.get('engine.debug.cycles', True):
       self._updateLastCycleTime()
       self._context.update()
       self._cycle_calculator.computeCollections(collections=self._synergy_object_manager.getCollections(),\
                                                 context=self._context)
-      self._runDisplay()
+      self._runConnecteds()
       self._waitForNextCycle()
     self._end()
   
   def _end(self):
     self._cycle_calculator.end()
-    self._display_connector.terminate()
+    self._connector.terminate()
   
   def _updateLastCycleTime(self):
     self._last_cycle_time = time()
@@ -56,15 +55,15 @@ class Core(object):
     for collection_class in self._configuration_manager.get('simulation.collections'):
       self._synergy_object_manager.initCollection(collection=collection_class());
   
-  def _runDisplay(self):
+  def _runConnecteds(self):
     # 1: Ici on recup les donnees des objets AFFICHABLE (etre generique bien sur)
     # 2: penser a implementer que les objets informe de si ils sont a redessiner ou non
     # 3: Si dessein progressif: garder a l'esprit qu'il faudra l'ancienne pos. d'un
     # objet pour leffacer avant de le r edessiner
     # TODO: Ne le faire que max 25 fps (issue de config)
-    self._display_connector.prepare(self._synergy_object_manager)
-    self._display_connector.cycle()
+    self._connector.prepare(self._synergy_object_manager)
+    self._connector.cycle()
   
   def haveToBeRunnedBy(self):
-    return self._display_connector.getDisplayWhoHaveToRunCore()
+    return self._connector.getConnectionWhoHaveToRunCore()
   

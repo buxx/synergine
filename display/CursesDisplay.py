@@ -1,10 +1,10 @@
-from src.core.display.Display import Display
+from src.core.connection.Display import Display
 import curses
 
 class CursesDisplay(Display):
   # TODO: gestion de ce qui est affiche, partie de la map totale
   
-  def needToRunDisplay(self):
+  def needToRunCore(self):
     return True
   
   def encapsulate_run(self, run_function):
@@ -20,10 +20,10 @@ class CursesDisplay(Display):
     curses.cbreak()
     self._screen.keypad(True)
   
-  def startOfCycle(self):
+  def _startOfCycle(self):
     self._screen.clear()
   
-  def endOfCycle(self):
+  def _endOfCycle(self):
     self._screen.refresh()
   
   def terminate(self):
