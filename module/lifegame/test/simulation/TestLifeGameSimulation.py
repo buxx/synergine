@@ -3,6 +3,7 @@ from module.lifegame.synergy.collection.LifeGameCollection import LifeGameCollec
 from module.lifegame.test.LifeGameCollectionConfiguration import LifeGameCollectionConfiguration as TestCollectionConfiguration
 from src.core.Core import Core
 from src.core.connection.Terminal import Terminal
+from module.lifegame.test.simulation.test_context import test_context
 
 # TODO: Objet generique de testTerminal ?
 class TestTerminal(Terminal):
@@ -46,82 +47,7 @@ class TestLifeGameSimulation(unittest.TestCase):
     self._testCycles(False)
     
   def _testCycles(self, main_process):
-    for cycle in (
-      (0, 7, [(0, 20, 20),
-        (0, 21, 20),
-        (0, 22, 20),
-        (0, 22, 21),
-        (0, 22, 22),
-        (0, 21, 22),
-        (0, 20, 22)]),
-      (1, 7, [(0, 21, 20),
-        (0, 22, 20),
-        (0, 22, 22),
-        (0, 21, 22),
-        (0, 21, 19),
-        (0, 21, 23),
-        (0, 23, 21)]),
-      (2, 9, [(0, 21, 20),
-        (0, 22, 20),
-        (0, 22, 22),
-        (0, 21, 22),
-        (0, 21, 19),
-        (0, 21, 23),
-        (0, 23, 21),
-        (0, 22, 19),
-        (0, 22, 23)]),
-      (3, 9, [(0, 21, 20),
-        (0, 21, 22),
-        (0, 21, 19),
-        (0, 21, 23),
-        (0, 23, 21),
-        (0, 22, 19),
-        (0, 22, 23),
-        (0, 23, 20),
-        (0, 23, 22)]),
-      (4, 10, [(0, 21, 20),
-        (0, 21, 22),
-        (0, 21, 19),
-        (0, 21, 23),
-        (0, 23, 21),
-        (0, 22, 19),
-        (0, 22, 23),
-        (0, 23, 20),
-        (0, 23, 22),
-        (0, 24, 21)]),
-      (5, 12, [(0, 21, 20),
-        (0, 21, 22),
-        (0, 21, 19),
-        (0, 21, 23),
-        (0, 23, 21),
-        (0, 22, 19),
-        (0, 22, 23),
-        (0, 23, 20),
-        (0, 23, 22),
-        (0, 24, 21),
-        (0, 24, 20),
-        (0, 24, 22)]),
-      (10, 20, [(0, 21, 19),
-        (0, 21, 23),
-        (0, 20, 19),
-        (0, 20, 23),
-        (0, 22, 17),
-        (0, 22, 25),
-        (0, 26, 21),
-        (0, 20, 18),
-        (0, 20, 24),
-        (0, 21, 17),
-        (0, 21, 25),
-        (0, 23, 17),
-        (0, 23, 21),
-        (0, 23, 25),
-        (0, 24, 18),
-        (0, 24, 24),
-        (0, 25, 19),
-        (0, 25, 23),
-        (0, 26, 20),
-        (0, 26, 22)])
-    ):
+    for cycle in test_context:
       synergy_object_manager = self._getSynergyObjectManagerForCycle(cycles=cycle[0], main_process=main_process)
       self.assertEqual(cycle[1], len(synergy_object_manager.getObjects()))
       self.assertEqual(cycle[2], self._getObjectsPositions(synergy_object_manager.getObjects()))

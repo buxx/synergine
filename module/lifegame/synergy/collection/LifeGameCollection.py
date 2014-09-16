@@ -53,8 +53,10 @@ class LifeGameCollection(SynergyCollection):
     return cell_near_count
   
   def _getEmptyPoints(self):
+    # TODO: Optimiser en ne creant les empty point (faire un carre x+1 y+1 des cell les plus loins ?)
     coordinates = []
-    for x in range(100): # TODO: config ?
+    for x in range(100): # TODO: Le calcul ne doit pas depasser la taille du monde.
+      # et la taille du monde doit etre gere qqpart
       for y in range(60):
         coordinates.append((0, x, y))
     return coordinates
