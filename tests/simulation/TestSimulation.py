@@ -25,6 +25,22 @@ class TestSimulation(BaseTestSimulation):
           ('boby', 32, 5),
           ('cora', 1024, 10),
           ('mara', 1048576, 20)],
+      2: [('john', 16, 2),
+          ('boby', 0, 5),
+          ('cora', 0, 10),
+          ('mara', 0, 20)],
+      3: [('john', 256, 2),
+          ('boby', 0, 5),
+          ('cora', 0, 10),
+          ('mara', 0, 20)],
+      4: [('john', 65536, 2),
+          ('boby', 0, 5),
+          ('cora', 0, 10),
+          ('mara', 0, 20)],
+      5: [('john', 0, 2),
+          ('boby', 0, 5),
+          ('cora', 0, 10),
+          ('mara', 0, 20)],
     }
     for cycle in tests:
       synergy_object_manager = self._getSynergyObjectManagerForCycle(cycles=cycle, main_process=main_process)
