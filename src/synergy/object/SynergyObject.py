@@ -2,7 +2,7 @@ from src.synergy.object.SynergyObjectInterface import SynergyObjectInterface
 
 class SynergyObject(SynergyObjectInterface):
   
-  def __init__(self, ):
+  def __init__(self):
     self._cycle_frequency = 1
     # TODO: Cet histoire de trace est trop dependante d'objet a trace
     self._trace_length = 1

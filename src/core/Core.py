@@ -25,7 +25,7 @@ class Core(object):
       self._connector.sendScreenToConnection(screen)
     self._runConnecteds()
     self._waitForNextCycle()
-    for i in self._configuration_manager.get('engine.debug.cycles', True):
+    for i in self._configuration_manager.get('engine.debug.cycles', True): # TODO: True ne marche dans la boucle
       self._updateLastCycleTime()
       self._context.update()
       self._cycle_calculator.computeCollections(collections=self._synergy_object_manager.getCollections(),\

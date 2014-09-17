@@ -5,7 +5,6 @@ class LifeGameCollection(SynergyCollection):
   
   def __init__(self, configuration):
     super(LifeGameCollection, self).__init__(configuration)
-    
   
   def compute(self, context):
     super(LifeGameCollection, self).compute(context)
