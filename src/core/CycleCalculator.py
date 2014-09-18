@@ -1,9 +1,6 @@
 from lib.process.processmanager import KeepedAliveProcessManager
 from src.core.cycle.PipePackage import PipePackage
 
-# TODO: tmp ...
-from os import getpid
-
 class CycleCalculator(object):
   
   def __init__(self, force_main_process = False):
@@ -11,7 +8,8 @@ class CycleCalculator(object):
     self._force_main_process = force_main_process
     self._process_manager = KeepedAliveProcessManager(nb_process=2, target=self._process_compute)
   
-  def computeCollections(self, collections, context):
+  def compute(self, context):
+    collections = context.getCollections()
     for collection in collections:
       pipe_package = self._getPipePackageForCollection(collection, context)
       if not self._force_main_process:
@@ -31,9 +29,8 @@ class CycleCalculator(object):
   
   def _process_compute(self, pipe_package):
     objects_to_compute = pipe_package.getChunkedObjects()
-    for object in objects_to_compute:
-      object.cycle(pipe_package.getContext())
-      object.test = getpid()
+    for obj in objects_to_compute:
+      obj.cycle(pipe_package.getContext())
     return objects_to_compute
       
   def end(self):

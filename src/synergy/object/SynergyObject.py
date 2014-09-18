@@ -9,6 +9,9 @@ class SynergyObject(SynergyObjectInterface):
     self._trace = []
     self._will = None
   
+  def setWill(self, action):
+    self._will = action
+  
   def getWill(self):
     return self._will
   

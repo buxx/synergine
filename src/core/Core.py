@@ -28,8 +28,7 @@ class Core(object):
     for i in self._configuration_manager.get('engine.debug.cycles', True): # TODO: True ne marche dans la boucle
       self._updateLastCycleTime()
       self._context.update()
-      self._cycle_calculator.computeCollections(collections=self._synergy_object_manager.getCollections(),\
-                                                context=self._context)
+      self._cycle_calculator.compute(self._context)
       self._runConnecteds()
       self._waitForNextCycle()
     self._end()
@@ -46,7 +45,7 @@ class Core(object):
       sleep(max(1./self._maxfps - (time() - self._last_cycle_time), 0))
   
   def _runConnecteds(self):
-    self._connector.prepare(self._synergy_object_manager)
+    self._connector.prepare(self._synergy_object_manager) # TODO: estce necessaire de redonner l'objet ?
     self._connector.cycle()
   
   def haveToBeRunnedBy(self):

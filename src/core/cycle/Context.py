@@ -3,7 +3,10 @@ class Context(object):
   def __init__(self, synergy_object_manager):
     self._synergy_object_manager = synergy_object_manager
     self._map = {}
-  
+
+  def getCollections(self):
+    return self._synergy_object_manager.getCollections()
+
   def update(self):
     self._updateMap()
   
@@ -13,8 +16,6 @@ class Context(object):
     # il faut cependant trouver un moyen performant de savoir qui est a faire disparaitre (avant de redessiner)
     self._map = {}
     for object in self._synergy_object_manager.getObjects():
-      #if object.getWill() is 'die':
-      #  pass#raise Exception('NoNo ', object)
       for point in object.getTrace():
         if point in self._map:
           self._map[point].append(object)
@@ -23,7 +24,7 @@ class Context(object):
   
   def getMap(self):
     return self._map
-  
+
   def getObjectsNearPoint(self, point, distance=1): # TODO distance
     objects_arrounds = []
     for point_arround in self.getArroundPointsOfPoint(point):

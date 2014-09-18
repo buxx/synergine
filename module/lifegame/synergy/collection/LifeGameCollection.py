@@ -9,25 +9,8 @@ class LifeGameCollection(SynergyCollection):
   def compute(self, context):
     super(LifeGameCollection, self).compute(context)
     
-    # cycle n
-    # etape 1: on determine qui va mourrir  (sans les faire disparaitre)
-    # etape deux: on regarde ou il va en apparaitre
-    # etape 3: on retire les mourantes
-    # la collection d'objet doit a se moment la representer le cycle n +1
-    
-    # etape 1
-    cells_will_die = []
-    for cell in self.getObjects():
-      arround_cell_count = self._getCellCountArroundOfPosition(context, cell.getPoint())
-      if arround_cell_count < 2 or arround_cell_count > 3:
-        #cell.setWill('die')
-        cells_will_die.append(cell)
-    
-    # etape 2
     for empty_point in self._getEmptyPoints():
       if not self._cellExistOnThisPoint(context, empty_point):
-        #if empty_point == (0,23,20):
-        #  import pdb; pdb.set_trace()
         arround_cell_count = self._getCellCountArroundOfPosition(context, empty_point)
         if arround_cell_count is 3:
           new_cell = Cell()
@@ -35,14 +18,14 @@ class LifeGameCollection(SynergyCollection):
           self._objects.append(new_cell)
     
     # etape 3
-    for cell_die in cells_will_die:
-      self._objects.remove(cell_die)
+    new_objects_col = []
+    for cell in self.getObjects():
+      if cell.getWill() is not 'die':
+        new_objects_col.append(cell)
+      else:
+        del(cell)
+    self._objects = new_objects_col
         
-    # a ce stade la collection doit etre fidele
-    # la map qui SERA genere aussi (mais la on ne l'utilise meme pas
-    # ce qui ne peut pas marcher si on a plusieurs collections ou si
-    # on passe ce self.seompte dans un sous prcess)
-    
   def _getCellCountArroundOfPosition(self, context, point):
     objects_near = context.getObjectsNearPoint(point, 1)
     cell_near_count = 0
