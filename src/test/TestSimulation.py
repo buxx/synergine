@@ -29,7 +29,7 @@ class TestSimulation(unittest.TestCase):
     return Core(self._getCoreConfiguration(cycles, main_process))
   
   def _getSynergyObjectManagerForCycle(self, cycles, main_process=True):
-    core = self.getCore(cycles, main_process=True)
+    core = self.getCore(cycles, main_process)
     core.run()
     return self._connection.getSynergyObjectManager()
   

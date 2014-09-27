@@ -13,7 +13,6 @@ class TestLifeGameSimulation(BaseTestSimulation):
     self._testCycles(True)
   
   def test_cycles_in_sub_process(self):
-    return
     self._testCycles(False)
     
   def _testCycles(self, main_process):
