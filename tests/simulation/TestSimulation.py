@@ -44,7 +44,7 @@ class TestSimulation(BaseTestSimulation):
     }
     for cycle in tests:
       synergy_object_manager = self._getSynergyObjectManagerForCycle(cycles=cycle, main_process=main_process)
-      self.assertEqual(tests[cycle], self._getObjectsResume(synergy_object_manager))
+      self.assertEqual(sorted(tests[cycle]), sorted(self._getObjectsResume(synergy_object_manager)))
   
   def _getObjectsResume(self, synergy_object_manager):
     resume = []
