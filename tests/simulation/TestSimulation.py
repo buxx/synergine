@@ -41,6 +41,7 @@ class TestSimulation(BaseTestSimulation):
           ('boby', 0, 5),
           ('cora', 0, 10),
           ('mara', 0, 20)],
+      6: [],
     }
     for cycle in tests:
       synergy_object_manager = self._getSynergyObjectManagerForCycle(cycles=cycle, main_process=main_process)
