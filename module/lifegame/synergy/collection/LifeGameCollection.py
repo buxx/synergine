@@ -20,7 +20,7 @@ class LifeGameCollection(SynergyCollection):
     # etape 3
     new_objects_col = []
     for cell in self.getObjects():
-      if cell.getWill() is not 'die':
+      if cell.getWill() != 'die':
         new_objects_col.append(cell)
       else:
         del(cell)
