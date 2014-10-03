@@ -1,9 +1,7 @@
-language: python
-python:
-  - "3.4"
-install:
-  - pip install -r tests_requirements.txt
-script:
-  - python3.4 run_tests.py --cov=cov_synergine
-after_success:
-  - coveralls
+[run]
+omit =
+    */tests*
+[report]
+exclude_lines =
+    raise NotImplementedError
+    if __name__ == .__main__.:
