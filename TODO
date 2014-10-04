@@ -2,3 +2,4 @@ Dans les grandes lignes:
 
 * Utiliser des objets pour representer les actions
 * Faire faire le cycle par l'entite elle meme (SynergtObject->cycle, Collection->compute) semble un peu problematique. On s'embrouille un peu entre utilise ses propres objets, ceux du contexte, etc. Faire faire le travail par un autre objet non ?
+* L'engine doit pouvoir proposer des evnnements (auxquels on ajoute les notre). Comme "deux objets en contacts" qui lance un callback. Pour des insectes, proposer des specialisations comme un objet insecte et un objet transportable.
