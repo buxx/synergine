@@ -4,7 +4,6 @@ python:
 install:
   - "pip install -r tests_requirements.txt"
 script: 
-  - python3.4 run_tests.py
-  - py.test run_tests.py -v --cov . --cov-report term-missing --cov-config .coveragerc
+  - coverage run run_tests.py && coverage report -m
 after_success:
   - coveralls
