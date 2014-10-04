@@ -21,7 +21,7 @@ class SynergyCollection(SynergyCollectionInterface):
     #import pdb; pdb.set_trace()
     return self._objects
   
-  def compute(self, context):
+  def cycle(self, context):
     
     #import pdb; pdb.set_trace()
     """

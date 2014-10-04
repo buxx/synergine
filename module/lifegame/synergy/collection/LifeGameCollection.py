@@ -6,8 +6,8 @@ class LifeGameCollection(SynergyCollection):
   def __init__(self, configuration):
     super(LifeGameCollection, self).__init__(configuration)
   
-  def compute(self, context):
-    super(LifeGameCollection, self).compute(context)
+  def cycle(self, context):
+    super(LifeGameCollection, self).cycle(context)
     
     for empty_point in self._getEmptyPoints():
       if not self._cellExistOnThisPoint(context, empty_point):

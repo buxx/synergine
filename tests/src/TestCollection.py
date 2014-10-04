@@ -2,8 +2,8 @@ from src.synergy.collection.SynergyCollection import SynergyCollection
 
 class TestCollection(SynergyCollection):
   
-  def compute(self, context):
-    super(TestCollection, self).compute(context)
+  def cycle(self, context):
+    super(TestCollection, self).cycle(context)
 
     # Suppression des morts
     new_objects = []
