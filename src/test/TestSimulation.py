@@ -7,7 +7,7 @@ class TestSimulation(unittest.TestCase):
   def setUp(self):
     self._connection = TestTerminal()
   
-  def _getSetUpCollections(self):
+  def _getSetUpSimulation(self):
     raise NotImplementedError
   
   def _getCoreConfiguration(self, cycles, main_process = True):
@@ -19,9 +19,7 @@ class TestSimulation(unittest.TestCase):
           'cycles': range(cycles)
         }
       },
-      'simulation' : {
-        'collections' : self._getSetUpCollections()
-      },
+      'simulations' : [self._getSetUpSimulation()],
       'connections': [self._connection]
     }
   

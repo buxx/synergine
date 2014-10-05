@@ -7,8 +7,8 @@ from tests.src.TestCollectionConfiguration import TestCollectionConfiguration
 
 class TestSimulation(BaseTestSimulation):
 
-  def _getSetUpCollections(self):
-    return [TestCollection(TestCollectionConfiguration(), TestSimulationSimulation())]
+  def _getSetUpSimulation(self):
+    return TestSimulationSimulation([TestCollection(TestCollectionConfiguration())])
   
   def test_cycles_in_main_process(self):
     self._testCycles(True)

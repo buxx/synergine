@@ -30,4 +30,4 @@ class TestSimulation(Simulation):
         obj.beans = 0
 
   def run_simulation_cycle(self, context):
-    raise NotImplementedError
+    pass

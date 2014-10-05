@@ -7,8 +7,8 @@ from module.lifegame.test.src.test_context import test_context
 
 class TestLifeGameSimulation(BaseTestSimulation):
   
-  def _getSetUpCollections(self):
-    return [LifeGameCollection(TestCollectionConfiguration(), LifeGameSimulation())]
+  def _getSetUpSimulation(self):
+    return LifeGameSimulation([LifeGameCollection(TestCollectionConfiguration())])
   
   def test_cycles_in_main_process(self):
     self._testCycles(True)

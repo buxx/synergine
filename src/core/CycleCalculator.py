@@ -9,31 +9,32 @@ class CycleCalculator(object):
     self._process_manager = KeepedAliveProcessManager(nb_process=2, target=self._process_compute)
   
   def compute(self, context):
-    collections = context.getCollections()
-    for collection in collections:
-      pipe_package = self._getPipePackageForCollection(collection, context)
-      if not self._force_main_process:
-        computeds_objects = self._process_manager.get_their_work(pipe_package)
-      else:
-        computeds_objects = self._process_compute(pipe_package)
-      collection.setObjects(computeds_objects)
-      
-    for collection in collections:
-      simulation = collection.getSimulation()
-      simulation.run_collection_cycle(collection, context)
+    for simulation in context.getSimulations():
+      collections = simulation.getCollections()
+      for collection in collections:
+        pipe_package = self._getPipePackageForCollection(simulation, collection, context)
+        if not self._force_main_process:
+          computeds_objects = self._process_manager.get_their_work(pipe_package)
+        else:
+          computeds_objects = self._process_compute(pipe_package)
+        collection.setObjects(computeds_objects)
 
-  def _getPipePackageForCollection(self, collection, context):
+      for collection in collections:
+        simulation.run_collection_cycle(collection, context)
+
+      simulation.run_simulation_cycle(context)
+
+  def _getPipePackageForCollection(self, simulation, collection, context):
     # FUTURE: test si garder le package en attribut de core ameliore les perfs (attention a l'index de current_process)
     pipe_package = PipePackage(collection.getComputableObjects())
     pipe_package.setContext(context)
-    pipe_package.setCurrentCollection(collection)
+    pipe_package.setCurrentSimulation(simulation)
     return pipe_package
   
   def _process_compute(self, pipe_package):
     objects_to_compute = pipe_package.getChunkedObjects()
     for obj in objects_to_compute:
-      collection = pipe_package.getCurrentCollection()
-      simulation = collection.getSimulation()
+      simulation = pipe_package.getCurrentSimulation()
       context = pipe_package.getContext()
       simulation.run_object_cycle(obj, context)
     return objects_to_compute

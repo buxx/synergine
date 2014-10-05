@@ -12,8 +12,6 @@ config = {
       'cycles': range(100)
     }
   },
-  'simulation' : {
-    'collections' : (LifeGameCollection(LifeGameCollectionConfiguration(), LifeGameSimulation()),)
-  },
+  'simulations' : [LifeGameSimulation([LifeGameCollection(LifeGameCollectionConfiguration())])],
   'connections': [TestDisplay(), CursesDisplay()],
 }

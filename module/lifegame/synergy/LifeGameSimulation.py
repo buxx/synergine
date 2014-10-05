@@ -57,4 +57,4 @@ class LifeGameSimulation(Simulation):
     return False
 
   def run_simulation_cycle(self, context):
-    raise NotImplementedError
+    pass

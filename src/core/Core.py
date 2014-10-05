@@ -12,7 +12,7 @@ class Core(object):
   def __init__(self, config):
     self._configuration_manager = ConfigurationManager(config)
     self._factory = Factory()
-    self._synergy_object_manager =  SynergyObjectManager(self._configuration_manager.get('simulation.collections'))
+    self._synergy_object_manager =  SynergyObjectManager(self._configuration_manager.get('simulations'))
     self._cycle_calculator = CycleCalculator(force_main_process=self._configuration_manager.get('engine.debug.mainprocess')) # TODO: debug in conf
     self._space_data_connector = SpaceDataConnector()
     self._last_cycle_time = time()

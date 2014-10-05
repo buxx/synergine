@@ -5,7 +5,12 @@ class Context(object):
     self._map = {}
 
   def getCollections(self):
+    # TODO: C'est son job ?
     return self._synergy_object_manager.getCollections()
+
+  def getSimulations(self):
+    # TODO: C'est son job ?
+    return self._synergy_object_manager.getSimulations()
 
   def update(self):
     self._updateMap()
