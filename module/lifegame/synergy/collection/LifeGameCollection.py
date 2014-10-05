@@ -2,10 +2,16 @@ from src.synergy.collection.SynergyCollection import SynergyCollection
 from module.lifegame.synergy.object.Cell import Cell
 
 class LifeGameCollection(SynergyCollection):
-  
-  def __init__(self, configuration):
-    super(LifeGameCollection, self).__init__(configuration)
-  
+
+  def objectCycle(self, obj, context):
+    objects_near = context.getObjectsNearPoint(obj.getPoint(), 1)
+    cell_near_count = 0
+    for object_near in objects_near:
+      if isinstance(object_near, Cell):
+        cell_near_count += 1
+    if cell_near_count < 2 or cell_near_count > 3:
+      obj.setWill('die')
+
   def cycle(self, context):
     super(LifeGameCollection, self).cycle(context)
     

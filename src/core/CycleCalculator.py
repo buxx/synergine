@@ -20,17 +20,20 @@ class CycleCalculator(object):
       
     for collection in collections:
       collection.cycle(context)
-  
+
   def _getPipePackageForCollection(self, collection, context):
     # FUTURE: test si garder le package en attribut de core ameliore les perfs (attention a l'index de current_process)
     pipe_package = PipePackage(collection.getComputableObjects())
     pipe_package.setContext(context)
+    pipe_package.setCurrentCollection(collection)
     return pipe_package
   
   def _process_compute(self, pipe_package):
     objects_to_compute = pipe_package.getChunkedObjects()
     for obj in objects_to_compute:
-      obj.cycle(pipe_package.getContext())
+      collection = pipe_package.getCurrentCollection()
+      context = pipe_package.getContext()
+      collection.objectCycle(obj, context)
     return objects_to_compute
       
   def end(self):

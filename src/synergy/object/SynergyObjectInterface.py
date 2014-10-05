@@ -1,4 +1,3 @@
 class SynergyObjectInterface(object):
-  
-  def cycle(self):
-    raise NotImplementedError()
+  # TODO: pleins de truc dans SynergyObject qui devrait etre ici ?
+  pass

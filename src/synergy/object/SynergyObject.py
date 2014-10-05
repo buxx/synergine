@@ -22,8 +22,3 @@ class SynergyObject(SynergyObjectInterface):
   
   def getTrace(self):
     return self._trace
-  
-  # TODO: qui execute le calcul du cycle ? Utiliser les objets de la simulation
-  # le chergerai de trop de responsabilite ?
-  def cycle(self, context):
-    pass

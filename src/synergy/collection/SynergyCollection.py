@@ -20,7 +20,11 @@ class SynergyCollection(SynergyCollectionInterface):
     
     #import pdb; pdb.set_trace()
     return self._objects
-  
+
+  def objectCycle(self, obj, context):
+    # TODO: Gestion ici des "evenements" ?
+    pass
+
   def cycle(self, context):
     
     #import pdb; pdb.set_trace()
