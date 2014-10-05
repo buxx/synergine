@@ -2,12 +2,13 @@ import unittest
 from src.test.TestSimulation import TestSimulation as BaseTestSimulation
 from src.test.TestTerminal import TestTerminal
 from tests.src.TestCollection import TestCollection
+from tests.src.TestSimulation import TestSimulation as TestSimulationSimulation
 from tests.src.TestCollectionConfiguration import TestCollectionConfiguration
 
 class TestSimulation(BaseTestSimulation):
 
   def _getSetUpCollections(self):
-    return [TestCollection(TestCollectionConfiguration())]
+    return [TestCollection(TestCollectionConfiguration(), TestSimulationSimulation())]
   
   def test_cycles_in_main_process(self):
     self._testCycles(True)

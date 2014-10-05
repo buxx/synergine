@@ -19,7 +19,8 @@ class CycleCalculator(object):
       collection.setObjects(computeds_objects)
       
     for collection in collections:
-      collection.cycle(context)
+      simulation = collection.getSimulation()
+      simulation.run_collection_cycle(collection, context)
 
   def _getPipePackageForCollection(self, collection, context):
     # FUTURE: test si garder le package en attribut de core ameliore les perfs (attention a l'index de current_process)
@@ -32,8 +33,9 @@ class CycleCalculator(object):
     objects_to_compute = pipe_package.getChunkedObjects()
     for obj in objects_to_compute:
       collection = pipe_package.getCurrentCollection()
+      simulation = collection.getSimulation()
       context = pipe_package.getContext()
-      collection.objectCycle(obj, context)
+      simulation.run_object_cycle(obj, context)
     return objects_to_compute
       
   def end(self):
