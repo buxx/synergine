@@ -14,7 +14,7 @@ class SynergyObject(SynergyObjectInterface):
   
   def getWill(self):
     return self._will
-  
+
   # TODO: Gestion space dtata autrement ?
   def addTrace(self, point):
     # TODO: limite de taille de trace
