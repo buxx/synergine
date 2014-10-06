@@ -3,8 +3,9 @@ from src.core.cycle.PipePackage import PipePackage
 
 class CycleCalculator(object):
   
-  def __init__(self, force_main_process = False):
+  def __init__(self, event_manager, force_main_process = False):
     # TODO: nbprocess
+    self._event_manager = event_manager
     self._force_main_process = force_main_process
     self._process_manager = KeepedAliveProcessManager(nb_process=2, target=self._process_compute)
   
@@ -33,9 +34,15 @@ class CycleCalculator(object):
   
   def _process_compute(self, pipe_package):
     objects_to_compute = pipe_package.getChunkedObjects()
+    context = pipe_package.getContext()
+    mechanisms = self._event_manager.get_mechanisms()
+    for mechanism in mechanisms:
+      mechanisms_objects = mechanism.get_concerned_objects(objects_to_compute)
+      for mechanisms_object in mechanisms_objects:
+        mechanism.run(mechanisms_object, context)
+
     for obj in objects_to_compute:
       simulation = pipe_package.getCurrentSimulation()
-      context = pipe_package.getContext()
       simulation.run_object_cycle(obj, context)
     return objects_to_compute
       

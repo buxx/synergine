@@ -1,5 +1,6 @@
 class SynergyObjectManager(object):
-  
+  #todo refactoriser getcoll
+
   def __init__(self, simulations):
     self._simulations = simulations
   
@@ -28,7 +29,15 @@ class SynergyObjectManager(object):
         for collection_object in collection.getObjects():
           objects.append(collection_object)
     return objects
-  
+
+  def getListeners(self):
+    listeners = []
+    for simulation in self._simulations:
+      for listener in simulation.get_listeners():
+        listeners.append(listener)
+    return listeners
+
+  # todo: la func ci-dessous sont-elles a leurs place ?
   def getObjectsToDisplay(self):
     objects_to_display = []
     for simulation in self._simulations:

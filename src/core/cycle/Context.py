@@ -31,6 +31,7 @@ class Context(object):
     return self._map
 
   def getObjectsNearPoint(self, point, distance=1): # TODO distance
+    # TODO: Ces fonctions sont-elles de la responsabilite de Context ?
     objects_arrounds = []
     for point_arround in self.getArroundPointsOfPoint(point):
       if point_arround in self._map:

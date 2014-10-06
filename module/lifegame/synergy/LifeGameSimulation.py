@@ -1,19 +1,18 @@
 from src.synergy.Simulation import Simulation
 from module.lifegame.synergy.object.Cell import Cell
+from module.lifegame.synergy.event.RemoveListener import RemoveListener
 
 class LifeGameSimulation(Simulation):
 
+  def __init__(self, collections):
+    super(LifeGameSimulation, self).__init__(collections)
+    self._listeners = [RemoveListener()]
+
   def run_object_cycle(self, obj, context):
-    objects_near = context.getObjectsNearPoint(obj.getPoint(), 1)
-    cell_near_count = 0
-    for object_near in objects_near:
-      if isinstance(object_near, Cell):
-        cell_near_count += 1
-    if cell_near_count < 2 or cell_near_count > 3:
-      obj.setWill('die')
+    pass
 
   def run_collection_cycle(self, collection, context):
-
+    # TODO: Creer un evenement pour la creation (implique de creer des Cell morte sur la grille)
     for empty_point in self._getEmptyPoints():
       if not self._cellExistOnThisPoint(context, empty_point):
         arround_cell_count = self._getCellCountArroundOfPosition(context, empty_point)
