@@ -5,5 +5,5 @@ class Listener(object):
   def get_listened_class(self):
     return self._listen
 
-  def trigged(self, obj, concerneds_objects, context):
+  def trigged(self, obj, context, parameters):
     raise NotImplementedError

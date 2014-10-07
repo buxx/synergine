@@ -12,6 +12,10 @@ class Context(object):
     # TODO: C'est son job ?
     return self._synergy_object_manager.getSimulations()
 
+  def getObjects(self):
+    # TODO: C'est son job ?
+    return self._synergy_object_manager.getObjects()
+
   def update(self):
     self._updateMap()
   

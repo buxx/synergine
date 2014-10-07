@@ -1,11 +1,16 @@
 from lib.process.processmanager import KeepedAliveProcessManager
 from src.core.cycle.PipePackage import PipePackage
+from src.core.simulation.EventManager import EventManager
 
 class CycleCalculator(object):
   
-  def __init__(self, event_manager, force_main_process = False):
+  def __init__(self, synergy_manager, force_main_process = False):
     # TODO: nbprocess
-    self._event_manager = event_manager
+    self._synergy_manager = synergy_manager
+    self._object_event_manager = EventManager()
+    self._object_event_manager.refresh(self._synergy_manager.getObjectListeners())
+    self._global_event_manager = EventManager()
+    self._global_event_manager.refresh(self._synergy_manager.getGlobalListeners())
     self._force_main_process = force_main_process
     self._process_manager = KeepedAliveProcessManager(nb_process=2, target=self._process_compute)
   
@@ -20,10 +25,17 @@ class CycleCalculator(object):
           computeds_objects = self._process_compute(pipe_package)
         collection.setObjects(computeds_objects)
 
-      for collection in collections:
-        simulation.run_collection_cycle(collection, context)
+      # TODO: Dans sous process ?
+      mechanisms = self._global_event_manager.get_mechanisms()
+      for mechanism in mechanisms:
+        mechanism.run(context.getObjects(), context)
 
-      simulation.run_simulation_cycle(context)
+      # TODO: plus que 2 sous cycles ? obj et global ?
+      for collection in collections:
+        simulation.run_collection_cycle(collection, context)  # => cycle => end_cycle
+
+      # TODO: plus que 2 sous cycles ? obj et global ?
+      simulation.run_simulation_cycle(context)  # => cycle => end_cycle
 
   def _getPipePackageForCollection(self, simulation, collection, context):
     # FUTURE: test si garder le package en attribut de core ameliore les perfs (attention a l'index de current_process)
@@ -35,11 +47,13 @@ class CycleCalculator(object):
   def _process_compute(self, pipe_package):
     objects_to_compute = pipe_package.getChunkedObjects()
     context = pipe_package.getContext()
-    mechanisms = self._event_manager.get_mechanisms()
+    mechanisms = self._object_event_manager.get_mechanisms()
     for mechanism in mechanisms:
-      mechanisms_objects = mechanism.get_concerned_objects(objects_to_compute)
-      for mechanisms_object in mechanisms_objects:
-        mechanism.run(mechanisms_object, context)
+      mechanism.run(objects_to_compute, context)
+
+      #mechanisms_objects = mechanism.get_concerned_objects(objects_to_compute)
+      #for mechanisms_object in mechanisms_objects:
+      #  mechanism.run(mechanisms_object, context)
 
     for obj in objects_to_compute:
       simulation = pipe_package.getCurrentSimulation()

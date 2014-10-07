@@ -35,4 +35,11 @@ class LifeGameCollectionConfiguration(Configuration):
       cell = Cell()
       cell.addTrace(trace)
       cells.append(cell)
+    #
+    # for x in range(60):
+    #   for y in range(60):
+    #     cell = Cell()
+    #     cell.addTrace((0, x, y))
+    #     cells.append(cell)
+
     return cells

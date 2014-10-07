@@ -3,7 +3,8 @@ class Simulation(object):
 
   def __init__(self, collections):
     self._collections = collections
-    self._listeners = []
+    self._object_listeners = []
+    self._global_listeners = []
 
   def getCollections(self):
     return self._collections
@@ -17,5 +18,8 @@ class Simulation(object):
   def run_simulation_cycle(self, context):
     raise NotImplementedError
 
-  def get_listeners(self):
-    return self._listeners
+  def get_object_listeners(self):
+    return self._object_listeners
+
+  def get_global_listeners(self):
+    return self._global_listeners

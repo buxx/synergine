@@ -1,8 +1,9 @@
 from src.synergy.object import SynergyObject
+from src.core.simulation.mechanism.Mechanism import Mechanism
 
 class Event(object):
 
-  _mechanism = None
+  _mechanism = Mechanism
   _concerned = SynergyObject
 
   def __init__(self, listeners):
@@ -11,14 +12,16 @@ class Event(object):
   def getMechanismClass(self):
     return self._mechanism
 
-  def filter_objects(self, objects):
-    return objects
+  def filter_objects(self, objects, context):
+    filtereds_objects = []
+    for obj in objects:
+      if isinstance(obj, self._concerned):
+        filtereds_objects.append(obj)
+    return filtereds_objects
 
-  # TODO: La signature de la fonct. est trop specifique a son enfant contact. Trouver un coppromis de genericite
-  def observe(self, obj, objects_near, context):
-    self.trigger(obj, objects_near, context)
+  def observe(self, obj, context, parameters={}):
+    self.trigger(obj, context, parameters)
 
-  # TODO: La signature de la fonct. est trop specifique a son enfant contact. Trouver un coppromis de genericite
-  def trigger(self, obj, concerneds_objects, context):
+  def trigger(self, obj, context, parameters={}):
     for listener in self._listeners:
-      listener.trigged(obj, concerneds_objects, context)
+      listener.trigged(obj, context, parameters)

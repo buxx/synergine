@@ -5,5 +5,5 @@ class RemoveListener(Listener):
 
   _listen = NotGoodConditionToPersistEvent
 
-  def trigged(self, obj, concerneds_objects, context):
+  def trigged(self, obj, context, parameters):
     obj.setWill('die')

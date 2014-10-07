@@ -6,7 +6,7 @@ class LifeGameSimulation(Simulation):
 
   def __init__(self, collections):
     super(LifeGameSimulation, self).__init__(collections)
-    self._listeners = [RemoveListener()]
+    self._object_listeners = [RemoveListener()]
 
   def run_object_cycle(self, obj, context):
     pass

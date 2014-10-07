@@ -1,5 +1,6 @@
 class SynergyObjectManager(object):
   #todo refactoriser getcoll
+  #todo renommer en synergy manager
 
   def __init__(self, simulations):
     self._simulations = simulations
@@ -30,10 +31,17 @@ class SynergyObjectManager(object):
           objects.append(collection_object)
     return objects
 
-  def getListeners(self):
+  def getObjectListeners(self):
     listeners = []
     for simulation in self._simulations:
-      for listener in simulation.get_listeners():
+      for listener in simulation.get_object_listeners():
+        listeners.append(listener)
+    return listeners
+
+  def getGlobalListeners(self):
+    listeners = []
+    for simulation in self._simulations:
+      for listener in simulation.get_global_listeners():
         listeners.append(listener)
     return listeners
 

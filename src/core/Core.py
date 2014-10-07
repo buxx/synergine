@@ -4,7 +4,6 @@ from src.core.SpaceDataConnector import SpaceDataConnector
 from src.core.config.ConfigurationManager import ConfigurationManager
 from src.core.connection.Connector import Connector
 from src.core.cycle.Context import Context
-from src.core.simulation.EventManager import EventManager
 from lib.factory.factory import Factory
 from time import time, sleep
 
@@ -14,9 +13,7 @@ class Core(object):
     self._configuration_manager = ConfigurationManager(config)
     self._factory = Factory()
     self._synergy_object_manager =  SynergyObjectManager(self._configuration_manager.get('simulations'))
-    self._event_manager = EventManager()
-    self._event_manager.refresh(self._synergy_object_manager.getListeners())
-    self._cycle_calculator = CycleCalculator(self._event_manager, force_main_process=self._configuration_manager.get('engine.debug.mainprocess')) # TODO: debug in conf
+    self._cycle_calculator = CycleCalculator(self._synergy_object_manager, force_main_process=self._configuration_manager.get('engine.debug.mainprocess')) # TODO: debug in conf
     self._space_data_connector = SpaceDataConnector()
     self._last_cycle_time = time()
     self._maxfps = self._configuration_manager.get('engine.fpsmax')

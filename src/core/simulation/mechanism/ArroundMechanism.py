@@ -7,6 +7,6 @@ class ArroundMechanism(Mechanism):
   """
 
   # WORK: lier et declencher les events (notion de distance !?)
-  def run(self, obj, context): # DEV: Recoi les objets qui le concerne
+  def _run_event(self, obj, context, event):
     objects_near = context.getObjectsNearPoint(obj.getPoint(), 1)
-    self._trigger_events(obj, objects_near, context)
+    event.observe(obj, context, {'objects_near': objects_near})

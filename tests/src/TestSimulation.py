@@ -1,7 +1,14 @@
 from src.synergy.Simulation import Simulation
-from module.lifegame.synergy.object.Cell import Cell
+from tests.src.event.TooMuchBeansListener import TooMuchBeansListener
+from tests.src.event.MakeBeansProfitListener import MakeBeansProfitListener
+from tests.src.event.LonelinessSuicideListener import LonelinessSuicideListener
 
 class TestSimulation(Simulation):
+
+  def __init__(self, collections):
+    super(TestSimulation, self).__init__(collections)
+    self._object_listeners = [MakeBeansProfitListener()]
+    self._global_listeners = [TooMuchBeansListener(), LonelinessSuicideListener()]
 
   def run_object_cycle(self, obj, context):
     # Si il n'a plus aucun ami avec des haricots, il se suicide
@@ -14,7 +21,7 @@ class TestSimulation(Simulation):
       obj.setWill('die')
 
     # L'objet multiplie ses haricots
-    obj.beans = obj.beans ** obj.coeff
+    #obj.beans = obj.beans ** obj.coeff
 
   def run_collection_cycle(self, collection, context):
     # Suppression des morts
@@ -24,10 +31,10 @@ class TestSimulation(Simulation):
         new_objects.append(obj)
     collection._objects = new_objects  # TODO: setObjects sur collection
 
-    # Confiscation des haricots
-    for obj in collection.getObjects():
-      if obj.beans > 10000000:
-        obj.beans = 0
+    # # Confiscation des haricots
+    # for obj in collection.getObjects():
+    #   if obj.beans > 10000000:
+    #     obj.beans = 0
 
   def run_simulation_cycle(self, context):
     pass
