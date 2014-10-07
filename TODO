@@ -1,4 +1,5 @@
 Dans les grandes lignes:
 
 * Utiliser des objets pour representer les actions
-* L'engine doit pouvoir proposer des evnnements (auxquels on ajoute les notre). Comme "deux objets en contacts" qui lance un callback. Pour des insectes, proposer des specialisations comme un objet insecte et un objet transportable.
+* Events: SIMPLIFIER les events: Les Event font en deux fois (deux fct) ce qui peux etre fait en une. (Event lié a un mécanisme qui lance une Action (Action direct ?)
+* Tout event (object, global): Tout doit passer par des Events et deux cycles d'Events: Le cycle d'event Object, et le global.
