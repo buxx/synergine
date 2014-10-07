@@ -21,7 +21,7 @@ class SynergyObjectManager(object):
         for collection_computable_object in collection.getComputableObjects():
           computable_objects.append(collection_computable_object)
     return computable_objects
-  
+
   def getObjects(self):
     objects = []
     for simulation in self._simulations:
