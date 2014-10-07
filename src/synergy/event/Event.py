@@ -3,25 +3,21 @@ from src.core.simulation.mechanism.Mechanism import Mechanism
 
 class Event(object):
 
-  _mechanism = Mechanism
-  _concerned = SynergyObject
-
   def __init__(self, listeners):
     self._listeners = listeners
+    self._mechanism = Mechanism
+    self._concerneds = [SynergyObject]
 
   def getMechanismClass(self):
     return self._mechanism
 
-  def filter_objects(self, objects, context):
-    filtereds_objects = []
-    for obj in objects:
-      if isinstance(obj, self._concerned):
-        filtereds_objects.append(obj)
-    return filtereds_objects
-
   def observe(self, obj, context, parameters={}):
-    self.trigger(obj, context, parameters)
+    if self._object_match(obj, context, parameters):
+      for listener in self._listeners:
+        listener.trigged(obj, context, parameters)
 
-  def trigger(self, obj, context, parameters={}):
-    for listener in self._listeners:
-      listener.trigged(obj, context, parameters)
+  def _object_match(self, obj, context, parameters={}):
+    for concerned in self._concerneds:
+      if isinstance(obj, concerned):
+        return True
+    return False

@@ -4,9 +4,14 @@ class Mechanism(object):
     self._events = events
 
   def run(self, objects, context):
-    for event in self._events:
-      for obj in event.filter_objects(objects, context):
-        self._run_event(obj, context, event)
+    for obj in objects:
+      self._run_for_object(obj, context)
 
-  def _run_event(self, obj, context, event):
-    event.observe(obj, context)
+  def _run_for_object(self, obj, context):
+    # Quelque soit le nombre d'event le mechanisme ne calcule qu'une fois les donnees destines aux events
+    event_parameters = self._get_object_event_parameters(obj, context)
+    for event in self._events:
+      event.observe(obj, context, event_parameters)
+
+  def _get_object_event_parameters(self, obj, context):
+    return {}

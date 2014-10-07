@@ -38,10 +38,7 @@ class TestSimulation(BaseTestSimulation):
           ('boby', 0, 5),
           ('cora', 0, 10),
           ('mara', 0, 20)],
-      5: [('john', 0, 2),
-          ('boby', 0, 5),
-          ('cora', 0, 10),
-          ('mara', 0, 20)],
+      5: [('john', 0, 2)],
       6: [],
     }
     for cycle in tests:
