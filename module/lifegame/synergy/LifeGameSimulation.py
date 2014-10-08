@@ -1,12 +1,10 @@
 from src.synergy.Simulation import Simulation
 from module.lifegame.synergy.object.Cell import Cell
-from module.lifegame.synergy.event.RemoveListener import RemoveListener
 
 class LifeGameSimulation(Simulation):
 
   def __init__(self, collections):
     super(LifeGameSimulation, self).__init__(collections)
-    self._object_listeners = [RemoveListener()]
 
   def run_object_cycle(self, obj, context):
     pass

@@ -3,4 +3,6 @@ Dans les grandes lignes:
 * Utiliser des objets pour representer les actions
 * Events: SIMPLIFIER les events: Les Event font en deux fois (deux fct) ce qui peux etre fait en une. (Event lié a un mécanisme qui lance une Action (Action direct ?)
 * Tout event (object, global): Tout doit passer par des Events et deux cycles d'Events: Le cycle d'event Object, et le global. Il faut egalement une execution des actions, aux post-cycles (en dehors des sous process)
+  - acuellement on execute les mecnismes object par col. Essayer de le faire sur tout les objets directement. trouver moyen de bien ranger les objet pour les rendres aux col apres sous process
 * Le cycle d'events global peut être executé dans des sous process ?
+* tests_req => req

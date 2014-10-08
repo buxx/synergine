@@ -1,15 +1,18 @@
 class EventManager(object):
 
   def __init__(self):
-    self._listeners = []
-    self._events = []
-    self._mechanisms = []
+    self._collections_mechanisms_steps = {}
 
-  def refresh(self, listeners):
-    # TODO: Actualiser la liste de mechanismes actifs, a partir des listeners et de leurs events.
-    # lier tout ça ...
-    self._events = self._get_events_for_listeners(listeners)  # TODO: EventManager a besoin de garder events en attribut ?
-    self._mechanisms = self._get_mechanisms_for_events(self._events)
+  def refresh(self, collections):
+    for collection in collections:
+      self._collections_mechanisms_steps[collection] = self._get_mechanisms_steps_for_collection(collection)
+
+  def _get_mechanisms_steps_for_collection(self, collection):
+    collection_mechanisms_steps = []
+    for collection_step_listeners in collection.get_listeners_steps():
+      collection_step_events = self._get_events_for_listeners(collection_step_listeners)
+      collection_mechanisms_steps.append(self._get_mechanisms_for_events(collection_step_events))
+    return collection_mechanisms_steps
 
   def _get_events_for_listeners(self, listeners):
     events_definition = {}
@@ -37,5 +40,5 @@ class EventManager(object):
       mechanisms.append(event_class(mechanisms_definition[event_class]))
     return mechanisms
 
-  def get_mechanisms(self):
-    return self._mechanisms
+  def get_collection_mechanisms_steps(self, collection):
+    return self._collections_mechanisms_steps[collection]

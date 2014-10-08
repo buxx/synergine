@@ -8,8 +8,8 @@ class PipePackage(BasePipePackage):
   def getContext(self):
     return self._context
 
-  def setCurrentSimulation(self, simulation):
-    self._simulation = simulation
+  def setMechanisms(self, mechanisms):
+    self._mechanisms = mechanisms
 
-  def getCurrentSimulation(self):
-    return self._simulation
+  def getMechanisms(self):
+    return self._mechanisms

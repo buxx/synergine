@@ -1,14 +1,9 @@
 from src.synergy.Simulation import Simulation
-from tests.src.event.TooMuchBeansListener import TooMuchBeansListener
-from tests.src.event.MakeBeansProfitListener import MakeBeansProfitListener
-from tests.src.event.LonelinessSuicideListener import LonelinessSuicideListener
 
 class TestSimulation(Simulation):
 
   def __init__(self, collections):
     super(TestSimulation, self).__init__(collections)
-    self._object_listeners = [MakeBeansProfitListener()]
-    self._global_listeners = [LonelinessSuicideListener(), TooMuchBeansListener()]
 
   def run_object_cycle(self, obj, context):
     # Si il n'a plus aucun ami avec des haricots, il se suicide
