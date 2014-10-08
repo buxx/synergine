@@ -1,7 +1,7 @@
 from src.synergy.event.Listener import Listener
 from module.lifegame.synergy.event.NotGoodConditionToPersistEvent import NotGoodConditionToPersistEvent
 
-class RemoveListener(Listener):
+class DieListener(Listener):
 
   _listen = NotGoodConditionToPersistEvent
 

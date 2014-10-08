@@ -19,18 +19,19 @@ class TestLifeGameSimulation(BaseTestSimulation):
   def _testCycles(self, main_process):
     for cycle in test_context:
       synergy_object_manager = self._getSynergyObjectManagerForCycle(cycles=cycle[0]+1, main_process=main_process)
-      self.assertEqual(cycle[1], len(synergy_object_manager.getObjects()))
+      self.assertEqual(cycle[1], len(self._get_alive_cells(synergy_object_manager.getObjects())))
       for point in cycle[2]:
         self.assertTrue(self._cellExistInPoint(synergy_object_manager, point))
       
-  #def _getObjectsPositions(self, objects):
-  #  positions = []
-  #  for obj in objects:
-  #    positions.append(obj.getPoint())
-  #  return positions
+  def _get_alive_cells(self, cells):
+    alive_cells = []
+    for cell in cells:
+      if cell.is_alive():
+        alive_cells.append(cell)
+    return alive_cells
   
   def _cellExistInPoint(self, synergy_object_manager, point):
-    for obj in synergy_object_manager.getObjects():
+    for obj in self._get_alive_cells(synergy_object_manager.getObjects()):
       if obj.getPoint() == point:
         return True
     return False
