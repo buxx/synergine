@@ -15,6 +15,12 @@ class CycleCalculator(object):
     self._process_manager = KeepedAliveProcessManager(nb_process=2, target=self._process_compute)
   
   def compute(self, context):
+    # TODO: Reflechir a la pertinence de permettre x cycles avant l'application des actions
+    self._compute_object(context)
+    self._compute_global(context)
+    self._apply_actions(context)
+
+  def _compute_object(self, context):
     for simulation in context.getSimulations():
       collections = simulation.getCollections()
       for collection in collections:
@@ -25,17 +31,19 @@ class CycleCalculator(object):
           computeds_objects = self._process_compute(pipe_package)
         collection.setObjects(computeds_objects)
 
-      # TODO: Dans sous process ?
-      mechanisms = self._global_event_manager.get_mechanisms()
-      for mechanism in mechanisms:
-        mechanism.run(context.getObjects(), context)
+  def _compute_global(self, context):
+    # TODO: Dans sous process ?
+    mechanisms = self._global_event_manager.get_mechanisms()
+    for mechanism in mechanisms:
+      mechanism.run(context.getObjects(), context)
 
-      # TODO: plus que 2 sous cycles ? obj et global ?
+  def _apply_actions(self, context):
+    # TODO: doit devenir une simple execution des actions
+    for simulation in context.getSimulations():
+      collections = simulation.getCollections()
       for collection in collections:
-        simulation.run_collection_cycle(collection, context)  # => cycle => end_cycle
-
-      # TODO: plus que 2 sous cycles ? obj et global ?
-      simulation.run_simulation_cycle(context)  # => cycle => end_cycle
+        simulation.run_collection_cycle(collection, context)  # doit disparaitre
+      simulation.run_simulation_cycle(context)  # doit disparaitre
 
   def _getPipePackageForCollection(self, simulation, collection, context):
     # FUTURE: test si garder le package en attribut de core ameliore les perfs (attention a l'index de current_process)

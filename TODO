@@ -2,5 +2,5 @@ Dans les grandes lignes:
 
 * Utiliser des objets pour representer les actions
 * Events: SIMPLIFIER les events: Les Event font en deux fois (deux fct) ce qui peux etre fait en une. (Event lié a un mécanisme qui lance une Action (Action direct ?)
-* Tout event (object, global): Tout doit passer par des Events et deux cycles d'Events: Le cycle d'event Object, et le global.
+* Tout event (object, global): Tout doit passer par des Events et deux cycles d'Events: Le cycle d'event Object, et le global. Il faut egalement une execution des actions, aux post-cycles (en dehors des sous process)
 * Le cycle d'events global peut être executé dans des sous process ?
