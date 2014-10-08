@@ -4,7 +4,7 @@ class SynergyObjectManager(object):
 
   def __init__(self, simulations):
     self._simulations = simulations
-  
+
   def getSimulations(self):
     return self._simulations
 
