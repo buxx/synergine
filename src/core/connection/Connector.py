@@ -1,4 +1,4 @@
-class Connector(object):
+class Connector():
   # TODO: Renomme en Connector (plus de distinction pour display)
   # TODO: Connector doit devenir un lanceur d'objets connecte
   # en s'abstrayant de si c'est un affichage ou autre chose.

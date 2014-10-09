@@ -14,7 +14,7 @@ def chunk(seq,m):
      x.append(seq[a:j])
    return x
 
-class PipePackage(object):
+class PipePackage():
   
   def __init__(self, objects):
     self._objects = objects
@@ -36,7 +36,7 @@ class PipePackage(object):
     return self._objects
   
 
-class KeepedAliveProcessManager(object):
+class KeepedAliveProcessManager():
   
   def __init__(self, nb_process, target):
     self.processs = []

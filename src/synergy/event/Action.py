@@ -1,4 +1,4 @@
-class Action(object):
+class Action():
 
   _listen = None
 

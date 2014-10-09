@@ -1,4 +1,4 @@
-class Context(object):
+class Context():
   
   def __init__(self, synergy_object_manager):
     self._synergy_object_manager = synergy_object_manager

@@ -1,7 +1,7 @@
 from src.synergy.object import SynergyObject
 from src.core.simulation.mechanism.Mechanism import Mechanism
 
-class Event(object):
+class Event():
 
   def __init__(self, actions):
     self._actions = actions

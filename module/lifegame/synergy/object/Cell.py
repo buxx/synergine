@@ -3,7 +3,7 @@ from src.synergy.object.SynergyObject import SynergyObject
 class Cell(SynergyObject):
 
   def __init__(self):
-    super(Cell, self).__init__()
+    super().__init__()
     self._alive = False
 
   def addTrace(self, point):

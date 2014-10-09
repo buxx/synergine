@@ -4,5 +4,5 @@ from module.lifegame.test.simulation.TestLifeGameSimulation import TestLifeGameS
 class LifeGameTestSuite(TestSuite):
   
   def __init__(self):
-    super(LifeGameTestSuite, self).__init__()
+    super().__init__()
     self.addTestCases([TestLifeGameSimulation])

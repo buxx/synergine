@@ -2,7 +2,7 @@ from lib.process.processmanager import KeepedAliveProcessManager
 from src.core.cycle.PipePackage import PipePackage
 from src.core.simulation.EventManager import EventManager
 
-class CycleCalculator(object):
+class CycleCalculator():
   
   def __init__(self, synergy_manager, force_main_process = False):
     # TODO: nbprocess

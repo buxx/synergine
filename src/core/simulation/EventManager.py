@@ -1,4 +1,4 @@
-class EventManager(object):
+class EventManager():
 
   def __init__(self):
     self._collections_mechanisms_steps = {}

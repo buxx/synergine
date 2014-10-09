@@ -7,7 +7,7 @@ from src.core.cycle.Context import Context
 from lib.factory.factory import Factory
 from time import time, sleep
 
-class Core(object):
+class Core():
   
   def __init__(self, config):
     self._configuration_manager = ConfigurationManager(config)

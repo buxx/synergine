@@ -1,4 +1,4 @@
-class Terminal(object):
+class Terminal():
 
   def __init__(self):
     self._encapsuled_run = False

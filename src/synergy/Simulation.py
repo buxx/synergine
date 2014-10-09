@@ -1,5 +1,5 @@
 
-class Simulation(object):
+class Simulation():
 
   def __init__(self, collections):
     self._collections = collections

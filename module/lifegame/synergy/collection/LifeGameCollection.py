@@ -5,7 +5,7 @@ from module.lifegame.synergy.event.BornAction import BornAction
 class LifeGameCollection(SynergyCollection):
 
   def __init__(self, configuration):
-    super(LifeGameCollection, self).__init__(configuration)
+    super().__init__(configuration)
     self._actions_steps = [
       [DieAction, BornAction]
     ]

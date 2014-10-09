@@ -5,14 +5,14 @@ class CursesDisplay(Display):
   # TODO: gestion de ce qui est affiche, partie de la map totale
 
   def __init__(self):
-    super(CursesDisplay, self).__init__()
+    super().__init__()
     self._screen = None
 
   def needToRunCore(self):
     return True
   
   def encapsulate_run(self, run_function):
-    super(CursesDisplay, self).encapsulate_run(run_function)
+    super().encapsulate_run(run_function)
     curses.wrapper(run_function)
   
   def initializeScreen(self, screen):

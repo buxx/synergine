@@ -1,4 +1,4 @@
-class SynergyCollectionInterface(object):
+class SynergyCollectionInterface():
   
   def getComputableObjects(self):
     raise NotImplementedError

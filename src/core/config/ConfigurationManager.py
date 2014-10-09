@@ -1,4 +1,4 @@
-class ConfigurationManager(object):
+class ConfigurationManager():
   
   def __init__(self, config):
     self._configs = config

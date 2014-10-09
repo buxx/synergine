@@ -1,4 +1,4 @@
-class Mechanism(object):
+class Mechanism():
 
   def __init__(self, events):
     self._events = events

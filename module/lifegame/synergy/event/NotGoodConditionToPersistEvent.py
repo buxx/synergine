@@ -5,12 +5,12 @@ from module.lifegame.synergy.object.Cell import Cell
 class NotGoodConditionToPersistEvent(ContactEvent):
 
   def __init__(self, actions):
-    super(NotGoodConditionToPersistEvent, self).__init__(actions)
+    super().__init__(actions)
     self._concerneds = [Cell]
     self._mechanism = ArroundMechanism
 
   def _object_match(self, obj, context, parameters={}):
-    if super(NotGoodConditionToPersistEvent, self)._object_match(obj, context, parameters):
+    if super()._object_match(obj, context, parameters):
       if not obj.is_alive():
         return False
       # TODO: implementer un systeme generique pour preciser de quell classe d'obj on parle (pour les concerned objects)

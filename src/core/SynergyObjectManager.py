@@ -1,4 +1,4 @@
-class SynergyObjectManager(object):
+class SynergyObjectManager():
   #todo refactoriser getcoll
   #todo renommer en synergy manager
 
