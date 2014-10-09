@@ -3,8 +3,8 @@ from tests.src.TestSynergyObject import TestSynergyObject
 
 class LonelinessSuicideEvent(Event):
 
-  def __init__(self, listeners):
-    super(LonelinessSuicideEvent, self).__init__(listeners)
+  def __init__(self, actions):
+    super(LonelinessSuicideEvent, self).__init__(actions)
     self._concerneds = [TestSynergyObject]
 
   def _object_match(self, obj, context, parameters={}):

@@ -4,8 +4,8 @@ from module.lifegame.synergy.object.Cell import Cell
 
 class GoodConditionToBornEvent(ContactEvent):
 
-  def __init__(self, listeners):
-    super(GoodConditionToBornEvent, self).__init__(listeners)
+  def __init__(self, actions):
+    super(GoodConditionToBornEvent, self).__init__(actions)
     self._concerneds = [Cell]
     self._mechanism = ArroundMechanism
 

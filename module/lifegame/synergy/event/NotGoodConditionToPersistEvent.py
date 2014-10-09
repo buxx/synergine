@@ -4,8 +4,8 @@ from module.lifegame.synergy.object.Cell import Cell
 
 class NotGoodConditionToPersistEvent(ContactEvent):
 
-  def __init__(self, listeners):
-    super(NotGoodConditionToPersistEvent, self).__init__(listeners)
+  def __init__(self, actions):
+    super(NotGoodConditionToPersistEvent, self).__init__(actions)
     self._concerneds = [Cell]
     self._mechanism = ArroundMechanism
 

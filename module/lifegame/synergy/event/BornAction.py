@@ -1,7 +1,7 @@
-from src.synergy.event.Listener import Listener
+from src.synergy.event.Action import Action
 from module.lifegame.synergy.event.GoodConditionToBornEvent import GoodConditionToBornEvent
 
-class BornListener(Listener):
+class BornAction(Action):
 
   _listen = GoodConditionToBornEvent
 

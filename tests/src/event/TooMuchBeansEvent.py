@@ -3,8 +3,8 @@ from tests.src.TestSynergyObject import TestSynergyObject
 
 class TooMuchBeansEvent(Event):
 
-  def __init__(self, listeners):
-    super(TooMuchBeansEvent, self).__init__(listeners)
+  def __init__(self, actions):
+    super(TooMuchBeansEvent, self).__init__(actions)
     self._concerneds = [TestSynergyObject]
 
   def _object_match(self, obj, context, parameters={}):

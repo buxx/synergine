@@ -9,20 +9,20 @@ class EventManager(object):
 
   def _get_mechanisms_steps_for_collection(self, collection):
     collection_mechanisms_steps = []
-    for collection_step_listeners in collection.get_listeners_steps():
-      collection_step_events = self._get_events_for_listeners(collection_step_listeners)
+    for collection_step_actions in collection.get_actions_steps():
+      collection_step_events = self._get_events_for_actions(collection_step_actions)
       collection_mechanisms_steps.append(self._get_mechanisms_for_events(collection_step_events))
     return collection_mechanisms_steps
 
-  def _get_events_for_listeners(self, listeners):
+  def _get_events_for_actions(self, actions):
     events_definition = {}
     events = []
-    for listener in listeners:
-      listener_event_class = listener.get_listened_class()
-      if listener_event_class not in events_definition:
-        events_definition[listener_event_class] = [listener]
+    for action in actions:
+      action_event_class = action.get_listened_class()
+      if action_event_class not in events_definition:
+        events_definition[action_event_class] = [action]
       else:
-        events_definition[listener_event_class].append(listener)
+        events_definition[action_event_class].append(action)
     for event_class in events_definition:
       events.append(event_class(events_definition[event_class]))
     return events

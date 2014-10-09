@@ -31,19 +31,19 @@ class SynergyObjectManager(object):
           objects.append(collection_object)
     return objects
 
-  def getObjectListeners(self):
-    listeners = []
+  def getObjectActions(self):
+    actions = []
     for simulation in self._simulations:
-      for listener in simulation.get_object_listeners():
-        listeners.append(listener)
-    return listeners
+      for action in simulation.get_object_actions():
+        actions.append(action)
+    return actions
 
-  def getGlobalListeners(self):
-    listeners = []
+  def getGlobalActions(self):
+    actions = []
     for simulation in self._simulations:
-      for listener in simulation.get_global_listeners():
-        listeners.append(listener)
-    return listeners
+      for action in simulation.get_global_actions():
+        actions.append(action)
+    return actions
 
   # todo: la func ci-dessous sont-elles a leurs place ?
   def getObjectsToDisplay(self):

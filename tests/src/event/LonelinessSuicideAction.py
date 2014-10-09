@@ -1,7 +1,7 @@
-from src.synergy.event.Listener import Listener
+from src.synergy.event.Action import Action
 from tests.src.event.LonelinessSuicideEvent import LonelinessSuicideEvent
 
-class LonelinessSuicideListener(Listener):
+class LonelinessSuicideAction(Action):
 
   _listen = LonelinessSuicideEvent
 
