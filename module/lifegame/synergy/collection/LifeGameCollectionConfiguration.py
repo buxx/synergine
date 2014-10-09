@@ -22,7 +22,7 @@ class LifeGameCollectionConfiguration(Configuration):
       (0, 20, 22)
     )
     for dead_cell in cells:
-      if cell.getPoint() in alive_cell_traces:
-        cell.set_alive(True)
+      if dead_cell.getPoint() in alive_cell_traces:
+        dead_cell.set_alive(True)
 
     return cells
