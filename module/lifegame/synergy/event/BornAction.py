@@ -3,7 +3,7 @@ from module.lifegame.synergy.event.GoodConditionToBornEvent import GoodCondition
 
 class BornAction(Action):
 
-  _listen = GoodConditionToBornEvent
+    _listen = GoodConditionToBornEvent
 
-  def run(self, collection, context):
-    self._obj.set_alive(True)
+    def run(self, collection, context):
+        self._obj.set_alive(True)

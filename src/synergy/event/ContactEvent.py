@@ -3,6 +3,6 @@ from src.core.simulation.mechanism.ArroundMechanism import ArroundMechanism
 
 class ContactEvent(Event):
 
-  def __init__(self, actions):
-    super().__init__(actions)
-    self._concerneds = [ArroundMechanism]
+    def __init__(self, actions):
+        super().__init__(actions)
+        self._concerneds = [ArroundMechanism]

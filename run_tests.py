@@ -9,8 +9,8 @@ runnable = unittest.TestSuite()
 tests_suites = [TestSuite(), LifeGameTestSuite()]
 
 for testsuite in tests_suites:
-  for test_case in testsuite.getTestCases():
-    runnable.addTest(unittest.makeSuite(test_case))
+    for test_case in testsuite.getTestCases():
+        runnable.addTest(unittest.makeSuite(test_case))
 
 runner=unittest.TextTestRunner()
 runner.run(runnable)

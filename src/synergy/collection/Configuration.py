@@ -1,4 +1,4 @@
 class Configuration():
-  
-  def getStartObjects(self):
-    return []
+
+    def getStartObjects(self):
+        return []

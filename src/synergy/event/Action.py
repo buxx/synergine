@@ -1,17 +1,17 @@
 class Action():
 
-  _listen = None
+    _listen = None
 
-  @classmethod
-  def get_listened_class(cls):
-    return cls._listen
+    @classmethod
+    def get_listened_class(cls):
+        return cls._listen
 
-  def __init__(self, parameters):
-    self._parameters = parameters
-    self._obj = None
+    def __init__(self, parameters):
+        self._parameters = parameters
+        self._obj = None
 
-  def set_object(self, obj):
-    self._obj = obj
+    def set_object(self, obj):
+        self._obj = obj
 
-  def run(self, collection, context):
-    raise NotImplementedError
+    def run(self, collection, context):
+        raise NotImplementedError

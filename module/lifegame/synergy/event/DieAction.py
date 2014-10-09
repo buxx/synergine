@@ -3,7 +3,7 @@ from module.lifegame.synergy.event.NotGoodConditionToPersistEvent import NotGood
 
 class DieAction(Action):
 
-  _listen = NotGoodConditionToPersistEvent
+    _listen = NotGoodConditionToPersistEvent
 
-  def run(self, collection, context):
-    self._obj.set_alive(False)
+    def run(self, collection, context):
+        self._obj.set_alive(False)

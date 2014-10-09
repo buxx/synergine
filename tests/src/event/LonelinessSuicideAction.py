@@ -3,7 +3,7 @@ from tests.src.event.LonelinessSuicideEvent import LonelinessSuicideEvent
 
 class LonelinessSuicideAction(Action):
 
-  _listen = LonelinessSuicideEvent
+    _listen = LonelinessSuicideEvent
 
-  def run(self, collection, context):
-    collection.remove_object(self._obj)
+    def run(self, collection, context):
+        collection.remove_object(self._obj)

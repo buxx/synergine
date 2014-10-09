@@ -5,11 +5,11 @@ from tests.src.event.LonelinessSuicideAction import LonelinessSuicideAction
 
 class TestCollection(SynergyCollection):
 
-  def __init__(self, configuration):
-    super().__init__(configuration)
-    # TODO: Construire dynamiquement les steps en fonction de dependences exprime dans le action
-    self._actions_steps = [
-      [MakeBeansProfitAction],
-      [TooMuchBeansAction],
-      [LonelinessSuicideAction]
-    ]
+    def __init__(self, configuration):
+        super().__init__(configuration)
+        # TODO: Construire dynamiquement les steps en fonction de dependences exprime dans le action
+        self._actions_steps = [
+            [MakeBeansProfitAction],
+            [TooMuchBeansAction],
+            [LonelinessSuicideAction]
+        ]

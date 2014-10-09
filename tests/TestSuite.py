@@ -3,7 +3,7 @@ from tests.simulation.TestSimulation import TestSimulation
 from tests.core.connection.TestTerminal import TestTerminal
 
 class TestSuite(BaseTestSuite):
-  
-  def __init__(self):
-    super().__init__()
-    self.addTestCases([TestSimulation, TestTerminal])
+
+    def __init__(self):
+        super().__init__()
+        self.addTestCases([TestSimulation, TestTerminal])

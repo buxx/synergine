@@ -3,7 +3,7 @@ from tests.src.event.TooMuchBeansEvent import TooMuchBeansEvent
 
 class TooMuchBeansAction(Action):
 
-  _listen = TooMuchBeansEvent
+    _listen = TooMuchBeansEvent
 
-  def run(self, collection, context):
-    self._obj.beans = 0
+    def run(self, collection, context):
+        self._obj.beans = 0
