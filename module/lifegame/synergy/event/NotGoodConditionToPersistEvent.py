@@ -11,6 +11,8 @@ class NotGoodConditionToPersistEvent(ContactEvent):
 
   def _object_match(self, obj, context, parameters={}):
     if super(NotGoodConditionToPersistEvent, self)._object_match(obj, context, parameters):
+      if not obj.is_alive():
+        return False
       # TODO: implementer un systeme generique pour preciser de quell classe d'obj on parle (pour les concerned objects)
       cell_near_count = 0
       for object_near in parameters['objects_near']:

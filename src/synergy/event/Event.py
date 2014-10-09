@@ -14,7 +14,7 @@ class Event(object):
   def observe(self, obj, context, parameters={}):
     if self._object_match(obj, context, parameters):
       for listener in self._listeners:
-        listener.trigged(obj, context, parameters)
+        obj.setWill(listener(parameters))
 
   def _object_match(self, obj, context, parameters={}):
     for concerned in self._concerneds:

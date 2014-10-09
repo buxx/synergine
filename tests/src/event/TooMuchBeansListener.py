@@ -5,5 +5,5 @@ class TooMuchBeansListener(Listener):
 
   _listen = TooMuchBeansEvent
 
-  def trigged(self, obj, context, parameters):
-    obj.beans = 0  # TODO: On doit avoir une Action (future) ici pour que ce soit traite en dehors du processus
+  def run(self, collection, context):
+    self._obj.beans = 0

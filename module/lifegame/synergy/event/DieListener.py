@@ -5,5 +5,5 @@ class DieListener(Listener):
 
   _listen = NotGoodConditionToPersistEvent
 
-  def trigged(self, obj, context, parameters):
-    obj.setWill('die')
+  def run(self, collection, context):
+    self._obj.set_alive(False)

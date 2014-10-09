@@ -6,9 +6,3 @@ class Simulation(object):
 
   def getCollections(self):
     return self._collections
-
-  def run_collection_cycle(self, collection, context):
-    raise NotImplementedError
-
-  def run_simulation_cycle(self, context):
-    raise NotImplementedError

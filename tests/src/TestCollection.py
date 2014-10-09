@@ -9,7 +9,7 @@ class TestCollection(SynergyCollection):
     super(TestCollection, self).__init__(configuration)
     # TODO: Construire dynamiquement les steps en fonction de dependences exprime dans le listener
     self._listeners_steps = [
-      [MakeBeansProfitListener()],
-      [TooMuchBeansListener()],
-      [LonelinessSuicideListener()]
+      [MakeBeansProfitListener],
+      [TooMuchBeansListener],
+      [LonelinessSuicideListener]
     ]

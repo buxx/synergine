@@ -5,7 +5,6 @@ class MakeBeansProfitListener(Listener):
 
   _listen = MakeBeansProfitEvent
 
-  def trigged(self, obj, context, parameters):
-    # L'objet multiplie ses haricots
-    obj.beans = obj.beans ** obj.coeff  # TODO: On doit avoir une Action (future) ici pour que ce soit traite en dehors du processus
+  def run(self, collection, context):
+    self._obj.beans = self._obj.beans ** self._obj.coeff
 

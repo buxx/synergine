@@ -6,7 +6,7 @@ class SynergyCollection(SynergyCollectionInterface):
   def __init__(self, configuration):
     self._configuration = configuration
     self._objects = self._configuration.getStartObjects()
-    self._listeners_steps = []
+    self._listeners_steps = [[]]
 
   def get_listeners_steps(self):
     return self._listeners_steps
@@ -16,6 +16,12 @@ class SynergyCollection(SynergyCollectionInterface):
   
   def setObjects(self, objects):
     self._objects = objects
+
+  def remove_object(self, object):
+    self._objects.remove(object)
+
+  def get_object_by_key(self, key):
+    return self._objects[key]
 
   def getComputableObjects(self):
     return self._objects

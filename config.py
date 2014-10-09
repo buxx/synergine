@@ -8,7 +8,7 @@ config = {
   'engine': {
     'fpsmax': 25, # 25
     'debug': {
-      'mainprocess': False,
+      'mainprocess': True,
       'cycles': range(100)
     }
   },

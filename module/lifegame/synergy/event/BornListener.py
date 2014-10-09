@@ -5,5 +5,5 @@ class BornListener(Listener):
 
   _listen = GoodConditionToBornEvent
 
-  def trigged(self, obj, context, parameters):
-    obj.setWill('born')
+  def run(self, collection, context):
+    self._obj.set_alive(True)
