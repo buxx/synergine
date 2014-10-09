@@ -10,10 +10,10 @@ class TestTerminal(BaseTestSimulation):
     def setUp(self):
         self._connection = TestRunerDisplay()
 
-    def _getSetUpSimulation(self):
+    def _get_set_up_simulation(self):
         return TestSimulationSimulation([TestCollection(TestCollectionConfiguration())])
 
     def test_encapsulated_run(self):
-        core = self.getCore()
-        self.assertTrue(self._connection.haveEncapsulatedRun())
-        self.assertEqual(core.haveToBeRunnedBy(), self._connection)
+        core = self.get_core()
+        self.assertTrue(self._connection.have_encapsulated_run())
+        self.assertEqual(core.have_to_be_runned_by(), self._connection)

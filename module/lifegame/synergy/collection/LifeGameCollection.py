@@ -10,7 +10,7 @@ class LifeGameCollection(SynergyCollection):
             [DieAction, BornAction]
         ]
 
-    def getObjectsToDisplay(self):
+    def get_objects_to_display(self):
         objects_to_display = []
         for obj in self._objects:
             if obj.is_alive():

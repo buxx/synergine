@@ -3,13 +3,13 @@ from module.lifegame.synergy.object.Cell import Cell
 
 class LifeGameCollectionConfiguration(Configuration):
 
-    def getStartObjects(self):
+    def get_start_objects(self):
         cells = []
         # cell grid
         for x in range(40):
             for y in range(50):
                 cell = Cell()
-                cell.addTrace((0, x, y))
+                cell.add_trace((0, x, y))
                 cells.append(cell)
 
         alive_cell_traces = (
@@ -22,7 +22,7 @@ class LifeGameCollectionConfiguration(Configuration):
             (0, 20, 22)
         )
         for dead_cell in cells:
-            if dead_cell.getPoint() in alive_cell_traces:
+            if dead_cell.get_point() in alive_cell_traces:
                 dead_cell.set_alive(True)
 
         return cells

@@ -9,16 +9,16 @@ class SynergyObject(SynergyObjectInterface):
         self._trace = []
         self._will = None
 
-    def setWill(self, action):
+    def set_will(self, action):
         self._will = action
 
-    def getWill(self):
+    def get_will(self):
         return self._will
 
     # TODO: Gestion space dtata autrement ?
-    def addTrace(self, point):
+    def add_trace(self, point):
         # TODO: limite de taille de trace
         self._trace.append(point)
 
-    def getTrace(self):
+    def get_trace(self):
         return self._trace

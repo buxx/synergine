@@ -8,13 +8,13 @@ class Event():
         self._mechanism = Mechanism
         self._concerneds = [SynergyObject]
 
-    def getMechanismClass(self):
+    def get_mechanism_class(self):
         return self._mechanism
 
     def observe(self, obj, context, parameters={}):
         if self._object_match(obj, context, parameters):
             for action in self._actions:
-                obj.setWill(action(parameters))
+                obj.set_will(action(parameters))
 
     def _object_match(self, obj, context, parameters={}):
         for concerned in self._concerneds:

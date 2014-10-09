@@ -5,4 +5,4 @@ class LifeGameTestSuite(TestSuite):
 
     def __init__(self):
         super().__init__()
-        self.addTestCases([TestLifeGameSimulation])
+        self.add_test_cases([TestLifeGameSimulation])

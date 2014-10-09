@@ -1,6 +1,6 @@
 class SynergyCollectionInterface():
 
-    def getComputableObjects(self):
+    def get_computable_objects(self):
         raise NotImplementedError
 
     def cycle(self, context):

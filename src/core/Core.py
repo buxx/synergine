@@ -22,31 +22,31 @@ class Core():
 
     def run(self, screen = None): # TODO: screen: Rendre pour le cas ou le display n'a pas besoin de ca
         if screen:
-            self._connector.sendScreenToConnection(screen)
-        self._runConnecteds()
-        self._waitForNextCycle()
+            self._connector.send_screen_to_connection(screen)
+        self._run_connecteds()
+        self._wait_for_next_cycle()
         for i in self._configuration_manager.get('engine.debug.cycles', True): # TODO: True ne marche dans la boucle
-            self._updateLastCycleTime()
+            self._update_last_cycle_time()
             self._context.update()
             self._cycle_calculator.compute(self._context)
-            self._runConnecteds()
-            self._waitForNextCycle()
+            self._run_connecteds()
+            self._wait_for_next_cycle()
         self._end()
 
     def _end(self):
         self._cycle_calculator.end()
         self._connector.terminate()
 
-    def _updateLastCycleTime(self):
+    def _update_last_cycle_time(self):
         self._last_cycle_time = time()
 
-    def _waitForNextCycle(self):
+    def _wait_for_next_cycle(self):
         if self._maxfps is not True:
             sleep(max(1./self._maxfps - (time() - self._last_cycle_time), 0))
 
-    def _runConnecteds(self):
+    def _run_connecteds(self):
         self._connector.prepare(self._synergy_object_manager) # TODO: estce necessaire de redonner l'objet ?
         self._connector.cycle()
 
-    def haveToBeRunnedBy(self):
-        return self._connector.getConnectionWhoHaveToRunCore()
+    def have_to_be_runned_by(self):
+        return self._connector.get_connection_who_have_to_run_core()

@@ -8,5 +8,5 @@ class TestTerminal(Terminal):
     def receive(self, synergy_object_manager):
         self._synergy_object_manager = synergy_object_manager
 
-    def getSynergyObjectManager(self):
+    def get_synergy_object_manager(self):
         return self._synergy_object_manager

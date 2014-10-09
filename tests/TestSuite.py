@@ -6,4 +6,4 @@ class TestSuite(BaseTestSuite):
 
     def __init__(self):
         super().__init__()
-        self.addTestCases([TestSimulation, TestTerminal])
+        self.add_test_cases([TestSimulation, TestTerminal])

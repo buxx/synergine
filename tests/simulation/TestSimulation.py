@@ -7,16 +7,16 @@ from tests.src.TestCollectionConfiguration import TestCollectionConfiguration
 
 class TestSimulation(BaseTestSimulation):
 
-    def _getSetUpSimulation(self):
+    def _get_set_up_simulation(self):
         return TestSimulationSimulation([TestCollection(TestCollectionConfiguration())])
 
     def test_cycles_in_main_process(self):
-        self._testCycles(True)
+        self._test_cycles(True)
 
     def test_cycles_in_sub_process(self):
-        self._testCycles(False)
+        self._test_cycles(False)
 
-    def _testCycles(self, main_process):
+    def _test_cycles(self, main_process):
         tests = {
             0: [('john', 2, 2),
                     ('boby', 2, 5),
@@ -41,11 +41,11 @@ class TestSimulation(BaseTestSimulation):
             5: [],
         }
         for cycle in tests:
-            synergy_object_manager = self._getSynergyObjectManagerForCycle(cycles=cycle, main_process=main_process)
-            self.assertEqual(sorted(tests[cycle]), sorted(self._getObjectsResume(synergy_object_manager)))
+            synergy_object_manager = self._get_synergy_object_managerForCycle(cycles=cycle, main_process=main_process)
+            self.assertEqual(sorted(tests[cycle]), sorted(self._get_objects_resume(synergy_object_manager)))
 
-    def _getObjectsResume(self, synergy_object_manager):
+    def _get_objects_resume(self, synergy_object_manager):
         resume = []
-        for obj in synergy_object_manager.getObjects():
+        for obj in synergy_object_manager.get_objects():
             resume.append((obj.name, obj.beans, obj.coeff))
         return resume

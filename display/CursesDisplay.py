@@ -8,23 +8,23 @@ class CursesDisplay(Display):
         super().__init__()
         self._screen = None
 
-    def needToRunCore(self):
+    def need_to_run_core(self):
         return True
 
     def encapsulate_run(self, run_function):
         super().encapsulate_run(run_function)
         curses.wrapper(run_function)
 
-    def initializeScreen(self, screen):
+    def initialize_screen(self, screen):
         self._screen = screen
         curses.noecho()
         curses.cbreak()
         self._screen.keypad(True)
 
-    def _startOfCycle(self):
+    def _start_of_cycle(self):
         self._screen.clear()
 
-    def _endOfCycle(self):
+    def _end_of_cycle(self):
         self._screen.refresh()
 
     def terminate(self):
@@ -34,7 +34,7 @@ class CursesDisplay(Display):
         curses.endwin()
         self._screen = None
 
-    def drawPoints(self, points):
+    def draw_points(self, points):
         for point in points:
             # todo: z ... au moins valeur par defaut (generique !)
             if point == (0,23,20): # TEST

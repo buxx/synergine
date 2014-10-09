@@ -6,17 +6,17 @@ class Cell(SynergyObject):
         super().__init__()
         self._alive = False
 
-    def addTrace(self, point):
+    def add_trace(self, point):
         """
         Cell have only one point length
         """
         self._trace = [point]
 
-    def setPoint(self, point):
-        self.addTrace(point)
+    def set_point(self, point):
+        self.add_trace(point)
 
-    def getPoint(self):
-        return self.getTrace()[0]
+    def get_point(self):
+        return self.get_trace()[0]
 
     def set_alive(self, alive):
         self._alive = alive

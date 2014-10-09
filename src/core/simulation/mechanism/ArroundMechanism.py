@@ -7,5 +7,5 @@ class ArroundMechanism(Mechanism):
     """
 
     def _get_object_event_parameters(self, obj, context):
-        objects_near = context.getObjectsNearPoint(obj.getPoint(), 1)
+        objects_near = context.get_objects_near_point(obj.get_point(), 1)
         return {'objects_near': objects_near}

@@ -14,9 +14,9 @@ class LonelinessSuicideEvent(Event):
 
     def _has_friends_with_beans(self, obj, context):
         friends_with_beans_count = 0
-        # TODO: .getCollections: Pas adapte si d'autres collections dans la simu !
-        for collection in context.getCollections():
-            for friend in collection.getObjects():
+        # TODO: .get_collections: Pas adapte si d'autres collections dans la simu !
+        for collection in context.get_collections():
+            for friend in collection.get_objects():
                 if friend.beans > 1:
                     friends_with_beans_count += 1
         if friends_with_beans_count == 0:

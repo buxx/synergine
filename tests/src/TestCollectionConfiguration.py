@@ -3,7 +3,7 @@ from tests.src.TestSynergyObject import TestSynergyObject
 
 class TestCollectionConfiguration(Configuration):
 
-    def getStartObjects(self):
+    def get_start_objects(self):
         objs_setup = (
             ('john', 2, 2),
             ('boby', 2, 5),

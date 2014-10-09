@@ -5,16 +5,16 @@ class SynergyCollection(SynergyCollectionInterface):
 
     def __init__(self, configuration):
         self._configuration = configuration
-        self._objects = self._configuration.getStartObjects()
+        self._objects = self._configuration.get_start_objects()
         self._actions_steps = [[]]
 
     def get_actions_steps(self):
         return self._actions_steps
 
-    def getObjects(self):
+    def get_objects(self):
         return self._objects
 
-    def setObjects(self, objects):
+    def set_objects(self, objects):
         self._objects = objects
 
     def remove_object(self, object):
@@ -23,10 +23,10 @@ class SynergyCollection(SynergyCollectionInterface):
     def get_object_by_key(self, key):
         return self._objects[key]
 
-    def getComputableObjects(self):
+    def get_computable_objects(self):
         return self._objects
 
-    def getObjectsToDisplay(self):
+    def get_objects_to_display(self):
 
         #import pdb; pdb.set_trace()
         return self._objects

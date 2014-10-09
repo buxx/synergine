@@ -5,40 +5,40 @@ class SynergyObjectManager():
     def __init__(self, simulations):
         self._simulations = simulations
 
-    def getSimulations(self):
+    def get_simulations(self):
         return self._simulations
 
-    def getCollections(self):
+    def get_collections(self):
         collections = []
         for simulation in self._simulations:
-            for collection in simulation.getCollections():
+            for collection in simulation.get_collections():
                 collections.append(collection)
         return collections
 
-    def getComputableObjects(self):
+    def get_computable_objects(self):
         computable_objects = []
         for simulation in self._simulations:
-            for collection in simulation.getCollections():
-                for collection_computable_object in collection.getComputableObjects():
+            for collection in simulation.get_collections():
+                for collection_computable_object in collection.get_computable_objects():
                     computable_objects.append(collection_computable_object)
         return computable_objects
 
-    def getObjects(self):
+    def get_objects(self):
         objects = []
         for simulation in self._simulations:
-            for collection in simulation.getCollections():
-                for collection_object in collection.getObjects():
+            for collection in simulation.get_collections():
+                for collection_object in collection.get_objects():
                     objects.append(collection_object)
         return objects
 
-    def getObjectActions(self):
+    def get_object_actions(self):
         actions = []
         for simulation in self._simulations:
             for action in simulation.get_object_actions():
                 actions.append(action)
         return actions
 
-    def getGlobalActions(self):
+    def get_global_actions(self):
         actions = []
         for simulation in self._simulations:
             for action in simulation.get_global_actions():
@@ -46,10 +46,10 @@ class SynergyObjectManager():
         return actions
 
     # todo: la func ci-dessous sont-elles a leurs place ?
-    def getObjectsToDisplay(self):
+    def get_objects_to_display(self):
         objects_to_display = []
         for simulation in self._simulations:
-            for collection in simulation.getCollections():
-                for collection_object_to_display in collection.getObjectsToDisplay():
+            for collection in simulation.get_collections():
+                for collection_object_to_display in collection.get_objects_to_display():
                     objects_to_display.append(collection_object_to_display)
         return objects_to_display

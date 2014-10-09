@@ -31,7 +31,7 @@ class EventManager():
         mechanisms_definition = {}
         mechanisms = []
         for event in events:
-            event_mechanism_class = event.getMechanismClass()
+            event_mechanism_class = event.get_mechanism_class()
             if event_mechanism_class not in mechanisms_definition:
                 mechanisms_definition[event_mechanism_class] = [event]
             else:

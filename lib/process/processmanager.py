@@ -30,9 +30,9 @@ class PipePackage():
     def getChunkedObjects(self):
         if self._current_process_id is not None:
             return self._chunkeds_objects[self._current_process_id]
-        return self.getObjects()
+        return self.get_objects()
 
-    def getObjects(self):
+    def get_objects(self):
         return self._objects
 
 
@@ -63,7 +63,7 @@ class KeepedAliveProcessManager():
             writer_pipe.send('stop')
 
     def get_their_work(self, pipe_package):
-        pipe_package.setChunkedsObjects(chunk(pipe_package.getObjects(), self.nb_process))
+        pipe_package.setChunkedsObjects(chunk(pipe_package.get_objects(), self.nb_process))
         if not self.processs:
             self._start(pipe_package)
         else:

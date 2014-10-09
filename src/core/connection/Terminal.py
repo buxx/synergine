@@ -6,14 +6,14 @@ class Terminal():
     def encapsulate_run(self, run_function):
         self._encapsuled_run = True
 
-    def haveEncapsulatedRun(self):
+    def have_encapsulated_run(self):
         return self._encapsuled_run
 
-    def needToRunCore(self):
+    def need_to_run_core(self):
         return False
 
     # TODO: Renommer
-    def initializeScreen(self, screen):
+    def initialize_screen(self, screen):
         pass
 
     def receive(self, synergy_object_manager):

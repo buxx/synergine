@@ -3,17 +3,17 @@ from src.core.connection.Terminal import Terminal
 class Display(Terminal):
 
     def receive(self, synergy_object_manager):
-        self._startOfCycle()
-        for object_to_display in synergy_object_manager.getObjectsToDisplay():
+        self._start_of_cycle()
+        for object_to_display in synergy_object_manager.get_objects_to_display():
             # TODO: drawObject() avec un objet generique affichable par un Display
-            self.drawPoints(object_to_display.getTrace())
-        self._endOfCycle()
+            self.draw_points(object_to_display.get_trace())
+        self._end_of_cycle()
 
-    def _startOfCycle(self):
+    def _start_of_cycle(self):
         raise NotImplementedError
 
-    def _endOfCycle(self):
+    def _end_of_cycle(self):
         raise NotImplementedError
 
-    def drawPoints(self, points):
+    def draw_points(self, points):
         raise NotImplementedError

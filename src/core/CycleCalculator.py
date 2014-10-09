@@ -8,7 +8,7 @@ class CycleCalculator():
         # TODO: nbprocess
         self._synergy_manager = synergy_manager
         self._event_manager = EventManager()
-        self._event_manager.refresh(self._synergy_manager.getCollections())
+        self._event_manager.refresh(self._synergy_manager.get_collections())
         self._force_main_process = force_main_process
         self._process_manager = KeepedAliveProcessManager(nb_process=2, target=self._process_compute)
         self._cycle = 0
@@ -18,33 +18,33 @@ class CycleCalculator():
         self._compute_events(context)
 
     def _compute_events(self, context):
-        for simulation in context.getSimulations():
-            collections = simulation.getCollections()
-            for collection in collections:#context.getCollections():
+        for simulation in context.get_simulations():
+            collections = simulation.get_collections()
+            for collection in collections:#context.get_collections():
                 for collection_mechanisms_step in self._event_manager.get_collection_mechanisms_steps(collection):
                     computeds_objects = self._get_computeds_objects(collection, collection_mechanisms_step, context)
-                    collection.setObjects(computeds_objects)
+                    collection.set_objects(computeds_objects)
                     self._apply_actions(computeds_objects, collection, context)
 
     def _get_computeds_objects(self, collection, collection_mechanisms_step, context):
-        pipe_package = self._getPipePackageForCollection(collection.getComputableObjects(), collection_mechanisms_step, context)
+        pipe_package = self._get_pipe_package_for_collection(collection.get_computable_objects(), collection_mechanisms_step, context)
         if not self._force_main_process:
             computeds_objects = self._process_manager.get_their_work(pipe_package)
         else:
             computeds_objects = self._process_compute(pipe_package)
         return computeds_objects
 
-    def _getPipePackageForCollection(self, objects, mechanisms, context):
+    def _get_pipe_package_for_collection(self, objects, mechanisms, context):
         # FUTURE: test si garder le package en attribut de core ameliore les perfs (attention a l'index de current_process)
         pipe_package = PipePackage(objects)
-        pipe_package.setMechanisms(mechanisms)
-        pipe_package.setContext(context)
+        pipe_package.set_mechanisms(mechanisms)
+        pipe_package.set_context(context)
         return pipe_package
 
     def _process_compute(self, pipe_package):
         objects_to_compute = pipe_package.getChunkedObjects()
-        context = pipe_package.getContext()
-        mechanisms = pipe_package.getMechanisms()
+        context = pipe_package.get_context()
+        mechanisms = pipe_package.get_mechanisms()
         for mechanism in mechanisms:
             mechanism.run(objects_to_compute, context)
         return objects_to_compute
@@ -54,11 +54,11 @@ class CycleCalculator():
         # On prepare une liste d'actions au lieu d'iterer directement sur les objects. Afin d'eviter les problemes
         # du au fait d'iterer sur une liste d'objet susceptible d'etre modifie (suppression)
         for obj in objects:
-            action = obj.getWill()
+            action = obj.get_will()
             if action:
                 action.set_object(obj)
                 actions.append(action)
-                obj.setWill(None)
+                obj.set_will(None)
         for action in actions:
             action.run(collection, context)
 
