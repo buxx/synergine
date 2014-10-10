@@ -1,10 +1,15 @@
 class Action():
 
     _listen = None
+    _depend = []
 
     @classmethod
     def get_listened_class(cls):
         return cls._listen
+
+    @classmethod
+    def get_dependencies(cls):
+        return cls._depend
 
     def __init__(self, parameters):
         self._parameters = parameters

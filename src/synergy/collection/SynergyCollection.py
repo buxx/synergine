@@ -6,10 +6,10 @@ class SynergyCollection(SynergyCollectionInterface):
     def __init__(self, configuration):
         self._configuration = configuration
         self._objects = self._configuration.get_start_objects()
-        self._actions_steps = [[]]
+        self._actions = []
 
-    def get_actions_steps(self):
-        return self._actions_steps
+    def get_actions(self):
+        return self._actions
 
     def get_objects(self):
         return self._objects

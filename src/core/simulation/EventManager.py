@@ -1,7 +1,11 @@
+from src.core.ActionManager import ActionManager
+
+
 class EventManager():
 
     def __init__(self):
         self._collections_mechanisms_steps = {}
+        self._action_manager = ActionManager()
 
     def refresh(self, collections):
         for collection in collections:
@@ -9,7 +13,7 @@ class EventManager():
 
     def _get_mechanisms_steps_for_collection(self, collection):
         collection_mechanisms_steps = []
-        for collection_step_actions in collection.get_actions_steps():
+        for collection_step_actions in self._action_manager.get_steps_for_actions(collection.get_actions()):
             collection_step_events = self._get_events_for_actions(collection_step_actions)
             collection_mechanisms_steps.append(self._get_mechanisms_for_events(collection_step_events))
         return collection_mechanisms_steps

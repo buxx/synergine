@@ -6,9 +6,7 @@ class LifeGameCollection(SynergyCollection):
 
     def __init__(self, configuration):
         super().__init__(configuration)
-        self._actions_steps = [
-            [DieAction, BornAction]
-        ]
+        self._actions = [DieAction, BornAction]
 
     def get_objects_to_display(self):
         objects_to_display = []
