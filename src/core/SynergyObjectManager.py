@@ -31,14 +31,14 @@ class SynergyObjectManager():
                     objects.append(collection_object)
         return objects
 
-    def get_object_actions(self):
+    def getObjectActions(self):
         actions = []
         for simulation in self._simulations:
             for action in simulation.get_object_actions():
                 actions.append(action)
         return actions
 
-    def get_global_actions(self):
+    def getGlobalActions(self):
         actions = []
         for simulation in self._simulations:
             for action in simulation.get_global_actions():

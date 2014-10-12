@@ -14,4 +14,9 @@ config = {
     },
     'simulations' : [LifeGameSimulation([LifeGameCollection(LifeGameCollectionConfiguration())])],
     'connections': [TestDisplay(), CursesDisplay()],
+    'other': {
+        'action_manager': {
+            'max_recursions': 1000
+        }
+    }
 }

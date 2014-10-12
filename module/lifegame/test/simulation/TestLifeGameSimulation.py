@@ -18,7 +18,7 @@ class TestLifeGameSimulation(BaseTestSimulation):
 
     def _test_cycles(self, main_process):
         for cycle in test_context:
-            synergy_object_manager = self._get_synergy_object_managerForCycle(cycles=cycle[0]+1, main_process=main_process)
+            synergy_object_manager = self._get_synergy_object_manager_for_cycle(cycles=cycle[0]+1, main_process=main_process)
             self.assertEqual(cycle[1], len(self._get_alive_cells(synergy_object_manager.get_objects())))
             for point in cycle[2]:
                 self.assertTrue(self._cell_exist_in_point(synergy_object_manager, point))

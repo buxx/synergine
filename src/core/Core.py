@@ -7,9 +7,13 @@ from src.core.cycle.Context import Context
 from lib.factory.factory import Factory
 from time import time, sleep
 
-class Core():
 
-    def __init__(self, config):
+class Core():
+    """
+    Core of Synergine
+    """
+
+    def __init__(self, config: dict):
         self._configuration_manager = ConfigurationManager(config)
         self._factory = Factory()
         self._synergy_object_manager =    SynergyObjectManager(self._configuration_manager.get('simulations'))
@@ -17,7 +21,7 @@ class Core():
         self._space_data_connector = SpaceDataConnector()
         self._last_cycle_time = time()
         self._maxfps = self._configuration_manager.get('engine.fpsmax')
-        self._connector = Connector(self._configuration_manager.get('connections'))
+        self._connector = Connector(self._configuration_manager.get('connections'), self._synergy_object_manager)
         self._context = Context(self._synergy_object_manager)
 
     def run(self, screen = None): # TODO: screen: Rendre pour le cas ou le display n'a pas besoin de ca
@@ -45,7 +49,6 @@ class Core():
             sleep(max(1./self._maxfps - (time() - self._last_cycle_time), 0))
 
     def _run_connecteds(self):
-        self._connector.prepare(self._synergy_object_manager) # TODO: estce necessaire de redonner l'objet ?
         self._connector.cycle()
 
     def have_to_be_runned_by(self):

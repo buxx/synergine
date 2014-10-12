@@ -30,7 +30,7 @@ class TestSimulation(unittest.TestCase):
             have_to_be_runned_by.encapsulate_run(core.run)
         return core
 
-    def _get_synergy_object_managerForCycle(self, cycles, main_process=True):
+    def _get_synergy_object_manager_for_cycle(self, cycles, main_process=True):
         core = self.get_core(cycles, main_process)
         core.run()
         return self._connection.get_synergy_object_manager()

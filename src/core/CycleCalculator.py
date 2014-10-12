@@ -3,6 +3,9 @@ from src.core.cycle.PipePackage import PipePackage
 from src.core.simulation.EventManager import EventManager
 
 class CycleCalculator():
+    """
+    Run cycles of simulation
+    """
 
     def __init__(self, synergy_manager, force_main_process = False):
         # TODO: nbprocess

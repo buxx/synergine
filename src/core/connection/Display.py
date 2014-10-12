@@ -1,6 +1,10 @@
 from src.core.connection.Terminal import Terminal
+from src.core.SynergyObjectManager import SynergyObjectManager
 
 class Display(Terminal):
+    """
+    Graphical visualisation Terminal
+    """
 
     def receive(self, synergy_object_manager):
         self._start_of_cycle()

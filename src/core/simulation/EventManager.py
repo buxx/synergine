@@ -1,7 +1,10 @@
 from src.core.ActionManager import ActionManager
-
+from src.synergy.collection.SynergyCollection import SynergyCollection
 
 class EventManager():
+    """
+    Manager of collection events.
+    """
 
     def __init__(self):
         self._collections_mechanisms_steps = {}
@@ -44,5 +47,10 @@ class EventManager():
             mechanisms.append(event_class(mechanisms_definition[event_class]))
         return mechanisms
 
-    def get_collection_mechanisms_steps(self, collection):
+    def get_collection_mechanisms_steps(self, collection: SynergyCollection) -> list:
+        """
+        return event steps
+        :param collection: SynergyCollection
+        :return: list of steps where step contain list of Event
+        """
         return self._collections_mechanisms_steps[collection]

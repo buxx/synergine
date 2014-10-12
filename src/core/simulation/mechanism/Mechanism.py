@@ -1,4 +1,9 @@
 class Mechanism():
+    """
+    A mechanism is an algorithm who run event with some prepared data.
+    These data will be prepared for each SynergyObject one time and can
+    be gived to x events without re compte them
+    """
 
     def __init__(self, events):
         self._events = events

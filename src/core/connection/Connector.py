@@ -1,17 +1,18 @@
+from src.core.SynergyObjectManager import SynergyObjectManager
+
 class Connector():
-    # TODO: Renomme en Connector (plus de distinction pour display)
-    # TODO: Connector doit devenir un lanceur d'objets connecte
-    # en s'abstrayant de si c'est un affichage ou autre chose.
-    # les notion de draw_points etc devra etre de la responsabilite de l'objet de type
-    # display
-    # C connector lui lance aux connections a chaque cycle
+    """
+    Connector is the connection between terminals (Terminal) and Core.
+    """
 
-    def __init__(self, terminals):
-        self._synergy_object_manager = None
-        self._terminals = terminals
-
-    def prepare(self, synergy_object_manager):
+    def __init__(self, terminals: "list of Terminal", synergy_object_manager: SynergyObjectManager):
+        """
+        :param terminals: Must be Terminal objects
+        :param synergy_object_manager: The synergy manager
+        :return: void
+        """
         self._synergy_object_manager = synergy_object_manager
+        self._terminals = terminals
 
     def cycle(self):
         if True: # Stuff est-ce que 25 fps etc
@@ -35,6 +36,11 @@ class Connector():
         return display_who_run_core
 
     def send_screen_to_connection(self, screen):
+        """
+        Actually used for Curses
+        :param screen:
+        :return:void
+        """
         display_who_run_core = self.get_connection_who_have_to_run_core()
         if not display_who_run_core:
             raise Exception('Need Terminal object to do that')

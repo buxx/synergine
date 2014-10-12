@@ -1,4 +1,7 @@
 class Terminal():
+    """
+    Obj who receive synergine data at each cycle
+    """
 
     def __init__(self):
         self._encapsuled_run = False

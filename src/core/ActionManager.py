@@ -2,8 +2,17 @@ from src.core.exception.NotFoundError import NotFoundError
 
 
 class ActionManager():
+    """
+    Manaer of Action objects
+    """
 
-    def get_steps_for_actions(self, actions):
+    def get_steps_for_actions(self, actions: list):
+        """
+        Return a list of hierarchical list of action where an action is always
+        placed in list after list containing his Action dependencies
+        :param actions: list of Action
+        :return: list of steps where step contain list of Event
+        """
         actions_copy = actions[:]
         steps = [[]]
         count = 0
