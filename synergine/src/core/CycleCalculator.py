@@ -1,6 +1,6 @@
-from lib.process.processmanager import KeepedAliveProcessManager
-from src.core.cycle.PipePackage import PipePackage
-from src.core.simulation.EventManager import EventManager
+from synergine.lib.process.processmanager import KeepedAliveProcessManager
+from synergine.src.core.cycle.PipePackage import PipePackage
+from synergine.src.core.simulation.EventManager import EventManager
 
 class CycleCalculator():
     """

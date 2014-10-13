@@ -1,4 +1,4 @@
-from src.core.SynergyObjectManager import SynergyObjectManager
+from synergine.src.core.SynergyObjectManager import SynergyObjectManager
 
 class Connector():
     """

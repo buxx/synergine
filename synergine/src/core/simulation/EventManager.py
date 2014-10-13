@@ -1,5 +1,5 @@
-from src.core.ActionManager import ActionManager
-from src.synergy.collection.SynergyCollection import SynergyCollection
+from synergine.src.core.ActionManager import ActionManager
+from synergine.src.synergy.collection.SynergyCollection import SynergyCollection
 
 class EventManager():
     """

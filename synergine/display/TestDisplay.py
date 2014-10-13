@@ -1,4 +1,4 @@
-from src.core.connection.Display import Display
+from synergine.src.core.connection.Display import Display
 
 class TestDisplay(Display):
 

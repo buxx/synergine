@@ -1,4 +1,4 @@
-from src.synergy.event.Action import Action
+from synergine.src.synergy.event.Action import Action
 from tests.src.event.LonelinessSuicideEvent import LonelinessSuicideEvent
 from tests.src.event.TooMuchBeansAction import TooMuchBeansAction
 

@@ -1,5 +1,5 @@
-from src.synergy.object import SynergyObject
-from src.core.simulation.mechanism.Mechanism import Mechanism
+from synergine.src.synergy.object import SynergyObject
+from synergine.src.core.simulation.mechanism.Mechanism import Mechanism
 
 class Event():
 

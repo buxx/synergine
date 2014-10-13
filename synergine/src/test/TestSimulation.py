@@ -1,6 +1,6 @@
 import unittest
-from src.core.Core import Core
-from src.test.TestTerminal import TestTerminal
+from synergine.src.core.Core import Core
+from synergine.src.test.TestTerminal import TestTerminal
 
 class TestSimulation(unittest.TestCase):
 

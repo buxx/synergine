@@ -1,8 +1,8 @@
 from module.lifegame.synergy.collection.LifeGameCollection import LifeGameCollection
 from module.lifegame.synergy.LifeGameSimulation import LifeGameSimulation
 from module.lifegame.synergy.collection.LifeGameCollectionConfiguration import LifeGameCollectionConfiguration
-from display.TestDisplay import TestDisplay
-from display.CursesDisplay import CursesDisplay
+from synergine.display.TestDisplay import TestDisplay
+from synergine.display.CursesDisplay import CursesDisplay
 
 config = {
     'engine': {

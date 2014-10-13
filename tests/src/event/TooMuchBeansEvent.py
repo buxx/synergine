@@ -1,4 +1,4 @@
-from src.synergy.event.Event import Event
+from synergine.src.synergy.event.Event import Event
 from tests.src.TestSynergyObject import TestSynergyObject
 
 class TooMuchBeansEvent(Event):

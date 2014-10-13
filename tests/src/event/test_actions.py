@@ -1,4 +1,4 @@
-from src.synergy.event.Action import Action
+from synergine.src.synergy.event.Action import Action
 
 class A(Action):
     _depend = []

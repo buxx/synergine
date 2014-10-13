@@ -1,4 +1,4 @@
-from src.synergy.collection.SynergyCollection import SynergyCollection
+from synergine.src.synergy.collection.SynergyCollection import SynergyCollection
 from module.lifegame.synergy.event.DieAction import DieAction
 from module.lifegame.synergy.event.BornAction import BornAction
 

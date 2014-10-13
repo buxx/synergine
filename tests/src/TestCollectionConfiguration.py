@@ -1,4 +1,4 @@
-from src.synergy.collection.Configuration import Configuration
+from synergine.src.synergy.collection.Configuration import Configuration
 from tests.src.TestSynergyObject import TestSynergyObject
 
 class TestCollectionConfiguration(Configuration):

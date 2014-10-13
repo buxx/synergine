@@ -1,4 +1,4 @@
-from src.test.TestDisplay import TestDisplay
+from synergine.src.test.TestDisplay import TestDisplay
 
 class TestRunerDisplay(TestDisplay):
 

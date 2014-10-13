@@ -1,10 +1,10 @@
-from src.core.SynergyObjectManager import SynergyObjectManager
-from src.core.CycleCalculator import CycleCalculator
-from src.core.SpaceDataConnector import SpaceDataConnector
-from src.core.config.ConfigurationManager import ConfigurationManager
-from src.core.connection.Connector import Connector
-from src.core.cycle.Context import Context
-from lib.factory.factory import Factory
+from synergine.src.core.SynergyObjectManager import SynergyObjectManager
+from synergine.src.core.CycleCalculator import CycleCalculator
+from synergine.src.core.SpaceDataConnector import SpaceDataConnector
+from synergine.src.core.config.ConfigurationManager import ConfigurationManager
+from synergine.src.core.connection.Connector import Connector
+from synergine.src.core.cycle.Context import Context
+from synergine.lib.factory.factory import Factory
 from time import time, sleep
 
 

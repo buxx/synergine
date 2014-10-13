@@ -1,6 +1,6 @@
-from src.synergy.collection.SynergyCollectionInterface import SynergyCollectionInterface
-from src.synergy.object.SynergyObject import SynergyObject
-from src.core.config.ConfigurationManager import ConfigurationManager
+from synergine.src.synergy.collection.SynergyCollectionInterface import SynergyCollectionInterface
+from synergine.src.synergy.object.SynergyObject import SynergyObject
+from synergine.src.core.config.ConfigurationManager import ConfigurationManager
 
 
 class SynergyCollection(SynergyCollectionInterface):

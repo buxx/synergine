@@ -1,4 +1,4 @@
-from src.synergy.object.SynergyObject import SynergyObject
+from synergine.src.synergy.object.SynergyObject import SynergyObject
 
 class Cell(SynergyObject):
 

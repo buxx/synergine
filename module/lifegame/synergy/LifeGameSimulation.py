@@ -1,4 +1,4 @@
-from src.synergy.Simulation import Simulation
+from synergine.src.synergy.Simulation import Simulation
 from module.lifegame.synergy.object.Cell import Cell
 
 class LifeGameSimulation(Simulation):

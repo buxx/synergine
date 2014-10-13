@@ -1,4 +1,4 @@
-from src.synergy.event.Action import Action
+from synergine.src.synergy.event.Action import Action
 from module.lifegame.synergy.event.GoodConditionToBornEvent import GoodConditionToBornEvent
 
 class BornAction(Action):

@@ -1,4 +1,4 @@
-from src.synergy.collection.Configuration import Configuration
+from synergine.src.synergy.collection.Configuration import Configuration
 from module.lifegame.synergy.object.Cell import Cell
 
 class LifeGameCollectionConfiguration(Configuration):

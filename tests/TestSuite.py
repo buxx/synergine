@@ -1,4 +1,4 @@
-from src.test.TestSuite import TestSuite as BaseTestSuite
+from synergine.src.test.TestSuite import TestSuite as BaseTestSuite
 from tests.simulation.TestSimulation import TestSimulation
 from tests.core.connection.TestTerminal import TestTerminal
 from tests.core.TestActionManager import TestActionManager

@@ -1,4 +1,4 @@
-from src.synergy.Simulation import Simulation
+from synergine.src.synergy.Simulation import Simulation
 
 class TestSimulation(Simulation):
 

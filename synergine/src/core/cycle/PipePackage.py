@@ -1,4 +1,4 @@
-from lib.process.processmanager import PipePackage as BasePipePackage
+from synergine.lib.process.processmanager import PipePackage as BasePipePackage
 
 class PipePackage(BasePipePackage):
     """

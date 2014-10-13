@@ -1,5 +1,5 @@
-from src.synergy.event.ContactEvent import ContactEvent
-from src.core.simulation.mechanism.ArroundMechanism import ArroundMechanism
+from synergine.src.synergy.event.ContactEvent import ContactEvent
+from synergine.src.core.simulation.mechanism.ArroundMechanism import ArroundMechanism
 from module.lifegame.synergy.object.Cell import Cell
 
 class NotGoodConditionToPersistEvent(ContactEvent):

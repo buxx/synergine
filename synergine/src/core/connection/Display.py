@@ -1,5 +1,5 @@
-from src.core.connection.Terminal import Terminal
-from src.core.SynergyObjectManager import SynergyObjectManager
+from synergine.src.core.connection.Terminal import Terminal
+from synergine.src.core.SynergyObjectManager import SynergyObjectManager
 
 class Display(Terminal):
     """

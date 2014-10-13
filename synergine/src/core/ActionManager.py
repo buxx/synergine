@@ -1,4 +1,4 @@
-from src.core.exception.NotFoundError import NotFoundError
+from synergine.src.core.exception.NotFoundError import NotFoundError
 
 
 class ActionManager():

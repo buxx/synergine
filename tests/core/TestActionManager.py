@@ -1,5 +1,5 @@
 import unittest
-from src.core.ActionManager import ActionManager
+from synergine.src.core.ActionManager import ActionManager
 from tests.src.event.test_actions import A,B,C,D,E,F,G,H
 from random import shuffle
 

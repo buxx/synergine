@@ -1,4 +1,4 @@
-from src.synergy.collection.SynergyCollection import SynergyCollection
+from synergine.src.synergy.collection.SynergyCollection import SynergyCollection
 from tests.src.event.TooMuchBeansAction import TooMuchBeansAction
 from tests.src.event.MakeBeansProfitAction import MakeBeansProfitAction
 from tests.src.event.LonelinessSuicideAction import LonelinessSuicideAction

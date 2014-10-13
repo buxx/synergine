@@ -1,4 +1,4 @@
-from src.synergy.object.SynergyObjectInterface import SynergyObjectInterface
+from synergine.src.synergy.object.SynergyObjectInterface import SynergyObjectInterface
 
 class SynergyObject(SynergyObjectInterface):
 

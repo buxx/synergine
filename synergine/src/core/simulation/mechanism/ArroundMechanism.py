@@ -1,4 +1,4 @@
-from src.core.simulation.mechanism.Mechanism import Mechanism
+from synergine.src.core.simulation.mechanism.Mechanism import Mechanism
 
 class ArroundMechanism(Mechanism):
     """

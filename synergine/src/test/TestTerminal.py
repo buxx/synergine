@@ -1,4 +1,4 @@
-from src.core.connection.Terminal import Terminal
+from synergine.src.core.connection.Terminal import Terminal
 
 class TestTerminal(Terminal):
 
