@@ -13,6 +13,15 @@ class Core():
     Core of Synergine
     """
 
+    @classmethod
+    def start_core(cls, config):
+        core = cls(config)
+        have_to_be_runned_by = core.have_to_be_runned_by()
+        if have_to_be_runned_by:
+            have_to_be_runned_by.encapsulate_run(core.run)
+        else:
+            core.run()
+
     def __init__(self, config: dict):
         self._configuration_manager = ConfigurationManager(config)
         self._factory = Factory()
