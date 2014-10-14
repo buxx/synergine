@@ -5,9 +5,9 @@ class Connector():
     Connector is the connection between terminals (Terminal) and Core.
     """
 
-    def __init__(self, terminals: "list of Terminal", synergy_object_manager: SynergyObjectManager):
+    def __init__(self, terminals: list, synergy_object_manager: SynergyObjectManager):
         """
-        :param terminals: Must be Terminal objects
+        :param terminals: Must be Terminal object list
         :param synergy_object_manager: The synergy manager
         :return: void
         """

@@ -3,7 +3,7 @@ from synergine.src.core.exception.NotFoundError import NotFoundError
 
 class ActionManager():
     """
-    Manaer of Action objects
+    Manaer of Action object
     """
 
     def get_steps_for_actions(self, actions: list):

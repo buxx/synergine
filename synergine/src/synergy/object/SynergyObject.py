@@ -22,3 +22,6 @@ class SynergyObject(SynergyObjectInterface):
 
     def get_trace(self):
         return self._trace
+
+    def end_cycle(self):
+        pass

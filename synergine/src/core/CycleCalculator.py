@@ -27,6 +27,7 @@ class CycleCalculator():
                 for collection_mechanisms_step in self._event_manager.get_collection_mechanisms_steps(collection):
                     computeds_objects = self._get_computeds_objects(collection, collection_mechanisms_step, context)
                     collection.set_objects(computeds_objects)
+                    # TODO: actions toutes d'un coups apres le trait des col non ?
                     self._apply_actions(computeds_objects, collection, context)
 
     def _get_computeds_objects(self, collection, collection_mechanisms_step, context):
@@ -54,16 +55,21 @@ class CycleCalculator():
 
     def _apply_actions(self, objects, collection, context):
         actions = []
-        # On prepare une liste d'actions au lieu d'iterer directement sur les objects. Afin d'eviter les problemes
+        # On prepare une liste d'actions au lieu d'iterer directement sur les object. Afin d'eviter les problemes
         # du au fait d'iterer sur une liste d'objet susceptible d'etre modifie (suppression)
         for obj in objects:
             action = obj.get_will()
             if action:
+                # On reconstruit une liste d'actions auxquel on redonne les objets. On doit faire cela car
+                # si l'on donne les objets aux actions avant ils peuvent etre donne dans un process
+                # (autre obj en memoire)
                 action.set_object(obj)
                 actions.append(action)
                 obj.set_will(None)
         for action in actions:
             action.run(collection, context)
+        for obj in objects:
+            obj.end_cycle()
 
     def end(self):
         self._process_manager.stop()

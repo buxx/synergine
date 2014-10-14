@@ -13,7 +13,7 @@ class GoodConditionToBornEvent(ContactEvent):
         if super()._object_match(obj, context, parameters):
             if obj.is_alive():
                 return False
-            # TODO: implementer un systeme generique pour preciser de quell classe d'obj on parle (pour les concerned objects)
+            # TODO: implementer un systeme generique pour preciser de quell classe d'obj on parle (pour les concerned object)
             cell_near_count = 0
             for object_near in parameters['objects_near']:
                 if isinstance(object_near, Cell) and object_near.is_alive():

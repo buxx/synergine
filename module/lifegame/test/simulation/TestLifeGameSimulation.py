@@ -23,6 +23,12 @@ class TestLifeGameSimulation(BaseTestSimulation):
             for point in cycle[2]:
                 self.assertTrue(self._cell_exist_in_point(synergy_object_manager, point))
 
+            points = []
+            for obj in self._get_alive_cells(synergy_object_manager.get_objects()):
+                obj_point = obj.get_point()
+                points.append((obj_point[0], obj_point[1], obj_point[2], obj.get_is_alive_since()))
+
+
     def _get_alive_cells(self, cells):
         alive_cells = []
         for cell in cells:
@@ -32,6 +38,8 @@ class TestLifeGameSimulation(BaseTestSimulation):
 
     def _cell_exist_in_point(self, synergy_object_manager, point):
         for obj in self._get_alive_cells(synergy_object_manager.get_objects()):
-            if obj.get_point() == point:
+            obj_point = obj.get_point()
+            obj_test_data = (obj_point[0], obj_point[1], obj_point[2], obj.get_is_alive_since())
+            if obj_test_data == point:
                 return True
         return False

@@ -30,12 +30,12 @@ class SynergyCollection(SynergyCollectionInterface):
         """
         TODO: Implementer un processus generique pour que les SynergyObject
         puissent n'etre execute que tous les x cycles
-        :return: objects who are computable
+        :return: object who are computable
         """
         return self._objects
 
     def get_objects_to_display(self) -> list:
         """
-        :return: objects to display by Display object
+        :return: object to display by Display object
         """
         return self._objects

@@ -8,5 +8,5 @@ class TestDisplay(Display):
     def _end_of_cycle(self):
         pass
 
-    def draw_points(self, points):
+    def draw_object(self, obj):
         pass

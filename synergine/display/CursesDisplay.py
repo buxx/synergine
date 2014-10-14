@@ -1,11 +1,12 @@
 from synergine.src.core.connection.Display import Display
 import curses
 
+
 class CursesDisplay(Display):
     # TODO: gestion de ce qui est affiche, partie de la map totale
 
-    def __init__(self):
-        super().__init__()
+    def __init__(self, config={}):
+        super().__init__(config)
         self._screen = None
 
     def need_to_run_core(self):
@@ -34,10 +35,10 @@ class CursesDisplay(Display):
         curses.endwin()
         self._screen = None
 
-    def draw_points(self, points):
-        for point in points:
-            # todo: z ... au moins valeur par defaut (generique !)
-            if point == (0,23,20): # TEST
-                self._screen.addstr(point[1], point[2], "*")
-            else:
-                self._screen.addstr(point[1], point[2], "*")
+    def _get_object_char(self, obj):
+        return '*'
+        return self._object_visualizer.get_visual(obj).get_char()
+
+    def draw_object(self, obj):
+        point = obj.get_point()
+        self._screen.addstr(point[1], point[2], self._get_object_char(obj))

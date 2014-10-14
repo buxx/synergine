@@ -12,7 +12,7 @@ class ConfigurationManager():
         for inception in inceptions:
             if inception in config:
                 config = config[inception]
-            elif default:
+            elif default is not None:
                 return default
             else:
                 raise Exception('Config "'+config_name+'"" not found')

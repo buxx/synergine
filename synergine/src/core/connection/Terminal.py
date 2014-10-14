@@ -3,8 +3,9 @@ class Terminal():
     Obj who receive synergine data at each cycle
     """
 
-    def __init__(self):
+    def __init__(self, config={}):
         self._encapsuled_run = False
+        self._config = config
 
     def encapsulate_run(self, run_function):
         self._encapsuled_run = True
