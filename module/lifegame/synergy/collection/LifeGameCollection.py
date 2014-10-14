@@ -12,6 +12,6 @@ class LifeGameCollection(SynergyCollection):
     def get_objects_to_display(self) -> list:
         objects_to_display = []
         for obj in self._objects:
-            if obj.is_alive():
+            if obj.is_alive() or obj.get_is_died_since() <= 2:
                 objects_to_display.append(obj)
         return objects_to_display
