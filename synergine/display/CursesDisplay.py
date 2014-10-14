@@ -36,7 +36,6 @@ class CursesDisplay(Display):
         self._screen = None
 
     def _get_object_char(self, obj):
-        return '*'
         return self._object_visualizer.get_visual(obj).get_char()
 
     def draw_object(self, obj):
