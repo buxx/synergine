@@ -14,8 +14,8 @@ def is_old_cell(cell):
     if cell.get_is_died_since() == 1:
         return TextTraceVisualisation('o')
 
-    if not cell.is_alive():
-        return TextTraceVisualisation(' ')
+    #if not cell.is_alive():
+    #    return TextTraceVisualisation(' ')
     #return TextTraceVisualisation(str(cell.get_is_alive_since()))
     return False
 

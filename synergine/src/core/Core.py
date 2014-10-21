@@ -36,7 +36,7 @@ class Core():
     def run(self, screen = None): # TODO: screen: Rendre pour le cas ou le display n'a pas besoin de ca
         if screen:
             self._connector.send_screen_to_connection(screen)
-        self._run_connecteds()
+        self._initialize_connecteds()
         self._wait_for_next_cycle()
         for i in self._configuration_manager.get('engine.debug.cycles', True): # TODO: True ne marche dans la boucle
             self._update_last_cycle_time()
@@ -56,6 +56,10 @@ class Core():
     def _wait_for_next_cycle(self):
         if self._maxfps is not True:
             sleep(max(1./self._maxfps - (time() - self._last_cycle_time), 0))
+
+    def _initialize_connecteds(self):
+        self._connector.initialize_terminals()
+        self._run_connecteds()
 
     def _run_connecteds(self):
         self._connector.cycle()

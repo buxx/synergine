@@ -23,5 +23,13 @@ class SynergyObject(SynergyObjectInterface):
     def get_trace(self):
         return self._trace
 
+    def get_point(self):
+        """
+        Return the last insered trace point
+        :return: (z, x, y)
+        """
+        trace = self.get_trace()
+        return trace[len(trace)-1]
+
     def end_cycle(self):
         pass

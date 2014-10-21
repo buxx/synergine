@@ -10,6 +10,9 @@ class Terminal():
     def encapsulate_run(self, run_function):
         self._encapsuled_run = True
 
+    def initialize(self):
+        pass
+
     def have_encapsulated_run(self):
         return self._encapsuled_run
 

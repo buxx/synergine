@@ -1,3 +1,5 @@
 Dans les grandes lignes:
 
 * Utiliser des objets pour representer les actions. Ces actions s'execute toutes seules arpres la passe des events.
+* Mettre au clair x y z !
+* Fuite memoire maous qqpart a corriger (: les objets en process sontils deleted ?)
