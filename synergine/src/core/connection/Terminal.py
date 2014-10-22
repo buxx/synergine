@@ -19,6 +19,12 @@ class Terminal():
     def need_to_run_core(self):
         return False
 
+    def start_of_cycle(self):
+        pass
+
+    def end_of_cycle(self):
+        pass
+
     # TODO: Renommer
     def initialize_screen(self, screen):
         pass

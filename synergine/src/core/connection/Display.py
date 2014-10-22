@@ -25,12 +25,6 @@ class Display(Terminal):
             if self._object_displayable(object_to_display):
                 self.draw_object(object_to_display)
 
-    def start_of_cycle(self):
-        raise NotImplementedError
-
-    def end_of_cycle(self):
-        raise NotImplementedError
-
     def _object_displayable(self, obj: SynergyObject):
         return self._zone.object_is_inside(obj)
         # if self._zone.object_is_inside(obj):
