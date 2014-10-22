@@ -89,24 +89,19 @@ class KeepedAliveProcessManager():
         self.readers_pipes = reader_useds
         return things_done_collection
 
-def run_keeped_process(target, main_write_pipe, process_read_pipe, things):
-    things_dones = target(things)
-    main_write_pipe.send(things_dones)
-    del things_dones
-    del things
+def run_keeped_process(target, main_write_pipe, process_read_pipe, new_things):
+    while new_things != 'stop':
+        things_dones = target(new_things)
+        main_write_pipe.send(things_dones)
+        readers = [process_read_pipe]
+        while readers:
+            for r in wait(readers):
+                try:
+                    new_things = r.recv()
+                except EOFError:
+                    pass
+                finally:
+                    readers.remove(r)
 
-    new_things = None
-    readers = [process_read_pipe]
-    readers_used = []
-    while readers:
-        for r in wait(readers):
-            try:
-                new_things = r.recv()
-                #print('p: things received')
-            except EOFError:
-                pass
-            finally:
-                readers.remove(r)
-    #print('p: continue')
-    if new_things != 'stop':
-        run_keeped_process(target, main_write_pipe, process_read_pipe, new_things)
+    #if new_things != 'stop':
+    #    run_keeped_process(target, main_write_pipe, process_read_pipe, new_things)
