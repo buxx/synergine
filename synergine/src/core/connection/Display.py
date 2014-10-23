@@ -26,15 +26,7 @@ class Display(Terminal):
                 self.draw_object(object_to_display)
 
     def _object_displayable(self, obj: SynergyObject):
-        return self._zone.object_is_inside(obj)
-        # if self._zone.object_is_inside(obj):
-        #     object_point = obj.get_point()
-        #     width = self._zone.get_width()
-        #     height = self._zone.get_height()
-        #     if 0 <= object_point[1]+self._display_decal[0]:  # hauteur
-        #         if 0 <= object_point[2]+self._display_decal[1]:  # largeur
-        #             return True
-        # return False
+        return self._zone.point_is_inside(obj.get_point())
 
     def move_view_zone(self, direction):
         new_decal = (self._display_decal[0]+direction[0], self._display_decal[1]+direction[1])
@@ -43,8 +35,8 @@ class Display(Terminal):
 
     def _update_zone_size(self, width, height):
         # TODO: Pk il faut inverser ? confusion qqpart
-        self._zone.set_height(width-1)
-        self._zone.set_width(height-2)
+        self._zone.update_height(width-1)
+        self._zone.update_width(height-2)
 
     def draw_object(self, obj: SynergyObject):
         raise NotImplementedError

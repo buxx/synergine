@@ -1,6 +1,3 @@
-from synergine.src.synergy.object.SynergyObject import SynergyObject
-
-
 class DisplayZone():
 
     def __init__(self, width, height):
@@ -13,16 +10,18 @@ class DisplayZone():
     def get_width(self):
         return self._width
 
-    def set_width(self, width):
-        self._zone_end = (0, self._zone_end[1], width)
-        self._width = width
+    def update_width(self, new_width):
+        new_position = self._zone_start[2]+new_width
+        self._zone_end = (0, self._zone_end[1], new_position)
+        self._width = new_width
 
     def get_height(self):
         return self._height
 
-    def set_height(self, height):
-        self._zone_end = (0, height, self._zone_end[2])
-        self._height = height
+    def update_height(self, new_height):
+        new_position = self._zone_start[1]+new_height
+        self._zone_end = (0, new_position, self._zone_end[2])
+        self._height = new_height
 
     def get_zone_start(self):
         return self._zone_start
@@ -34,12 +33,11 @@ class DisplayZone():
         self._zone_start = (z, self._zone_start[1]+y, self._zone_start[2]+x)
         self._zone_end = (z, self._zone_end[1]+y, self._zone_end[2]+x)
 
-    def object_is_inside(self, obj: SynergyObject):
+    def point_is_inside(self, point):
         # (0, 42, 0)
         # ((0, 0, 0), (0, 158, 42))
-        object_point = obj.get_point()
-        if self._zone_end[0] >= object_point[0] >= self._zone_start[0]:
-            if self._zone_end[1] >= object_point[2] >= self._zone_start[1]:
-                if self._zone_end[2] >= object_point[1] >= self._zone_start[2]:
+        if self._zone_end[0] >= point[0] >= self._zone_start[0]:
+            if self._zone_end[1] >= point[2] >= self._zone_start[1]:
+                if self._zone_end[2] >= point[1] >= self._zone_start[2]:
                     return True
         return False
