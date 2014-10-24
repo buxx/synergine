@@ -8,6 +8,6 @@ class TestZone(unittest.TestCase):
         zone = DisplayZone(20, 20)
         obj = SynergyObject()
         obj.add_trace((0, 10, 10))
-        self.assertTrue(zone.object_is_inside(obj))
+        self.assertTrue(zone.point_is_inside(obj.get_point()))
         obj.add_trace((0, 10, 21))
-        self.assertFalse(zone.object_is_inside(obj))
+        self.assertFalse(zone.point_is_inside(obj.get_point()))
