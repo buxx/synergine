@@ -44,8 +44,8 @@ class PygameDisplay(Display):
 
     def draw_object(self, obj):
 
-        if obj.is_alive():
-
-            point = obj.get_point()
-            cell = pygame.image.load("sandbox/cha3.png")
-            self._screen.blit(cell, (point[1]*20, point[2]*20))
+        point = obj.get_point()
+        obj_visual = self._object_visualizer.get_visual(obj)
+        visual_surface = obj_visual.get_surface()
+        # TODO: Gestionnaire de grille
+        self._screen.blit(visual_surface, (point[1]*20, point[2]*20))

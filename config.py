@@ -1,10 +1,11 @@
 from module.lifegame.synergy.collection.LifeGameCollection import LifeGameCollection
 from module.lifegame.synergy.LifeGameSimulation import LifeGameSimulation
 from module.lifegame.synergy.collection.LifeGameCollectionConfiguration import LifeGameCollectionConfiguration
-from synergine.display.TestDisplay import TestDisplay
-from synergine.display.CursesDisplay import CursesDisplay
-from synergine.display.PygameDisplay import PygameDisplay
-from module.lifegame.curses.default_visualisation import visualisation
+from module.lifegame.display.curses_visualisation import visualisation as curses_visualisation
+from module.lifegame.display.pygame_visualisation import visualisation as pygame_visualisation
+from synergine.src.display.CursesDisplay import CursesDisplay
+from synergine.src.display.TestDisplay import TestDisplay
+from synergine.src.display.PygameDisplay import PygameDisplay
 
 config = {
     'engine': {
@@ -15,7 +16,7 @@ config = {
         }
     },
     'simulations' : [LifeGameSimulation([LifeGameCollection(LifeGameCollectionConfiguration())])],
-    'connections': [TestDisplay(), PygameDisplay(), CursesDisplay(visualisation)],
+    'connections': [TestDisplay(), PygameDisplay(pygame_visualisation), CursesDisplay(curses_visualisation)],
     'other': {
         'action_manager': {
             'max_recursions': 1000

@@ -72,7 +72,7 @@ class CursesDisplay(Display):
         point = obj.get_point()
         try:
             self._screen.addstr(point[1]-self._display_decal[0], point[2]-self._display_decal[1], self._get_object_char(obj))
-        except:  # TODO: curses err
+        except:  # TODO: display err
             pass
 
     def _draw_components(self):
@@ -92,5 +92,5 @@ class CursesDisplay(Display):
             self._screen.addstr(0, height, '+')
             self._screen.addstr(width, 0, '+')
             self._screen.addstr(width, height, '+')
-        except:  # TODO: curses err
+        except:  # TODO: display err
             pass
