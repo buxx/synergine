@@ -15,8 +15,8 @@ class PygameDisplay(Display):
         pygame.display.set_caption('Fooooooooooo')  # TODO: issue de config
         self._screen_size = self._screen.get_size()
 
-        self.event = pygame.event
-        self.default_font = pygame.font.SysFont("arial", 11)
+        self._event = pygame.event
+        self._default_font = pygame.font.SysFont("arial", 11) # TODO: Config
         self._grid = TwoDimensionalGrid(20)  # TODO: Size issue de config
 
     def initialize(self):
