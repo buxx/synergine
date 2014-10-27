@@ -1,4 +1,5 @@
 from synergine.src.core.connection.Display import Display
+from synergine.src.display.TwoDimensionalGrid import TwoDimensionalGrid
 import pygame
 
 
@@ -10,12 +11,13 @@ class PygameDisplay(Display):
         self._screen_size = (0, 0)
         # TODO: > ._xx
         pygame.init()
-        self._screen = pygame.display.set_mode((800, 600))
-        pygame.display.set_caption('Fooooooooooo')
+        self._screen = pygame.display.set_mode((800, 600)) # TODO: issue de config
+        pygame.display.set_caption('Fooooooooooo')  # TODO: issue de config
         self._screen_size = self._screen.get_size()
 
         self.event = pygame.event
         self.default_font = pygame.font.SysFont("arial", 11)
+        self._grid = TwoDimensionalGrid(20)  # TODO: Size issue de config
 
     def initialize(self):
         self._update_screen_size()
@@ -43,9 +45,7 @@ class PygameDisplay(Display):
         self._update_zone_size(self._screen_size[0], self._screen_size[1])
 
     def draw_object(self, obj):
-
-        point = obj.get_point()
+        point = self._grid.get_real_pixel_point(obj.get_point())
         obj_visual = self._object_visualizer.get_visual(obj)
         visual_surface = obj_visual.get_surface()
-        # TODO: Gestionnaire de grille
-        self._screen.blit(visual_surface, (point[1]*20, point[2]*20))
+        self._screen.blit(visual_surface, (point[0], point[1]))
