@@ -17,9 +17,5 @@ config = {
     },
     'simulations' : [LifeGameSimulation([LifeGameCollection(LifeGameCollectionConfiguration())])],
     'connections': [TestDisplay(), PygameDisplay(pygame_visualisation), CursesDisplay(curses_visualisation)],
-    'other': {
-        'action_manager': {
-            'max_recursions': 1000
-        }
-    }
+    'other': {}
 }
