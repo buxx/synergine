@@ -1,9 +1,12 @@
+from synergine.src.core.exception.NotFoundError import NotFoundError
+
+
 class ConfigurationManager():
     """
     Management of dict based configuration data
     """
 
-    def __init__(self, config: dict):
+    def __init__(self, config: dict={}):
         self._configs = config
 
     def get(self, config_name: "the.config.name", default=None):
@@ -15,7 +18,7 @@ class ConfigurationManager():
             elif default is not None:
                 return default
             else:
-                raise Exception('Config "'+config_name+'"" not found')
+                raise NotFoundError('Config "'+config_name+'"" not found')
         return config
 
     def update_config(self, config_name: "the.config.name", config_value):

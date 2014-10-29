@@ -2,4 +2,4 @@ from synergine.src.core.Core import Core
 from config import config
 
 if __name__ == '__main__':
-    Core.start_core(config)
+    Core.start_core(config, modules_path='module')

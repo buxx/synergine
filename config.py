@@ -8,6 +8,9 @@ from synergine.src.display.TestDisplay import TestDisplay
 from synergine.src.display.PygameDisplay import PygameDisplay
 
 config = {
+    'app': {
+        'name': 'Synergine'
+    },
     'engine': {
         'fpsmax': 25,
         'debug': {
@@ -16,6 +19,31 @@ config = {
         }
     },
     'simulations' : [LifeGameSimulation([LifeGameCollection(LifeGameCollectionConfiguration())])],
-    'connections': [TestDisplay(), PygameDisplay(pygame_visualisation), CursesDisplay(curses_visualisation)],
-    'other': {}
+    'connections': [TestDisplay, PygameDisplay, CursesDisplay],
+    'terminal': {
+        '__default__': {
+            'app': {
+                'name': 'Synergine (graphic output)'
+            },
+            'display': {
+                'grid': {
+                    'size': 20
+                }
+            }
+        },
+        'pygame': {
+            'visualisation': pygame_visualisation,
+            'window_size': (800, 600),
+            'app': {
+                'name': 'Synergine (pygame)'
+            },
+            'font': {
+                'name': 'arial',
+                'size': 11
+            }
+        },
+        'curses': {
+            'visualisation': curses_visualisation
+        }
+    }
 }

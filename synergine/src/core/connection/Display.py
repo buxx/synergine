@@ -14,9 +14,9 @@ class Display(Terminal):
     MOVE_DIRECTION_RIGHT = (0, 1)
     MOVE_DIRECTION_DOWN = (1, 0)
 
-    def __init__(self, config={}):
+    def __init__(self, config):
         super().__init__(config)
-        self._object_visualizer = ObjectVisualizer(config)
+        self._object_visualizer = ObjectVisualizer(self._get_config('visualisation', {}))
         self._zone = DisplayZone(20, 40)
         self._display_decal = (0, 0)
 

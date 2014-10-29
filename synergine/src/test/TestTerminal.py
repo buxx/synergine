@@ -2,7 +2,9 @@ from synergine.src.core.connection.Terminal import Terminal
 
 class TestTerminal(Terminal):
 
-    def __init__(self, config={}):
+    _name = 'tests_test'
+
+    def __init__(self, config):
         super().__init__(config)
         self._synergy_object_manager = None
     # TODO: inutile non ?

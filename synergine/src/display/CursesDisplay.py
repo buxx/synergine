@@ -5,7 +5,9 @@ import curses
 
 class CursesDisplay(Display):
 
-    def __init__(self, config={}):
+    _name = "curses"
+
+    def __init__(self, config):
         super().__init__(config)
         self._screen = None
         self._screen_size = (0, 0)
@@ -18,7 +20,7 @@ class CursesDisplay(Display):
         curses.wrapper(run_function)
 
     def initialize(self):
-        self._update_screen_size()
+        pass
 
     def initialize_screen(self, screen):
         self._screen = screen

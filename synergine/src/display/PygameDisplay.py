@@ -5,21 +5,24 @@ import pygame
 
 class PygameDisplay(Display):
 
-    def __init__(self, config={}):
+    _name = "pygame"
+
+    def __init__(self, config):
         super().__init__(config)
         self._screen = None
         self._screen_size = (0, 0)
-        # TODO: > ._xx
-        pygame.init()
-        self._screen = pygame.display.set_mode((800, 600)) # TODO: issue de config
-        pygame.display.set_caption('Fooooooooooo')  # TODO: issue de config
-        self._screen_size = self._screen.get_size()
-
-        self._event = pygame.event
-        self._default_font = pygame.font.SysFont("arial", 11) # TODO: Config
-        self._grid = TwoDimensionalGrid(20)  # TODO: Size issue de config
+        self._event = None
+        self._default_font = None
+        self._grid = None
 
     def initialize(self):
+        pygame.init()
+        self._screen = pygame.display.set_mode(self._get_config('window_size'))
+        pygame.display.set_caption(self._get_config('app.name'))
+        self._screen_size = self._screen.get_size()
+        self._event = pygame.event
+        self._default_font = pygame.font.SysFont(self._get_config('font.name'), self._get_config('font.size'))
+        self._grid = TwoDimensionalGrid(self._get_config('display.grid.size'))
         self._update_screen_size()
 
     def initialize_screen(self, screen):

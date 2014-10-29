@@ -1,22 +1,31 @@
 from synergine.src.core.SynergyObjectManager import SynergyObjectManager
+from synergine.src.core.exception.NotFoundError import NotFoundError
+
 
 class Connector():
     """
     Connector is the connection between terminals (Terminal) and Core.
     """
 
-    def __init__(self, terminals: list, synergy_object_manager: SynergyObjectManager):
+    def __init__(self, synergy_object_manager: SynergyObjectManager):
         """
-        :param terminals: Must be Terminal object list
         :param synergy_object_manager: The synergy manager
         :return: void
         """
         self._synergy_object_manager = synergy_object_manager
-        self._terminals = terminals
+        self._terminals = []
 
-    def initialize_terminals(self):
-        for terminal in self._terminals:
+    def initialize_terminals(self, terminals_classes, configuration):
+        """
+
+        :param terminal_classes: list of Terminal classes
+        :param configuration: ConfigurationManager
+        :return: void
+        """
+        for terminal_class in terminals_classes:
+            terminal = terminal_class(configuration)
             terminal.initialize()
+            self._terminals.append(terminal)
 
     def cycle(self):
         if True: # Stuff est-ce que 25 fps etc
@@ -51,3 +60,9 @@ class Connector():
         if not display_who_run_core:
             raise Exception('Need Terminal object to do that')
         display_who_run_core.initialize_screen(screen)
+
+    def get_terminal(self, terminal_name):
+        for terminal in self._terminals:
+            if terminal.get_name() == terminal_name:
+                return terminal
+        raise NotFoundError()
