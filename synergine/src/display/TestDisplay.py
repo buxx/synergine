@@ -5,7 +5,7 @@ class TestDisplay(Display):
 
     _name = "test"
 
-    def draw_object(self, points):
+    def draw_object(self, obj, point):
         pass
 
     def terminate(self):

@@ -39,7 +39,7 @@ config = {
             },
             'font': {
                 'name': 'arial',
-                'size': 11
+                'size': 13
             }
         },
         'curses': {

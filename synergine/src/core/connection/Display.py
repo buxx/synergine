@@ -3,6 +3,7 @@ from synergine.src.core.SynergyObjectManager import SynergyObjectManager
 from synergine.src.synergy.object.SynergyObject import SynergyObject
 from synergine.src.core.display.ObjectVisualizer import ObjectVisualizer
 from synergine.src.core.display.DisplayZone import DisplayZone
+from synergine.src.display.TwoDimensionalGrid import TwoDimensionalGrid
 
 
 class Display(Terminal):
@@ -19,13 +20,19 @@ class Display(Terminal):
         self._object_visualizer = ObjectVisualizer(self._get_config('visualisation', {}))
         self._zone = DisplayZone(20, 40)
         self._display_decal = (0, 0)
+        self._grid = None
+
+    def initialize(self):
+        super().initialize()
+        self._grid = TwoDimensionalGrid(self._get_config('display.grid.size', 1))
 
     def receive(self, synergy_object_manager: SynergyObjectManager):
         for object_to_display in synergy_object_manager.get_objects_to_display():
             if self._object_displayable(object_to_display):
-                self.draw_object(object_to_display)
+                self._draw_object_with_decal(object_to_display)
 
     def _object_displayable(self, obj: SynergyObject):
+        # TODO: is inside en prennant en compte le zoom
         return self._zone.point_is_inside(obj.get_point())
 
     def move_view_zone(self, direction):
@@ -38,5 +45,11 @@ class Display(Terminal):
         self._zone.update_height(width-1)
         self._zone.update_width(height-2)
 
-    def draw_object(self, obj: SynergyObject):
+    def _draw_object_with_decal(self, obj: SynergyObject):
+        object_point = self._grid.get_real_pixel_point(obj.get_point())
+        adapted_point = (object_point[0]-self._display_decal[0]*self._grid.get_cell_size(),
+                         object_point[1]-self._display_decal[1]*self._grid.get_cell_size())
+        self.draw_object(obj, adapted_point)
+
+    def draw_object(self, obj: SynergyObject, point):
         raise NotImplementedError
