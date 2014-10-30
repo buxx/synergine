@@ -12,6 +12,7 @@ class PygameDisplay(Display):
         self._screen_size = (0, 0)
         self._event = None
         self._default_font = None
+        self._visuals_surface_cache = {}
 
     def initialize(self):
         super().initialize()
@@ -63,11 +64,10 @@ class PygameDisplay(Display):
                 elif event.key == pygame.K_DOWN:
                     self.move_view_zone(Display.MOVE_DIRECTION_RIGHT)
                 elif event.key == pygame.K_a:
-                    self._grid.set_cell_size(self._grid.get_cell_size()-5)
+                    if self._grid.get_cell_size()-5 > 0:
+                      self._grid.set_cell_size(self._grid.get_cell_size()-5)
                 elif event.key == pygame.K_z:
                     self._grid.set_cell_size(self._grid.get_cell_size()+5)
-
-
 
     def terminate(self):
         pass
@@ -78,8 +78,19 @@ class PygameDisplay(Display):
 
     def draw_object(self, obj, point):
         obj_visual = self._object_visualizer.get_visual(obj)
+        visual_surface = self._get_visual_surface(obj_visual)
+        self._screen.blit(visual_surface, point)
+
+    def _get_visual_surface(self, obj_visual):
+        ratio = self._grid.get_ratio()
+        if obj_visual in self._visuals_surface_cache:
+            if ratio in self._visuals_surface_cache[obj_visual]:
+                return self._visuals_surface_cache[obj_visual][ratio]
+
         visual_surface = obj_visual.get_surface()
         visual_size = visual_surface.get_size()
-        visual_surface = pygame.transform.scale(visual_surface, (round(visual_size[0]*self._grid.get_ratio()),
-                                                                 round(visual_size[1]*self._grid.get_ratio())))
-        self._screen.blit(visual_surface, point)
+        visual_surface_for_ratio = pygame.transform.scale(visual_surface, (round(visual_size[0]*ratio),
+                                                                           round(visual_size[1]*ratio)))
+        self._visuals_surface_cache[obj_visual] = {}
+        self._visuals_surface_cache[obj_visual][ratio] = visual_surface_for_ratio
+        return visual_surface_for_ratio
