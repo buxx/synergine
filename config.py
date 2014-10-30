@@ -43,7 +43,12 @@ config = {
             }
         },
         'curses': {
-            'visualisation': curses_visualisation
+            'visualisation': curses_visualisation,
+            'display': {
+                'grid': {
+                    'size': 1
+                }
+            }
         }
     }
 }
