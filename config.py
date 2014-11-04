@@ -6,6 +6,11 @@ from module.lifegame.display.pygame_visualisation import visualisation as pygame
 from synergine.src.display.CursesDisplay import CursesDisplay
 from synergine.src.display.TestDisplay import TestDisplay
 from synergine.src.display.PygameDisplay import PygameDisplay
+from module.traveller.synergy.TravellerSimulation import TravellerSimulation
+from module.traveller.synergy.TravellerCollection import TravellerCollection
+from module.traveller.synergy.TravellerCollectionConfiguration import TravellerCollectionConfiguration
+from module.traveller.display.visualisation import visualisation as traveller_visualisation
+from module.traveller.display.TravellerDisplay import TravellerDisplay
 
 config = {
     'app': {
@@ -47,6 +52,39 @@ config = {
             'display': {
                 'grid': {
                     'size': 1
+                }
+            }
+        }
+    }
+}
+
+config_traveller = {
+    'app': {
+        'name': 'Traveller'
+    },
+    'engine': {
+        'fpsmax': 5,
+        'debug': {
+            'mainprocess': False,
+            'cycles': range(100)
+        }
+    },
+    'simulations' : [TravellerSimulation([TravellerCollection(TravellerCollectionConfiguration())])],
+    'connections': [TravellerDisplay],
+    'terminal': {
+        'pygame': {
+            'visualisation': traveller_visualisation,
+            'window_size': (800, 600),
+            'app': {
+                'name': 'Synergine (pygame)'
+            },
+            'font': {
+                'name': 'arial',
+                'size': 13
+            },
+            'display': {
+                'grid': {
+                    'size': 20
                 }
             }
         }

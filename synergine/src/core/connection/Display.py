@@ -53,3 +53,8 @@ class Display(Terminal):
 
     def draw_object(self, obj: SynergyObject, point):
         raise NotImplementedError
+
+    def _get_real_screen_point(self, x, y, z=0):
+        grid_point = self._grid.get_real_pixel_point((z, x, y))
+        return (z, grid_point[0]-self._display_decal[0]*self._grid.get_cell_size(),
+                   grid_point[1]-self._display_decal[1]*self._grid.get_cell_size())
