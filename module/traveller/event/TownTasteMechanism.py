@@ -25,7 +25,9 @@ class TownTasteMechanism(Mechanism):
     def _get_towns_tastes(self, obj, towns):
         town_tastes = {}
         for town in towns:
-            if town != obj.get_town():
+            try:
+                obj.get_towns().index(town)
+            except ValueError:
                 town_tastes[town] = self._get_town_taste(obj, town, towns)
         return town_tastes
 
