@@ -20,6 +20,13 @@ class Context():
         # TODO: C'est son job ?
         return self._synergy_object_manager.get_objects()
 
+    def get_objects_by_type(self, type):
+        objects_filtereds = []
+        for obj in self.get_objects():
+            if isinstance(obj, type):
+                objects_filtereds.append(obj)
+        return objects_filtereds
+
     def update(self):
         self._update_map()
 

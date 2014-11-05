@@ -6,4 +6,8 @@ class AllTownVisitedEvent(Event):
     """
     Le traveller a visité toutes les towns
     """
-    pass
+
+    def __init__(self, actions):
+        super().__init__(actions)
+        self._concerneds = [Traveller]
+        self._mechanism = TownTasteMechanism

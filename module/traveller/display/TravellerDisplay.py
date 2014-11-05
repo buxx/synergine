@@ -19,4 +19,5 @@ class TravellerDisplay(PygameDisplay):
                 town_b_point = town_b.get_point()
                 start_point = self._get_real_screen_point(town_a_point[1], town_a_point[2], town_a_point[0])
                 end_point = self._get_real_screen_point(town_b_point[1], town_b_point[2], town_b_point[0])
+                # TODO: Largeur en fonction de l'intensité des pheromones
                 pygame.draw.line(self._screen, (55, 55, 55), (start_point[1], start_point[2]), (end_point[1], end_point[2]), 1)

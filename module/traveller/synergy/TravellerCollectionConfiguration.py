@@ -17,12 +17,11 @@ class TravellerCollectionConfiguration(Configuration):
             objects.append(town)
 
         town_1 = objects[0]
-        town_1_point = town_1.get_point()
 
         # TODO: nombre de traveller en config
         for town_number in range(50):
             traveller = Traveller()
-            traveller.add_trace((0, town_1_point[1], town_1_point[2]))
+            traveller.add_town(town_1)
             objects.append(traveller)
 
         return objects
