@@ -62,7 +62,7 @@ class Terminal():
     def initialize_screen(self, screen):
         pass
 
-    def receive(self, synergy_object_manager):
+    def receive(self, synergy_object_manager, context):
         pass
 
     def terminate(self):

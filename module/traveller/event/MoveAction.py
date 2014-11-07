@@ -1,5 +1,7 @@
 from synergine.src.synergy.event.Action import Action
 from module.traveller.event.DirectionChoosedEvent import DirectionChoosedEvent
+from module.traveller.event.TurnFinishedAction import TurnFinishedAction
+
 
 class MoveAction(Action):
     """
@@ -7,6 +9,7 @@ class MoveAction(Action):
     """
 
     _listen = DirectionChoosedEvent
+    _depend = [TurnFinishedAction]
 
     def run(self, collection, context):
         """
@@ -20,4 +23,4 @@ class MoveAction(Action):
         choosed_town = self._parameters['choosed']
         if not choosed_town:
             raise Exception("Can't continue without town")
-        self._obj.add_town(choosed_town)
+        self._obj.add_town(choosed_town, self._parameters['distance'])

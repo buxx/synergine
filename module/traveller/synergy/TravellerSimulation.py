@@ -1,4 +1,6 @@
 from synergine.src.synergy.Simulation import Simulation
+from module.traveller.synergy.Town import Town
+from module.traveller.synergy.Traveller import Traveller
 
 
 class TravellerSimulation(Simulation):
@@ -21,3 +23,17 @@ class TravellerSimulation(Simulation):
 
     def __init__(self, collections):
         super().__init__(collections)
+        self._cycle_count = 0
+
+    def end_cycle(self, context):
+        # TODO: Il ne faut le faire que si tout les traveller ont finis leurs tour !
+        self._cycle_count += 1
+        towns = context.get_objects_by_type(Town)
+        if self._cycle_count % len(towns) == 0:
+            # travellers = context.get_objects_by_type(Traveller)
+            # all_finisheds = True
+            # for traveller in travellers:
+            #     if not traveller.visited_towns(towns):
+            #         all_finisheds = False
+
+            context.reduce_pheromons_intensitys()

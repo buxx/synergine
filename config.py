@@ -11,6 +11,7 @@ from module.traveller.synergy.TravellerCollection import TravellerCollection
 from module.traveller.synergy.TravellerCollectionConfiguration import TravellerCollectionConfiguration
 from module.traveller.display.visualisation import visualisation as traveller_visualisation
 from module.traveller.display.TravellerDisplay import TravellerDisplay
+from module.traveller.core.Context import Context as TravellerContext
 
 config = {
     'app': {
@@ -60,13 +61,16 @@ config = {
 
 config_traveller = {
     'app': {
-        'name': 'Traveller'
+        'name': 'Traveller',
+        'classes': {
+            'Context': TravellerContext
+        }
     },
     'engine': {
-        'fpsmax': 5,
+        'fpsmax': 255,
         'debug': {
-            'mainprocess': False,
-            'cycles': range(100)
+            'mainprocess': True,
+            'cycles': range(9999999)
         }
     },
     'simulations' : [TravellerSimulation([TravellerCollection(TravellerCollectionConfiguration())])],

@@ -19,23 +19,23 @@ class TownTasteMechanism(Mechanism):
             return {}
 
         towns = context.get_objects_by_type(Town)
-        town_tastes = self._get_towns_tastes(obj, towns)
+        town_tastes = self._get_towns_tastes(obj, towns, context)
         return {'towns': town_tastes}
 
-    def _get_towns_tastes(self, obj, towns):
+    def _get_towns_tastes(self, obj, towns, context):
         town_tastes = {}
         for town in towns:
             try:
                 obj.get_towns().index(town)
             except ValueError:
-                town_tastes[town] = self._get_town_taste(obj, town, towns)
+                town_tastes[town] = self._get_town_taste(obj, town, towns, context)
         return town_tastes
 
-    def _get_town_taste(self, obj, town, towns):
+    def _get_town_taste(self, obj, town, towns, context):
         object_point = obj.get_point()
         distance_score = self._get_distance_score(object_point, town, towns)
         object_town = obj.get_town()
-        pheromone_score = self._get_pheromon_score(object_town, town, towns)
+        pheromone_score = self._get_pheromon_score(object_town, town, towns, context)
         return round(distance_score + pheromone_score / 2)
 
     def _get_distance_score(self, reference_point, tested_town, towns):
@@ -48,7 +48,7 @@ class TownTasteMechanism(Mechanism):
         :return: int
         """
 
-        # TODO: calculer ça qu'un fois ...
+        # TODO: calculer ça qu'une fois ...
         farest_distance = 0
         for town in towns:
             town_point = town.get_point()
@@ -63,7 +63,7 @@ class TownTasteMechanism(Mechanism):
 
         return score
 
-    def _get_pheromon_score(self, start_town, goal_town, towns):
+    def _get_pheromon_score(self, start_town, goal_town, towns, context):
         """
         Sur une echellede 100 points, une route qui a 25% d'intensité (i 50) de phéromone
         de la route la plus forte (200) gagne 25 pts
@@ -72,4 +72,12 @@ class TownTasteMechanism(Mechanism):
         :param goal_town:
         :return:
         """
-        return 0
+        max_intensity = 0
+        for town in towns:
+            if town != start_town:
+                couple_intensity = context.get_road_intensity(start_town, town)
+                if couple_intensity > max_intensity:
+                    max_intensity = couple_intensity
+        goal_town_intensity = context.get_road_intensity(start_town, goal_town)
+        score = goal_town_intensity * 100 / max_intensity
+        return score

@@ -7,12 +7,13 @@ class Connector():
     Connector is the connection between terminals (Terminal) and Core.
     """
 
-    def __init__(self, synergy_object_manager: SynergyObjectManager):
+    def __init__(self, synergy_object_manager: SynergyObjectManager, context):
         """
         :param synergy_object_manager: The synergy manager
         :return: void
         """
         self._synergy_object_manager = synergy_object_manager
+        self._context = context
         self._terminals = []
 
     def initialize_terminals(self, terminals_classes, configuration):
@@ -34,7 +35,7 @@ class Connector():
     def _send(self):
         for terminal in self._terminals:
             terminal.start_of_cycle()
-            terminal.receive(self._synergy_object_manager)  # TODO: pas necessaire de passer syner obj manag
+            terminal.receive(self._synergy_object_manager, self._context)  # TODO: pas necessaire de passer syner obj manag
             terminal.end_of_cycle()
 
     def terminate(self):

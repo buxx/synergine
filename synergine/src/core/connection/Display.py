@@ -26,7 +26,7 @@ class Display(Terminal):
         super().initialize()
         self._grid = TwoDimensionalGrid(self._get_config('display.grid.size', 1))
 
-    def receive(self, synergy_object_manager: SynergyObjectManager):
+    def receive(self, synergy_object_manager: SynergyObjectManager, context):
         for object_to_display in synergy_object_manager.get_objects_to_display():
             if self._object_displayable(object_to_display):
                 self._draw_object_with_decal(object_to_display)

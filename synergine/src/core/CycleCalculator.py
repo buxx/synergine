@@ -22,6 +22,7 @@ class CycleCalculator():
 
     def _compute_events(self, context):
         for simulation in context.get_simulations():
+            simulation.start_cycle(context)
             collections = simulation.get_collections()
             for collection in collections:#context.get_collections():
                 for collection_mechanisms_step in self._event_manager.get_collection_mechanisms_steps(collection):
@@ -29,6 +30,7 @@ class CycleCalculator():
                     collection.set_objects(computeds_objects)
                     # TODO: actions toutes d'un coups apres le trait des col non ?
                     self._apply_actions(computeds_objects, collection, context)
+            simulation.end_cycle(context)
 
     def _get_computeds_objects(self, collection, collection_mechanisms_step, context):
         pipe_package = self._get_pipe_package_for_collection(collection.get_computable_objects(), collection_mechanisms_step, context)

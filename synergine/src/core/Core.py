@@ -39,9 +39,14 @@ class Core():
         self._space_data_connector = SpaceDataConnector()
         self._last_cycle_time = time()
         self._maxfps = self._configuration_manager.get('engine.fpsmax')
-        self._connector = Connector(self._synergy_object_manager)
+
+        # TODO: Gestionnaire/Factory pour la construction
+        context_class = self._configuration_manager.get('app.classes.Context', Context)
+        self._context = context_class(self._synergy_object_manager)
+
+        self._connector = Connector(self._synergy_object_manager, self._context)
         self._initialize_connecteds()
-        self._context = Context(self._synergy_object_manager)
+
 
     def _load_configuration(self, modules_path, app_config):
         modules = [file for file in listdir(modules_path) if isdir(join_path(modules_path, file))]
