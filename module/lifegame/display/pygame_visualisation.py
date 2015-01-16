@@ -17,7 +17,7 @@ def is_old_cell(cell):
         return image_cell_full
 
     if cell.get_is_died_since() == 1:
-        return image_cell_small
+        return image_cell_dead
 
     if not cell.is_alive():
         return image_cell_dead
