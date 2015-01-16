@@ -7,5 +7,5 @@ class LonelinessSuicideAction(Action):
     _listen = LonelinessSuicideEvent
     _depend = [TooMuchBeansAction]
 
-    def run(self, collection, context):
-        collection.remove_object(self._obj)
+    def run(self, obj, collection, context):
+        collection.remove_object(obj)

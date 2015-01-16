@@ -1,6 +1,7 @@
 from synergine.src.synergy.collection.SynergyCollectionInterface import SynergyCollectionInterface
 from synergine.src.synergy.object.SynergyObject import SynergyObject
 from synergine.src.core.config.ConfigurationManager import ConfigurationManager
+from synergine.src.core.Signals import Signals
 
 
 class SynergyCollection(SynergyCollectionInterface):
@@ -9,9 +10,13 @@ class SynergyCollection(SynergyCollectionInterface):
     concern this collection.
     """
 
+    SIGNAL_ADD_OBJECT = 'collection.add_object'
+    SIGNAL_REMOVE_OBJECT = 'collection.remove_object'
+
     def __init__(self, configuration: ConfigurationManager):
         self._configuration = configuration
-        self._objects = self._configuration.get_start_objects()
+        self._objects = []
+        self.set_objects(self._configuration.get_start_objects())
         self._actions = []
 
     def get_actions(self) -> list:
@@ -21,9 +26,15 @@ class SynergyCollection(SynergyCollectionInterface):
         return self._objects
 
     def set_objects(self, objects: list):
-        self._objects = objects
+        for obj in objects:
+            try:
+                self._objects.index(obj)
+            except ValueError:
+                Signals.signal(self.SIGNAL_ADD_OBJECT).send(collection=self, obj=obj)
+                self._objects.append(obj)
 
     def remove_object(self, obj: SynergyObject):
+        Signals.signal(self.SIGNAL_REMOVE_OBJECT).send(collection=self, obj=obj)
         self._objects.remove(obj)
 
     def get_computable_objects(self) -> list:

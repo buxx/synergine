@@ -11,7 +11,7 @@ class Mechanism():
 
     def run(self, objects, context):
         self._prepare_objects_parameters(objects, context)
-        self._run_events(objects, context)
+        return self._run_events(objects, context)
 
     def _prepare_objects_parameters(self, objects, context):
         # Quelque soit le nombre d'event le mechanisme ne calcule qu'une fois les donnees destines aux events
@@ -20,9 +20,13 @@ class Mechanism():
             self._events_parameters[obj] = self._get_object_event_parameters(obj, context)
 
     def _run_events(self, objects, context):
+        actions = []
         for event in self._events:
             for obj in objects:
-                event.observe(obj, context, self._events_parameters[obj])
+                event_actions = event.observe(obj, context, self._events_parameters[obj])
+                for event_action in event_actions:
+                    actions.append(event_action)
+        return actions
 
     def _get_object_event_parameters(self, obj, context):
         return {}

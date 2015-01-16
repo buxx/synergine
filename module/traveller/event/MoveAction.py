@@ -11,7 +11,7 @@ class MoveAction(Action):
     _listen = DirectionChoosedEvent
     _depend = [TurnFinishedAction]
 
-    def run(self, collection, context):
+    def run(self, obj, collection, context):
         """
 
         :param collection:
@@ -23,4 +23,4 @@ class MoveAction(Action):
         choosed_town = self._parameters['choosed']
         if not choosed_town:
             raise Exception("Can't continue without town")
-        self._obj.add_town(choosed_town, self._parameters['distance'])
+        obj.add_town(choosed_town, self._parameters['distance'])

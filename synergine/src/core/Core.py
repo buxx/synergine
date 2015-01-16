@@ -34,7 +34,7 @@ class Core():
     def __init__(self, config: dict, modules_path):
         self._load_configuration(modules_path, config)
         self._factory = Factory()
-        self._synergy_object_manager =    SynergyObjectManager(self._configuration_manager.get('simulations'))
+        self._synergy_object_manager = SynergyObjectManager(self._configuration_manager.get('simulations'))
         self._cycle_calculator = CycleCalculator(self._synergy_object_manager, force_main_process=self._configuration_manager.get('engine.debug.mainprocess')) # TODO: debug in conf
         self._space_data_connector = SpaceDataConnector()
         self._last_cycle_time = time()
@@ -63,12 +63,21 @@ class Core():
             self._connector.send_screen_to_connection(screen)
         self._run_connecteds()
         self._wait_for_next_cycle()
+
         for i in self._configuration_manager.get('engine.debug.cycles', True): # TODO: True ne marche dans la boucle
+
             self._update_last_cycle_time()
+
+            start_time = time()
+
             self._context.update()
             self._cycle_calculator.compute(self._context)
             self._run_connecteds()
+
+            #print(time() - start_time)
+
             self._wait_for_next_cycle()
+
         self._end()
 
     def _end(self):

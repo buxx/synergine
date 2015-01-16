@@ -12,9 +12,11 @@ class Event():
         return self._mechanism
 
     def observe(self, obj, context, parameters={}):
+        active_actions = []
         if self._object_match(obj, context, parameters):
             for action in self._actions:
-                obj.set_will(action(parameters))
+                active_actions.append(action(obj, parameters))
+        return active_actions
 
     def _object_match(self, obj, context, parameters={}):
         for concerned in self._concerneds:

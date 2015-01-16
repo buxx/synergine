@@ -7,5 +7,5 @@ class TooMuchBeansAction(Action):
     _listen = TooMuchBeansEvent
     _depend = [MakeBeansProfitAction]
 
-    def run(self, collection, context):
-        self._obj.beans = 0
+    def run(self, obj, collection, context):
+        obj.beans = 0

@@ -5,5 +5,5 @@ class DieAction(Action):
 
     _listen = NotGoodConditionToPersistEvent
 
-    def run(self, collection, context):
-        self._obj.set_alive(False)
+    def run(self, obj, collection, context):
+        obj.set_alive(False)

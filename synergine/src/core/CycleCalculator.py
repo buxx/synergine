@@ -26,10 +26,11 @@ class CycleCalculator():
             collections = simulation.get_collections()
             for collection in collections:#context.get_collections():
                 for collection_mechanisms_step in self._event_manager.get_collection_mechanisms_steps(collection):
-                    computeds_objects = self._get_computeds_objects(collection, collection_mechanisms_step, context)
-                    collection.set_objects(computeds_objects)
-                    # TODO: actions toutes d'un coups apres le trait des col non ?
-                    self._apply_actions(computeds_objects, collection, context)
+                    # TODO: (run test) tte les actions d'un coup
+                    # On peux donner collection et contexte a l'action ? Le process va t-il dupliquer ces objets ?
+                    # TODO: On cherche a readonly/share les objects. Mais le contexte aussi  peut être en ReadOnly
+                    actions = self._get_computeds_objects(collection, collection_mechanisms_step, context)
+                    self._apply_actions(actions, collection, context)
             simulation.end_cycle(context)
 
     def _get_computeds_objects(self, collection, collection_mechanisms_step, context):
@@ -41,7 +42,7 @@ class CycleCalculator():
         return computeds_objects
 
     def _get_pipe_package_for_collection(self, objects, mechanisms, context):
-        # FUTURE: test si garder le package en attribut de core ameliore les perfs (attention a l'index de current_process)
+        # TODO: FUTURE: test si garder le package en attribut de core ameliore les perfs (attention a l'index de current_process)
         pipe_package = PipePackage(objects)
         pipe_package.set_mechanisms(mechanisms)
         pipe_package.set_context(context)
@@ -51,26 +52,18 @@ class CycleCalculator():
         objects_to_compute = pipe_package.getChunkedObjects()
         context = pipe_package.get_context()
         mechanisms = pipe_package.get_mechanisms()
-        for mechanism in mechanisms:
-            mechanism.run(objects_to_compute, context)
-        return objects_to_compute
-
-    def _apply_actions(self, objects, collection, context):
         actions = []
-        # On prepare une liste d'actions au lieu d'iterer directement sur les object. Afin d'eviter les problemes
-        # du au fait d'iterer sur une liste d'objet susceptible d'etre modifie (suppression)
-        for obj in objects:
-            action = obj.get_will()
-            if action:
-                # On reconstruit une liste d'actions auxquel on redonne les objets. On doit faire cela car
-                # si l'on donne les objets aux actions avant ils peuvent etre donne dans un process
-                # (autre obj en memoire)
-                action.set_object(obj)
-                actions.append(action)
-                obj.set_will(None)
+        for mechanism in mechanisms:
+            mechanism_actions = mechanism.run(objects_to_compute, context)
+            for mechanism_action in mechanism_actions:
+                actions.append(mechanism_action)
+        return actions
+
+    def _apply_actions(self, actions, collection, context):
         for action in actions:
-            action.run(collection, context)
-        for obj in objects:
+            obj = self._synergy_manager.get_map().get_object(action.get_object_id())
+
+            action.run(obj, collection, context)
             obj.end_cycle()
 
     def end(self):

@@ -5,5 +5,5 @@ class BornAction(Action):
 
     _listen = GoodConditionToBornEvent
 
-    def run(self, collection, context):
-        self._obj.set_alive(True)
+    def run(self, obj, collection, context):
+        obj.set_alive(True)

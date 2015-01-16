@@ -11,12 +11,12 @@ class Action():
     def get_dependencies(cls):
         return cls._depend
 
-    def __init__(self, parameters):
+    def __init__(self, obj, parameters):
+        self._object_id  = obj.get_id()
         self._parameters = parameters
-        self._obj = None
 
-    def set_object(self, obj):
-        self._obj = obj
+    def get_object_id(self):
+        return self._object_id
 
-    def run(self, collection, context):
+    def run(self, obj, collection, context):
         raise NotImplementedError

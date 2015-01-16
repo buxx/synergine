@@ -5,6 +5,6 @@ class MakeBeansProfitAction(Action):
 
     _listen = MakeBeansProfitEvent
 
-    def run(self, collection, context):
-        self._obj.beans = self._obj.beans ** self._obj.coeff
+    def run(self, obj, collection, context):
+        obj.beans = obj.beans ** obj.coeff
 
