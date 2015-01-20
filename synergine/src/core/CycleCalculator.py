@@ -51,6 +51,7 @@ class CycleCalculator():
     def _process_compute(self, pipe_package):
         objects_to_compute = pipe_package.getChunkedObjects()
         context = pipe_package.get_context()
+
         mechanisms = pipe_package.get_mechanisms()
         actions = []
         for mechanism in mechanisms:

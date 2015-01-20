@@ -25,7 +25,7 @@ config = {
         }
     },
     'simulations' : [LifeGameSimulation([LifeGameCollection(LifeGameCollectionConfiguration())])],
-    'connections': [TestDisplay, PygameDisplay, CursesDisplay],
+    'connections': [PygameDisplay],#[PygameDisplay],#TestDisplay, PygameDisplay, CursesDisplay],
     'terminal': {
         '__default__': {
             'app': {

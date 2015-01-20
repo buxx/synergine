@@ -9,6 +9,7 @@ from time import time, sleep
 from os import listdir
 from os.path import isdir, join as join_path
 from importlib import import_module
+from synergine.src.core.simulation.MetaDatas import MetaDatas
 
 
 class Core():
@@ -17,6 +18,7 @@ class Core():
     """
 
     _configuration_manager = ConfigurationManager()
+    metas = MetaDatas()
 
     @classmethod
     def start_core(cls, config, modules_path='module'):  # TODO: path en relatif !
@@ -71,6 +73,7 @@ class Core():
             start_time = time()
 
             self._context.update()
+            self._context.metas = self.metas
             self._cycle_calculator.compute(self._context)
             self._run_connecteds()
 

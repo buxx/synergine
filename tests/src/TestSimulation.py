@@ -2,5 +2,7 @@ from synergine.src.synergy.Simulation import Simulation
 
 class TestSimulation(Simulation):
 
+    COMPUTABLE = 'computable'
+
     def __init__(self, collections):
         super().__init__(collections)

@@ -1,3 +1,6 @@
+#from synergine.src.core.Core import Core
+
+
 class Context():
     """
     This object contain a representation of simulation. It's
@@ -7,6 +10,7 @@ class Context():
     def __init__(self, synergy_object_manager):
         self._synergy_object_manager = synergy_object_manager
         self._map = {}
+        self.metas = None
 
     def get_collections(self):
         # TODO: C'est son job ?
@@ -29,6 +33,7 @@ class Context():
 
     def update(self):
         self._update_map()
+        #self.metas = Core.metas
 
     def _update_map(self):
         # TODO: Calculer les nouveautes de la map seulement ? pour eco des ressources
