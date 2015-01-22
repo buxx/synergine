@@ -4,8 +4,8 @@ from tests.src.TestSimulation import TestSimulation
 
 class TestEvent(Event):
 
-    def concern(self, obj, context):
-        return context.metas.have_state(obj, TestSimulation.COMPUTABLE)
+    def concern(self, object_id, context):
+        return context.metas.list.have(TestSimulation.STATE, object_id, TestSimulation.COMPUTABLE)
 
-    def _object_match(self, obj, context, parameters={}):
+    def _object_match(self, object_id, context, parameters={}):
         return True

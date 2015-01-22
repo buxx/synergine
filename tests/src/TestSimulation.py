@@ -1,8 +1,10 @@
 from synergine.src.synergy.Simulation import Simulation
+from synergine.lib.eint import IncrementedNamedInt
 
 class TestSimulation(Simulation):
 
-    COMPUTABLE = 'computable'
+    COMPUTABLE = IncrementedNamedInt.get('t.computable')
+    BEANS = IncrementedNamedInt.get('t.beans')
 
     def __init__(self, collections):
         super().__init__(collections)

@@ -1,6 +1,6 @@
 from synergine.src.synergy.collection.Configuration import Configuration
 from tests.src.TestSynergyObject import TestSynergyObject
-from synergine.src.core.Core import Core
+from synergine.metas import metas
 from tests.src.TestSimulation import TestSimulation
 
 
@@ -19,6 +19,7 @@ class TestCollectionConfiguration(Configuration):
             obj = TestSynergyObject()
             obj.setUp(obj_setup[0], obj_setup[1], obj_setup[2])
             objects.append(obj)
-            Core.metas.set(obj, TestSimulation.COMPUTABLE)
+            metas.list.add(TestSimulation.STATE, obj.get_id(), TestSimulation.COMPUTABLE)
+            metas.list.add(TestSimulation.STATE, TestSimulation.COMPUTABLE, obj.get_id())
 
         return objects

@@ -16,8 +16,10 @@ class SynergyCollection(SynergyCollectionInterface):
     def __init__(self, configuration: ConfigurationManager):
         self._configuration = configuration
         self._objects = []
-        self.set_objects(self._configuration.get_start_objects())
         self._actions = []
+
+    def initialize_objects(self):
+        self.set_objects(self._configuration.get_start_objects())
 
     def get_actions(self) -> list:
         return self._actions

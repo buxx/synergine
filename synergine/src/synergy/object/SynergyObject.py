@@ -1,4 +1,6 @@
 from synergine.src.synergy.object.SynergyObjectInterface import SynergyObjectInterface
+from synergine.lib.eint import IncrementedNamedInt
+from synergine.metas import metas
 
 
 class SynergyObject(SynergyObjectInterface):
@@ -11,15 +13,23 @@ class SynergyObject(SynergyObjectInterface):
         # TODO: Cet histoire de trace est trop dependante d'objet a trace
         self._trace_length = 1
         self._trace = []
-        self._id = id(self)
+        self._id = IncrementedNamedInt.get(self)
 
     def get_id(self):
         return self._id
 
     # TODO: Gestion space dtata autrement ?
     def add_trace(self, point):
-        # TODO: limite de taille de trace
+        # TODO: limite de taille de
+        try:
+          previous_point = self.get_point()
+          # TODO: constantes (string utilise a cause de double import LifeGameSim)
+          metas.list.remove(IncrementedNamedInt.get_for_name('lgs.positions'), previous_point, self.get_id())
+        except IndexError:
+          pass
+        metas.list.add(IncrementedNamedInt.get_for_name('lgs.positions'), point, self.get_id())
         self._trace.append(point)
+        metas.value.set(IncrementedNamedInt.get_for_name('lgs.position'), self.get_id(), point)
 
     def get_trace(self):
         return self._trace

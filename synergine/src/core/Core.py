@@ -9,7 +9,7 @@ from time import time, sleep
 from os import listdir
 from os.path import isdir, join as join_path
 from importlib import import_module
-from synergine.src.core.simulation.MetaDatas import MetaDatas
+from synergine.metas import metas
 
 
 class Core():
@@ -18,7 +18,6 @@ class Core():
     """
 
     _configuration_manager = ConfigurationManager()
-    metas = MetaDatas()
 
     @classmethod
     def start_core(cls, config, modules_path='module'):  # TODO: path en relatif !
@@ -34,6 +33,7 @@ class Core():
         return cls._configuration_manager
 
     def __init__(self, config: dict, modules_path):
+        metas.reset()
         self._load_configuration(modules_path, config)
         self._factory = Factory()
         self._synergy_object_manager = SynergyObjectManager(self._configuration_manager.get('simulations'))
@@ -44,7 +44,7 @@ class Core():
 
         # TODO: Gestionnaire/Factory pour la construction
         context_class = self._configuration_manager.get('app.classes.Context', Context)
-        self._context = context_class(self._synergy_object_manager)
+        self._context = context_class()
 
         self._connector = Connector(self._synergy_object_manager, self._context)
         self._initialize_connecteds()
@@ -69,16 +69,10 @@ class Core():
         for i in self._configuration_manager.get('engine.debug.cycles', True): # TODO: True ne marche dans la boucle
 
             self._update_last_cycle_time()
-
-            start_time = time()
-
-            self._context.update()
-            self._context.metas = self.metas
+            #start_time = time()
             self._cycle_calculator.compute(self._context)
             self._run_connecteds()
-
             #print(time() - start_time)
-
             self._wait_for_next_cycle()
 
         self._end()

@@ -9,6 +9,9 @@ class SynergyObjectManager():
 
     def __init__(self, simulations):
         self._simulations = simulations
+        for simulation in self._simulations:
+            for collection in simulation.get_collections():
+                collection.initialize_objects()
         self._map = Map()
         self._initialize_map()
         Signals.signal(SynergyCollection.SIGNAL_ADD_OBJECT).connect(self._collection_add_object)

@@ -1,21 +1,30 @@
 class MetaCollections:
 
   def __init__(self):
-    self._collections = {}
+    self._metas = {}
 
-  def get_collection(self, collection_name):
-    if collection_name not in self._collections:
-      self._collections[collection_name] = []
-    return self._collections[collection_name]
+  def reset(self):
+    self._metas = {}
 
-  def add(self, collection_name, meta):
-    collection = self.get_collection(collection_name)
-    collection.append(meta)
+  def _get_collection(self, name):
+    if name not in self._metas:
+      self._metas[name] = {}
+    return self._metas[name]
 
-  def remove(self, collection_name, meta):
-    object_meta = self.get_collection(collection_name)
-    object_meta.remove(meta)
+  def get(self, name, subject):
+    metas = self._get_collection(name)
+    if subject not in metas:
+      metas[subject] = []
+    return metas[subject]
 
-  def is_in(self, collection_name, meta):
-    collection = self.get_collection(collection_name)
-    return meta in collection
+  def add(self, name, subject, value):
+    collection = self.get(name, subject)
+    collection.append(value)
+
+  def remove(self, name, subject, value):
+    collection = self.get(name, subject)
+    collection.remove(value)
+
+  def have(self, name, subject, value):
+    collection = self.get(name, subject)
+    return value in collection

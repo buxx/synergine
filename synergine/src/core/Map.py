@@ -9,7 +9,7 @@ class Map:
         return self._map['objects'][object_id]
 
     def add_object(self, obj):
-        self._map['objects'][id(obj)] = obj
+        self._map['objects'][obj.get_id()] = obj
 
     def remove_object(self, obj):
-        del(self._map['objects'][id(obj)])
+        del(self._map['objects'][obj.get_id()])

@@ -1,5 +1,7 @@
 from tests.src.event.TestEvent import TestEvent
 from tests.src.TestSynergyObject import TestSynergyObject
+from synergine.metas import metas
+from tests.src.TestSimulation import TestSimulation
 
 
 class LonelinessSuicideEvent(TestEvent):
@@ -8,16 +10,15 @@ class LonelinessSuicideEvent(TestEvent):
         super().__init__(actions)
         self._concerneds = [TestSynergyObject]
 
-    def _object_match(self, obj, context, parameters={}):
-        return not self._has_friends_with_beans(obj, context)
+    def _object_match(self, object_id, context, parameters={}):
+        return not self._has_friends_with_beans(object_id, context)
 
-    def _has_friends_with_beans(self, obj, context):
+    def _has_friends_with_beans(self, object_id, context):
         friends_with_beans_count = 0
-        # TODO: .get_collections: Pas adapte si d'autres collections dans la simu !
-        for collection in context.get_collections():
-            for friend in collection.get_objects():
-                if friend.beans > 1:
-                    friends_with_beans_count += 1
+        for friend_id in metas.list.get(TestSimulation.STATE, TestSimulation.COMPUTABLE):
+            friend_beans = metas.value.get(TestSimulation.BEANS, friend_id)
+            if friend_beans > 1:
+                friends_with_beans_count += 1
         if friends_with_beans_count == 0:
             return False
         return True

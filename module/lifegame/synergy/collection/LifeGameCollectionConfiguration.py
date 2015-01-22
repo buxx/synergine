@@ -1,6 +1,6 @@
 from synergine.src.synergy.collection.Configuration import Configuration
 from module.lifegame.synergy.object.Cell import Cell
-from synergine.src.core.Core import Core
+from synergine.metas import metas
 from module.lifegame.synergy.LifeGameSimulation import LifeGameSimulation
 
 
@@ -27,8 +27,8 @@ class LifeGameCollectionConfiguration(Configuration):
         for dead_cell in cells:
             if dead_cell.get_point() in alive_cell_traces:
                 dead_cell.set_alive(True)
-                Core.metas.set(dead_cell, LifeGameSimulation.ALIVE)
+                metas.list.add(LifeGameSimulation.STATE, dead_cell.get_id(), LifeGameSimulation.ALIVE)
             else:
-                Core.metas.set(dead_cell, LifeGameSimulation.DIED)
+                metas.list.add(LifeGameSimulation.STATE, dead_cell.get_id(), LifeGameSimulation.DIED)
 
         return cells

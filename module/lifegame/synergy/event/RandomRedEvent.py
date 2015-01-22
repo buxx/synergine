@@ -11,11 +11,8 @@ class RandomRedEvent(Event):
   """
 
     def concern(self, obj, context):
-        return context.metas.have_state(obj, LifeGameSimulation.ALIVE)\
-               or context.metas.have_state(obj, LifeGameSimulation.DIED)
+        return context.metas.list.have(LifeGameSimulation.STATE, obj, LifeGameSimulation.ALIVE)\
+               or context.metas.list(LifeGameSimulation.STATE, obj, LifeGameSimulation.DIED)
 
     def _object_match(self, obj, context, parameters={}):
-        if super()._object_match(obj, context, parameters):
-            if random.randint(0, 50) == 50:
-              return True
-        return False
+        return random.randint(0, 50) == 50

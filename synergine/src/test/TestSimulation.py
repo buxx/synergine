@@ -24,6 +24,8 @@ class TestSimulation(unittest.TestCase):
         }
 
     def get_core(self, cycles=0, main_process=True):
+        # TODO: il faut metas.reset() entre chaque lancement de core. Mais il ne faut pas perdre
+        # les donnees meta crees lorsque le fichier de conf s'est initialise !
         core = Core(self._get_core_configuration(cycles, main_process), 'module')
         have_to_be_runned_by = core.have_to_be_runned_by()
         if have_to_be_runned_by:

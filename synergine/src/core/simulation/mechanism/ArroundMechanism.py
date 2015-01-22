@@ -1,4 +1,6 @@
 from synergine.src.core.simulation.mechanism.Mechanism import Mechanism
+from module.lifegame.synergy.LifeGameSimulation import LifeGameSimulation
+
 
 class ArroundMechanism(Mechanism):
     """
@@ -6,6 +8,9 @@ class ArroundMechanism(Mechanism):
     events
     """
 
-    def _get_object_event_parameters(self, obj, context):
-        objects_near = context.get_objects_near_point(obj.get_point(), 1)
-        return {'objects_near': objects_near}
+    def _get_object_event_parameters(self, object_id, context):
+      # TODO: on a lus que l'id maintenant !
+      # Il faut que le "mapping" (points proche de points) soit aussi en mode object_id.
+        object_point = context.metas.value.get(LifeGameSimulation.POSITION, object_id)
+        objects_ids_near = context.get_objects_ids_near_point(object_point, 1)
+        return {'objects_ids_near': objects_ids_near}

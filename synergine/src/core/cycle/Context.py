@@ -1,4 +1,7 @@
 #from synergine.src.core.Core import Core
+# TODO: La notion de position appartient a LifeGame (ou a un addon)
+from module.lifegame.synergy.LifeGameSimulation import LifeGameSimulation
+from synergine.metas import metas
 
 
 class Context():
@@ -7,57 +10,21 @@ class Context():
     used by Action to know what exist in the synergy simulation
     """
 
-    def __init__(self, synergy_object_manager):
-        self._synergy_object_manager = synergy_object_manager
-        self._map = {}
-        self.metas = None
+    def __init__(self):
+        #self._synergy_object_manager = synergy_object_manager
+        #self._map = {}
+        self.metas = metas
 
-    def get_collections(self):
-        # TODO: C'est son job ?
-        return self._synergy_object_manager.get_collections()
-
-    def get_simulations(self):
-        # TODO: C'est son job ?
-        return self._synergy_object_manager.get_simulations()
-
-    def get_objects(self):
-        # TODO: C'est son job ?
-        return self._synergy_object_manager.get_objects()
-
-    def get_objects_by_type(self, type):
-        objects_filtereds = []
-        for obj in self.get_objects():
-            if isinstance(obj, type):
-                objects_filtereds.append(obj)
-        return objects_filtereds
-
-    def update(self):
-        self._update_map()
-        #self.metas = Core.metas
-
-    def _update_map(self):
-        # TODO: Calculer les nouveautes de la map seulement ? pour eco des ressources
-        # Les objets qui n'ont pas bouge n'ont pas besoin d'etre recalcule (self._synergy_object_manager.get_objects_to_display())
-        # il faut cependant trouver un moyen performant de savoir qui est a faire disparaitre (avant de redessiner)
-        self._map = {}
-        for object in self._synergy_object_manager.get_objects():
-            for point in object.get_trace():
-                if point in self._map:
-                    self._map[point].append(object)
-                else:
-                    self._map[point] = [object]
-
-    def get_map(self):
-        return self._map
-
-    def get_objects_near_point(self, point, distance=1): # TODO distance
+    # TODO opt/fullint: ca devient des points !
+    # TODO: Ca devrai etre dependant de lifesimulation (notion de positions)
+    def get_objects_ids_near_point(self, point, distance=1): # TODO distance
         # TODO: Ces fonctions sont-elles de la responsabilite de Context ?
-        objects_arrounds = []
+        objects_ids_arrounds = []
         for point_arround in self.get_arround_points_of_point(point):
-            if point_arround in self._map:
-                for obj in self._map[point_arround]:
-                    objects_arrounds.append(obj)
-        return objects_arrounds
+            point_objects_ids = self.metas.list.get(LifeGameSimulation.POSITIONS, point_arround)
+            for object_id in point_objects_ids:
+                objects_ids_arrounds.append(object_id)
+        return objects_ids_arrounds
 
     def get_arround_points_of_point(self, point):
         pos = point

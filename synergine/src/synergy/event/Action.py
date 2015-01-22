@@ -11,8 +11,8 @@ class Action():
     def get_dependencies(cls):
         return cls._depend
 
-    def __init__(self, obj, parameters):
-        self._object_id  = obj.get_id()
+    def __init__(self, object_id, parameters):
+        self._object_id  = object_id
         self._parameters = parameters
 
     def get_object_id(self):
