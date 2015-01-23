@@ -1,6 +1,5 @@
 from tests.src.event.TestEvent import TestEvent
 from tests.src.TestSynergyObject import TestSynergyObject
-from synergine.metas import metas
 from tests.src.TestSimulation import TestSimulation
 
 
@@ -15,8 +14,8 @@ class LonelinessSuicideEvent(TestEvent):
 
     def _has_friends_with_beans(self, object_id, context):
         friends_with_beans_count = 0
-        for friend_id in metas.list.get(TestSimulation.STATE, TestSimulation.COMPUTABLE):
-            friend_beans = metas.value.get(TestSimulation.BEANS, friend_id)
+        for friend_id in context.metas.list.get(TestSimulation.STATE, TestSimulation.COMPUTABLE):
+            friend_beans = context.metas.value.get(TestSimulation.BEANS, friend_id)
             if friend_beans > 1:
                 friends_with_beans_count += 1
         if friends_with_beans_count == 0:
