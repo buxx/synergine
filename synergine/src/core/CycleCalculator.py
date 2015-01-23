@@ -46,6 +46,11 @@ class CycleCalculator():
         pipe_package = PipePackage([obj.get_id() for obj in objects])
         pipe_package.set_mechanisms(mechanisms)
         pipe_package.set_context(context)
+
+        #import sys
+        #import pickle
+        #size = sys.getsizeof(pickle.dumps(pipe_package))
+
         return pipe_package
 
     def _process_compute(self, pipe_package):
