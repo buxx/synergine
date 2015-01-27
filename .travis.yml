@@ -4,6 +4,6 @@ python:
 install:
   - "pip install -r tests_requirements.txt"
 script: 
-  - coverage run run_tests.py --rcfile=.coveragerc -v && coverage report -m
+  - coverage run run_tests.py --rcfile=.coveragerc -v && coverage report -m && python3.4 run_tests.py
 after_success:
   - coveralls
