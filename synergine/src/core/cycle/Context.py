@@ -21,7 +21,7 @@ class Context():
         # TODO: Ces fonctions sont-elles de la responsabilite de Context ?
         objects_ids_arrounds = []
         for point_arround in self.get_arround_points_of_point(point):
-            point_objects_ids = self.metas.list.get(LifeGameSimulation.POSITIONS, point_arround)
+            point_objects_ids = self.metas.list.get(LifeGameSimulation.POSITIONS, point_arround, allow_empty=True)
             for object_id in point_objects_ids:
                 objects_ids_arrounds.append(object_id)
         return objects_ids_arrounds

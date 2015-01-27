@@ -11,14 +11,14 @@ class MetaCollections:
       self._metas[name] = {}
     return self._metas[name]
 
-  def get(self, name, subject):
+  def get(self, name, subject, allow_empty=False):
     metas = self._get_collection(name)
-    if subject not in metas:
+    if subject not in metas and allow_empty:
       metas[subject] = []
     return metas[subject]
 
   def add(self, name, subject, value):
-    collection = self.get(name, subject)
+    collection = self.get(name, subject, allow_empty=True)
     collection.append(value)
 
   def remove(self, name, subject, value):
