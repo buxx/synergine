@@ -14,8 +14,8 @@ class TestVisualisation(unittest.TestCase):
         cell = Cell()
         cell.set_alive(True)
 
-        self._test_cell_char(cell, 0, '*')
-        for life_cycle in ((1, 'o'), (2, 'O'), (3, '0'), (4, '0')):
+        self._test_cell_char(cell, -1, 'o')
+        for life_cycle in ((0, 'o'), (1, 'O'), (2, '0'), (3, '0')):
             cell.end_cycle()
             self._test_cell_char(cell, life_cycle[0], life_cycle[1])
 

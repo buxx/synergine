@@ -31,7 +31,7 @@ class Mechanism():
         for object_id in objects_ids:
           if concern(object_id=object_id, context=context):
             events_objects_ids_collections[concern].append(object_id)
-            events_objects_ids_collections['__all__'].append(object_id)
+            events_objects_ids_collections['__all__'].append(object_id)  # TODO: Si il y a deux ou + actions ?
           # # Pour le moment on gere "un des state"
           # for state in concern:
           #   if context.metas.have_state(obj, state):

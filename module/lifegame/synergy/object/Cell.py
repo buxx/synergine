@@ -9,7 +9,7 @@ class Cell(SynergyObject):
         super().__init__()
         self._alive = False
         self._alive_since = 0
-        self._died_since = -1
+        self._died_since = 0
         self.test = 0
 
     def add_trace(self, point):
@@ -30,6 +30,8 @@ class Cell(SynergyObject):
         return self.get_trace()[0]
 
     def set_alive(self, alive):
+        self._alive_since = -1
+        self._died_since = -1
         self._alive = alive
 
     def is_alive(self):
@@ -44,8 +46,5 @@ class Cell(SynergyObject):
     def end_cycle(self):
         if self.is_alive():
             self._alive_since += 1
-            self._died_since = 0
         else:
-            if self._died_since > -1:
-              self._died_since += 1
-            self._alive_since = 0
+            self._died_since += 1

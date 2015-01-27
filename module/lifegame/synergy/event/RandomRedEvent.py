@@ -10,9 +10,9 @@ class RandomRedEvent(Event):
   Illustration of double state usage (concern)
   """
 
-    def concern(self, obj, context):
-        return context.metas.list.have(LifeGameSimulation.STATE, obj, LifeGameSimulation.ALIVE)\
-               or context.metas.list(LifeGameSimulation.STATE, obj, LifeGameSimulation.DIED)
+    def concern(self, object_id, context):
+        return context.metas.list.have(LifeGameSimulation.STATE, object_id, LifeGameSimulation.ALIVE)\
+               or context.metas.list.have(LifeGameSimulation.STATE, object_id, LifeGameSimulation.DIED)
 
     def _object_match(self, obj, context, parameters={}):
         return random.randint(0, 50) == 50

@@ -25,6 +25,7 @@ class CycleCalculator():
             simulation.start_cycle(context)
             collections = simulation.get_collections()
             for collection in collections:#context.get_collections():
+                collection_mechanisms_steps = self._event_manager.get_collection_mechanisms_steps(collection)
                 for collection_mechanisms_step in self._event_manager.get_collection_mechanisms_steps(collection):
                     # TODO: (run test) tte les actions d'un coup
                     # On peux donner collection et contexte a l'action ? Le process va t-il dupliquer ces objets ?
@@ -74,7 +75,6 @@ class CycleCalculator():
         for action in actions:
             obj = self._synergy_manager.get_map().get_object(action.get_object_id())
             action.run(obj, collection, context)
-            obj.end_cycle()
 
     def end(self):
         self._process_manager.stop()

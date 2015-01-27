@@ -9,20 +9,15 @@ image_cell_small = PygameImage('/home/bux/Projets/synergine/module/lifegame/disp
 image_cell_dead = PygameImage('/home/bux/Projets/synergine/module/lifegame/display/pygame/cha0.png')
 
 def is_old_cell(cell):
-    if cell.get_is_alive_since() == 1:
-        return image_cell_small
-    if cell.get_is_alive_since() == 2:
-        return image_cell_medium
-    if cell.get_is_alive_since() > 2:
-        return image_cell_full
-
-    if cell.get_is_died_since() == 1:
+    if cell.is_alive():
+        if cell.get_is_alive_since() < 1:
+            return image_cell_small
+        elif cell.get_is_alive_since() == 1:
+            return image_cell_medium
+        else:
+            return image_cell_full
+    else:
         return image_cell_dead
-
-    if not cell.is_alive():
-        return image_cell_dead
-
-    return False
 
 visualisation = {
     'window': {},
