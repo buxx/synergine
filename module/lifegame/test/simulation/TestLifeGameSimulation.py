@@ -4,12 +4,23 @@ from module.lifegame.synergy.collection.LifeGameCollection import LifeGameCollec
 from module.lifegame.synergy.LifeGameSimulation import LifeGameSimulation
 from module.lifegame.test.src.LifeGameCollectionConfiguration import LifeGameCollectionConfiguration as TestCollectionConfiguration
 from module.lifegame.test.src.test_context import test_context
+from module.xyzworld.Context import Context as XyzContext
 
 
 class TestLifeGameSimulation(BaseTestSimulation):
 
     def _get_set_up_simulation(self):
         return LifeGameSimulation([LifeGameCollection(TestCollectionConfiguration())])
+
+    def _get_core_configuration(self, cycles, main_process = True):
+      config = super()._get_core_configuration(cycles, main_process)
+      config.update({
+        'app': {
+          'classes': {
+            'Context': XyzContext
+          }
+        }
+      })
 
     def test_cycles_in_main_process(self):
         self._test_cycles(True)

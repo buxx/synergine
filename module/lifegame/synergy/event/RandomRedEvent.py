@@ -1,8 +1,7 @@
-from synergine.src.synergy.event.Event import Event
-from synergine.src.core.simulation.mechanism.ArroundMechanism import ArroundMechanism
-from module.lifegame.synergy.object.Cell import Cell
-from module.lifegame.synergy.LifeGameSimulation import LifeGameSimulation
 import random
+
+from synergine.src.synergy.event.Event import Event
+from module.lifegame.synergy.LifeGameSimulation import LifeGameSimulation
 
 
 class RandomRedEvent(Event):

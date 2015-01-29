@@ -1,6 +1,5 @@
+from module.xyzworld.mechanism.ArroundMechanism import ArroundMechanism
 from synergine.src.synergy.event.ContactEvent import ContactEvent
-from synergine.src.core.simulation.mechanism.ArroundMechanism import ArroundMechanism
-from module.lifegame.synergy.object.Cell import Cell
 from module.lifegame.synergy.LifeGameSimulation import LifeGameSimulation
 
 

@@ -1,9 +1,9 @@
-from synergine.src.core.connection.Display import Display
+from module.xyworld.display.Display import Display as XyDisplay
 from synergine.src.synergy.object.SynergyObject import SynergyObject
 import curses
 
 
-class CursesDisplay(Display):
+class CursesDisplay(XyDisplay):
 
     _name = "curses"
 
@@ -40,13 +40,13 @@ class CursesDisplay(Display):
 
         pressed_key = self._screen.getch()
         if pressed_key == curses.KEY_LEFT:
-            self.move_view_zone(Display.MOVE_DIRECTION_LEFT)
+            self.move_view_zone(XyDisplay.MOVE_DIRECTION_LEFT)
         if pressed_key == curses.KEY_UP:
-            self.move_view_zone(Display.MOVE_DIRECTION_UP)
+            self.move_view_zone(XyDisplay.MOVE_DIRECTION_UP)
         if pressed_key == curses.KEY_RIGHT:
-            self.move_view_zone(Display.MOVE_DIRECTION_RIGHT)
+            self.move_view_zone(XyDisplay.MOVE_DIRECTION_RIGHT)
         if pressed_key == curses.KEY_DOWN:
-            self.move_view_zone(Display.MOVE_DIRECTION_DOWN)
+            self.move_view_zone(XyDisplay.MOVE_DIRECTION_DOWN)
         self._screen.refresh()
 
     def terminate(self):

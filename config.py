@@ -12,10 +12,14 @@ from module.traveller.synergy.TravellerCollectionConfiguration import TravellerC
 from module.traveller.display.visualisation import visualisation as traveller_visualisation
 from module.traveller.display.TravellerDisplay import TravellerDisplay
 from module.traveller.core.Context import Context as TravellerContext
+from module.xyzworld.Context import Context as XyzContext
 
 config = {
     'app': {
-        'name': 'Synergine'
+        'name': 'Synergine',
+        'classes': {
+          'Context': XyzContext
+        }
     },
     'engine': {
         'fpsmax': 25,
@@ -25,7 +29,7 @@ config = {
         }
     },
     'simulations' : [LifeGameSimulation([LifeGameCollection(LifeGameCollectionConfiguration())])],
-    'connections': [PygameDisplay],#[PygameDisplay],#TestDisplay, PygameDisplay, CursesDisplay],
+    'connections': [TestDisplay, PygameDisplay, CursesDisplay],
     'terminal': {
         '__default__': {
             'app': {

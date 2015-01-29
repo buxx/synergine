@@ -14,30 +14,3 @@ class Context():
         #self._synergy_object_manager = synergy_object_manager
         #self._map = {}
         self.metas = metas
-
-    # TODO opt/fullint: ca devient des points !
-    # TODO: Ca devrai etre dependant de lifesimulation (notion de positions)
-    def get_objects_ids_near_point(self, point, distance=1): # TODO distance
-        # TODO: Ces fonctions sont-elles de la responsabilite de Context ?
-        objects_ids_arrounds = []
-        for point_arround in self.get_arround_points_of_point(point):
-            point_objects_ids = self.metas.list.get(LifeGameSimulation.POSITIONS, point_arround, allow_empty=True)
-            for object_id in point_objects_ids:
-                objects_ids_arrounds.append(object_id)
-        return objects_ids_arrounds
-
-    def get_arround_points_of_point(self, point):
-        pos = point
-        pz = pos[0]
-        px = pos[1]
-        py = pos[2]
-        return (
-            (pz, px-1, py-1),
-            (pz, px,     py-1),
-            (pz, px+1, py+1),
-            (pz, px-1, py    ),
-            (pz, px+1, py    ),
-            (pz, px-1, py+1),
-            (pz, px,     py+1),
-            (pz, px+1, py-1)
-        )
