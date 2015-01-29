@@ -3,9 +3,9 @@ from module.lifegame.synergy.LifeGameSimulation import LifeGameSimulation
 from module.lifegame.synergy.collection.LifeGameCollectionConfiguration import LifeGameCollectionConfiguration
 from module.lifegame.display.curses_visualisation import visualisation as curses_visualisation
 from module.lifegame.display.pygame_visualisation import visualisation as pygame_visualisation
-from synergine.src.display.CursesDisplay import CursesDisplay
+from module.xyworld.display.CursesDisplay import CursesDisplay
+from module.xyworld.display.PygameDisplay import PygameDisplay
 from synergine.src.display.TestDisplay import TestDisplay
-from synergine.src.display.PygameDisplay import PygameDisplay
 from module.traveller.synergy.TravellerSimulation import TravellerSimulation
 from module.traveller.synergy.TravellerCollection import TravellerCollection
 from module.traveller.synergy.TravellerCollectionConfiguration import TravellerCollectionConfiguration

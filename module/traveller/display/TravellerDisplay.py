@@ -1,4 +1,4 @@
-from synergine.src.display.PygameDisplay import PygameDisplay
+from module.xyworld.display.PygameDisplay import PygameDisplay
 from module.traveller.synergy.Town import Town
 from module.traveller.synergy.Traveller import Traveller
 import pygame
