@@ -1,5 +1,5 @@
 import unittest
-from synergine.src.core.display.DisplayZone import DisplayZone
+from module.xyworld.display.DisplayZone import DisplayZone
 from synergine.src.synergy.object.SynergyObject import SynergyObject
 
 class TestZone(unittest.TestCase):
