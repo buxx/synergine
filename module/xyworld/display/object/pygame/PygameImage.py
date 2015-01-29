@@ -1,5 +1,7 @@
-from synergine.src.display.object.ImageTraceVisualisation import ImageTraceVisualisation
 from pygame import image
+
+from module.xyworld.display.object.ImageTraceVisualisation import ImageTraceVisualisation
+
 
 class PygameImage(ImageTraceVisualisation):
 

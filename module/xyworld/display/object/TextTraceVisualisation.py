@@ -1,4 +1,4 @@
-from synergine.src.display.object.Visualisation import Visualisation
+from module.xyworld.display.object.Visualisation import Visualisation
 
 
 class TextTraceVisualisation(Visualisation):

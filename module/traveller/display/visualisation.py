@@ -1,5 +1,4 @@
-from synergine.src.synergy.object.SynergyObject import SynergyObject
-from synergine.src.display.object.pygame.PygameImage import PygameImage
+from module.xyworld.display.object.pygame.PygameImage import PygameImage
 from module.traveller.synergy.Traveller import Traveller
 from module.traveller.synergy.Town import Town
 

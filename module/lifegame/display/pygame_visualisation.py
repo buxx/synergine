@@ -1,5 +1,4 @@
-from synergine.src.synergy.object.SynergyObject import SynergyObject
-from synergine.src.display.object.pygame.PygameImage import PygameImage
+from module.xyworld.display.object.pygame.PygameImage import PygameImage
 from module.lifegame.synergy.object.Cell import Cell
 
 # TODO: Url relative au fichier

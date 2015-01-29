@@ -1,5 +1,4 @@
-from synergine.src.synergy.object.SynergyObject import SynergyObject
-from synergine.src.display.object.TextTraceVisualisation import TextTraceVisualisation
+from module.xyworld.display.object.TextTraceVisualisation import TextTraceVisualisation
 from module.lifegame.synergy.object.Cell import Cell
 
 
