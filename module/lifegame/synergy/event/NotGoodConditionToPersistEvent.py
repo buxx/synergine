@@ -16,7 +16,6 @@ class NotGoodConditionToPersistEvent(ContactEvent):
     def _object_match(self, object_id, context, parameters={}):
         cell_near_count = 0
         for object_id_near in parameters['objects_ids_near']:
-            # TODO: controler que l'object_near est d'instance Cell (avec un STATE evidemment)
             if context.metas.list.have(LifeGameSimulation.STATE, object_id_near, LifeGameSimulation.ALIVE):
                 cell_near_count += 1
         if cell_near_count < 2 or cell_near_count > 3:

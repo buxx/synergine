@@ -5,3 +5,5 @@ nbproject
 .idea
 .coverage
 sandbox
+/profile
+lsprofcalltree.py
