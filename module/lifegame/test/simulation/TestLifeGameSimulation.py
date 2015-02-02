@@ -21,6 +21,7 @@ class TestLifeGameSimulation(BaseTestSimulation):
           }
         }
       })
+      return config
 
     def test_cycles_in_main_process(self):
         self._test_cycles(True)
