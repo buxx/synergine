@@ -1,4 +1,4 @@
-from synergine.src.synergy.collection.Configuration import Configuration
+from synergine.synergy.collection.Configuration import Configuration
 from module.lifegame.synergy.object.Cell import Cell
 from synergine.metas import metas
 from module.lifegame.synergy.LifeGameSimulation import LifeGameSimulation

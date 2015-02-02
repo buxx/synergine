@@ -1,4 +1,4 @@
-from synergine.src.synergy.event.Action import Action
+from synergine.synergy.event.Action import Action
 from module.traveller.event.DirectionChoosedEvent import DirectionChoosedEvent
 from module.traveller.event.TurnFinishedAction import TurnFinishedAction
 

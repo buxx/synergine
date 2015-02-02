@@ -1,4 +1,4 @@
-from synergine.src.synergy.collection.SynergyCollection import SynergyCollection
+from synergine.synergy.collection.SynergyCollection import SynergyCollection
 from module.traveller.event.MoveAction import MoveAction
 from module.traveller.event.TurnFinishedAction import TurnFinishedAction
 

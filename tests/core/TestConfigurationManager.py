@@ -1,6 +1,6 @@
 import unittest
 import copy
-from synergine.src.core.config.ConfigurationManager import ConfigurationManager
+from synergine.core.config.ConfigurationManager import ConfigurationManager
 
 
 class TestConfigurationManager(unittest.TestCase):

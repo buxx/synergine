@@ -2,7 +2,7 @@ import unittest
 
 from module.lifegame.display.curses_visualisation import visualisation
 from module.xyworld.display.object.TextTraceVisualisation import TextTraceVisualisation
-from synergine.src.core.display.ObjectVisualizer import ObjectVisualizer
+from synergine.core.display.ObjectVisualizer import ObjectVisualizer
 from module.lifegame.synergy.object.Cell import Cell
 
 

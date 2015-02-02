@@ -1,4 +1,4 @@
-from synergine.src.synergy.Simulation import Simulation
+from synergine.synergy.Simulation import Simulation
 from module.lifegame.synergy.object.Cell import Cell
 from synergine.lib.eint import IncrementedNamedInt
 

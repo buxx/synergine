@@ -1,4 +1,4 @@
-from synergine.src.core.Core import Core
+from synergine.core.Core import Core
 from config import config_traveller
 
 if __name__ == '__main__':

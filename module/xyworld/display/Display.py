@@ -1,8 +1,8 @@
-from synergine.src.core.connection.Display import Display as BaseDisplay
-from synergine.src.core.SynergyObjectManager import SynergyObjectManager
-from synergine.src.synergy.object.SynergyObject import SynergyObject
+from synergine.core.connection.Display import Display as BaseDisplay
+from synergine.core.SynergyObjectManager import SynergyObjectManager
+from synergine.synergy.object.SynergyObject import SynergyObject
 from module.xyworld.display.DisplayZone import DisplayZone
-from synergine.src.display.TwoDimensionalGrid import TwoDimensionalGrid
+from synergine.display.TwoDimensionalGrid import TwoDimensionalGrid
 
 
 class Display(BaseDisplay):

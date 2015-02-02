@@ -1,4 +1,4 @@
-from synergine.src.synergy.event.Event import Event
+from synergine.synergy.event.Event import Event
 from module.traveller.event.TownTasteMechanism import TownTasteMechanism
 from module.traveller.synergy.Traveller import Traveller
 from random import randint

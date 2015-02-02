@@ -1,4 +1,4 @@
-from synergine.src.synergy.Simulation import Simulation
+from synergine.synergy.Simulation import Simulation
 from module.traveller.synergy.Town import Town
 from module.traveller.synergy.Traveller import Traveller
 

@@ -1,4 +1,4 @@
-from synergine.src.synergy.Simulation import Simulation
+from synergine.synergy.Simulation import Simulation
 from synergine.lib.eint import IncrementedNamedInt
 
 class TestSimulation(Simulation):

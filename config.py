@@ -5,7 +5,7 @@ from module.lifegame.display.curses_visualisation import visualisation as curses
 from module.lifegame.display.pygame_visualisation import visualisation as pygame_visualisation
 from module.xyworld.display.CursesDisplay import CursesDisplay
 from module.xyworld.display.PygameDisplay import PygameDisplay
-from synergine.src.display.TestDisplay import TestDisplay
+from synergine.display.TestDisplay import TestDisplay
 from module.traveller.synergy.TravellerSimulation import TravellerSimulation
 from module.traveller.synergy.TravellerCollection import TravellerCollection
 from module.traveller.synergy.TravellerCollectionConfiguration import TravellerCollectionConfiguration
@@ -29,7 +29,7 @@ config = {
         }
     },
     'simulations' : [LifeGameSimulation([LifeGameCollection(LifeGameCollectionConfiguration())])],
-    'connections': [TestDisplay, PygameDisplay, CursesDisplay],
+    'connections': [],#TestDisplay, PygameDisplay, CursesDisplay],
     'terminal': {
         '__default__': {
             'app': {

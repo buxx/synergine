@@ -1,4 +1,4 @@
-from synergine.src.synergy.collection.Configuration import Configuration
+from synergine.synergy.collection.Configuration import Configuration
 from tests.src.TestSynergyObject import TestSynergyObject
 from synergine.metas import metas
 from tests.src.TestSimulation import TestSimulation

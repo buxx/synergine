@@ -1,4 +1,4 @@
-from synergine.src.synergy.object.SynergyObject import SynergyObject as BaseSynergyObject
+from synergine.synergy.object.SynergyObject import SynergyObject as BaseSynergyObject
 from module.xyzworld.cst import *
 from synergine.metas import metas
 

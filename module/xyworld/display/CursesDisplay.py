@@ -1,5 +1,5 @@
 from module.xyworld.display.Display import Display as XyDisplay
-from synergine.src.synergy.object.SynergyObject import SynergyObject
+from synergine.synergy.object.SynergyObject import SynergyObject
 import curses
 
 

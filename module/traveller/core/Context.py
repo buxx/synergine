@@ -1,4 +1,4 @@
-from synergine.src.core.cycle.Context import Context as BaseContext
+from synergine.core.cycle.Context import Context as BaseContext
 
 
 class Context(BaseContext):

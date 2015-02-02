@@ -1,4 +1,4 @@
-from synergine.src.synergy.event.Action import Action
+from synergine.synergy.event.Action import Action
 from module.lifegame.synergy.event.NotGoodConditionToPersistEvent import NotGoodConditionToPersistEvent
 from module.lifegame.synergy.LifeGameSimulation import LifeGameSimulation
 from synergine.metas import metas

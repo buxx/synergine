@@ -1,5 +1,5 @@
-from synergine.src.synergy.event.Event import Event
-from synergine.src.core.simulation.mechanism.Mechanism import Mechanism
+from synergine.synergy.event.Event import Event
+from synergine.core.simulation.mechanism.Mechanism import Mechanism
 from module.traveller.synergy.Traveller import Traveller
 from module.traveller.synergy.Town import Town
 

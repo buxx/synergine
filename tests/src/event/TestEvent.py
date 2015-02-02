@@ -1,4 +1,4 @@
-from synergine.src.synergy.event.Event import Event
+from synergine.synergy.event.Event import Event
 from tests.src.TestSimulation import TestSimulation
 
 

@@ -1,4 +1,4 @@
-from synergine.src.core.simulation.mechanism.Mechanism import Mechanism
+from synergine.core.simulation.mechanism.Mechanism import Mechanism
 from module.traveller.synergy.Town import Town
 from module.traveller.synergy.Traveller import Traveller
 

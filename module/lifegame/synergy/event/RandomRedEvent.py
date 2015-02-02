@@ -1,6 +1,6 @@
 import random
 
-from synergine.src.synergy.event.Event import Event
+from synergine.synergy.event.Event import Event
 from module.lifegame.synergy.LifeGameSimulation import LifeGameSimulation
 
 

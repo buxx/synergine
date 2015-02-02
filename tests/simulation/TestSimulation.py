@@ -1,6 +1,6 @@
 import unittest
-from synergine.src.test.TestSimulation import TestSimulation as BaseTestSimulation
-from synergine.src.test.TestTerminal import TestTerminal
+from synergine.test.TestSimulation import TestSimulation as BaseTestSimulation
+from synergine.test.TestTerminal import TestTerminal
 from tests.src.TestCollection import TestCollection
 from tests.src.TestSimulation import TestSimulation as TestSimulationSimulation
 from tests.src.TestCollectionConfiguration import TestCollectionConfiguration

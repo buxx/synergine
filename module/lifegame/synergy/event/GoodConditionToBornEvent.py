@@ -1,5 +1,5 @@
 from module.xyzworld.mechanism.ArroundMechanism import ArroundMechanism
-from synergine.src.synergy.event.ContactEvent import ContactEvent
+from synergine.synergy.event.ContactEvent import ContactEvent
 from module.lifegame.synergy.LifeGameSimulation import LifeGameSimulation
 
 class GoodConditionToBornEvent(ContactEvent):

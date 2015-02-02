@@ -1,4 +1,4 @@
-from synergine.src.synergy.collection.Configuration import Configuration
+from synergine.synergy.collection.Configuration import Configuration
 from module.traveller.synergy.Traveller import Traveller
 from module.traveller.synergy.Town import Town
 import random

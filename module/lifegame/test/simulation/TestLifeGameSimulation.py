@@ -1,5 +1,5 @@
 import unittest
-from synergine.src.test.TestSimulation import TestSimulation as BaseTestSimulation
+from synergine.test.TestSimulation import TestSimulation as BaseTestSimulation
 from module.lifegame.synergy.collection.LifeGameCollection import LifeGameCollection
 from module.lifegame.synergy.LifeGameSimulation import LifeGameSimulation
 from module.lifegame.test.src.LifeGameCollectionConfiguration import LifeGameCollectionConfiguration as TestCollectionConfiguration

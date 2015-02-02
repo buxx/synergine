@@ -1,4 +1,4 @@
-from synergine.src.core.simulation.mechanism.Mechanism import Mechanism
+from synergine.core.simulation.mechanism.Mechanism import Mechanism
 from module.xyzworld.cst import *
 
 
