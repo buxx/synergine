@@ -1,5 +1,9 @@
+from os import getcwd
+from sys import path as ppath
+ppath.insert(1,getcwd()+'/vendor') # TODO: win32 compatibilite (python path)
+
 import unittest
-from module.lifegame.test.LifeGameTestSuite import LifeGameTestSuite
+from lifegame.test.LifeGameTestSuite import LifeGameTestSuite
 from tests.TestSuite import TestSuite
 
 # TODO: Lister les tests ailleurs ? Recuperer les suite de tests de module auto

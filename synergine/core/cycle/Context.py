@@ -1,6 +1,6 @@
 #from synergine.core.Core import Core
 # TODO: La notion de position appartient a LifeGame (ou a un addon)
-from module.lifegame.synergy.LifeGameSimulation import LifeGameSimulation
+from lifegame.synergy.LifeGameSimulation import LifeGameSimulation
 from synergine.metas import metas
 
 

@@ -1,6 +1,6 @@
 import unittest
-from module.xyworld.display.DisplayZone import DisplayZone
-from module.xyzworld.SynergyObject import SynergyObject as XyzSynergyObject
+from xyworld.display.DisplayZone import DisplayZone
+from xyzworld.SynergyObject import SynergyObject as XyzSynergyObject
 
 class TestZone(unittest.TestCase):
 

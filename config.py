@@ -1,18 +1,18 @@
-from module.lifegame.synergy.collection.LifeGameCollection import LifeGameCollection
-from module.lifegame.synergy.LifeGameSimulation import LifeGameSimulation
-from module.lifegame.synergy.collection.LifeGameCollectionConfiguration import LifeGameCollectionConfiguration
-from module.lifegame.display.curses_visualisation import visualisation as curses_visualisation
-from module.lifegame.display.pygame_visualisation import visualisation as pygame_visualisation
-from module.xyworld.display.CursesDisplay import CursesDisplay
-from module.xyworld.display.PygameDisplay import PygameDisplay
+from lifegame.synergy.collection.LifeGameCollection import LifeGameCollection
+from lifegame.synergy.LifeGameSimulation import LifeGameSimulation
+from lifegame.synergy.collection.LifeGameCollectionConfiguration import LifeGameCollectionConfiguration
+from lifegame.display.curses_visualisation import visualisation as curses_visualisation
+from lifegame.display.pygame_visualisation import visualisation as pygame_visualisation
+from xyworld.display.CursesDisplay import CursesDisplay
+from xyworld.display.PygameDisplay import PygameDisplay
 from synergine.display.TestDisplay import TestDisplay
-from module.traveller.synergy.TravellerSimulation import TravellerSimulation
-from module.traveller.synergy.TravellerCollection import TravellerCollection
-from module.traveller.synergy.TravellerCollectionConfiguration import TravellerCollectionConfiguration
-from module.traveller.display.visualisation import visualisation as traveller_visualisation
-from module.traveller.display.TravellerDisplay import TravellerDisplay
-from module.traveller.core.Context import Context as TravellerContext
-from module.xyzworld.Context import Context as XyzContext
+from traveller.synergy.TravellerSimulation import TravellerSimulation
+from traveller.synergy.TravellerCollection import TravellerCollection
+from traveller.synergy.TravellerCollectionConfiguration import TravellerCollectionConfiguration
+from traveller.display.visualisation import visualisation as traveller_visualisation
+from traveller.display.TravellerDisplay import TravellerDisplay
+from traveller.core.Context import Context as TravellerContext
+from xyzworld.Context import Context as XyzContext
 
 config = {
     'app': {

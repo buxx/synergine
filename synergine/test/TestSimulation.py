@@ -26,7 +26,7 @@ class TestSimulation(unittest.TestCase):
     def get_core(self, cycles=0, main_process=True):
         #
         #
-        core = Core(self._get_core_configuration(cycles, main_process), 'module')
+        core = Core(self._get_core_configuration(cycles, main_process), 'vendor')
         have_to_be_runned_by = core.have_to_be_runned_by()
         if have_to_be_runned_by:
             have_to_be_runned_by.encapsulate_run(core.run)
