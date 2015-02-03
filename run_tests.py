@@ -1,6 +1,6 @@
 from os import getcwd
 from sys import path as ppath
-ppath.insert(1,getcwd()+'/vendor') # TODO: win32 compatibilite (python path)
+ppath.insert(1,getcwd()+'/modules') # TODO: win32 compatibilite (python path)
 
 import unittest
 from lifegame.test.LifeGameTestSuite import LifeGameTestSuite
