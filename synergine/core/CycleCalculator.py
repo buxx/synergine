@@ -16,6 +16,9 @@ class CycleCalculator():
         self._process_manager = KeepedAliveProcessManager(nb_process=2, target=self._process_compute)
         self._cycle = 0
 
+    def get_cycle(self):
+      return self._cycle
+
     def compute(self, context):
         self._cycle += 1
         self._compute_events(context)

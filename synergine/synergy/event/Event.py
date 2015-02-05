@@ -17,7 +17,9 @@ class Event():
         active_actions = []
         if self._object_match(object_id, context, parameters):
             for action in self._actions:
-                active_actions.append(action(object_id, parameters))
+                action_object = action(object_id, parameters)
+                action_object.prepare(context)
+                active_actions.append(action_object)
         return active_actions
 
     def _object_match(self, object_id, context, parameters={}):

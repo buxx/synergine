@@ -66,7 +66,11 @@ class Core():
         self._run_connecteds()
         self._wait_for_next_cycle()
 
-        for i in self._configuration_manager.get('engine.debug.cycles', True): # TODO: True ne marche dans la boucle
+        cycles = self._configuration_manager.get('engine.debug.cycles', -1)
+        finish = False
+        if cycles is 0:
+          finish = True
+        while not finish:
 
             self._update_last_cycle_time()
             #start_time = time()
@@ -74,6 +78,9 @@ class Core():
             self._run_connecteds()
             #print(time() - start_time)
             self._wait_for_next_cycle()
+
+            if self._cycle_calculator.get_cycle() >= cycles and cycles is not -1:
+              finish = True
 
         self._end()
 

@@ -33,7 +33,7 @@ class PygameDisplay(XyDisplay):
             self._update_screen_size()
         background = pygame.Surface(self._screen_size)
         background = background.convert()
-        background.fill((0, 0, 0))
+        background.fill(self._get_config('background.color'))
         self._screen.blit(background, (0, 0))
 
     def end_of_cycle(self):

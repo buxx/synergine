@@ -25,7 +25,7 @@ config = {
         'fpsmax': 25,
         'debug': {
             'mainprocess': False,
-            'cycles': range(100)
+            'cycles': 100
         }
     },
     'simulations' : [LifeGameSimulation([LifeGameCollection(LifeGameCollectionConfiguration())])],
@@ -74,7 +74,7 @@ config_traveller = {
         'fpsmax': 255,
         'debug': {
             'mainprocess': True,
-            'cycles': range(9999999)
+            'cycles': -1
         }
     },
     'simulations' : [TravellerSimulation([TravellerCollection(TravellerCollectionConfiguration())])],

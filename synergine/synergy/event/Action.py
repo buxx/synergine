@@ -18,5 +18,12 @@ class Action():
     def get_object_id(self):
         return self._object_id
 
+    def prepare(self):
+      """
+      Prepare data for action run. This part is executed in sub processes.
+      :return: void
+      """
+      pass
+
     def run(self, obj, collection, context):
         raise NotImplementedError
