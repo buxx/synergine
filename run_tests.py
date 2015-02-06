@@ -17,4 +17,5 @@ for testsuite in tests_suites:
         runnable.addTest(unittest.makeSuite(test_case))
 
 runner=unittest.TextTestRunner()
-runner.run(runnable)
+exit(runner.run(runnable))
+
