@@ -1,3 +1,5 @@
+filter:
+    excluded_paths: [sandbox/*]
 checks:
     python:
         format_bad_indentation:
