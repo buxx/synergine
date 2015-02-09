@@ -5,9 +5,13 @@ from xyworld.display.object.ImageTraceVisualisation import ImageTraceVisualisati
 
 class PygameImage(ImageTraceVisualisation):
 
-    def __init__(self, value):
-        super().__init__(value)
-        self._surface = image.load(value)
+    @classmethod
+    def from_filepath(cls, filepath):
+      surface = image.load(filepath)
+      return cls(surface)
+
+    def __init__(self, surface):
+        self._surface = surface
         self._rectangle = self._surface.get_rect()
 
     def get_surface(self):

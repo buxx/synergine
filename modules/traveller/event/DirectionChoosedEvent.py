@@ -38,6 +38,6 @@ class DirectionChoosedEvent(Event):
         raise Exception("Unable to choice town")
 
     def _get_distance(self, obj, town):
-        reference_point = obj.get_point()
-        town_point = town.get_point()
+        reference_point = obj.get_position()
+        town_point = town.get_position()
         return abs((reference_point[1]-town_point[1]+reference_point[2]-town_point[2])/2)

@@ -32,7 +32,7 @@ class TownTasteMechanism(Mechanism):
         return town_tastes
 
     def _get_town_taste(self, obj, town, towns, context):
-        object_point = obj.get_point()
+        object_point = obj.get_position()
         distance_score = self._get_distance_score(object_point, town, towns)
         object_town = obj.get_town()
         pheromone_score = self._get_pheromon_score(object_town, town, towns, context)
@@ -51,12 +51,12 @@ class TownTasteMechanism(Mechanism):
         # TODO: calculer ça qu'une fois ...
         farest_distance = 0
         for town in towns:
-            town_point = town.get_point()
+            town_point = town.get_position()
             route_distance = abs((reference_point[1]-town_point[1]+reference_point[2]-town_point[2])/2)
             if route_distance > farest_distance:
                 farest_distance = route_distance
 
-        tested_town_point = tested_town.get_point()
+        tested_town_point = tested_town.get_position()
         tested_town_distance = abs((reference_point[1]-tested_town_point[1]+reference_point[2]-tested_town_point[2])/2)
 
         score = 100 - (tested_town_distance * 100 / farest_distance)

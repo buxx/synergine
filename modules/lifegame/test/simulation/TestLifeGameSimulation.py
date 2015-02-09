@@ -43,7 +43,7 @@ class TestLifeGameSimulation(BaseTestSimulation):
 
     def _cell_exist_in_point(self, synergy_object_manager, point):
         for obj in self._get_alive_cells(synergy_object_manager.get_objects()):
-            obj_point = obj.get_point()
+            obj_point = obj.get_position()
             obj_test_data = (obj_point[0], obj_point[1], obj_point[2], obj.get_is_alive_since()+1)
             # En fait c'est les objets retournes par core qui sont ceux du debut ... la simu a tourne ? debugger
             if obj_test_data == point:

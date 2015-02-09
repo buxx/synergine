@@ -12,7 +12,7 @@ class LifeGameCollectionConfiguration(Configuration):
         for x in range(40):
             for y in range(50):
                 cell = Cell()
-                cell.add_trace((0, x, y))
+                cell.set_position((0, x, y))
                 cells.append(cell)
 
         alive_cell_traces = (

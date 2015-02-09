@@ -15,13 +15,13 @@ class TravellerDisplay(PygameDisplay):
 
         # Test
         for town in synergy_object_manager.get_objects_by_type(Town):
-            town_point = town.get_point()
+            town_point = town.get_position()
             screen_point = self._get_real_screen_point(town_point[1], town_point[2])
             label = self._default_font.render(str(town).replace('<traveller.synergy.Town.Town object at', '').replace('>', ''), 1, (255,255,0))
             self._screen.blit(label, (screen_point[1], screen_point[2]))
 
         for traveller in synergy_object_manager.get_objects_by_type(Traveller):
-            traveller_point = traveller.get_point()
+            traveller_point = traveller.get_position()
             screen_point = self._get_real_screen_point(traveller_point[1], traveller_point[2])
             label = self._default_font.render(str(traveller).replace('<traveller.synergy.Traveller.Traveller object at', '').replace('>', ''), 1, (255,255,0))
             self._screen.blit(label, (screen_point[1], screen_point[2]+20))
@@ -35,8 +35,8 @@ class TravellerDisplay(PygameDisplay):
                 self._draw_line_between_towns(town_a, town_b, intensity)
 
     def _draw_line_between_towns(self, town_a, town_b, intensity=1, color=(0, 155, 155)):
-        town_a_point = town_a.get_point()
-        town_b_point = town_b.get_point()
+        town_a_point = town_a.get_position()
+        town_b_point = town_b.get_position()
         start_point = self._get_real_screen_point(town_a_point[1], town_a_point[2], town_a_point[0])
         end_point = self._get_real_screen_point(town_b_point[1], town_b_point[2], town_b_point[0])
         # TODO: Largeur en fonction de l'intensité des pheromones

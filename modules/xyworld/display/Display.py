@@ -24,7 +24,7 @@ class Display(BaseDisplay):
 
     def _object_displayable(self, obj: SynergyObject):
         # TODO: is inside en prennant en compte le zoom
-        return self._zone.point_is_inside(obj.get_point())
+        return self._zone.point_is_inside(obj.get_position())
 
 
     def receive(self, synergy_object_manager: SynergyObjectManager, context):
@@ -43,7 +43,7 @@ class Display(BaseDisplay):
         self._zone.update_width(height-2)
 
     def _draw_object_with_decal(self, obj: SynergyObject):
-        object_point = self._grid.get_real_pixel_point(obj.get_point())
+        object_point = self._grid.get_real_pixel_point(obj.get_position())
         adapted_point = (object_point[0]-self._display_decal[0]*self._grid.get_cell_size(),
                          object_point[1]-self._display_decal[1]*self._grid.get_cell_size())
         self.draw_object(obj, adapted_point)
