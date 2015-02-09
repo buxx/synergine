@@ -23,7 +23,7 @@ class Traveller(SynergyObject):
             self._start_town = town
         self._towns.append(town)
         self._set_town(town)
-        self.add_trace(town.get_position())
+        self.set_position(town.get_position())
         self._distance += distance
 
     def get_towns(self):

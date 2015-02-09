@@ -25,7 +25,7 @@ class LifeGameCollectionConfiguration(Configuration):
             (0, 20, 22)
         )
         for dead_cell in cells:
-            if dead_cell.get_point() in alive_cell_traces:
+            if dead_cell.get_position() in alive_cell_traces:
                 dead_cell.set_alive(True)
                 metas.list.add(LifeGameSimulation.STATE, dead_cell.get_id(), LifeGameSimulation.ALIVE)
             else:

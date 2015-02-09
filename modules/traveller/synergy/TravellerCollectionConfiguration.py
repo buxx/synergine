@@ -13,7 +13,7 @@ class TravellerCollectionConfiguration(Configuration):
         # TODO: nombre de maison en config
         for town_number in range(5):
             town = Town()
-            town.add_trace((0, round(random.randint(0,  700)/20), round(random.randint(0, 500)/20)))
+            town.set_position((0, round(random.randint(0,  700)/20), round(random.randint(0, 500)/20)))
             objects.append(town)
 
         town_1 = objects[0]

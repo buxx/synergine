@@ -2,6 +2,7 @@ from synergine.lib.process.processmanager import KeepedAliveProcessManager
 from synergine.core.cycle.PipePackage import PipePackage
 from synergine.core.simulation.EventManager import EventManager
 
+
 class CycleCalculator():
     """
     Run cycles of simulation

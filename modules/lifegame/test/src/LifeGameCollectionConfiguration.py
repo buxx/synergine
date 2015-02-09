@@ -2,5 +2,5 @@ from lifegame.synergy.collection.LifeGameCollectionConfiguration import \
      LifeGameCollectionConfiguration as BaseLifeGameCollectionConfiguration
 
 
-class LifeGameCollectionConfiguration(Configuration):
+class LifeGameCollectionConfiguration(BaseLifeGameCollectionConfiguration):
     pass
