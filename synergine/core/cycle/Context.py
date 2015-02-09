@@ -14,3 +14,10 @@ class Context():
         #self._synergy_object_manager = synergy_object_manager
         #self._map = {}
         self.metas = metas
+        self._cycle = 0
+
+    def set_cycle(self, cycle):
+        self._cycle = cycle
+
+    def get_cycle(self):
+      return self._cycle

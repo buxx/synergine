@@ -28,3 +28,11 @@ class MetaCollections:
   def have(self, name, subject, value):
     collection = self.get(name, subject)
     return value in collection
+
+  def clean(self, name):
+    metas = self._get_collection(name)
+    cleaned_metas = dict(metas)
+    for meta in metas:
+      if not len(metas[meta]):
+        del(cleaned_metas[meta])
+    self._metas[name] = cleaned_metas
