@@ -12,23 +12,6 @@ class Cell(XyzSynergyObject):
         self._died_since = 0
         self.test = 0
 
-    def add_trace(self, point):
-        """
-        Cell have only one point length
-        """
-        if self._trace:
-          metas.list.remove(POSITIONS, self.get_point(), self.get_id())
-        metas.list.add(POSITIONS, point, self.get_id())
-        self._trace.append(point)
-        metas.value.set(POSITION, self.get_id(), point)
-        self._trace = [point]
-
-    def set_point(self, point):
-        self.add_trace(point)
-
-    def get_point(self):
-        return self.get_trace()[0]
-
     def set_alive(self, alive):
         self._alive_since = -1
         self._died_since = -1
