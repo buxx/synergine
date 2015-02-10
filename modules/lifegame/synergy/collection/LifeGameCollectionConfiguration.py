@@ -6,7 +6,7 @@ from lifegame.synergy.LifeGameSimulation import LifeGameSimulation
 
 class LifeGameCollectionConfiguration(Configuration):
 
-    def get_start_objects(self):
+    def get_start_objects(self, collection):
         cells = []
         # cell grid
         for x in range(40):

@@ -6,7 +6,7 @@ from tests.src.TestSimulation import TestSimulation
 
 class TestCollectionConfiguration(Configuration):
 
-    def get_start_objects(self):
+    def get_start_objects(self, collection):
         objs_setup = (
             ('john', 2, 2),
             ('boby', 2, 5),

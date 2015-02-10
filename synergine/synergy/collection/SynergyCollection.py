@@ -2,6 +2,7 @@ from synergine.synergy.collection.SynergyCollectionInterface import SynergyColle
 from synergine.synergy.object.SynergyObject import SynergyObject
 from synergine.core.config.ConfigurationManager import ConfigurationManager
 from synergine.core.Signals import Signals
+from synergine.lib.eint import IncrementedNamedInt
 
 
 class SynergyCollection(SynergyCollectionInterface):
@@ -17,9 +18,13 @@ class SynergyCollection(SynergyCollectionInterface):
         self._configuration = configuration
         self._objects = []
         self._actions = []
+        self._id = IncrementedNamedInt.get(self)
+
+    def get_id(self):
+        return self._id
 
     def initialize_objects(self):
-        self.set_objects(self._configuration.get_start_objects())
+        self.set_objects(self._configuration.get_start_objects(self))
 
     def get_actions(self) -> list:
         return self._actions

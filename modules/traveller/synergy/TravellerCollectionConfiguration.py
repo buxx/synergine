@@ -6,7 +6,7 @@ import random
 
 class TravellerCollectionConfiguration(Configuration):
 
-    def get_start_objects(self):
+    def get_start_objects(self, collection):
 
         objects = []
 
