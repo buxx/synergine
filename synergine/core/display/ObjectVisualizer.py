@@ -21,6 +21,8 @@ class ObjectVisualizer():
 
 # TODO: fix bug: on doit mettre en cache dans self._objects_class_mapped le dict {default... et non pas le resultat
     def _get_visual_definition_for_class(self, class_name, obj):
+        if obj.__class__ in self._visualisation_configuration:
+            return self._visualisation_configuration[obj.__class__]
         for object_visualisation_class in self._visualisation_configuration:
             if isinstance(obj, object_visualisation_class):
                 return self._visualisation_configuration[object_visualisation_class]
