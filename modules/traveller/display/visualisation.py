@@ -9,10 +9,10 @@ visualisation = {
     'windows': {},
     'objects': {
         Town: {
-            'default': PygameImage(getcwd()+'/modules/traveller/display/town.png')
+            'default': PygameImage.from_filepath(getcwd()+'/modules/traveller/display/town.png')
         },
         Traveller: {
-            'default': PygameImage(getcwd()+'/modules/traveller/display/traveller.png')
+            'default': PygameImage.from_filepath(getcwd()+'/modules/traveller/display/traveller.png')
         }
     }
 }
