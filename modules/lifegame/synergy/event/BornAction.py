@@ -8,7 +8,7 @@ class BornAction(Action):
 
     _listen = GoodConditionToBornEvent
 
-    def run(self, obj, collection, context):
+    def run(self, obj, collection, context, synergy_manager):
         obj.set_alive(True)
         metas.list.add(LifeGameSimulation.STATE, obj.get_id(), LifeGameSimulation.ALIVE)
         metas.list.remove(LifeGameSimulation.STATE, obj.get_id(), LifeGameSimulation.DIED)

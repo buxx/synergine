@@ -9,6 +9,6 @@ class TooMuchBeansAction(Action):
     _listen = TooMuchBeansEvent
     _depend = [MakeBeansProfitAction]
 
-    def run(self, obj, collection, context):
+    def run(self, obj, collection, context, synergy_manager):
         obj.beans = 0
         metas.value.set(TestSimulation.BEANS, obj.get_id(), 0)

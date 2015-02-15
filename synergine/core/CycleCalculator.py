@@ -78,7 +78,7 @@ class CycleCalculator():
     def _apply_actions(self, actions, collection, context):
         for action in actions:
             obj = self._synergy_manager.get_map().get_object(action.get_object_id())
-            action.run(obj, collection, context)
+            action.run(obj, collection, context, self._synergy_manager)
 
     def end(self):
         self._process_manager.stop()

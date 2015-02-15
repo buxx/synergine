@@ -11,7 +11,7 @@ class MoveAction(Action):
     _listen = DirectionChoosedEvent
     _depend = [TurnFinishedAction]
 
-    def run(self, obj, collection, context):
+    def run(self, obj, collection, context, synergy_manager):
         """
 
         :param collection:

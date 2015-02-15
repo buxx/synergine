@@ -25,5 +25,5 @@ class Action():
       """
       pass
 
-    def run(self, obj, collection, context):
+    def run(self, obj, collection, context, synergy_manager):
         raise NotImplementedError

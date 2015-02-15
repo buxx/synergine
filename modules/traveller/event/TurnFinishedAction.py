@@ -10,7 +10,7 @@ class TurnFinishedAction(Action):
 
     _listen = AllTownVisitedEvent
 
-    def run(self, obj, collection, context):
+    def run(self, obj, collection, context, synergy_manager):
         """
 
         :param collection:

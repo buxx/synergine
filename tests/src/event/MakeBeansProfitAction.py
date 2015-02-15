@@ -7,7 +7,7 @@ class MakeBeansProfitAction(Action):
 
     _listen = MakeBeansProfitEvent
 
-    def run(self, obj, collection, context):
+    def run(self, obj, collection, context, synergy_manager):
         obj.beans = obj.beans ** obj.coeff
         metas.value.set(TestSimulation.BEANS, obj.get_id(), obj.beans)
 

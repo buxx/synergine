@@ -9,7 +9,7 @@ class LonelinessSuicideAction(Action):
     _listen = LonelinessSuicideEvent
     _depend = [TooMuchBeansAction]
 
-    def run(self, obj, collection, context):
+    def run(self, obj, collection, context, synergy_manager):
         collection.remove_object(obj)
         #metas.list.remove(TestSimulation.STATE, obj.get_id(), TestSimulation.COMPUTABLE)
         #metas.list.remove(TestSimulation.STATE, TestSimulation.COMPUTABLE, obj.get_id())

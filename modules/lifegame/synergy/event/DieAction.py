@@ -8,7 +8,7 @@ class DieAction(Action):
 
     _listen = NotGoodConditionToPersistEvent
 
-    def run(self, obj, collection, context):
+    def run(self, obj, collection, context, synergy_manager):
         obj.set_alive(False)
         metas.list.add(LifeGameSimulation.STATE, obj.get_id(), LifeGameSimulation.DIED)
         metas.list.remove(LifeGameSimulation.STATE, obj.get_id(), LifeGameSimulation.ALIVE)
