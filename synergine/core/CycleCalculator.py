@@ -48,13 +48,19 @@ class CycleCalculator():
 
     def _get_pipe_package_for_collection(self, objects, mechanisms, context):
         # TODO: FUTURE: test si garder le package en attribut de core ameliore les perfs (attention a l'index de current_process)
+        # TODO: Le package transporte les ids de tout les objets dans les processus. C'est inutile.
         pipe_package = PipePackage([obj.get_id() for obj in objects])
         pipe_package.set_mechanisms(mechanisms)
+        context.set_cycle(self._cycle)
         pipe_package.set_context(context)
 
-        #import sys
-        #import pickle
-        #size = sys.getsizeof(pickle.dumps(pipe_package))
+        # TODO: Le paquet de retour contient les actions instancies. Allerger en ne transportant
+        # que la liste d'acctions a fabriquer et qu'un seul
+        # exemplaire de parametres actions ?
+        # import sys
+        # import pickle
+        # size = sys.getsizeof(pickle.dumps(pipe_package))
+        # print(size)
 
         return pipe_package
 
