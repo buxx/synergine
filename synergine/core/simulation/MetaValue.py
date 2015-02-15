@@ -23,6 +23,11 @@ class MetaValue:
     metas = self._get_metas(name)
     return subject in metas
     
-  def get(self, name, subject):
+  def get(self, name, subject, allow_empty = False, empty_value = None):
     metas = self._get_metas(name)
-    return metas[subject]
+    try:
+      return metas[subject]
+    except KeyError:
+      if not allow_empty:
+        raise
+      return empty_value
