@@ -1,6 +1,6 @@
 from synergine.synergy.event.Action import Action
 from lifegame.synergy.event.GoodConditionToBornEvent import GoodConditionToBornEvent
-from lifegame.synergy.LifeGameSimulation import LifeGameSimulation
+from lifegame.cst import DIED, ALIVE
 from synergine.metas import metas
 
 
@@ -10,5 +10,5 @@ class BornAction(Action):
 
     def run(self, obj, collection, context, synergy_manager):
         obj.set_alive(True)
-        metas.list.add(LifeGameSimulation.STATE, obj.get_id(), LifeGameSimulation.ALIVE)
-        metas.list.remove(LifeGameSimulation.STATE, obj.get_id(), LifeGameSimulation.DIED)
+        metas.states.add(obj.get_id(), ALIVE)
+        metas.states.remove(obj.get_id(), DIED)
