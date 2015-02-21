@@ -1,12 +1,11 @@
 from xyzworld.mechanism.ArroundMechanism import ArroundMechanism
 from synergine.synergy.event.ContactEvent import ContactEvent
-from lifegame.cst import DIED, ALIVE
+from lifegame.cst import ALIVE, COL_ALIVE
 
 
 class NotGoodConditionToPersistEvent(ContactEvent):
 
-    def concern(self, object_id, context):
-        return context.metas.states.have(object_id, ALIVE)
+    concern = COL_ALIVE
 
     def __init__(self, actions):
         super().__init__(actions)

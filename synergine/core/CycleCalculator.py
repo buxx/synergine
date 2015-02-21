@@ -1,12 +1,15 @@
 from synergine.lib.process.processmanager import KeepedAliveProcessManager
 from synergine.core.cycle.PipePackage import PipePackage
 from synergine.core.simulation.EventManager import EventManager
+from synergine.core.Signals import Signals
 
 
 class CycleCalculator():
     """
     Run cycles of simulation
     """
+
+    ACTION_RUNNED = 'signal.action_runned'
 
     def __init__(self, synergy_manager, force_main_process = False):
         # TODO: nbprocess
@@ -43,13 +46,13 @@ class CycleCalculator():
         if not self._force_main_process:
             computeds_objects = self._process_manager.get_their_work(pipe_package)
         else:
+            pipe_package.setCountProcess(1)
+            pipe_package.setCurrentProcessId(0)
             computeds_objects = self._process_compute(pipe_package)
         return computeds_objects
 
     def _get_pipe_package_for_collection(self, objects, mechanisms, context):
-        # TODO: FUTURE: test si garder le package en attribut de core ameliore les perfs (attention a l'index de current_process)
-        # TODO: Le package transporte les ids de tout les objets dans les processus. C'est inutile.
-        pipe_package = PipePackage([obj.get_id() for obj in objects])
+        pipe_package = PipePackage()
         pipe_package.set_mechanisms(mechanisms)
         context.set_cycle(self._cycle)
         pipe_package.set_context(context)
@@ -70,13 +73,11 @@ class CycleCalculator():
         :param pipe_package:
         :return:
         """
-        objects_ids_to_compute = pipe_package.getChunkedObjects()
         context = pipe_package.get_context()
-
         mechanisms = pipe_package.get_mechanisms()
         actions = []
         for mechanism in mechanisms:
-            mechanism_actions = mechanism.run(objects_ids_to_compute, context)
+            mechanism_actions = mechanism.run(context)
             for mechanism_action in mechanism_actions:
                 actions.append(mechanism_action)
         return actions
@@ -85,6 +86,7 @@ class CycleCalculator():
         for action in actions:
             obj = self._synergy_manager.get_map().get_object(action.get_object_id())
             action.run(obj, collection, context, self._synergy_manager)
+            Signals.signal(action.__class__).send(obj=obj, context=context)
 
     def end(self):
         self._process_manager.stop()

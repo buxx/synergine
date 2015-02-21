@@ -13,7 +13,7 @@ class TownTasteMechanism(Mechanism):
     ===> qui devra être accessible au Display
     """
 
-    def _get_object_event_parameters(self, obj, context):
+    def _get_computed_object_event_parameters(self, obj, context):
         # TODO: Il faut reflechir a un filtre en amont
         if not isinstance(obj, Traveller):
             return {}

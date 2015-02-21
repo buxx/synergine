@@ -12,3 +12,7 @@ class Signals:
         except KeyError:
             cls._signals[signal_id] = Signal()
             return cls._signals[signal_id]
+
+    @classmethod
+    def reset(cls):
+        cls._signals = {}

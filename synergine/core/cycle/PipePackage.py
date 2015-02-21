@@ -16,3 +16,11 @@ class PipePackage(BasePipePackage):
 
     def get_mechanisms(self):
         return self._mechanisms
+
+    def setCurrentProcessId(self, process_id):
+        super().setCurrentProcessId(process_id)
+        self._context.set_current_chunk_position(process_id)
+
+    def setCountProcess(self, count):
+        super().setCountProcess(count)
+        self._context.set_total_chunk(count)

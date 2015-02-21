@@ -1,11 +1,11 @@
 from xyzworld.mechanism.ArroundMechanism import ArroundMechanism
 from synergine.synergy.event.ContactEvent import ContactEvent
-from lifegame.cst import DIED, ALIVE
+from lifegame.cst import ALIVE, COL_DIED
+
 
 class GoodConditionToBornEvent(ContactEvent):
 
-    def concern(self, object_id, context):
-        return context.metas.states.have(object_id, DIED)
+    concern = COL_DIED
 
     def __init__(self, actions):
         super().__init__(actions)

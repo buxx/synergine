@@ -12,7 +12,7 @@ class TestVisualisation(unittest.TestCase):
         self._object_visualizer = ObjectVisualizer(visualisation)
 
     def test_cells_render(self):
-        cell = Cell()
+        cell = Cell(object())
         cell.set_alive(True)
 
         self._test_cell_char(cell, -1, 'o')

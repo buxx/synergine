@@ -1,5 +1,5 @@
 from synergine.synergy.collection.SynergyCollectionInterface import SynergyCollectionInterface
-from synergine.synergy.object.SynergyObject import SynergyObject
+#from synergine.synergy.object.SynergyObject import SynergyObject
 from synergine.core.config.ConfigurationManager import ConfigurationManager
 from synergine.core.Signals import Signals
 from synergine.lib.eint import IncrementedNamedInt
@@ -23,8 +23,8 @@ class SynergyCollection(SynergyCollectionInterface):
     def get_id(self):
         return self._id
 
-    def initialize_objects(self):
-        self.set_objects(self._configuration.get_start_objects(self))
+    def initialize_objects(self, context):
+        self.set_objects(self._configuration.get_start_objects(self, context))
 
     def get_actions(self) -> list:
         return self._actions
@@ -40,7 +40,7 @@ class SynergyCollection(SynergyCollectionInterface):
                 Signals.signal(self.SIGNAL_ADD_OBJECT).send(collection=self, obj=obj)
                 self._objects.append(obj)
 
-    def remove_object(self, obj: SynergyObject):
+    def remove_object(self, obj):
         Signals.signal(self.SIGNAL_REMOVE_OBJECT).send(collection=self, obj=obj)
         self._objects.remove(obj)
 

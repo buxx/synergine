@@ -1,6 +1,5 @@
 from synergine.synergy.object.SynergyObject import SynergyObject
-from synergine.metas import metas
-from tests.src.TestSimulation import TestSimulation
+from tests.src.cst import BEANS
 
 
 class TestSynergyObject(SynergyObject):
@@ -10,4 +9,4 @@ class TestSynergyObject(SynergyObject):
         self.name = name
         self.beans = beans
         self.coeff = coeff
-        metas.value.set(TestSimulation.BEANS, self.get_id(), beans)
+        self._context.metas.value.set(BEANS, self.get_id(), beans)

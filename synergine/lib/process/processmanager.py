@@ -16,25 +16,15 @@ def chunk(seq,m):
 
 class PipePackage():
 
-    def __init__(self, objects):
-        self._objects = objects
-        self._chunkeds_objects = []
+    def __init__(self):
         self._current_process_id = None
+        self._count_processes = 0
 
     def setCurrentProcessId(self, current_process_id):
         self._current_process_id = current_process_id
 
-    def setChunkedsObjects(self, chunkeds_objects):
-        self._chunkeds_objects = chunkeds_objects
-
-    def getChunkedObjects(self):
-        if self._current_process_id is not None:
-            return self._chunkeds_objects[self._current_process_id]
-        return self.get_objects()
-
-    def get_objects(self):
-        return self._objects
-
+    def setCountProcess(self, count):
+        self._count_processes = count
 
 class KeepedAliveProcessManager():
 
@@ -46,6 +36,7 @@ class KeepedAliveProcessManager():
         self.writers_pipes = []
 
     def _start(self, pipe_package):
+        pipe_package.setCountProcess(self.nb_process)
         for i in range(self.nb_process):
             local_read_pipe, local_write_pipe = Pipe(duplex=False)
             process_read_pipe, process_write_pipe = Pipe(duplex=False)
@@ -63,7 +54,6 @@ class KeepedAliveProcessManager():
             writer_pipe.send('stop')
 
     def get_their_work(self, pipe_package):
-        pipe_package.setChunkedsObjects(chunk(pipe_package.get_objects(), self.nb_process))
         if not self.processs:
             self._start(pipe_package)
         else:

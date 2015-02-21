@@ -1,4 +1,4 @@
-class MetaValue:
+class MetaValue():
 
   def __init__(self):
     self._metas = {}
