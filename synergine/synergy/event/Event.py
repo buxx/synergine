@@ -3,8 +3,7 @@ from synergine.core.simulation.mechanism.Mechanism import Mechanism
 
 class Event():
 
-    def concern(self, object_id, context):
-      raise NotImplementedError()
+    concern = None
 
     def __init__(self, actions):
         self._actions = actions

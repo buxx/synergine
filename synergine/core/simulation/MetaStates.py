@@ -8,7 +8,7 @@ class MetaStates():
     # TODO: have_list etc
     def have_list(self, object_id, states):
         for state in states:
-            if not self._list.have(Simulation.STATE, object_id, state):
+            if not self._list.have(Simulation.STATE, object_id, state, allow_empty=True):
                 return False
         return True
 
@@ -17,7 +17,7 @@ class MetaStates():
 
     def dont_have_list(self, object_id, states):
         for state in states:
-            if self._list.have(Simulation.STATE, object_id, state):
+            if self._list.have(Simulation.STATE, object_id, state, allow_empty=True):
                 return False
         return True
 
@@ -26,13 +26,13 @@ class MetaStates():
 
     def have_one(self, object_id, states):
         for state in states:
-            if self._list.have(Simulation.STATE, object_id, state):
+            if self._list.have(Simulation.STATE, object_id, state, allow_empty=True):
                 return True
         return False
 
     def dont_have_one(self, object_id, states):
         for state in states:
-            if not self._list.have(Simulation.STATE, object_id, state):
+            if not self._list.have(Simulation.STATE, object_id, state, allow_empty=True):
                 return True
         return False
 
@@ -49,4 +49,14 @@ class MetaStates():
     def remove_list(self, object_id, states):
         for state in states:
             self.remove(object_id, state)
+
+    def add_remove(self, object_id, state_add, state_remove):
+        self.add(object_id, state_add)
+        self.remove(object_id, state_remove)
+
+    def add_remove_lists(self, objec_id, states_add, states_remove):
+        for state_add in states_add:
+            self.add(objec_id, state_add)
+        for state_remove in states_remove:
+            self.remove(objec_id, state_remove)
 

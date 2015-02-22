@@ -1,7 +1,6 @@
 from synergine.synergy.event.Action import Action
 from lifegame.synergy.event.NotGoodConditionToPersistEvent import NotGoodConditionToPersistEvent
 from lifegame.cst import DIED, ALIVE
-from synergine.metas import metas
 
 
 class DieAction(Action):
@@ -10,5 +9,4 @@ class DieAction(Action):
 
     def run(self, obj, collection, context, synergy_manager):
         obj.set_alive(False)
-        metas.states.add(obj.get_id(), DIED)
-        metas.states.remove(obj.get_id(), ALIVE)
+        context.metas.states.add_remove(obj.get_id(), DIED, ALIVE)

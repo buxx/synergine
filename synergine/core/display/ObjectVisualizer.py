@@ -5,7 +5,7 @@ from synergine.core.exception.NotFoundError import NotFoundError
 
 class ObjectVisualizer():
 
-    def __init__(self, config: dict):
+    def __init__(self, config: dict, context):
         config_manager = ConfigurationManager(config)
         self._visualisation_configuration = config_manager.get('objects', {})
         self._objects_class_mapped = {}
@@ -15,7 +15,7 @@ class ObjectVisualizer():
         visualisation_definition = self._get_visual_definition(obj)
         if 'callbacks' in visualisation_definition:
             for callback in visualisation_definition['callbacks']:
-                callback_return = callback(obj)
+                callback_return = callback(obj, self._context)
                 if callback_return is not False:
                     return callback_return
         return visualisation_definition['default']

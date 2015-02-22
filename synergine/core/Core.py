@@ -3,13 +3,13 @@ from synergine.core.CycleCalculator import CycleCalculator
 from synergine.core.SpaceDataConnector import SpaceDataConnector
 from synergine.core.config.ConfigurationManager import ConfigurationManager
 from synergine.core.connection.Connector import Connector
-from synergine.core.cycle.Context import Context
 from synergine.lib.factory.factory import Factory
+from synergine.core.cycle.Context import Context
 from time import time, sleep
 from os import listdir
 from os.path import isdir, join as join_path
 from importlib import import_module
-from synergine.metas import metas
+from synergine.core.Signals import Signals
 
 
 class Core():
@@ -18,6 +18,7 @@ class Core():
     """
 
     _configuration_manager = ConfigurationManager()
+    #_context = self._configuration_manager.get('app.classes.Context', Context)()
 
     @classmethod
     def start_core(cls, config, modules_path='module'):  # TODO: path en relatif !
@@ -33,19 +34,16 @@ class Core():
         return cls._configuration_manager
 
     def __init__(self, config: dict, modules_path):
-        metas.reset()
         self._load_configuration(modules_path, config)
+        self._context = self._configuration_manager.get('app.classes.Context', Context)()
+        self._context.metas.reset()
+        Signals.reset()
         self._factory = Factory()
-        self._synergy_object_manager = SynergyObjectManager(self._configuration_manager.get('simulations'))
+        self._synergy_object_manager = SynergyObjectManager(self._configuration_manager.get('simulations'), self._context)
         self._cycle_calculator = CycleCalculator(self._synergy_object_manager, force_main_process=self._configuration_manager.get('engine.debug.mainprocess')) # TODO: debug in conf
         self._space_data_connector = SpaceDataConnector()
         self._last_cycle_time = time()
         self._maxfps = self._configuration_manager.get('engine.fpsmax')
-
-        # TODO: Gestionnaire/Factory pour la construction
-        context_class = self._configuration_manager.get('app.classes.Context', Context)
-        self._context = context_class()
-
         self._connector = Connector(self._synergy_object_manager, self._context)
         self._initialize_connecteds()
 

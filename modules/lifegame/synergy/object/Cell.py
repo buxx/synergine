@@ -1,12 +1,11 @@
 from xyzworld.SynergyObject import SynergyObject as XyzSynergyObject
 from xyzworld.cst import *
-from synergine.metas import metas
 
 
 class Cell(XyzSynergyObject):
 
-    def __init__(self):
-        super().__init__()
+    def __init__(self, context):
+        super().__init__(context)
         self._alive = False
         self._alive_since = 0
         self._died_since = 0

@@ -24,7 +24,7 @@ class Connector():
         :return: void
         """
         for terminal_class in terminals_classes:
-            terminal = terminal_class(configuration)
+            terminal = terminal_class(configuration, self._context)
             terminal.initialize()
             self._terminals.append(terminal)
 

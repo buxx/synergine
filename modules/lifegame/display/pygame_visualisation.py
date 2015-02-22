@@ -8,7 +8,7 @@ image_cell_medium = PygameImage.from_filepath(getcwd()+'/modules/lifegame/displa
 image_cell_small = PygameImage.from_filepath(getcwd()+'/modules/lifegame/display/pygame/cha.png')
 image_cell_dead = PygameImage.from_filepath(getcwd()+'/modules/lifegame/display/pygame/cha0.png')
 
-def is_old_cell(cell):
+def is_old_cell(cell, context):
     if cell.is_alive():
         if cell.get_is_alive_since() < 1:
             return image_cell_small

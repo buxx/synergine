@@ -1,6 +1,5 @@
 from synergine.synergy.event.Action import Action
 from lifegame.synergy.event.TimePassEvent import TimePassEvent
-from synergine.metas import metas
 from lifegame.synergy.event.DieAction import DieAction
 from lifegame.synergy.event.BornAction import BornAction
 
