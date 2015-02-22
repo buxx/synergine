@@ -4,8 +4,8 @@ class TestTerminal(Terminal):
 
     _name = 'tests_test'
 
-    def __init__(self, config):
-        super().__init__(config)
+    def __init__(self, config, context):
+        super().__init__(config, context)
         self._synergy_object_manager = None
     # TODO: inutile non ?
     def receive(self, synergy_object_manager, context):

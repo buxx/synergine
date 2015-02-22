@@ -2,7 +2,7 @@ from xyworld.display.object.TextTraceVisualisation import TextTraceVisualisation
 from lifegame.synergy.object.Cell import Cell
 
 
-def is_old_cell(cell):
+def is_old_cell(cell, context):
     if cell.is_alive():
       if cell.get_is_alive_since() < 1:
           return TextTraceVisualisation('o')
