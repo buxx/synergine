@@ -23,7 +23,6 @@ class MetaSynergyCollections():
     def add(self, object_id, col_name):
         self._list.add(self.COLS, col_name, object_id)
 
-<<<<<<< HEAD
     def add_list(self, object_id, col_names):
         for col_name in col_names:
             self.add(object_id, col_name)
@@ -34,7 +33,3 @@ class MetaSynergyCollections():
     def remove_list(self, object_id, col_names):
         for col_name in col_names:
             self.remove(object_id, col_name)
-=======
-    def remove(self, object_id, col_name):
-        self._list.remove(self.COLS, col_name, object_id)
->>>>>>> dev/col

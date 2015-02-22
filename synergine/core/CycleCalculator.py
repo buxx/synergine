@@ -1,15 +1,8 @@
 from synergine.lib.process.processmanager import KeepedAliveProcessManager
 from synergine.core.cycle.PipePackage import PipePackage
 from synergine.core.simulation.EventManager import EventManager
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-=======
 from synergine.core.Signals import Signals
 from synergine.synergy.event.exception.ActionAborted import ActionAborted
->>>>>>> Stashed changes
-=======
-from synergine.core.Signals import Signals
->>>>>>> dev/col
 
 
 class CycleCalculator():
