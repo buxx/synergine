@@ -7,6 +7,6 @@ class Display(Terminal):
     Graphical visualisation Terminal
     """
 
-    def __init__(self, config):
+    def __init__(self, config, context):
         super().__init__(config)
-        self._object_visualizer = ObjectVisualizer(self._get_config('visualisation', {}))
+        self._object_visualizer = ObjectVisualizer(self._get_config('visualisation', {}), context)
