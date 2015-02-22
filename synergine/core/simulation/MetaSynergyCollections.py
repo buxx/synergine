@@ -14,11 +14,11 @@ class MetaSynergyCollections():
         self._list.add(self.COLS, add_col_name, object_id)
         self._list.remove(self.COLS, remove_col_name, object_id)
 
-    def add_remove_lists(self, object_id, add_cols_names, remove_cols_names):
+    def add_remove_lists(self, object_id, add_cols_names, remove_cols_names, allow_empty=False):
         for add_col_name in add_cols_names:
             self._list.add(self.COLS, add_col_name, object_id)
         for remove_col_name in remove_cols_names:
-            self._list.remove(self.COLS, remove_col_name, object_id)
+            self._list.remove(self.COLS, remove_col_name, object_id, allow_empty=allow_empty)
 
     def add(self, object_id, col_name):
         self._list.add(self.COLS, col_name, object_id)

@@ -24,9 +24,13 @@ class MetaCollections():
     assert not value in collection
     collection.append(value)
 
-  def remove(self, name, subject, value):
-    collection = self.get(name, subject)
-    collection.remove(value)
+  def remove(self, name, subject, value, allow_empty=False, allow_not_in=False):
+    collection = self.get(name, subject, allow_empty=allow_empty)
+    try:
+        collection.remove(value)
+    except ValueError:
+        if not allow_not_in:
+            raise
 
   def have(self, name, subject, value, allow_empty=False):
     collection = self.get(name, subject, allow_empty)
