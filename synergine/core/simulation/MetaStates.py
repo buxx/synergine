@@ -43,12 +43,12 @@ class MetaStates():
         for state in states:
             self.add(object_id, state)
 
-    def remove(self, object_id, state):
-        self._list.remove(Simulation.STATE, object_id, state)
+    def remove(self, object_id, state, allow_empty=False, allow_not_in=False):
+        self._list.remove(Simulation.STATE, object_id, state, allow_empty=allow_empty, allow_not_in=allow_not_in)
 
-    def remove_list(self, object_id, states):
+    def remove_list(self, object_id, states, allow_empty=False, allow_not_in=False):
         for state in states:
-            self.remove(object_id, state)
+            self.remove(object_id, state, allow_empty=allow_empty, allow_not_in=allow_not_in)
 
     def add_remove(self, object_id, state_add, state_remove):
         self.add(object_id, state_add)
