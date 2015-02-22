@@ -27,9 +27,9 @@ class MetaSynergyCollections():
         for col_name in col_names:
             self.add(object_id, col_name)
 
-    def remove(self, object_id, col_name):
-        self._list.remove(self.COLS, col_name, object_id)
+    def remove(self, object_id, col_name, allow_not_in=False):
+        self._list.remove(self.COLS, col_name, object_id, allow_not_in=allow_not_in)
 
-    def remove_list(self, object_id, col_names):
+    def remove_list(self, object_id, col_names, allow_not_in=False):
         for col_name in col_names:
-            self.remove(object_id, col_name)
+            self.remove(object_id, col_name, allow_not_in=allow_not_in)
