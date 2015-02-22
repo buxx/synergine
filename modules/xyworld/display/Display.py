@@ -12,11 +12,12 @@ class Display(BaseDisplay):
     MOVE_DIRECTION_RIGHT = (0, 1)
     MOVE_DIRECTION_DOWN = (1, 0)
 
-    def __init__(self, config):
-        super().__init__(config)
+    def __init__(self, config, context):
+        super().__init__(config, context)
         self._zone = DisplayZone(20, 40)
         self._display_decal = (0, 0)
         self._grid = None
+        self._zoom = 1
 
     def initialize(self):
         super().initialize()
@@ -55,3 +56,9 @@ class Display(BaseDisplay):
         grid_point = self._grid.get_real_pixel_point((z, x, y))
         return (z, grid_point[0]-self._display_decal[0]*self._grid.get_cell_size(),
                    grid_point[1]-self._display_decal[1]*self._grid.get_cell_size())
+
+    def get_zoom(self):
+        return self._zoom
+
+    def _set_zoom(self, zoom):
+        self._zoom = zoom

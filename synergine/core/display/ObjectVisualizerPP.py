@@ -9,7 +9,10 @@ class ObjectVisualizer():
         config_manager = ConfigurationManager(config)
         self._visualisation_configuration = config_manager.get('objects', {})
         self._objects_class_mapped = {}
+<<<<<<< Updated upstream
+=======
         self._context = context
+>>>>>>> Stashed changes
 
     def get_visual(self, obj: SynergyObject):
         visualisation_definition = self._get_visual_definition(obj)

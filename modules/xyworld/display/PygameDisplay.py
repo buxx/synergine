@@ -6,8 +6,8 @@ class PygameDisplay(XyDisplay):
 
     _name = "pygame"
 
-    def __init__(self, config):
-        super().__init__(config)
+    def __init__(self, config, context):
+        super().__init__(config, context)
         self._screen = None
         self._screen_size = (0, 0)
         self._event = None
@@ -56,18 +56,23 @@ class PygameDisplay(XyDisplay):
         for event in pygame.event.get():
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_LEFT:
-                    self.move_view_zone(XyDisplay.MOVE_DIRECTION_UP)
+                    self.move_view_zone(self._get_decal_with_zoom(XyDisplay.MOVE_DIRECTION_UP))
                 elif event.key == pygame.K_RIGHT:
-                    self.move_view_zone(XyDisplay.MOVE_DIRECTION_DOWN)
+                    self.move_view_zone(self._get_decal_with_zoom(XyDisplay.MOVE_DIRECTION_DOWN))
                 elif event.key == pygame.K_UP:
-                    self.move_view_zone(XyDisplay.MOVE_DIRECTION_LEFT)
+                    self.move_view_zone(self._get_decal_with_zoom(XyDisplay.MOVE_DIRECTION_LEFT))
                 elif event.key == pygame.K_DOWN:
-                    self.move_view_zone(XyDisplay.MOVE_DIRECTION_RIGHT)
+                    self.move_view_zone(self._get_decal_with_zoom(XyDisplay.MOVE_DIRECTION_RIGHT))
                 elif event.key == pygame.K_a:
                     if self._grid.get_cell_size()-5 > 0:
                       self._grid.set_cell_size(self._grid.get_cell_size()-5)
+                      self._set_zoom(self.get_zoom()+20)
                 elif event.key == pygame.K_z:
                     self._grid.set_cell_size(self._grid.get_cell_size()+5)
+                    self._set_zoom(self.get_zoom()-20)
+
+    def _get_decal_with_zoom(self, decal):
+        return (decal[0] * self.get_zoom(), decal[1] * self.get_zoom())
 
     def terminate(self):
         pass

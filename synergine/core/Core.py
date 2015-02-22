@@ -73,10 +73,10 @@ class Core():
         while not finish:
 
             self._update_last_cycle_time()
-            #start_time = time()
-            self._cycle_calculator.compute(self._context)
+            start_time = time()
+            self._cycle_calculator.compute(self._context)  # TODO: le context peut etre donne au init
             self._run_connecteds()
-            #print(time() - start_time)
+            print(time() - start_time)
             self._wait_for_next_cycle()
 
             if self._cycle_calculator.get_cycle() >= cycles and cycles is not -1:

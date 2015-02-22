@@ -22,14 +22,14 @@ config = {
         }
     },
     'engine': {
-        'fpsmax': 25,
+        'fpsmax': 255,
         'debug': {
             'mainprocess': False,
             'cycles': 100
         }
     },
     'simulations' : [LifeGameSimulation([LifeGameCollection(LifeGameCollectionConfiguration())])],
-    'connections': [TestDisplay, PygameDisplay, CursesDisplay],
+    'connections': [],#TestDisplay, PygameDisplay, CursesDisplay],
     'terminal': {
         '__default__': {
             'app': {

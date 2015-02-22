@@ -89,11 +89,15 @@ class CycleCalculator():
     def _apply_actions(self, actions, collection, context):
         for action in actions:
             obj = self._synergy_manager.get_map().get_object(action.get_object_id())
+<<<<<<< Updated upstream
+            action.run(obj, collection, context, self._synergy_manager)
+=======
             try:
                 action.run(obj, collection, context, self._synergy_manager)
                 Signals.signal(action.__class__).send(obj=obj, context=context)
             except ActionAborted:
                 pass
+>>>>>>> Stashed changes
 
     def end(self):
         self._process_manager.stop()

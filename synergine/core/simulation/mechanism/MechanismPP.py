@@ -56,9 +56,13 @@ class Mechanism():
     def _run_events(self, events_objects_ids_collections, context):
         actions = []
         for event in self._events:
+<<<<<<< Updated upstream
+            concerned_objects_ids = events_objects_ids_collections[event.concern]
+=======
             concerned_objects_ids = get_chunk(context.get_total_chunk(),
                                               context.get_current_chunk_position(),
                                               context.metas.collections.get(event.concern, allow_empty=True))
+>>>>>>> Stashed changes
             for object_id in concerned_objects_ids:
                 event_actions = event.observe(object_id, context, self._events_parameters[object_id])
                 for event_action in event_actions:

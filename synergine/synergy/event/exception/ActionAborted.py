@@ -1,0 +1,2 @@
+class ActionAborted(Exception):
+    pass

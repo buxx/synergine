@@ -14,7 +14,7 @@ class Terminal():
             raise Exception("Terminal must be named")
         return cls._name
 
-    def __init__(self, config):
+    def __init__(self, config, context):
         """
 
         :param config: ConfigurationManager
@@ -22,6 +22,7 @@ class Terminal():
         """
         self._encapsuled_run = False
         self._config = config
+        self._context = context
 
     def _get_config(self, config_name, default=None):
         try:
