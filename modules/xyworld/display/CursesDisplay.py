@@ -7,8 +7,8 @@ class CursesDisplay(XyDisplay):
 
     _name = "curses"
 
-    def __init__(self, config):
-        super().__init__(config)
+    def __init__(self, config, context):
+        super().__init__(config, context)
         self._screen = None
         self._screen_size = (0, 0)
 
@@ -71,7 +71,7 @@ class CursesDisplay(XyDisplay):
         # self._screen.addstr(3, 1, 'zone_start '+str(self._zone.get_zone_start()))
         # self._screen.addstr(4, 1, 'zone_end '+str(self._zone.get_zone_end()))
         # self._screen.addstr(5, 1, str(self._grid.get_cell_size()))
-        for obj, in objects:
+        for obj in objects:
             try:
                 self._screen.addstr(point[0], point[1], self._get_object_char(obj))
             except:  # TODO: display err
