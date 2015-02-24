@@ -21,6 +21,9 @@ def is_old_cell(cell, context):
 
 visualisation = {
     'window': {},
+    'callbacks': {
+        'position': None
+    },
     'objects': {
         Cell: {
             'default': image_cell_small,

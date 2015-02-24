@@ -63,7 +63,7 @@ class CursesDisplay(XyDisplay):
         self._screen_size = self._screen.getmaxyx()
         self._update_zone_size(self._screen_size[1], self._screen_size[0])
 
-    def draw_object(self, obj, point):
+    def draw_objects(self, objects, point):
 
         ## Debug traces
         # self._screen.addstr(1, 1, 'size '+str((self._zone.get_width(), self._zone.get_height())))
@@ -71,11 +71,11 @@ class CursesDisplay(XyDisplay):
         # self._screen.addstr(3, 1, 'zone_start '+str(self._zone.get_zone_start()))
         # self._screen.addstr(4, 1, 'zone_end '+str(self._zone.get_zone_end()))
         # self._screen.addstr(5, 1, str(self._grid.get_cell_size()))
-
-        try:
-            self._screen.addstr(point[0], point[1], self._get_object_char(obj))
-        except:  # TODO: display err
-            pass
+        for obj, in objects:
+            try:
+                self._screen.addstr(point[0], point[1], self._get_object_char(obj))
+            except:  # TODO: display err
+                pass
 
     def _draw_components(self):
         self._draw_view_zone_border()

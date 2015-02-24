@@ -81,6 +81,15 @@ class PygameDisplay(XyDisplay):
         self._screen_size = self._screen.get_size()
         self._update_zone_size(self._screen_size[0], self._screen_size[1])
 
+    def draw_objects(self, objects, point):
+        obj_visual, concerneds_objects = self._object_visualizer.get_for_position(point, objects)
+        if obj_visual:
+            visual_surface = self._get_visual_surface(obj_visual)
+            self._screen.blit(visual_surface, point)
+        for obj in objects:
+            if obj not in concerneds_objects:
+                self.draw_object(obj, point)
+
     def draw_object(self, obj, point):
         obj_visual = self._object_visualizer.get_visual(obj)
         visual_surface = self._get_visual_surface(obj_visual)

@@ -10,6 +10,7 @@ class ObjectVisualizer():
         self._visualisation_configuration = config_manager.get('objects', {})
         self._objects_class_mapped = {}
         self._context = context
+        self._callback_position = config_manager.get('callbacks.position', 0)
 
     def get_visual(self, obj: SynergyObject):
         visualisation_definition = self._get_visual_definition(obj)
@@ -20,7 +21,11 @@ class ObjectVisualizer():
                     return callback_return
         return visualisation_definition['default']
 
-# TODO: fix bug: on doit mettre en cache dans self._objects_class_mapped le dict {default... et non pas le resultat
+    def get_for_position(self, position, objects):
+        if self._callback_position:
+            return self._callback_position(position, objects, self._context)
+
+    # TODO: fix bug: on doit mettre en cache dans self._objects_class_mapped le dict {default... et non pas le resultat
     def _get_visual_definition_for_class(self, class_name, obj):
         if obj.__class__ in self._visualisation_configuration:
             return self._visualisation_configuration[obj.__class__]

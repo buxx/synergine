@@ -6,13 +6,13 @@ class MetaCollections():
   def reset(self):
     self._metas = {}
 
-  def _get_collection(self, name):
+  def get_collection(self, name):
     if name not in self._metas:
       self._metas[name] = {}
     return self._metas[name]
 
   def get(self, name, subject, allow_empty=False):
-    metas = self._get_collection(name)
+    metas = self.get_collection(name)
     if subject not in metas and allow_empty:
       metas[subject] = []
     return metas[subject]
@@ -37,7 +37,7 @@ class MetaCollections():
     return value in collection
 
   def clean(self, name):
-    metas = self._get_collection(name)
+    metas = self.get_collection(name)
     cleaned_metas = dict(metas)
     for meta in metas:
       if not len(metas[meta]):
