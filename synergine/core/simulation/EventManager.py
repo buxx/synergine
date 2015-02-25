@@ -51,9 +51,9 @@ class EventManager():
                 mechanisms_definition[event_mechanism_class] = [event]
             else:
                 mechanisms_definition[event_mechanism_class].append(event)
-        for event_class in mechanisms_definition:
+        for mechanism_class in mechanisms_definition:
             # Note: Eerur de nommage event_class = mechanism class la
-            mechanisms.append(event_class(mechanisms_definition[event_class]))
+            mechanisms.append(mechanism_class(mechanisms_definition[mechanism_class]))
         return mechanisms
 
     def get_mechanisms_steps(self):
