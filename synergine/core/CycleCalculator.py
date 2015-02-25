@@ -15,8 +15,8 @@ class CycleCalculator():
     def __init__(self, synergy_manager, force_main_process = False):
         # TODO: nbprocess
         self._synergy_manager = synergy_manager
-        self._event_manager = EventManager()
-        self._event_manager.refresh(self._synergy_manager.get_collections())
+        self._event_manager = EventManager(self._synergy_manager)
+        self._event_manager.refresh()
         self._force_main_process = force_main_process
         self._process_manager = KeepedAliveProcessManager(nb_process=2, target=self._process_compute)
         self._cycle = 0
@@ -26,24 +26,18 @@ class CycleCalculator():
 
     def compute(self, context):
         self._cycle += 1
+        print('cycle: ', self._cycle)
         self._compute_events(context)
 
     def _compute_events(self, context):
+        for mechanisms_step in self._event_manager.get_mechanisms_steps():
+            actions = self._get_computeds_objects(mechanisms_step, context)
+            self._apply_actions(actions, context)
         for simulation in self._synergy_manager.get_simulations():
-            simulation.start_cycle(context)
-            collections = simulation.get_collections()
-            for collection in collections:#context.get_collections():
-                collection_mechanisms_steps = self._event_manager.get_collection_mechanisms_steps(collection)
-                for collection_mechanisms_step in self._event_manager.get_collection_mechanisms_steps(collection):
-                    # TODO: (run test) tte les actions d'un coup
-                    # On peux donner collection et contexte a l'action ? Le process va t-il dupliquer ces objets ?
-                    # TODO: On cherche a readonly/share les objects. Mais le contexte aussi  peut être en ReadOnly
-                    actions = self._get_computeds_objects(collection, collection_mechanisms_step, context)
-                    self._apply_actions(actions, collection, context)
             simulation.end_cycle(context)
 
-    def _get_computeds_objects(self, collection, collection_mechanisms_step, context):
-        pipe_package = self._get_pipe_package_for_collection(collection.get_computable_objects(), collection_mechanisms_step, context)
+    def _get_computeds_objects(self, mechanisms, context):
+        pipe_package = self._get_pipe_package_for_collection(mechanisms, context)
         if not self._force_main_process:
             computeds_objects = self._process_manager.get_their_work(pipe_package)
         else:
@@ -52,7 +46,7 @@ class CycleCalculator():
             computeds_objects = self._process_compute(pipe_package)
         return computeds_objects
 
-    def _get_pipe_package_for_collection(self, objects, mechanisms, context):
+    def _get_pipe_package_for_collection(self, mechanisms, context):
         pipe_package = PipePackage()
         pipe_package.set_mechanisms(mechanisms)
         context.set_cycle(self._cycle)
@@ -83,11 +77,12 @@ class CycleCalculator():
                 actions.append(mechanism_action)
         return actions
 
-    def _apply_actions(self, actions, collection, context):
+    def _apply_actions(self, actions, context):
         for action in actions:
             obj = self._synergy_manager.get_map().get_object(action.get_object_id())
             try:
-                action.run(obj, collection, context, self._synergy_manager)
+                # TODO: retirer collection du run
+                action.run(obj, None, context, self._synergy_manager)
                 Signals.signal(action.__class__).send(obj=obj, context=context)
             except ActionAborted:
                 pass

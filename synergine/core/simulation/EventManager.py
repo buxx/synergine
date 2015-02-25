@@ -6,20 +6,28 @@ class EventManager():
     Manager of collection events.
     """
 
-    def __init__(self):
+    def __init__(self, synergy_manager):
+        self._synergy_manager = synergy_manager
         self._collections_mechanisms_steps = {}
+        self._mechanisms_steps = []
         self._action_manager = ActionManager()
 
-    def refresh(self, collections):
-        for collection in collections:
-            self._collections_mechanisms_steps[collection] = self._get_mechanisms_steps_for_collection(collection)
+    def refresh(self):
+        self._mechanisms_steps = []
+        actions = self._get_actions()
+        actions_steps = self._action_manager.get_steps_for_actions(actions)
+        for step_actions in actions_steps:
+            step_events = self._get_events_for_actions(step_actions)
+            step_mechanisms = self._get_mechanisms_for_events(step_events)
+            self._mechanisms_steps.append(step_mechanisms)
 
-    def _get_mechanisms_steps_for_collection(self, collection):
-        collection_mechanisms_steps = []
-        for collection_step_actions in self._action_manager.get_steps_for_actions(collection.get_actions()):
-            collection_step_events = self._get_events_for_actions(collection_step_actions)
-            collection_mechanisms_steps.append(self._get_mechanisms_for_events(collection_step_events))
-        return collection_mechanisms_steps
+    def _get_actions(self):
+        actions = []
+        for collection in self._synergy_manager.get_collections():
+            for action in collection.get_actions():
+                if action not in actions:
+                    actions.append(action)
+        return actions
 
     def _get_events_for_actions(self, actions):
         events_definition = {}
@@ -44,13 +52,9 @@ class EventManager():
             else:
                 mechanisms_definition[event_mechanism_class].append(event)
         for event_class in mechanisms_definition:
+            # Note: Eerur de nommage event_class = mechanism class la
             mechanisms.append(event_class(mechanisms_definition[event_class]))
         return mechanisms
 
-    def get_collection_mechanisms_steps(self, collection: SynergyCollection) -> list:
-        """
-        return event steps
-        :param collection: SynergyCollection
-        :return: list of steps where step contain list of Event
-        """
-        return self._collections_mechanisms_steps[collection]
+    def get_mechanisms_steps(self):
+        return self._mechanisms_steps
