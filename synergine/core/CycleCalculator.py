@@ -30,14 +30,14 @@ class CycleCalculator():
         self._compute_events(context)
 
     def _compute_events(self, context):
-        for mechanisms_step in self._event_manager.get_mechanisms_steps():
-            actions = self._get_computeds_objects(mechanisms_step, context)
+        for step_key, mechanisms in enumerate(self._event_manager.get_mechanisms_steps()):
+            actions = self._get_computeds_objects(step_key, context)
             self._apply_actions(actions, context)
         for simulation in self._synergy_manager.get_simulations():
             simulation.end_cycle(context)
 
-    def _get_computeds_objects(self, mechanisms, context):
-        pipe_package = self._get_pipe_package_for_collection(mechanisms, context)
+    def _get_computeds_objects(self, step_key, context):
+        pipe_package = self._get_pipe_package_for_collection(step_key, context)
         if not self._force_main_process:
             computeds_objects = self._process_manager.get_their_work(pipe_package)
         else:
@@ -46,9 +46,9 @@ class CycleCalculator():
             computeds_objects = self._process_compute(pipe_package)
         return computeds_objects
 
-    def _get_pipe_package_for_collection(self, mechanisms, context):
+    def _get_pipe_package_for_collection(self, step_key, context):
         pipe_package = PipePackage()
-        pipe_package.set_mechanisms(mechanisms)
+        pipe_package.set_step_key(step_key)
         context.set_cycle(self._cycle)
         pipe_package.set_context(context)
 
@@ -69,9 +69,9 @@ class CycleCalculator():
         :return:
         """
         context = pipe_package.get_context()
-        mechanisms = pipe_package.get_mechanisms()
+        step_key = pipe_package.get_step_key()
         actions = []
-        for mechanism in mechanisms:
+        for mechanism in self._event_manager.get_mechanisms_steps()[step_key]:
             mechanism_actions = mechanism.run(context)
             for mechanism_action in mechanism_actions:
                 actions.append(mechanism_action)
@@ -81,7 +81,6 @@ class CycleCalculator():
         for action in actions:
             obj = self._synergy_manager.get_map().get_object(action.get_object_id())
             try:
-                # TODO: retirer collection du run
                 action.run(obj, context, self._synergy_manager)
                 Signals.signal(action.__class__).send(obj=obj, context=context)
             except ActionAborted:

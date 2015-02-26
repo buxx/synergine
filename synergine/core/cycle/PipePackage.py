@@ -5,11 +5,22 @@ class PipePackage(BasePipePackage):
     Object used to send data to process
     """
 
+    def __init__(self):
+        super().__init__()
+        self._mechanisms = []
+        self._step_key = 0
+
     def set_context(self, context):
         self._context = context
 
     def get_context(self):
         return self._context
+
+    def set_step_key(self, step_key):
+        self._step_key = step_key
+
+    def get_step_key(self):
+        return self._step_key
 
     def set_mechanisms(self, mechanisms):
         self._mechanisms = mechanisms
