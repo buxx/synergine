@@ -15,7 +15,7 @@ class TestCollectionConfiguration(Configuration):
 
         objects = []
         for obj_setup in objs_setup:
-            obj = TestSynergyObject(context)
+            obj = TestSynergyObject(collection, context)
             obj.setUp(obj_setup[0], obj_setup[1], obj_setup[2])
             objects.append(obj)
             context.metas.collections.add(obj.get_id(), COL_COMPUTABLE)

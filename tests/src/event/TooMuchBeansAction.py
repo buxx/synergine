@@ -8,6 +8,6 @@ class TooMuchBeansAction(Action):
     _listen = TooMuchBeansEvent
     _depend = [MakeBeansProfitAction]
 
-    def run(self, obj, collection, context, synergy_manager):
+    def run(self, obj, context, synergy_manager):
         obj.beans = 0
         context.metas.value.set(BEANS, obj.get_id(), 0)

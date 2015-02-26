@@ -8,7 +8,7 @@ class TestZone(unittest.TestCase):
 
     def test_objects_visibility(self):
         zone = DisplayZone(20, 20)
-        obj = XyzSynergyObject(Context())
+        obj = XyzSynergyObject(object(), Context())
         obj.set_position((0, 10, 10))
         self.assertTrue(zone.point_is_inside(obj.get_position()))
         obj.set_position((0, 10, 21))

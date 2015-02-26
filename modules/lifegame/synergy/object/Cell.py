@@ -4,8 +4,8 @@ from xyzworld.cst import *
 
 class Cell(XyzSynergyObject):
 
-    def __init__(self, context):
-        super().__init__(context)
+    def __init__(self, collection, context):
+        super().__init__(collection, context)
         self._alive = False
         self._alive_since = 0
         self._died_since = 0

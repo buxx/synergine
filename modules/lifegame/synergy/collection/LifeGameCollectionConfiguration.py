@@ -10,7 +10,7 @@ class LifeGameCollectionConfiguration(Configuration):
         # cell grid
         for x in range(40):
             for y in range(50):
-                cell = Cell(context)
+                cell = Cell(collection, context)
                 cell.set_position((0, x, y))
                 cells.append(cell)
 

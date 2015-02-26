@@ -9,5 +9,5 @@ class TimePassAction(Action):
     _listen = TimePassEvent
     _depend = [BornAction, DieAction]
 
-    def run(self, obj, collection, context, synergy_manager):
+    def run(self, obj, context, synergy_manager):
         obj.end_cycle()

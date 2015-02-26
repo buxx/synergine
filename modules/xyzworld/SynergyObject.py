@@ -4,8 +4,8 @@ from xyzworld.cst import POSITION, POSITIONS
 
 class SynergyObject(BaseSynergyObject):
 
-    def __init__(self, context):
-        super().__init__(context)
+    def __init__(self, collection, context):
+        super().__init__(collection, context)
         self._position = None
 
     def set_position(self, point):

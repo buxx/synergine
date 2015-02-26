@@ -82,7 +82,7 @@ class CycleCalculator():
             obj = self._synergy_manager.get_map().get_object(action.get_object_id())
             try:
                 # TODO: retirer collection du run
-                action.run(obj, None, context, self._synergy_manager)
+                action.run(obj, context, self._synergy_manager)
                 Signals.signal(action.__class__).send(obj=obj, context=context)
             except ActionAborted:
                 pass
