@@ -24,6 +24,7 @@ class ObjectVisualizer():
     def get_for_position(self, position, objects):
         if self._callback_position:
             return self._callback_position(position, objects, self._context)
+        return (None, [])
 
     # TODO: fix bug: on doit mettre en cache dans self._objects_class_mapped le dict {default... et non pas le resultat
     def _get_visual_definition_for_class(self, class_name, obj):
