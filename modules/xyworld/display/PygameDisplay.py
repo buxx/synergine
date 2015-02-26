@@ -87,7 +87,7 @@ class PygameDisplay(XyDisplay):
             visual_surface = self._get_visual_surface(obj_visual)
             self._screen.blit(visual_surface, point)
         for obj in objects:
-            if obj not in concerneds_objects:
+            if concerneds_objects is [] or obj not in concerneds_objects:
                 self.draw_object(obj, point)
 
     def draw_object(self, obj, point):
