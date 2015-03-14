@@ -1,5 +1,3 @@
-Idees:
-
-Mechanismes: On as pas besoin de les passer aux process ?
-
-Pendant que l'on envoie les donnees au terminaux, on peux commencr le cycle suivant ?
+* Choisir des profils de configuration (fourmis 3 colonies; exploration; etc) avec un parametre shell
+* Lancer les terminaux dans des threads (comment les laisser dans un boucle et envoyer des données a partir du main quand c pret seulement ?) Sinon: Après envoi des données aux terminaux (threads) calculer nouveau cycle.
+* Affichage: Gérer des couches: Ex: Couche 1: sol. Qui n'est recalculé que si besoin; couche 2: pheromones; couche 3: fourmis etc ...
