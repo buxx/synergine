@@ -70,6 +70,11 @@ class PygameDisplay(XyDisplay):
                 elif event.key == pygame.K_z:
                     self._grid.set_cell_size(self._grid.get_cell_size()+5)
                     self._set_zoom(self.get_zoom()-20)
+                else:
+                    self._key_pressed(event.key)
+
+    def _key_pressed(self, key):
+        pass
 
     def _get_decal_with_zoom(self, decal):
         return (decal[0] * self.get_zoom(), decal[1] * self.get_zoom())

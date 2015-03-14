@@ -4,6 +4,7 @@ from synergine.core.simulation.mechanism.Mechanism import Mechanism
 class Event():
 
     concern = None
+    _each_cycle = 1
 
     def __init__(self, actions):
         self._actions = actions
@@ -11,6 +12,10 @@ class Event():
 
     def get_mechanism_class(self):
         return self._mechanism
+
+    @classmethod
+    def get_each_cycle(cls):
+        return cls._each_cycle
 
     def observe(self, object_id, context, parameters={}):
         active_actions = []

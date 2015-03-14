@@ -50,6 +50,8 @@ class CycleCalculator():
         pipe_package = PipePackage()
         pipe_package.set_step_key(step_key)
         context.set_cycle(self._cycle)
+        # TODO: 1: Seule les metas ont besoin d'etre trimbale
+        # TODO: 2: Transporter le differentiel des metas pour le calculs a traver le reseau
         pipe_package.set_context(context)
 
         # TODO: Le paquet de retour contient les actions instancies. Allerger en ne transportant

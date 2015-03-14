@@ -24,13 +24,14 @@ class Mechanism():
     def _run_events(self, context):
         actions = []
         for event in self._events:
-            concerned_objects_ids = get_chunk(context.get_total_chunk(),
-                                              context.get_current_chunk_position(),
-                                              context.metas.collections.get(event.concern, allow_empty=True))
-            for object_id in concerned_objects_ids:
-                event_actions = event.observe(object_id, context, self._get_object_parameters(object_id, context))
-                for event_action in event_actions:
-                    actions.append(event_action)
+            if context.get_cycle() % event.get_each_cycle() == 0:
+                concerned_objects_ids = get_chunk(context.get_total_chunk(),
+                                                  context.get_current_chunk_position(),
+                                                  context.metas.collections.get(event.concern, allow_empty=True))
+                for object_id in concerned_objects_ids:
+                    event_actions = event.observe(object_id, context, self._get_object_parameters(object_id, context))
+                    for event_action in event_actions:
+                        actions.append(event_action)
         return actions
 
     def _get_computed_object_event_parameters(self, object_id, context):

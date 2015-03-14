@@ -17,11 +17,13 @@ class MetaCollections():
       metas[subject] = []
     return metas[subject]
 
-  def add(self, name, subject, value):
+  def add(self, name, subject, value, assert_not_in=True, allow_multiple=False):
     collection = self.get(name, subject, allow_empty=True)
     if value in collection:
-        debug = True
-    assert not value in collection
+        if assert_not_in:
+            raise Exception()  # TODO: Exception perso
+        if not allow_multiple:
+            return
     collection.append(value)
 
   def remove(self, name, subject, value, allow_empty=False, allow_not_in=False):

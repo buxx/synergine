@@ -50,13 +50,13 @@ class MetaStates():
         for state in states:
             self.remove(object_id, state, allow_empty=allow_empty, allow_not_in=allow_not_in)
 
-    def add_remove(self, object_id, state_add, state_remove):
+    def add_remove(self, object_id, state_add, state_remove, allow_empty=False, allow_not_in=False):
         self.add(object_id, state_add)
-        self.remove(object_id, state_remove)
+        self.remove(object_id, state_remove, allow_empty=allow_empty, allow_not_in=allow_not_in)
 
-    def add_remove_lists(self, objec_id, states_add, states_remove):
+    def add_remove_lists(self, objec_id, states_add, states_remove, allow_empty=False, allow_not_in=False):
         for state_add in states_add:
             self.add(objec_id, state_add)
         for state_remove in states_remove:
-            self.remove(objec_id, state_remove)
+            self.remove(objec_id, state_remove, allow_empty=allow_empty, allow_not_in=allow_not_in)
 
