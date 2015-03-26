@@ -25,6 +25,8 @@ class SynergyCollection(SynergyCollectionInterface):
 
     def initialize_objects(self, context):
         self.set_objects(self._configuration.get_start_objects(self, context))
+        for obj in self._objects:
+            obj.initialize()
 
     def get_actions(self) -> list:
         return self._actions
@@ -43,6 +45,10 @@ class SynergyCollection(SynergyCollectionInterface):
     def remove_object(self, obj):
         Signals.signal(self.SIGNAL_REMOVE_OBJECT).send(collection=self, obj=obj)
         self._objects.remove(obj)
+
+    def add_object(self, obj):
+        self._objects.append(obj)
+        Signals.signal(self.SIGNAL_ADD_OBJECT).send(collection=self, obj=obj)
 
     def get_computable_objects(self) -> list:
         """

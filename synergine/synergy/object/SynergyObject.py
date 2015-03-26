@@ -19,6 +19,9 @@ class SynergyObject(SynergyObjectInterface):
     def get_id(self):
         return self._id
 
+    def initialize(self):
+        pass
+
     # TODO: A supprimer ? Oui !
     def end_cycle(self):
         pass
