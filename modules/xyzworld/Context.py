@@ -5,24 +5,24 @@ from xyzworld.cst import *
 class Context(BaseContext):
 
     def get_objects_ids_near_point(self, point, distance=1): # TODO distance
-        objects_ids_arrounds = []
-        for point_arround in self.get_arround_points_of_point(point):
-            point_objects_ids = self.metas.list.get(POSITIONS, point_arround, allow_empty=True)
+        objects_ids_arounds = []
+        for point_around in self.get_around_points_of_point(point):
+            point_objects_ids = self.metas.list.get(POSITIONS, point_around, allow_empty=True)
             for object_id in point_objects_ids:
-                objects_ids_arrounds.append(object_id)
-        return objects_ids_arrounds
+                objects_ids_arounds.append(object_id)
+        return objects_ids_arounds
 
     def get_objects_ids_by_position_near_point(self, point, distance=1): # TODO distance
-        objects_ids_arrounds_by_point = {}
-        for point_arround in self.get_arround_points_of_point(point):
-            objects_ids_arrounds_by_point[point_arround] = []
-            point_objects_ids = self.metas.list.get(POSITIONS, point_arround, allow_empty=True)
+        objects_ids_arounds_by_point = {}
+        for point_around in self.get_around_points_of_point(point):
+            objects_ids_arounds_by_point[point_around] = []
+            point_objects_ids = self.metas.list.get(POSITIONS, point_around, allow_empty=True)
             for object_id in point_objects_ids:
-                objects_ids_arrounds_by_point[point_arround].append(object_id)
-        return objects_ids_arrounds_by_point
+                objects_ids_arounds_by_point[point_around].append(object_id)
+        return objects_ids_arounds_by_point
 
     # TODO: Ces methodes de points devrait etre ailleurs
-    def get_arround_points_of(self, point, distance=1):
+    def get_around_points_of(self, point, distance=1):
         start_x = point[1] - distance
         start_y = point[2] - distance
         #start_z = point[0] - distance
@@ -36,7 +36,7 @@ class Context(BaseContext):
         points.remove(point)
         return points
 
-    def get_arround_points_of_point(self, point):
+    def get_around_points_of_point(self, point):
         pos = point
         pz = pos[0]
         px = pos[1]
