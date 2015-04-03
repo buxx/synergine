@@ -10,7 +10,7 @@ class TestSimulation(unittest.TestCase):
     def _get_set_up_simulation(self):
         raise NotImplementedError
 
-    def _get_core_configuration(self, cycles, main_process = True):
+    def _get_core_configuration(self, cycles, main_process=True):
         return {
             'engine': {
                 'fpsmax': True,
@@ -23,16 +23,20 @@ class TestSimulation(unittest.TestCase):
             'connections': [self._connection]
         }
 
-    def get_core(self, cycles=0, main_process=True):
+    def get_core(self, cycles=0, main_process=True, modules='modules'):
         #
         #
-        core = Core(self._get_core_configuration(cycles, main_process), 'modules')
+        core = Core(self._get_core_configuration(cycles, main_process), modules)
         have_to_be_runned_by = core.have_to_be_runned_by()
         if have_to_be_runned_by:
             have_to_be_runned_by.encapsulate_run(core.run)
         return core
 
-    def _get_synergy_object_manager_for_cycle(self, cycles, main_process=True):
-        core = self.get_core(cycles, main_process)
-        core.run()
+    def _get_synergy_object_manager_for_cycle(self, cycles, main_process=True, modules='modules'):
+        core = self._run_and_get_core(cycles, main_process, modules=modules)
         return core.get_terminal(self._connection.get_name()).get_synergy_object_manager()
+
+    def _run_and_get_core(self, cycles, main_process=True, modules='modules'):
+        core = self.get_core(cycles, main_process, modules=modules)
+        core.run()
+        return core
