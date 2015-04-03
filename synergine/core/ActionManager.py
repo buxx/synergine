@@ -55,6 +55,7 @@ class ActionManager():
 
     def _get_step_index_for_dependency(self, steps, dependency):
         for step_index, step_actions in enumerate(steps):
-            if dependency in step_actions:
-                return step_index
+            for step_action in step_actions:
+                if issubclass(step_action, dependency):
+                    return step_index
         raise NotFoundError()
