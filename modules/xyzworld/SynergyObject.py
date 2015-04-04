@@ -1,6 +1,5 @@
-from intelligine.cst import PREVIOUS_DIRECTION, BLOCKED_SINCE
 from synergine.synergy.object.SynergyObject import SynergyObject as BaseSynergyObject
-from xyzworld.cst import POSITION, POSITIONS
+from xyzworld.cst import POSITION, POSITIONS, PREVIOUS_DIRECTION, BLOCKED_SINCE
 
 
 class SynergyObject(BaseSynergyObject):
