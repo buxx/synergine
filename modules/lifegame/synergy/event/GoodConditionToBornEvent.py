@@ -1,4 +1,4 @@
-from intelligine.core.exceptions import NotConcernedEvent
+from synergine.core.exceptions import NotConcernedEvent
 from xyzworld.mechanism.ArroundMechanism import ArroundMechanism
 from synergine.synergy.event.ContactEvent import ContactEvent
 from lifegame.cst import ALIVE, COL_DIED

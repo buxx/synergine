@@ -1,5 +1,5 @@
 import random
-from intelligine.core.exceptions import NotConcernedEvent
+from synergine.core.exceptions import NotConcernedEvent
 from synergine.synergy.event.Event import Event
 from lifegame.cst import COL_ALL
 

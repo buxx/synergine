@@ -1,4 +1,4 @@
-from intelligine.core.exceptions import NotConcernedEvent
+from synergine.core.exceptions import NotConcernedEvent
 from synergine.core.simulation.mechanism.Mechanism import Mechanism
 
 
