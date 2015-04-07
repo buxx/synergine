@@ -6,5 +6,5 @@ class TimePassEvent(Event):
 
   concern = COL_ALL
 
-  def _object_match(self, obj, context, parameters={}):
-      return True
+  def _prepare(self, obj, context, parameters={}):
+      return parameters

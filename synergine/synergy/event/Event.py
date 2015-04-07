@@ -1,5 +1,6 @@
-from synergine.synergy.object import SynergyObject
+from intelligine.core.exceptions import NotConcernedEvent
 from synergine.core.simulation.mechanism.Mechanism import Mechanism
+
 
 class Event():
 
@@ -19,12 +20,16 @@ class Event():
 
     def observe(self, object_id, context, parameters={}):
         active_actions = []
-        if self._object_match(object_id, context, parameters):
+        try:
+            parameters = self._prepare(object_id, context, parameters)
             for action in self._actions:
                 action_object = action(object_id, parameters)
                 action_object.prepare(context)
                 active_actions.append(action_object)
+        except NotConcernedEvent:
+            pass  # Object not concerned by this event
+
         return active_actions
 
-    def _object_match(self, object_id, context, parameters={}):
+    def _prepare(self, object_id, context, parameters={}):
         raise NotImplementedError()
