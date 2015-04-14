@@ -32,4 +32,4 @@ class Event():
         return active_actions
 
     def _prepare(self, object_id, context, parameters={}):
-        raise NotImplementedError()
+        return parameters
