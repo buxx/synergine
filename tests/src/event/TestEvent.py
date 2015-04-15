@@ -6,5 +6,5 @@ class TestEvent(Event):
 
     concern = COL_COMPUTABLE
 
-    def _object_match(self, object_id, context, parameters={}):
-        return True
+    def _prepare(self, object_id, context, parameters={}):
+        return parameters
