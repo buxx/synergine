@@ -24,7 +24,6 @@ class Event():
             parameters = self._prepare(object_id, context, parameters)
             for action in self._actions:
                 action_object = action(object_id, parameters)
-                action_object.prepare(context)
                 active_actions.append(action_object)
         except NotConcernedEvent:
             pass  # Object not concerned by this event
