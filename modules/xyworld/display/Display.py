@@ -57,10 +57,13 @@ class Display(BaseDisplay):
         self._zone.update_width(height-2)
 
     def _draw_objects_with_decal(self, position, objects):
-        pixel_point = self._grid.get_real_pixel_point(position)
-        adapted_point = (pixel_point[0]-self._display_decal[0]*self._grid.get_cell_size(),
-                         pixel_point[1]-self._display_decal[1]*self._grid.get_cell_size())
+        adapted_point = self._get_real_pixel_position_of_position(position)
         self.draw_objects(objects, adapted_point)
+
+    def _get_real_pixel_position_of_position(self, position):
+        pixel_point = self._grid.get_real_pixel_point(position)
+        return (pixel_point[0]-self._display_decal[0]*self._grid.get_cell_size(),
+                pixel_point[1]-self._display_decal[1]*self._grid.get_cell_size())
 
     def draw_objects(self, objects, point):
         raise NotImplementedError

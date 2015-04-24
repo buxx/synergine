@@ -100,6 +100,10 @@ class PygameDisplay(XyDisplay):
         visual_surface = self._get_visual_surface(obj_visual)
         self._screen.blit(visual_surface, point)
 
+    def draw_surface(self, position, surface):
+        adapted_point = self._get_real_pixel_position_of_position(position)
+        self._screen.blit(surface, adapted_point)
+
     def _get_visual_surface(self, obj_visual):
         ratio = self._grid.get_ratio()
         if obj_visual in self._visuals_surface_cache:

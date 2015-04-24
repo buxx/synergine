@@ -4,10 +4,15 @@ from synergine.core.exception.NotFoundError import NotFoundError
 
 
 class ObjectVisualizer():
+    """
+    TODO: Il y a eu un ajout, notion de surface directement en plus des objets.
+          Du coups c'est sale et pas DRY. A reviser.
+    """
 
     def __init__(self, config: dict, context):
         config_manager = ConfigurationManager(config)
         self._visualisation_configuration = config_manager.get('objects', {})
+        self._surface_configuration = config_manager.get('surfaces', {})
         self._objects_class_mapped = {}
         self._context = context
         self._callback_position = config_manager.get('callbacks.position', 0)
@@ -17,9 +22,20 @@ class ObjectVisualizer():
         if 'callbacks' in visualisation_definition:
             for callback in visualisation_definition['callbacks']:
                 callback_return = callback(obj, self._context)
+                # TODO: Exception au lieu de False
                 if callback_return is not False:
                     return callback_return
         return visualisation_definition['default']
+
+    def get_surface(self, surface_name, parameters={}):
+        surface_definition = self._get_surface_definition(surface_name)
+        if 'callbacks' in surface_definition:
+            for callback in surface_definition['callbacks']:
+                callback_return = callback(parameters, self._context)
+                # TODO: Exception au lieu de False
+                if callback_return is not False:
+                    return callback_return.get_surface()
+        return surface_definition['default'].get_surface()
 
     def get_for_position(self, position, objects):
         if self._callback_position:
@@ -50,3 +66,6 @@ class ObjectVisualizer():
             self._objects_class_mapped[class_name] = object_visualisation_definition
 
         return self._objects_class_mapped[class_name]
+
+    def _get_surface_definition(self, surface_name):
+        return self._surface_configuration[surface_name]
