@@ -1,3 +1,4 @@
+from synergine.core.exceptions import UselessMechanism
 from synergine.lib.process.tool import get_chunk
 
 
@@ -29,9 +30,13 @@ class Mechanism():
                                                   context.get_current_chunk_position(),
                                                   context.metas.collections.get(event.concern, allow_empty=True))
                 for object_id in concerned_objects_ids:
-                    event_actions = event.observe(object_id, context, self._get_object_parameters(object_id, context))
-                    for event_action in event_actions:
-                        actions.append(event_action)
+                    try:
+                        event_parameters = self._get_object_parameters(object_id, context)
+                        event_actions = event.observe(object_id, context, event_parameters)
+                        for event_action in event_actions:
+                            actions.append(event_action)
+                    except UselessMechanism:
+                        pass # If mechanism useless on this object, don't observe.
         return actions
 
     def _get_computed_object_event_parameters(self, object_id, context):

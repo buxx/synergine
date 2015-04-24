@@ -1,3 +1,4 @@
+from synergine.core.exceptions import UselessMechanism
 from synergine.core.simulation.mechanism.Mechanism import Mechanism
 from xyzworld.cst import POSITION
 
@@ -11,4 +12,8 @@ class ArroundMechanism(Mechanism):
     def _get_computed_object_event_parameters(self, object_id, context):
         object_point = context.metas.value.get(POSITION, object_id)
         objects_ids_near = context.get_objects_ids_near_point(object_point, 1)
+
+        if not objects_ids_near:
+            raise UselessMechanism()
+
         return {'objects_ids_near': objects_ids_near}

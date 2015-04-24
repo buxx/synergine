@@ -4,3 +4,7 @@ class EventException(Exception):
 
 class NotConcernedEvent(EventException):
     pass
+
+
+class UselessMechanism(EventException):
+    pass
