@@ -41,7 +41,8 @@ class Core():
         self._factory = Factory()
         self._synergy_object_manager = SynergyObjectManager(self._configuration_manager.get('simulations'),
                                                             self._context)
-        self._cycle_calculator = CycleCalculator(self._synergy_object_manager,
+        self._cycle_calculator = CycleCalculator(self._context,
+                                                 self._synergy_object_manager,
                                                  force_main_process=self._configuration_manager.get(
                                                      'engine.debug.mainprocess'))  # TODO: debug in conf
         self._space_data_connector = SpaceDataConnector()
@@ -74,7 +75,7 @@ class Core():
 
             self._update_last_cycle_time()
             # start_time = time()
-            actions_done = self._cycle_calculator.compute(self._context)  # TODO: le context peut etre donne au init
+            actions_done = self._cycle_calculator.compute()
             self._run_connecteds(actions_done)
             # print(time() - start_time)
             self._wait_for_next_cycle()

@@ -12,8 +12,9 @@ class CycleCalculator():
 
     ACTION_RUNNED = 'signal.action_runned'
 
-    def __init__(self, synergy_manager, force_main_process=False):
+    def __init__(self, context, synergy_manager, force_main_process=False):
         # TODO: nbprocess
+        self._context = context
         self._synergy_manager = synergy_manager
         self._event_manager = EventManager(self._synergy_manager)
         self._event_manager.refresh()
@@ -25,22 +26,22 @@ class CycleCalculator():
     def get_cycle(self):
         return self._cycle
 
-    def compute(self, context):
+    def compute(self):
         self._cycle += 1
         print('cycle: ', self._cycle)
         self._current_cycle_actions_done = []
-        self._compute_events(context)
+        self._compute_events()
         return self._current_cycle_actions_done
 
-    def _compute_events(self, context):
+    def _compute_events(self):
         for step_key, mechanisms in enumerate(self._event_manager.get_mechanisms_steps()):
-            actions = self._get_computeds_objects(step_key, context)
-            self._apply_actions(actions, context)
+            actions = self._get_computeds_objects(step_key)
+            self._apply_actions(actions)
         for simulation in self._synergy_manager.get_simulations():
-            simulation.end_cycle(context)
+            simulation.end_cycle(self._context)
 
-    def _get_computeds_objects(self, step_key, context):
-        pipe_package = self._get_pipe_package_for_collection(step_key, context)
+    def _get_computeds_objects(self, step_key):
+        pipe_package = self._get_pipe_package_for_collection(step_key)
         if not self._force_main_process:
             computeds_objects = self._process_manager.get_their_work(pipe_package)
         else:
@@ -49,13 +50,13 @@ class CycleCalculator():
             computeds_objects = self._process_compute(pipe_package)
         return computeds_objects
 
-    def _get_pipe_package_for_collection(self, step_key, context):
+    def _get_pipe_package_for_collection(self, step_key):
         pipe_package = PipePackage()
         pipe_package.set_step_key(step_key)
-        context.set_cycle(self._cycle)
+        self._context.set_cycle(self._cycle)
         # TODO: 1: Seule les metas ont besoin d'etre trimbale
         # TODO: 2: Transporter le differentiel des metas pour le calculs a traver le reseau
-        pipe_package.set_context(context)
+        pipe_package.set_context(self._context)
 
         # TODO: Le paquet de retour contient les actions instancies. Allerger en ne transportant
         # que la liste d'acctions a fabriquer et qu'un seul
@@ -82,12 +83,12 @@ class CycleCalculator():
                 actions.append(mechanism_action)
         return actions
 
-    def _apply_actions(self, actions, context):
+    def _apply_actions(self, actions):
         for action in actions:
             obj = self._synergy_manager.get_map().get_object(action.get_object_id())
             try:
-                action.run(obj, context, self._synergy_manager)
-                Signals.signal(action.__class__).send(obj=obj, context=context)
+                action.run(obj, self._context, self._synergy_manager)
+                Signals.signal(action.__class__).send(obj=obj, context=self._context)
                 self._current_cycle_actions_done.append(action)
             except ActionAborted:
                 pass
