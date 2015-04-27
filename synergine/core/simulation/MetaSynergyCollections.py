@@ -1,7 +1,7 @@
 from synergine.lib.eint import IncrementedNamedInt
 
-class MetaSynergyCollections():
 
+class MetaSynergyCollections():
     COLS = IncrementedNamedInt.get('synergine.cols')
 
     def __init__(self, list):

@@ -7,15 +7,16 @@ if sys.version_info < (3, 3):
 from multiprocessing import Process, Pipe
 from multiprocessing.connection import wait
 
-def chunk(seq,m):
-     i,j,x=len(seq),0,[]
-     for k in range(m):
-         a, j = j, j + (i+k)//m
-         x.append(seq[a:j])
-     return x
+
+def chunk(seq, m):
+    i, j, x = len(seq), 0, []
+    for k in range(m):
+        a, j = j, j + (i + k) // m
+        x.append(seq[a:j])
+    return x
+
 
 class PipePackage():
-
     def __init__(self):
         self._current_process_id = None
         self._count_processes = 0
@@ -26,8 +27,8 @@ class PipePackage():
     def setCountProcess(self, count):
         self._count_processes = count
 
-class KeepedAliveProcessManager():
 
+class KeepedAliveProcessManager():
     def __init__(self, nb_process, target):
         self.processs = []
         self.target = target
@@ -43,7 +44,8 @@ class KeepedAliveProcessManager():
             self.readers_pipes.append(local_read_pipe)
             self.writers_pipes.append(process_write_pipe)
             pipe_package.setCurrentProcessId(i)
-            p = Process(target=run_keeped_process, args=(self.target, local_write_pipe, process_read_pipe, pipe_package))
+            p = Process(target=run_keeped_process,
+                        args=(self.target, local_write_pipe, process_read_pipe, pipe_package))
             p.start()
             self.processs.append(p)
             local_write_pipe.close()
@@ -58,7 +60,7 @@ class KeepedAliveProcessManager():
             self._start(pipe_package)
         else:
             for i in range(self.nb_process):
-                #print('send things')
+                # print('send things')
                 pipe_package.setCurrentProcessId(i)
                 self.writers_pipes[i].send(pipe_package)
         things_done_collection = []
@@ -79,6 +81,7 @@ class KeepedAliveProcessManager():
         self.readers_pipes = reader_useds
         return things_done_collection
 
+
 def run_keeped_process(target, main_write_pipe, process_read_pipe, new_things):
     while new_things != 'stop':
         things_dones = target(new_things)
@@ -93,5 +96,5 @@ def run_keeped_process(target, main_write_pipe, process_read_pipe, new_things):
                 finally:
                     readers.remove(r)
 
-    #if new_things != 'stop':
-    #    run_keeped_process(target, main_write_pipe, process_read_pipe, new_things)
+                    # if new_things != 'stop':
+                    # run_keeped_process(target, main_write_pipe, process_read_pipe, new_things)

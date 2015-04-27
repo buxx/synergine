@@ -5,13 +5,12 @@ from synergine.core.simulation.MetaSynergyCollections import MetaSynergyCollecti
 
 
 class MetaDatas():
+    def __init__(self):
+        self.list = MetaCollections()
+        self.value = MetaValue()
+        self.states = MetaStates(self.list)
+        self.collections = MetaSynergyCollections(self.list)
 
-  def __init__(self):
-    self.list = MetaCollections()
-    self.value = MetaValue()
-    self.states = MetaStates(self.list)
-    self.collections = MetaSynergyCollections(self.list)
-
-  def reset(self):
-    self.list.reset()
-    self.value.reset()
+    def reset(self):
+        self.list.reset()
+        self.value.reset()

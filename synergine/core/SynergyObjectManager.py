@@ -6,8 +6,8 @@ from synergine.core.Signals import Signals
 
 
 class SynergyObjectManager():
-    #todo refactoriser getcoll
-    #todo renommer en synergy manager
+    # todo refactoriser getcoll
+    # todo renommer en synergy manager
 
     def __init__(self, simulations, context):
         self._simulations = simulations
@@ -19,10 +19,10 @@ class SynergyObjectManager():
         Signals.signal(SynergyCollection.SIGNAL_REMOVE_OBJECT).connect(self._collection_remove_object)
 
     def _initialize_objects(self):
-      for simulation in self._simulations:
-          for collection in simulation.get_collections():
-              collection.initialize_objects(self._context)
-          simulation.connect_actions_signals(Signals)
+        for simulation in self._simulations:
+            for collection in simulation.get_collections():
+                collection.initialize_objects(self._context)
+            simulation.connect_actions_signals(Signals)
 
     def _initialize_map(self):
         for obj in self.get_objects():

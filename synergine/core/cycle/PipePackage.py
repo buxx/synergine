@@ -1,5 +1,6 @@
 from synergine.lib.process.processmanager import PipePackage as BasePipePackage
 
+
 class PipePackage(BasePipePackage):
     """
     Object used to send data to process
@@ -9,6 +10,7 @@ class PipePackage(BasePipePackage):
         super().__init__()
         self._mechanisms = []
         self._step_key = 0
+        self._context = None
 
     def set_context(self, context):
         self._context = context

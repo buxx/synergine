@@ -18,7 +18,7 @@ class Core():
     """
 
     _configuration_manager = ConfigurationManager()
-    #_context = self._configuration_manager.get('app.classes.Context', Context)()
+    # _context = self._configuration_manager.get('app.classes.Context', Context)()
 
     @classmethod
     def start_core(cls, config, modules_path='module'):  # TODO: path en relatif !
@@ -39,26 +39,28 @@ class Core():
         self._context.metas.reset()
         Signals.reset()
         self._factory = Factory()
-        self._synergy_object_manager = SynergyObjectManager(self._configuration_manager.get('simulations'), self._context)
-        self._cycle_calculator = CycleCalculator(self._synergy_object_manager, force_main_process=self._configuration_manager.get('engine.debug.mainprocess')) # TODO: debug in conf
+        self._synergy_object_manager = SynergyObjectManager(self._configuration_manager.get('simulations'),
+                                                            self._context)
+        self._cycle_calculator = CycleCalculator(self._synergy_object_manager,
+                                                 force_main_process=self._configuration_manager.get(
+                                                     'engine.debug.mainprocess'))  # TODO: debug in conf
         self._space_data_connector = SpaceDataConnector()
         self._last_cycle_time = time()
         self._maxfps = self._configuration_manager.get('engine.fpsmax')
         self._connector = Connector(self._synergy_object_manager, self._context)
         self._initialize_connecteds()
 
-
     def _load_configuration(self, modules_path, app_config):
         modules = [file for file in listdir(modules_path) if isdir(join_path(modules_path, file))]
         for module in modules:
             try:
-                module_config_module = import_module(modules_path+'.'+module+'.config')
+                module_config_module = import_module(modules_path + '.' + module + '.config')
                 self._configuration_manager.load(module_config_module.config)
             except ImportError:
                 pass
         self._configuration_manager.load(app_config)
 
-    def run(self, screen = None): # TODO: screen: Rendre pour le cas ou le display n'a pas besoin de ca
+    def run(self, screen=None):  # TODO: screen: Rendre pour le cas ou le display n'a pas besoin de ca
         if screen:
             self._connector.send_screen_to_connection(screen)
         self._run_connecteds()
@@ -67,18 +69,18 @@ class Core():
         cycles = self._configuration_manager.get('engine.debug.cycles', -1)
         finish = False
         if cycles is 0:
-          finish = True
+            finish = True
         while not finish:
 
             self._update_last_cycle_time()
-            #start_time = time()
+            # start_time = time()
             self._cycle_calculator.compute(self._context)  # TODO: le context peut etre donne au init
             self._run_connecteds()
-            #print(time() - start_time)
+            # print(time() - start_time)
             self._wait_for_next_cycle()
 
             if self._cycle_calculator.get_cycle() >= cycles and cycles is not -1:
-              finish = True
+                finish = True
 
         self._end()
 
@@ -91,10 +93,11 @@ class Core():
 
     def _wait_for_next_cycle(self):
         if self._maxfps is not True:
-            sleep(max(1./self._maxfps - (time() - self._last_cycle_time), 0))
+            sleep(max(1. / self._maxfps - (time() - self._last_cycle_time), 0))
 
     def _initialize_connecteds(self):
-        self._connector.initialize_terminals(self._configuration_manager.get('connections'), self._configuration_manager)
+        self._connector.initialize_terminals(self._configuration_manager.get('connections'),
+                                             self._configuration_manager)
 
     def _run_connecteds(self):
         self._connector.cycle()

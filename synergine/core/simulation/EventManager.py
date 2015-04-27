@@ -1,6 +1,7 @@
 from synergine.core.ActionManager import ActionManager
 from synergine.synergy.collection.SynergyCollection import SynergyCollection
 
+
 class EventManager():
     """
     Manager of collection events.

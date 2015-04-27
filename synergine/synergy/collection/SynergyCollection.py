@@ -1,5 +1,4 @@
 from synergine.synergy.collection.SynergyCollectionInterface import SynergyCollectionInterface
-#from synergine.synergy.object.SynergyObject import SynergyObject
 from synergine.core.config.ConfigurationManager import ConfigurationManager
 from synergine.core.Signals import Signals
 from synergine.lib.eint import IncrementedNamedInt

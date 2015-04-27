@@ -8,8 +8,8 @@ class Context():
     """
 
     def __init__(self):
-        #self._synergy_object_manager = synergy_object_manager
-        #self._map = {}
+        # self._synergy_object_manager = synergy_object_manager
+        # self._map = {}
         self.metas = MetaDatas()
         self._cycle = 0
         self._total_chunk = 0
@@ -19,7 +19,7 @@ class Context():
         self._cycle = cycle
 
     def get_cycle(self):
-      return self._cycle
+        return self._cycle
 
     def set_total_chunk(self, total_chunk):
         self._total_chunk = total_chunk

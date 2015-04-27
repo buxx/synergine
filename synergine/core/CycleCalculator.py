@@ -12,7 +12,7 @@ class CycleCalculator():
 
     ACTION_RUNNED = 'signal.action_runned'
 
-    def __init__(self, synergy_manager, force_main_process = False):
+    def __init__(self, synergy_manager, force_main_process=False):
         # TODO: nbprocess
         self._synergy_manager = synergy_manager
         self._event_manager = EventManager(self._synergy_manager)
@@ -22,7 +22,7 @@ class CycleCalculator():
         self._cycle = 0
 
     def get_cycle(self):
-      return self._cycle
+        return self._cycle
 
     def compute(self, context):
         self._cycle += 1
@@ -56,7 +56,7 @@ class CycleCalculator():
 
         # TODO: Le paquet de retour contient les actions instancies. Allerger en ne transportant
         # que la liste d'acctions a fabriquer et qu'un seul
-        # exemplaire de parametres actions ?
+        #  exemplaire de parametres actions ?
         # import sys
         # import pickle
         # size = sys.getsizeof(pickle.dumps(pipe_package))

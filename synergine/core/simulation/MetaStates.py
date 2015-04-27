@@ -1,11 +1,11 @@
 from synergine.synergy.Simulation import Simulation
 
-class MetaStates():
 
+class MetaStates():
     def __init__(self, list):
         self._list = list
 
-    # TODO: have_list etc
+    #  TODO: have_list etc
     def have_list(self, object_id, states):
         for state in states:
             if not self._list.have(Simulation.STATE, object_id, state, allow_empty=True):

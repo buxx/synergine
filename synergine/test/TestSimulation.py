@@ -2,8 +2,8 @@ import unittest
 from synergine.core.Core import Core
 from synergine.test.TestTerminal import TestTerminal
 
-class TestSimulation(unittest.TestCase):
 
+class TestSimulation(unittest.TestCase):
     def setUp(self):
         self._connection = TestTerminal
 
@@ -19,7 +19,7 @@ class TestSimulation(unittest.TestCase):
                     'cycles': cycles
                 }
             },
-            'simulations' : [self._get_set_up_simulation()],
+            'simulations': [self._get_set_up_simulation()],
             'connections': [self._connection]
         }
 
