@@ -24,7 +24,7 @@ class Connector():
         :return: void
         """
         for terminal_class in terminals_classes:
-            terminal = terminal_class(configuration, self._context)
+            terminal = terminal_class(configuration, self._context, self._synergy_object_manager)
             terminal.initialize()
             self._terminals.append(terminal)
 
@@ -35,7 +35,7 @@ class Connector():
     def _send(self, actions_done):
         for terminal in self._terminals:
             terminal.start_of_cycle()
-            terminal.receive(self._synergy_object_manager, self._context, actions_done)  # TODO: pas necessaire de passer syner obj manag, ni context
+            terminal.receive(actions_done)
             terminal.end_of_cycle()
 
     def terminate(self):

@@ -7,8 +7,8 @@ class CursesDisplay(XyDisplay):
 
     _name = "curses"
 
-    def __init__(self, config, context):
-        super().__init__(config, context)
+    def __init__(self, config, context, synergy_manager):
+        super().__init__(config, context, synergy_manager)
         self._screen = None
         self._screen_size = (0, 0)
 

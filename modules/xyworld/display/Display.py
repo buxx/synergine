@@ -13,8 +13,8 @@ class Display(BaseDisplay):
     MOVE_DIRECTION_RIGHT = (0, 1)
     MOVE_DIRECTION_DOWN = (1, 0)
 
-    def __init__(self, config, context):
-        super().__init__(config, context)
+    def __init__(self, config, context, synergy_manager):
+        super().__init__(config, context, synergy_manager)
         self._zone = DisplayZone(20, 40)
         self._display_decal = (0, 0)
         self._grid = None
@@ -28,8 +28,7 @@ class Display(BaseDisplay):
         # TODO: is inside en prennant en compte le zoom
         return self._zone.point_is_inside(position)
 
-
-    def receive(self, synergy_object_manager: SynergyObjectManager, context, actions_done):
+    def receive(self, actions_done):
         # Idee: recevoir les objets organises par positions (POSITIONS)
         """
         a: pour chaque position, si position displayable, draw les objets de la position
@@ -39,10 +38,10 @@ class Display(BaseDisplay):
         # for object_to_display in synergy_object_manager.get_objects_to_display():
         #     if self._object_displayable(object_to_display):
         #         self._draw_object_with_decal(object_to_display)
-        positions = context.metas.list.get_collection(POSITIONS)
+        positions = self._context.metas.list.get_collection(POSITIONS)
         for position in positions:
             if self._position_displayable(position):
-                objects_in_position = [synergy_object_manager.get_map().get_object(obj_id) \
+                objects_in_position = [self._synergy_manager.get_map().get_object(obj_id)
                                        for obj_id in positions[position]]
                 self._draw_objects_with_decal(position, objects_in_position)
 

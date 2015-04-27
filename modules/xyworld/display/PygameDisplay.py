@@ -6,8 +6,8 @@ class PygameDisplay(XyDisplay):
 
     _name = "pygame"
 
-    def __init__(self, config, context):
-        super().__init__(config, context)
+    def __init__(self, config, context, synergy_manager):
+        super().__init__(config, context, synergy_manager)
         self._screen = None
         self._screen_size = (0, 0)
         self._event = None

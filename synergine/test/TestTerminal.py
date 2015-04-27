@@ -4,13 +4,12 @@ from synergine.core.connection.Terminal import Terminal
 class TestTerminal(Terminal):
     _name = 'tests_test'
 
-    def __init__(self, config, context):
-        super().__init__(config, context)
-        self._synergy_object_manager = None
+    def __init__(self, config, context, synergy_manager):
+        super().__init__(config, context, synergy_manager)
 
     # TODO: inutile non ?
-    def receive(self, synergy_object_manager, context, actions_done):
-        self._synergy_object_manager = synergy_object_manager
+    def receive(self, actions_done):
+        pass
 
     def get_synergy_object_manager(self):
-        return self._synergy_object_manager
+        return self._synergy_manager

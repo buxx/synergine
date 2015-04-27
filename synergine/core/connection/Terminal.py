@@ -14,7 +14,7 @@ class Terminal():
             raise Exception("Terminal must be named")
         return cls._name
 
-    def __init__(self, config, context):
+    def __init__(self, config, context, synergy_manager):
         """
 
         :param config: ConfigurationManager
@@ -23,6 +23,7 @@ class Terminal():
         self._encapsuled_run = False
         self._config = config
         self._context = context
+        self._synergy_manager = synergy_manager
 
     def _get_config(self, config_name, default=None):
         try:
@@ -63,7 +64,7 @@ class Terminal():
     def initialize_screen(self, screen):
         pass
 
-    def receive(self, synergy_object_manager, context, actions_done):
+    def receive(self, actions_done):
         pass
 
     def terminate(self):
