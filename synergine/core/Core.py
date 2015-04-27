@@ -74,8 +74,8 @@ class Core():
 
             self._update_last_cycle_time()
             # start_time = time()
-            self._cycle_calculator.compute(self._context)  # TODO: le context peut etre donne au init
-            self._run_connecteds()
+            actions_done = self._cycle_calculator.compute(self._context)  # TODO: le context peut etre donne au init
+            self._run_connecteds(actions_done)
             # print(time() - start_time)
             self._wait_for_next_cycle()
 
@@ -99,8 +99,8 @@ class Core():
         self._connector.initialize_terminals(self._configuration_manager.get('connections'),
                                              self._configuration_manager)
 
-    def _run_connecteds(self):
-        self._connector.cycle()
+    def _run_connecteds(self, actions_done=[]):
+        self._connector.cycle(actions_done)
 
     def have_to_be_runned_by(self):
         return self._connector.get_connection_who_have_to_run_core()

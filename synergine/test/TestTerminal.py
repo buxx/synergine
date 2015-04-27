@@ -9,7 +9,7 @@ class TestTerminal(Terminal):
         self._synergy_object_manager = None
 
     # TODO: inutile non ?
-    def receive(self, synergy_object_manager, context):
+    def receive(self, synergy_object_manager, context, actions_done):
         self._synergy_object_manager = synergy_object_manager
 
     def get_synergy_object_manager(self):

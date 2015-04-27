@@ -29,7 +29,7 @@ class Display(BaseDisplay):
         return self._zone.point_is_inside(position)
 
 
-    def receive(self, synergy_object_manager: SynergyObjectManager, context):
+    def receive(self, synergy_object_manager: SynergyObjectManager, context, actions_done):
         # Idee: recevoir les objets organises par positions (POSITIONS)
         """
         a: pour chaque position, si position displayable, draw les objets de la position

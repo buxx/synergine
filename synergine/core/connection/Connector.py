@@ -28,14 +28,14 @@ class Connector():
             terminal.initialize()
             self._terminals.append(terminal)
 
-    def cycle(self):
+    def cycle(self, actions_done):
         if True: # Stuff est-ce que 25 fps etc
-            self._send()
+            self._send(actions_done)
 
-    def _send(self):
+    def _send(self, actions_done):
         for terminal in self._terminals:
             terminal.start_of_cycle()
-            terminal.receive(self._synergy_object_manager, self._context)  # TODO: pas necessaire de passer syner obj manag
+            terminal.receive(self._synergy_object_manager, self._context, actions_done)  # TODO: pas necessaire de passer syner obj manag, ni context
             terminal.end_of_cycle()
 
     def terminate(self):

@@ -9,7 +9,7 @@ class TravellerDisplay(PygameDisplay):
     afficher les relations entre les towns
     """
 
-    def receive(self, synergy_object_manager, context):
+    def receive(self, synergy_object_manager, context, actions_done):
         self._draw_town_links(synergy_object_manager.get_objects_by_type(Town), context)
         self._draw_traveller_routes(synergy_object_manager.get_objects_by_type(Traveller))
 
@@ -26,7 +26,7 @@ class TravellerDisplay(PygameDisplay):
             label = self._default_font.render(str(traveller).replace('<traveller.synergy.Traveller.Traveller object at', '').replace('>', ''), 1, (255,255,0))
             self._screen.blit(label, (screen_point[1], screen_point[2]+20))
 
-        super().receive(synergy_object_manager, context)
+        super().receive(synergy_object_manager, context, actions_done)
 
     def _draw_town_links(self, towns, context):
         for town_a in towns:

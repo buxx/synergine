@@ -20,6 +20,7 @@ class CycleCalculator():
         self._force_main_process = force_main_process
         self._process_manager = KeepedAliveProcessManager(nb_process=2, target=self._process_compute)
         self._cycle = 0
+        self._current_cycle_actions_done = []
 
     def get_cycle(self):
         return self._cycle
@@ -27,7 +28,9 @@ class CycleCalculator():
     def compute(self, context):
         self._cycle += 1
         print('cycle: ', self._cycle)
+        self._current_cycle_actions_done = []
         self._compute_events(context)
+        return self._current_cycle_actions_done
 
     def _compute_events(self, context):
         for step_key, mechanisms in enumerate(self._event_manager.get_mechanisms_steps()):
@@ -85,6 +88,7 @@ class CycleCalculator():
             try:
                 action.run(obj, context, self._synergy_manager)
                 Signals.signal(action.__class__).send(obj=obj, context=context)
+                self._current_cycle_actions_done.append(action)
             except ActionAborted:
                 pass
 
