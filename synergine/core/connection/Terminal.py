@@ -60,7 +60,6 @@ class Terminal():
     def end_of_cycle(self):
         pass
 
-    # TODO: Renommer
     def initialize_screen(self, screen):
         pass
 

@@ -1,13 +1,10 @@
 from os import getcwd
 from sys import path as ppath
-ppath.insert(1,getcwd()+'/modules') # TODO: win32 compatibilite (python path)
+ppath.insert(1,getcwd()+'/modules')
 
 import unittest
 from lifegame.test.LifeGameTestSuite import LifeGameTestSuite
 from tests.TestSuite import TestSuite
-
-# TODO: Lister les tests ailleurs ? Recuperer les suite de tests de module auto
-# (rappel: avant on utilise config.config mais il y avait un import croise)
 
 runnable = unittest.TestSuite()
 tests_suites = [TestSuite(), LifeGameTestSuite()]
