@@ -15,13 +15,13 @@ from synergine.core.Signals import Signals
 class Core():
     """
     Core of Synergine
+    Manage cycle calculator, terminals, ...
     """
 
     _configuration_manager = ConfigurationManager()
-    # _context = self._configuration_manager.get('app.classes.Context', Context)()
 
     @classmethod
-    def start_core(cls, config, modules_path='module'):  # TODO: path en relatif !
+    def start_core(cls, config, modules_path='module'):
         core = cls(config, modules_path)
         have_to_be_runned_by = core.have_to_be_runned_by()
         if have_to_be_runned_by:
@@ -44,7 +44,7 @@ class Core():
         self._cycle_calculator = CycleCalculator(self._context,
                                                  self._synergy_object_manager,
                                                  force_main_process=self._configuration_manager.get(
-                                                     'engine.debug.mainprocess'))  # TODO: debug in conf
+                                                     'engine.debug.mainprocess'))
         self._space_data_connector = SpaceDataConnector()
         self._last_cycle_time = time()
         self._maxfps = self._configuration_manager.get('engine.fpsmax')
@@ -61,7 +61,7 @@ class Core():
                 pass
         self._configuration_manager.load(app_config)
 
-    def run(self, screen=None):  # TODO: screen: Rendre pour le cas ou le display n'a pas besoin de ca
+    def run(self, screen=None):
         if screen:
             self._connector.send_screen_to_connection(screen)
         self._run_connecteds()
