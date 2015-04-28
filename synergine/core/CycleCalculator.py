@@ -12,14 +12,16 @@ class CycleCalculator():
 
     ACTION_RUNNED = 'signal.action_runned'
 
-    def __init__(self, context, synergy_manager, force_main_process=False):
-        # TODO: nbprocess
+    def __init__(self, context, synergy_manager, config, force_main_process=False):
         self._context = context
         self._synergy_manager = synergy_manager
         self._event_manager = EventManager(self._synergy_manager)
         self._event_manager.refresh()
         self._force_main_process = force_main_process
-        self._process_manager = KeepedAliveProcessManager(nb_process=2, target=self._process_compute)
+        self._config = config
+        # TODO: Recuprer le nb de process depuis l'os
+        self._process_manager = KeepedAliveProcessManager(nb_process=self._config.get('engine.processes', 2),
+                                                          target=self._process_compute)
         self._cycle = 0
         self._current_cycle_actions_done = []
 
@@ -58,9 +60,8 @@ class CycleCalculator():
         # TODO: 2: Transporter le differentiel des metas pour le calculs a traver le reseau
         pipe_package.set_context(self._context)
 
-        # TODO: Le paquet de retour contient les actions instancies. Allerger en ne transportant
-        # que la liste d'acctions a fabriquer et qu'un seul
-        #  exemplaire de parametres actions ?
+        # TODO: Le paquet de retour contient les actions instancies. On peu alleger le paquet en retournant qqch comme ca:
+        # {action_id: ((obj_id, obj_id, ...), parameters)}
         # import sys
         # import pickle
         # size = sys.getsizeof(pickle.dumps(pipe_package))

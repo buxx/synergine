@@ -43,6 +43,7 @@ class Core():
                                                             self._context)
         self._cycle_calculator = CycleCalculator(self._context,
                                                  self._synergy_object_manager,
+                                                 self.get_configuration_manager(),
                                                  force_main_process=self._configuration_manager.get(
                                                      'engine.debug.mainprocess'))
         self._space_data_connector = SpaceDataConnector()
