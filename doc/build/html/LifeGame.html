@@ -1,0 +1,490 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>HowTo Project: LifeGame &mdash; Synergine 0.0.1 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Synergine 0.0.1 documentation" href="index.html" />
+    <link rel="prev" title="Components" href="Components.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="Components.html" title="Components"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Synergine 0.0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="howto-project-lifegame">
+<h1>HowTo Project: LifeGame<a class="headerlink" href="#howto-project-lifegame" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="objective">
+<h2>Objective<a class="headerlink" href="#objective" title="Permalink to this headline">¶</a></h2>
+<p>This howto will help you to discover synergine with a simple implementation. We will only show you the code of main
+logic. But all not displayed code here is described in main documentation. TODO: lien vers builtin modules</p>
+<p>The howto project implement the &#8220;Conway&#8217;s Game of Life&#8221;.</p>
+<p>From Wikipedia, the free encyclopedia:</p>
+<div class="highlight-python"><div class="highlight"><pre>The Game of Life, also known simply as Life, is a cellular automaton devised by
+the British mathematician John Horton Conway in 1970.
+
+The &quot;game&quot; is a zero-player game, meaning that its evolution is determined by
+its initial state, requiring no further input. One interacts with the Game of
+Life by creating an initial configuration and observing how it evolves or, for
+advanced players, by creating patterns with particular properties.
+</pre></div>
+</div>
+</div>
+<div class="section" id="content-of-simulation">
+<h2>Content of simulation<a class="headerlink" href="#content-of-simulation" title="Permalink to this headline">¶</a></h2>
+<p>Our simulation will simply implement a basic pattern of &#8220;Conway&#8217;s Game of Life&#8221; and visualisation tools.</p>
+<div class="section" id="simulation">
+<h3>Simulation<a class="headerlink" href="#simulation" title="Permalink to this headline">¶</a></h3>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This project wil use some code of builtin module &#8220;xyzworld&#8221;. TODO: link</p>
+</div>
+<p>The objective is to implement the rules of &#8220;Conway&#8217;s Game of Life&#8221;.
+From Wikipedia, the free encyclopedia:</p>
+<div class="highlight-python"><div class="highlight"><pre>The universe of the Game of Life is an infinite two-dimensional orthogonal
+grid of square cells, each of which is in one of two possible states, alive
+or dead. Every cell interacts with its eight neighbours, which are the
+cells that are horizontally, vertically, or diagonally adjacent. At each
+step in time, the following transitions occur:
+
+1. Any live cell with fewer than two live neighbours dies, as if caused by
+   under-population.
+2. Any live cell with two or three live neighbours lives on to the next generation.
+3. Any live cell with more than three live neighbours dies, as if by overcrowding.
+4. Any dead cell with exactly three live neighbours becomes a live cell, as if by
+   reproduction.
+
+The initial pattern constitutes the seed of the system. The first generation
+is created by applying the above rules simultaneously to every cell in the
+seed—births and deaths occur simultaneously, and the discrete moment at which
+this happens is sometimes called a tick (in other words, each generation is a
+pure function of the preceding one). The rules continue to be applied repeatedly
+to create further generations.
+</pre></div>
+</div>
+</div>
+<div class="section" id="additional-features">
+<h3>Additional features<a class="headerlink" href="#additional-features" title="Permalink to this headline">¶</a></h3>
+<p>In additional of &#8220;Conway&#8217;s Game of Life&#8221; rules, we will represent differently in our 2d graphic output:</p>
+<ul class="simple">
+<li>A just born cell</li>
+<li>A born cell since 2 cycles</li>
+<li>A born cell since more 2 cycles</li>
+</ul>
+</div>
+<div class="section" id="synergyobjects">
+<h3>SynergyObjects<a class="headerlink" href="#synergyobjects" title="Permalink to this headline">¶</a></h3>
+<p>We need: A Cell.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">xyzworld.SynergyObject</span> <span class="kn">import</span> <span class="n">SynergyObject</span> <span class="k">as</span> <span class="n">XyzSynergyObject</span>
+
+
+<span class="k">class</span> <span class="nc">Cell</span><span class="p">(</span><span class="n">XyzSynergyObject</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Representation of cell.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">collection</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        :param collection: Collection who contain this Cell</span>
+<span class="sd">        :param context: The context object</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">collection</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_alive</span> <span class="o">=</span> <span class="bp">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_alive_since</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+
+    <span class="k">def</span> <span class="nf">set_alive</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alive</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Some text</span>
+
+<span class="sd">        :param alive: Foo</span>
+<span class="sd">        :return: Void</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c">#  When alive state of Cell change, self._alive is reinitialized</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_alive_since</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_alive</span> <span class="o">=</span> <span class="n">alive</span>
+
+    <span class="k">def</span> <span class="nf">is_alive</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_alive</span>
+
+    <span class="k">def</span> <span class="nf">get_is_alive_since</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        :return: Count of alive cycles.</span>
+<span class="sd">        :rtype: int</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_alive_since</span>
+
+    <span class="k">def</span> <span class="nf">end_cycle</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        At each cycle, cell is more older if it&#39;s alive.</span>
+
+<span class="sd">        :return:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_alive</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_alive_since</span> <span class="o">+=</span> <span class="mi">1</span>
+</pre></div>
+</div>
+<p>And no more for our SynergyObjects.</p>
+<p>As you can see, our Cell class is a child class of xyzworld.SynergyObject.SynergyObject. Let see it&#8217;s definition, just for know:</p>
+<dl class="class">
+<dt id="xyzworld.SynergyObject.SynergyObject">
+<em class="property">class </em><tt class="descclassname">xyzworld.SynergyObject.</tt><tt class="descname">SynergyObject</tt><big>(</big><em>collection</em>, <em>context</em><big>)</big><a class="reference internal" href="_modules/xyzworld/SynergyObject.html#SynergyObject"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#xyzworld.SynergyObject.SynergyObject" title="Permalink to this definition">¶</a></dt>
+<dd><p>This SynergyObject is designed to support a tri-dimensional environment.</p>
+<dl class="method">
+<dt id="xyzworld.SynergyObject.SynergyObject.get_position">
+<tt class="descname">get_position</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/xyzworld/SynergyObject.html#SynergyObject.get_position"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#xyzworld.SynergyObject.SynergyObject.get_position" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the actual position.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">position with (z, x, y) signature</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">tuple</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="xyzworld.SynergyObject.SynergyObject.get_previous_direction">
+<tt class="descname">get_previous_direction</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/xyzworld/SynergyObject.html#SynergyObject.get_previous_direction"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#xyzworld.SynergyObject.SynergyObject.get_previous_direction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the previous direction of object</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The previous direction</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="xyzworld.SynergyObject.SynergyObject.set_position">
+<tt class="descname">set_position</tt><big>(</big><em>point</em><big>)</big><a class="reference internal" href="_modules/xyzworld/SynergyObject.html#SynergyObject.set_position"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#xyzworld.SynergyObject.SynergyObject.set_position" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update the position. Metas are updated to.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>point</strong> (<em>tuple</em>) &#8211; position of the object, with (z, x, y) signature</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="xyzworld.SynergyObject.SynergyObject.set_previous_direction">
+<tt class="descname">set_previous_direction</tt><big>(</big><em>previous_direction</em><big>)</big><a class="reference internal" href="_modules/xyzworld/SynergyObject.html#SynergyObject.set_previous_direction"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#xyzworld.SynergyObject.SynergyObject.set_previous_direction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update the previous position of object.
+TODO: Directions pythons files must be move in xyz module.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>previous_direction</strong> &#8211; The previous direction</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="events-and-actions">
+<h3>Events and Actions<a class="headerlink" href="#events-and-actions" title="Permalink to this headline">¶</a></h3>
+<p>Events/Actions will be &#8220;born&#8221; and &#8220;die&#8221;.</p>
+<div class="section" id="born">
+<h4>Born<a class="headerlink" href="#born" title="Permalink to this headline">¶</a></h4>
+<p>The born event:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">lifegame.synergy.event.AliveAroundEvent</span> <span class="kn">import</span> <span class="n">AliveAroundEvent</span>
+<span class="kn">from</span> <span class="nn">synergine.core.exceptions</span> <span class="kn">import</span> <span class="n">NotConcernedEvent</span>
+<span class="kn">from</span> <span class="nn">xyzworld.mechanism.AroundMechanism</span> <span class="kn">import</span> <span class="n">AroundMechanism</span>
+<span class="kn">from</span> <span class="nn">lifegame.cst</span> <span class="kn">import</span> <span class="n">ALIVE</span><span class="p">,</span> <span class="n">COL_DIED</span>
+
+
+<span class="k">class</span> <span class="nc">GoodConditionToBornEvent</span><span class="p">(</span><span class="n">AliveAroundEvent</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This event is applied when born condition are here. So when exactly 3 alive cell are around of observed cell.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">concern</span> <span class="o">=</span> <span class="n">COL_DIED</span>
+    <span class="sd">&quot;&quot;&quot;This event only concern died cells.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">actions</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">actions</span><span class="p">)</span>
+        <span class="c">#  This event need to know what is around concerned cell. So we use AroundMechanism who give us list of around</span>
+        <span class="c"># objects ids.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_mechanism</span> <span class="o">=</span> <span class="n">AroundMechanism</span>
+
+    <span class="k">def</span> <span class="nf">_prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">object_id</span><span class="p">,</span> <span class="n">context</span><span class="p">,</span> <span class="n">parameters</span><span class="o">=</span><span class="p">{}):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        According to “Conway’s Game of Life”, event match if exactly 3 around cell are alive.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">cell_near_count</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_alive_cell_around_count</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">parameters</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">cell_near_count</span> <span class="ow">is</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">parameters</span>
+        <span class="c">#  If event not match, we must raise an NotConcernedEvent.</span>
+        <span class="k">raise</span> <span class="n">NotConcernedEvent</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>And his action:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">synergine.synergy.event.Action</span> <span class="kn">import</span> <span class="n">Action</span>
+<span class="kn">from</span> <span class="nn">lifegame.synergy.event.GoodConditionToBornEvent</span> <span class="kn">import</span> <span class="n">GoodConditionToBornEvent</span>
+<span class="kn">from</span> <span class="nn">lifegame.cst</span> <span class="kn">import</span> <span class="n">DIED</span><span class="p">,</span> <span class="n">ALIVE</span>
+
+
+<span class="k">class</span> <span class="nc">BornAction</span><span class="p">(</span><span class="n">Action</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This action change state of Cell into alive.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">_listen</span> <span class="o">=</span> <span class="n">GoodConditionToBornEvent</span>
+    <span class="sd">&quot;&quot;&quot;This action listen the GoodConditionToBornEvent&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">,</span> <span class="n">context</span><span class="p">,</span> <span class="n">synergy_manager</span><span class="p">):</span>
+        <span class="n">obj</span><span class="o">.</span><span class="n">set_alive</span><span class="p">(</span><span class="bp">True</span><span class="p">)</span>
+        <span class="c"># We update states to.</span>
+        <span class="n">context</span><span class="o">.</span><span class="n">metas</span><span class="o">.</span><span class="n">states</span><span class="o">.</span><span class="n">add_remove</span><span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="n">get_id</span><span class="p">(),</span> <span class="n">ALIVE</span><span class="p">,</span> <span class="n">DIED</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="die">
+<h4>Die<a class="headerlink" href="#die" title="Permalink to this headline">¶</a></h4>
+<p>The die event:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">lifegame.synergy.event.AliveAroundEvent</span> <span class="kn">import</span> <span class="n">AliveAroundEvent</span>
+<span class="kn">from</span> <span class="nn">synergine.core.exceptions</span> <span class="kn">import</span> <span class="n">NotConcernedEvent</span>
+<span class="kn">from</span> <span class="nn">xyzworld.mechanism.AroundMechanism</span> <span class="kn">import</span> <span class="n">AroundMechanism</span>
+<span class="kn">from</span> <span class="nn">lifegame.cst</span> <span class="kn">import</span> <span class="n">ALIVE</span><span class="p">,</span> <span class="n">COL_ALIVE</span>
+
+
+<span class="k">class</span> <span class="nc">NotGoodConditionToPersistEvent</span><span class="p">(</span><span class="n">AliveAroundEvent</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This event is applied when die condition are here. So when less of 2 or more of 3 alive cell are around</span>
+<span class="sd">    of observed cell.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">concern</span> <span class="o">=</span> <span class="n">COL_ALIVE</span>
+    <span class="sd">&quot;&quot;&quot;This event only concern alive cells.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">actions</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">actions</span><span class="p">)</span>
+        <span class="c">#  This event need to know what is around concerned cell. So we use AroundMechanism who give us list of around</span>
+        <span class="c"># objects ids.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_mechanism</span> <span class="o">=</span> <span class="n">AroundMechanism</span>
+
+    <span class="k">def</span> <span class="nf">_prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">object_id</span><span class="p">,</span> <span class="n">context</span><span class="p">,</span> <span class="n">parameters</span><span class="o">=</span><span class="p">{}):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        According to “Conway’s Game of Life”, event match if less of 2 or more of 3 alive cell are around.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">cell_near_count</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_alive_cell_around_count</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">parameters</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">cell_near_count</span> <span class="o">&lt;</span> <span class="mi">2</span> <span class="ow">or</span> <span class="n">cell_near_count</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">parameters</span>
+        <span class="c">#  If event not match, we must raise an NotConcernedEvent.</span>
+        <span class="k">raise</span> <span class="n">NotConcernedEvent</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>And his action:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">synergine.synergy.event.Action</span> <span class="kn">import</span> <span class="n">Action</span>
+<span class="kn">from</span> <span class="nn">lifegame.synergy.event.NotGoodConditionToPersistEvent</span> <span class="kn">import</span> <span class="n">NotGoodConditionToPersistEvent</span>
+<span class="kn">from</span> <span class="nn">lifegame.cst</span> <span class="kn">import</span> <span class="n">DIED</span><span class="p">,</span> <span class="n">ALIVE</span>
+
+
+<span class="k">class</span> <span class="nc">DieAction</span><span class="p">(</span><span class="n">Action</span><span class="p">):</span>
+
+    <span class="n">_listen</span> <span class="o">=</span> <span class="n">NotGoodConditionToPersistEvent</span>
+
+    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">,</span> <span class="n">context</span><span class="p">,</span> <span class="n">synergy_manager</span><span class="p">):</span>
+        <span class="n">obj</span><span class="o">.</span><span class="n">set_alive</span><span class="p">(</span><span class="bp">False</span><span class="p">)</span>
+        <span class="n">context</span><span class="o">.</span><span class="n">metas</span><span class="o">.</span><span class="n">states</span><span class="o">.</span><span class="n">add_remove</span><span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="n">get_id</span><span class="p">(),</span> <span class="n">DIED</span><span class="p">,</span> <span class="n">ALIVE</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="aroundmechanism">
+<h4>AroundMechanism<a class="headerlink" href="#aroundmechanism" title="Permalink to this headline">¶</a></h4>
+<p>As you can see, these events uses the AroundMechanism. This mechanism prepare for events the list of object ids who are
+around the observed object.</p>
+<p>TODO: AroundMechanism</p>
+</div>
+</div>
+<div class="section" id="collection">
+<h3>Collection<a class="headerlink" href="#collection" title="Permalink to this headline">¶</a></h3>
+<p>Theses Cells must be contained by a Collection.</p>
+<span class="target" id="module-lifegame.synergy.collection.LifeGameCollection"></span><dl class="class">
+<dt id="lifegame.synergy.collection.LifeGameCollection.LifeGameCollection">
+<em class="property">class </em><tt class="descclassname">lifegame.synergy.collection.LifeGameCollection.</tt><tt class="descname">LifeGameCollection</tt><big>(</big><em>configuration</em><big>)</big><a class="reference internal" href="_modules/lifegame/synergy/collection/LifeGameCollection.html#LifeGameCollection"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lifegame.synergy.collection.LifeGameCollection.LifeGameCollection" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>The collection must have a configuration (to populate his synergies objects).</p>
+<span class="target" id="module-lifegame.synergy.collection.LifeGameCollectionConfiguration"></span><dl class="class">
+<dt id="lifegame.synergy.collection.LifeGameCollectionConfiguration.LifeGameCollectionConfiguration">
+<em class="property">class </em><tt class="descclassname">lifegame.synergy.collection.LifeGameCollectionConfiguration.</tt><tt class="descname">LifeGameCollectionConfiguration</tt><a class="reference internal" href="_modules/lifegame/synergy/collection/LifeGameCollectionConfiguration.html#LifeGameCollectionConfiguration"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lifegame.synergy.collection.LifeGameCollectionConfiguration.LifeGameCollectionConfiguration" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="lifegame.synergy.collection.LifeGameCollectionConfiguration.LifeGameCollectionConfiguration.get_start_objects">
+<tt class="descname">get_start_objects</tt><big>(</big><em>collection</em>, <em>context</em><big>)</big><a class="reference internal" href="_modules/lifegame/synergy/collection/LifeGameCollectionConfiguration.html#LifeGameCollectionConfiguration.get_start_objects"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lifegame.synergy.collection.LifeGameCollectionConfiguration.LifeGameCollectionConfiguration.get_start_objects" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<p>And an Simulation class.</p>
+<span class="target" id="module-lifegame.synergy.LifeGameSimulation"></span><dl class="class">
+<dt id="lifegame.synergy.LifeGameSimulation.LifeGameSimulation">
+<em class="property">class </em><tt class="descclassname">lifegame.synergy.LifeGameSimulation.</tt><tt class="descname">LifeGameSimulation</tt><big>(</big><em>collections</em><big>)</big><a class="reference internal" href="_modules/lifegame/synergy/LifeGameSimulation.html#LifeGameSimulation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lifegame.synergy.LifeGameSimulation.LifeGameSimulation" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="lifegame.synergy.LifeGameSimulation.LifeGameSimulation.connect_actions_signals">
+<tt class="descname">connect_actions_signals</tt><big>(</big><em>signals</em><big>)</big><a class="reference internal" href="_modules/lifegame/synergy/LifeGameSimulation.html#LifeGameSimulation.connect_actions_signals"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lifegame.synergy.LifeGameSimulation.LifeGameSimulation.connect_actions_signals" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="foo">
+<h3>Foo<a class="headerlink" href="#foo" title="Permalink to this headline">¶</a></h3>
+<p>Done ! All needed algorithms are here. Let&#8217;s go see it:</p>
+<p>TODO: print avec nombre de ellules en vie/morte.</p>
+</div>
+</div>
+<div class="section" id="outputs">
+<h2>Outputs<a class="headerlink" href="#outputs" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="d-pygame">
+<h3>2D pygame<a class="headerlink" href="#d-pygame" title="Permalink to this headline">¶</a></h3>
+<div class="figure align-center">
+<img alt="_images/synergine_lifegame.gif" src="_images/synergine_lifegame.gif" />
+<p class="caption">LifeGame simulation capture of 2D pygame output.</p>
+</div>
+</div>
+<div class="section" id="curses">
+<h3>Curses<a class="headerlink" href="#curses" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="plot">
+<h3>Plot<a class="headerlink" href="#plot" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">HowTo Project: LifeGame</a><ul>
+<li><a class="reference internal" href="#objective">Objective</a></li>
+<li><a class="reference internal" href="#content-of-simulation">Content of simulation</a><ul>
+<li><a class="reference internal" href="#simulation">Simulation</a></li>
+<li><a class="reference internal" href="#additional-features">Additional features</a></li>
+<li><a class="reference internal" href="#synergyobjects">SynergyObjects</a></li>
+<li><a class="reference internal" href="#events-and-actions">Events and Actions</a><ul>
+<li><a class="reference internal" href="#born">Born</a></li>
+<li><a class="reference internal" href="#die">Die</a></li>
+<li><a class="reference internal" href="#aroundmechanism">AroundMechanism</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#collection">Collection</a></li>
+<li><a class="reference internal" href="#foo">Foo</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#outputs">Outputs</a><ul>
+<li><a class="reference internal" href="#d-pygame">2D pygame</a></li>
+<li><a class="reference internal" href="#curses">Curses</a></li>
+<li><a class="reference internal" href="#plot">Plot</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="Components.html"
+                        title="previous chapter">Components</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/LifeGame.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="Components.html" title="Components"
+             >previous</a> |</li>
+        <li><a href="index.html">Synergine 0.0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2015, Bastien Sevajol.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>

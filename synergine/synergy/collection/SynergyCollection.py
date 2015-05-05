@@ -1,10 +1,9 @@
-from synergine.synergy.collection.SynergyCollectionInterface import SynergyCollectionInterface
 from synergine.core.config.ConfigurationManager import ConfigurationManager
 from synergine.core.Signals import Signals
 from synergine.lib.eint import IncrementedNamedInt
 
 
-class SynergyCollection(SynergyCollectionInterface):
+class SynergyCollection:
     """
     Object containing list of SynergyObject and some logical actions listing what
     concern this collection.

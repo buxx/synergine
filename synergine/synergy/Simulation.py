@@ -13,9 +13,3 @@ class Simulation():
 
     def get_collections(self):
         return self._collections
-
-    def start_cycle(self, context):
-        pass
-
-    def end_cycle(self, context):
-        pass

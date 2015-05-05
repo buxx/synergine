@@ -18,9 +18,7 @@ class Cell(XyzSynergyObject):
 
     def set_alive(self, alive):
         """
-
         Some text
-
         :param alive: Foo
         :return: Void
         """
@@ -32,18 +30,11 @@ class Cell(XyzSynergyObject):
         return self._alive
 
     def get_is_alive_since(self):
-        """
-
-        :return: Count of alive cycles.
-        :rtype: int
-        """
         return self._alive_since
 
     def end_cycle(self):
         """
-
         At each cycle, cell is more older if it's alive.
-
         :return:
         """
         if self.is_alive():

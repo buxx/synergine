@@ -21,7 +21,3 @@ class SynergyObject(SynergyObjectInterface):
 
     def initialize(self):
         pass
-
-    # TODO: A supprimer ? Oui !
-    def end_cycle(self):
-        pass

@@ -2,7 +2,7 @@ from synergine.core.simulation.mechanism.Mechanism import Mechanism
 from xyzworld.cst import *
 
 
-class PositionedArroundMechanism(Mechanism):
+class PositionedAroundMechanism(Mechanism):
     """
     Sur chaque objets on regarde ce qu'il y a autour, si il y a des choses on declenche les
     events

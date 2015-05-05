@@ -34,6 +34,12 @@ class Core():
         return cls._configuration_manager
 
     def __init__(self, config: dict, modules_path):
+        """
+
+        :param config: dict containing the config. Will be used to instanciate ConfigurationManager)
+        :param modules_path: path of modules. To retrieve module config
+        :return: Core
+        """
         self._load_configuration(modules_path, config)
         self._context = self._configuration_manager.get('app.classes.Context', Context)()
         self._context.metas.reset()

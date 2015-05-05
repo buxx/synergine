@@ -39,8 +39,6 @@ class CycleCalculator():
         for step_key, mechanisms in enumerate(self._event_manager.get_mechanisms_steps()):
             actions = self._get_computeds_objects(step_key)
             self._apply_actions(actions)
-        for simulation in self._synergy_manager.get_simulations():
-            simulation.end_cycle(self._context)
 
     def _get_computeds_objects(self, step_key):
         pipe_package = self._get_pipe_package_for_collection(step_key)
