@@ -1,3 +1,4 @@
+from lifegame.PrintTerminal import PrintTerminal
 from lifegame.synergy.collection.LifeGameCollection import LifeGameCollection
 from lifegame.synergy.LifeGameSimulation import LifeGameSimulation
 from lifegame.synergy.collection.LifeGameCollectionConfiguration import LifeGameCollectionConfiguration
@@ -22,8 +23,8 @@ config = {
             'cycles': 100
         }
     },
-    'simulations' : [LifeGameSimulation([LifeGameCollection(LifeGameCollectionConfiguration())])],
-    'connections': [],#TestDisplay, PygameDisplay, CursesDisplay],
+    'simulations': [LifeGameSimulation([LifeGameCollection(LifeGameCollectionConfiguration())])],
+    'connections': [PrintTerminal],#, TestDisplay, PygameDisplay],#, CursesDisplay],
     'terminal': {
         '__default__': {
             'app': {

@@ -1,20 +1,21 @@
 from synergine.synergy.collection.Configuration import Configuration
 from lifegame.synergy.object.Cell import Cell
-from lifegame.cst import DIED, ALIVE, COL_ALL, COL_DIED, COL_ALIVE
 
 
 class LifeGameCollectionConfiguration(Configuration):
 
     def get_start_objects(self, collection, context):
         cells = []
-        # cell grid
+
+        # We build a grid of 40x50 cells
         for x in range(40):
             for y in range(50):
                 cell = Cell(collection, context)
                 cell.set_position((0, x, y))
                 cells.append(cell)
 
-        alive_cell_traces = (
+        # We define some position for alive cells
+        alive_cell_positions = (
             (0, 20, 20),
             (0, 21, 20),
             (0, 22, 20),
@@ -23,13 +24,11 @@ class LifeGameCollectionConfiguration(Configuration):
             (0, 21, 22),
             (0, 20, 22)
         )
+
+        # And we born these alive cell
         for dead_cell in cells:
-            context.metas.collections.add(dead_cell.get_id(), COL_ALL)
-            if dead_cell.get_position() in alive_cell_traces:
+            if dead_cell.get_position() in alive_cell_positions:
                 dead_cell.set_alive(True)
-                context.metas.states.add(dead_cell.get_id(), ALIVE)
-                context.metas.collections.add(dead_cell.get_id(), COL_ALIVE)
-            else:
-                context.metas.states.add(dead_cell.get_id(), DIED)
-                context.metas.collections.add(dead_cell.get_id(), COL_DIED)
+
+        # Synergy objects can be return to the collection
         return cells

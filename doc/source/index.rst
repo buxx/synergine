@@ -6,6 +6,10 @@
 Synergine's documentation
 *******************************
 
+.. Note::
+
+    Synergy project is in development version. Source code and documentation can change without retro-compatibility or warning.
+
 Contents:
 
 .. toctree::
@@ -14,7 +18,9 @@ Contents:
    Introduction
    Components
    LifeGame
-..   Builtin modules
+   BuiltinModules
+
+TODO: Link between rst
 
 Indices and tables
 ==================

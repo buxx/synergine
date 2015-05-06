@@ -51,7 +51,7 @@ class Core():
                                                  self._synergy_object_manager,
                                                  self.get_configuration_manager(),
                                                  force_main_process=self._configuration_manager.get(
-                                                     'engine.debug.mainprocess'))
+                                                     'engine.debug.mainprocess', False))
         self._space_data_connector = SpaceDataConnector()
         self._last_cycle_time = time()
         self._maxfps = self._configuration_manager.get('engine.fpsmax')

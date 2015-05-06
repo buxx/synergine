@@ -33,9 +33,6 @@
         <li class="right" style="margin-right: 10px">
           <a href="../../genindex.html" title="General Index"
              accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
         <li><a href="../../index.html">Synergine 0.0.1 documentation</a> &raquo;</li>
           <li><a href="../index.html" accesskey="U">Module code</a> &raquo;</li> 
       </ul>
@@ -51,7 +48,7 @@
 <span class="kn">from</span> <span class="nn">xyzworld.cst</span> <span class="kn">import</span> <span class="n">POSITION</span><span class="p">,</span> <span class="n">POSITIONS</span><span class="p">,</span> <span class="n">PREVIOUS_DIRECTION</span><span class="p">,</span> <span class="n">BLOCKED_SINCE</span>
 
 
-<div class="viewcode-block" id="SynergyObject"><a class="viewcode-back" href="../../LifeGame.html#xyzworld.SynergyObject.SynergyObject">[docs]</a><span class="k">class</span> <span class="nc">SynergyObject</span><span class="p">(</span><span class="n">BaseSynergyObject</span><span class="p">):</span>
+<div class="viewcode-block" id="SynergyObject"><a class="viewcode-back" href="../../ModuleXyzworld.html#xyzworld.SynergyObject.SynergyObject">[docs]</a><span class="k">class</span> <span class="nc">SynergyObject</span><span class="p">(</span><span class="n">BaseSynergyObject</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This SynergyObject is designed to support a tri-dimensional environment.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -62,7 +59,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_start_position</span> <span class="o">=</span> <span class="bp">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_previous_direction</span> <span class="o">=</span> <span class="bp">None</span>
 
-<div class="viewcode-block" id="SynergyObject.set_position"><a class="viewcode-back" href="../../LifeGame.html#xyzworld.SynergyObject.SynergyObject.set_position">[docs]</a>    <span class="k">def</span> <span class="nf">set_position</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">point</span><span class="p">):</span>
+<div class="viewcode-block" id="SynergyObject.set_position"><a class="viewcode-back" href="../../ModuleXyzworld.html#xyzworld.SynergyObject.SynergyObject.set_position">[docs]</a>    <span class="k">def</span> <span class="nf">set_position</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">point</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="sd">        Update the position. Metas are updated to.</span>
@@ -86,7 +83,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_context</span><span class="o">.</span><span class="n">metas</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">POSITION</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_id</span><span class="p">(),</span> <span class="n">point</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_context</span><span class="o">.</span><span class="n">metas</span><span class="o">.</span><span class="n">list</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">POSITIONS</span><span class="p">,</span> <span class="n">point</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_id</span><span class="p">())</span>
 </div>
-<div class="viewcode-block" id="SynergyObject.get_position"><a class="viewcode-back" href="../../LifeGame.html#xyzworld.SynergyObject.SynergyObject.get_position">[docs]</a>    <span class="k">def</span> <span class="nf">get_position</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="SynergyObject.get_position"><a class="viewcode-back" href="../../ModuleXyzworld.html#xyzworld.SynergyObject.SynergyObject.get_position">[docs]</a>    <span class="k">def</span> <span class="nf">get_position</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="sd">        Return the actual position.</span>
@@ -96,7 +93,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_position</span>
 </div>
-<div class="viewcode-block" id="SynergyObject.set_previous_direction"><a class="viewcode-back" href="../../LifeGame.html#xyzworld.SynergyObject.SynergyObject.set_previous_direction">[docs]</a>    <span class="k">def</span> <span class="nf">set_previous_direction</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">previous_direction</span><span class="p">):</span>
+<div class="viewcode-block" id="SynergyObject.set_previous_direction"><a class="viewcode-back" href="../../ModuleXyzworld.html#xyzworld.SynergyObject.SynergyObject.set_previous_direction">[docs]</a>    <span class="k">def</span> <span class="nf">set_previous_direction</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">previous_direction</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="sd">        Update the previous position of object.</span>
@@ -108,7 +105,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_previous_direction</span> <span class="o">=</span> <span class="n">previous_direction</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_context</span><span class="o">.</span><span class="n">metas</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">PREVIOUS_DIRECTION</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_id</span><span class="p">(),</span> <span class="n">previous_direction</span><span class="p">)</span>
 </div>
-<div class="viewcode-block" id="SynergyObject.get_previous_direction"><a class="viewcode-back" href="../../LifeGame.html#xyzworld.SynergyObject.SynergyObject.get_previous_direction">[docs]</a>    <span class="k">def</span> <span class="nf">get_previous_direction</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="SynergyObject.get_previous_direction"><a class="viewcode-back" href="../../ModuleXyzworld.html#xyzworld.SynergyObject.SynergyObject.get_previous_direction">[docs]</a>    <span class="k">def</span> <span class="nf">get_previous_direction</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="sd">        Return the previous direction of object</span>
@@ -147,9 +144,6 @@
         <li class="right" style="margin-right: 10px">
           <a href="../../genindex.html" title="General Index"
              >index</a></li>
-        <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
         <li><a href="../../index.html">Synergine 0.0.1 documentation</a> &raquo;</li>
           <li><a href="../index.html" >Module code</a> &raquo;</li> 
       </ul>
