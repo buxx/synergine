@@ -1,6 +1,8 @@
 import unittest
 
 from lifegame.display.curses_visualisation import visualisation
+from tests.src.TestCollection import TestCollection
+from tests.src.TestCollectionConfiguration import TestCollectionConfiguration
 from xyworld.display.object.TextTraceVisualisation import TextTraceVisualisation
 from synergine.core.display.ObjectVisualizer import ObjectVisualizer
 from lifegame.synergy.object.Cell import Cell
@@ -13,7 +15,7 @@ class TestVisualisation(unittest.TestCase):
         self._object_visualizer = ObjectVisualizer(visualisation, Context())
 
     def test_cells_render(self):
-        cell = Cell(object(), object())
+        cell = Cell(TestCollection(TestCollectionConfiguration()), Context())
         cell.set_alive(True)
 
         self._test_cell_char(cell, -1, 'o')
