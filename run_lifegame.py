@@ -10,6 +10,9 @@ from lifegame.synergy.collection.LifeGameCollection import LifeGameCollection
 from lifegame.synergy.LifeGameSimulation import LifeGameSimulation
 from lifegame.synergy.collection.LifeGameCollectionConfiguration import LifeGameCollectionConfiguration
 from xyzworld.Context import Context as XyzContext
+from xyworld.display.PygameDisplay import PygameDisplay
+from lifegame.PlotTerminal import PlotTerminal
+from lifegame.display.pygame_visualisation import visualisation as pygame_visualisation
 
 config = {
     'app': {
@@ -22,7 +25,18 @@ config = {
         'fpsmax': 5,
     },
     'simulations': [LifeGameSimulation([LifeGameCollection(LifeGameCollectionConfiguration())])],
-    'connections': [PrintTerminal]
+    'connections': [PrintTerminal, PygameDisplay, PlotTerminal],
+    'terminal': {
+        'pygame': {
+            'visualisation': pygame_visualisation,
+            'window_size': (1024, 768),
+            'display': {
+                'grid': {
+                    'size': 20
+                }
+            }
+        },
+    }
 }
 
 if __name__ == '__main__':

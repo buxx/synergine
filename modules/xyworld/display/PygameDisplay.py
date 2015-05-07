@@ -18,10 +18,11 @@ class PygameDisplay(XyDisplay):
         super().initialize()
         pygame.init()
         self._screen = pygame.display.set_mode(self._get_config('window_size'))
-        pygame.display.set_caption(self._get_config('app.name'))
+        pygame.display.set_caption(self._get_config('app.name'), 'Default app name')
         self._screen_size = self._screen.get_size()
         self._event = pygame.event
-        self._default_font = pygame.font.SysFont(self._get_config('font.name'), self._get_config('font.size'))
+        self._default_font = pygame.font.SysFont(self._get_config('font.name', 'arial'), self._get_config('font.size',
+                                                                                                          13))
         self._update_screen_size()
 
     def initialize_screen(self, screen):
@@ -33,7 +34,7 @@ class PygameDisplay(XyDisplay):
             self._update_screen_size()
         background = pygame.Surface(self._screen_size)
         background = background.convert()
-        background.fill(self._get_config('background.color'))
+        background.fill(self._get_config('background.color', (0, 0, 0)))
         self._screen.blit(background, (0, 0))
 
     def end_of_cycle(self):

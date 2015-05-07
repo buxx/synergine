@@ -73,7 +73,7 @@ We need: A Cell.
 
 .. Note::
 
-    Cell class is a child class of `xyzworld.SynergyObject.SynergyObject <ModuleXyzworld.html#xyzworld.SynergyObject.SynergyObject>`_.
+    Cell class is a child class of :ref:`xyzworld.SynergyObject.SynergyObject <ModuleXyzworld.SynergyObject>`.
 
 And no more for our SynergyObjects.
 
@@ -120,7 +120,7 @@ And his action:
 AroundMechanism
 +++++++++++++++
 
-As you can see, these events uses the `AroundMechanism <ModuleXyzworld.html#xyzworld.mechanism.AroundMechanism.AroundMechanism>`_. This mechanism prepare a list of object ids who are around the observed object.
+As you can see, these events uses the :ref:`AroundMechanism <ModuleXyzworld.Mechanism.AroundMechanism>`. This mechanism prepare a list of object ids who are around the observed object.
 
 Collection
 ----------
@@ -226,19 +226,79 @@ We execute script and, tadaaa::
 Outputs
 =======
 
+You can create all terminals you want. Some example:
+
 2D pygame
 ---------
 
-.. figure::  ../images/synergine_lifegame.gif
+:ref:`Xyzworld module <ModuleXyzworld>` delivery a ready to use :ref:`xyzworld.display.PygameDisplay.PygameDisplay <ModuleXyzworld.Display.PygameDisplay>`. We just need to prepare a display configuration for it:
+
+.. include:: ../../modules/lifegame/display/pygame_visualisation.py
+   :literal:
+
+And add it to our run configuration::
+
+    from lifegame.synergy.LifeGameSimulation import LifeGameSimulation
+    from lifegame.synergy.collection.LifeGameCollectionConfiguration import LifeGameCollectionConfiguration
+    from xyzworld.Context import Context as XyzContext
+    +from xyworld.display.PygameDisplay import PygameDisplay
+    +from lifegame.display.pygame_visualisation import visualisation as pygame_visualisation
+
+    # ...
+
+    'simulations': [LifeGameSimulation([LifeGameCollection(LifeGameCollectionConfiguration())])],
+    -    'connections': [PrintTerminal]
+    +    'connections': [PrintTerminal, PygameDisplay],
+    +    'terminal': {
+    +        'pygame': {
+    +            'visualisation': pygame_visualisation,
+    +            'window_size': (1024, 768),
+    +            'display': {
+    +                'grid': {
+    +                    'size': 20
+    +                }
+    +            }
+    +        },
+    +    }
+    }
+
+    if __name__ == '__main__'
+
+When we run our simulation we can now see a beautiful 2D render :
+
+.. figure::  ../images/synergine_lifegame_pygame.gif
    :align:   center
 
    LifeGame simulation capture of 2D pygame output.
 
-
-Curses
-------
-
 Plot
 ----
 
+.. Note::
 
+    To get matplotlib and scipy dependencies you can execute:
+
+    >>> sudo apt-get install python3-scipy python3-matplotlib
+
+
+Just for example, we want to display an plot with history of alive cells count. We create a new Terminal:
+
+.. include:: ../../modules/lifegame/PlotTerminal.py
+   :literal:
+
+And add it to our run configuration::
+
+    from lifegame.synergy.collection.LifeGameCollectionConfiguration import LifeGameCollectionConfiguration
+    from xyzworld.Context import Context as XyzContext
+    from xyworld.display.PygameDisplay import PygameDisplay
+    +from lifegame.PlotTerminal import PlotTerminal
+
+    # ...
+
+    -    'connections': [PrintTerminal, PygameDisplay]
+    +    'connections': [PrintTerminal, PygameDisplay, PlotTerminal],
+
+And let see result:
+
+.. figure::  ../images/synergine_lifegame_plot.gif
+   :align:   center

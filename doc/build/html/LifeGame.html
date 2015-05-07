@@ -185,7 +185,7 @@ to create further generations.
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">Cell class is a child class of <a class="reference external" href="ModuleXyzworld.html#xyzworld.SynergyObject.SynergyObject">xyzworld.SynergyObject.SynergyObject</a>.</p>
+<p class="last">Cell class is a child class of <a class="reference internal" href="ModuleXyzworld.html#modulexyzworld-synergyobject"><em>xyzworld.SynergyObject.SynergyObject</em></a>.</p>
 </div>
 <p>And no more for our SynergyObjects.</p>
 </div>
@@ -324,7 +324,7 @@ cell. So we write AliveAroundEvent event:</p>
 </div>
 <div class="section" id="aroundmechanism">
 <h4>AroundMechanism<a class="headerlink" href="#aroundmechanism" title="Permalink to this headline">¶</a></h4>
-<p>As you can see, these events uses the <a class="reference external" href="ModuleXyzworld.html#xyzworld.mechanism.AroundMechanism.AroundMechanism">AroundMechanism</a>. This mechanism prepare a list of object ids who are around the observed object.</p>
+<p>As you can see, these events uses the <a class="reference internal" href="ModuleXyzworld.html#modulexyzworld-mechanism-aroundmechanism"><em>AroundMechanism</em></a>. This mechanism prepare a list of object ids who are around the observed object.</p>
 </div>
 </div>
 <div class="section" id="collection">
@@ -396,8 +396,8 @@ cell. So we write AliveAroundEvent event:</p>
 </pre></div>
 </div>
 </div>
-<div class="section" id="id2">
-<h3>Additional features<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id1">
+<h3>Additional features<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
 <p>According to our additional features:</p>
 <div class="highlight-python"><div class="highlight"><pre>In additional of &quot;Conway&#39;s Game of Life&quot; rules, we will represent differently in our 2d graphic output:
 
@@ -518,18 +518,139 @@ Cycle 10: 20 cells alive, 1980 cells died.
 </div>
 <div class="section" id="outputs">
 <h2>Outputs<a class="headerlink" href="#outputs" title="Permalink to this headline">¶</a></h2>
+<p>You can create all terminals you want. Some example:</p>
 <div class="section" id="d-pygame">
 <h3>2D pygame<a class="headerlink" href="#d-pygame" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference internal" href="ModuleXyzworld.html#modulexyzworld"><em>Xyzworld module</em></a> delivery a ready to use <a class="reference internal" href="ModuleXyzworld.html#modulexyzworld-display-pygamedisplay"><em>xyzworld.display.PygameDisplay.PygameDisplay</em></a>. We just need to prepare a display configuration for it:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">xyworld.display.object.pygame.PygameImage</span> <span class="kn">import</span> <span class="n">PygameImage</span>
+<span class="kn">from</span> <span class="nn">lifegame.synergy.object.Cell</span> <span class="kn">import</span> <span class="n">Cell</span>
+<span class="kn">from</span> <span class="nn">os</span> <span class="kn">import</span> <span class="n">getcwd</span>
+
+<span class="n">image_cell_full</span> <span class="o">=</span> <span class="n">PygameImage</span><span class="o">.</span><span class="n">from_filepath</span><span class="p">(</span><span class="n">getcwd</span><span class="p">()</span><span class="o">+</span><span class="s">&#39;/modules/lifegame/display/pygame/cha3.png&#39;</span><span class="p">)</span>
+<span class="n">image_cell_medium</span> <span class="o">=</span> <span class="n">PygameImage</span><span class="o">.</span><span class="n">from_filepath</span><span class="p">(</span><span class="n">getcwd</span><span class="p">()</span><span class="o">+</span><span class="s">&#39;/modules/lifegame/display/pygame/cha2.png&#39;</span><span class="p">)</span>
+<span class="n">image_cell_small</span> <span class="o">=</span> <span class="n">PygameImage</span><span class="o">.</span><span class="n">from_filepath</span><span class="p">(</span><span class="n">getcwd</span><span class="p">()</span><span class="o">+</span><span class="s">&#39;/modules/lifegame/display/pygame/cha.png&#39;</span><span class="p">)</span>
+<span class="n">image_cell_dead</span> <span class="o">=</span> <span class="n">PygameImage</span><span class="o">.</span><span class="n">from_filepath</span><span class="p">(</span><span class="n">getcwd</span><span class="p">()</span><span class="o">+</span><span class="s">&#39;/modules/lifegame/display/pygame/cha0.png&#39;</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">alive_render</span><span class="p">(</span><span class="n">cell</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">    :param cell: Cell</span>
+<span class="sd">    :param context: Context object</span>
+<span class="sd">    :return: The image render</span>
+<span class="sd">    :rtype: PygameImage</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">cell</span><span class="o">.</span><span class="n">is_alive</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">cell</span><span class="o">.</span><span class="n">get_is_alive_since</span><span class="p">()</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">image_cell_small</span>
+        <span class="k">elif</span> <span class="n">cell</span><span class="o">.</span><span class="n">get_is_alive_since</span><span class="p">()</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">image_cell_medium</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">image_cell_full</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">image_cell_dead</span>
+
+<span class="n">visualisation</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">&#39;objects&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="n">Cell</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s">&#39;default&#39;</span><span class="p">:</span> <span class="n">image_cell_small</span><span class="p">,</span>
+            <span class="s">&#39;callbacks&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">alive_render</span><span class="p">]</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>And add it to our run configuration:</p>
+<div class="highlight-python"><div class="highlight"><pre>from lifegame.synergy.LifeGameSimulation import LifeGameSimulation
+from lifegame.synergy.collection.LifeGameCollectionConfiguration import LifeGameCollectionConfiguration
+from xyzworld.Context import Context as XyzContext
++from xyworld.display.PygameDisplay import PygameDisplay
++from lifegame.display.pygame_visualisation import visualisation as pygame_visualisation
+
+# ...
+
+&#39;simulations&#39;: [LifeGameSimulation([LifeGameCollection(LifeGameCollectionConfiguration())])],
+-    &#39;connections&#39;: [PrintTerminal]
++    &#39;connections&#39;: [PrintTerminal, PygameDisplay],
++    &#39;terminal&#39;: {
++        &#39;pygame&#39;: {
++            &#39;visualisation&#39;: pygame_visualisation,
++            &#39;window_size&#39;: (1024, 768),
++            &#39;display&#39;: {
++                &#39;grid&#39;: {
++                    &#39;size&#39;: 20
++                }
++            }
++        },
++    }
+}
+
+if __name__ == &#39;__main__&#39;
+</pre></div>
+</div>
+<p>When we run our simulation we can now see a beautiful 2D render :</p>
 <div class="figure align-center">
-<img alt="_images/synergine_lifegame.gif" src="_images/synergine_lifegame.gif" />
+<img alt="_images/synergine_lifegame_pygame.gif" src="_images/synergine_lifegame_pygame.gif" />
 <p class="caption">LifeGame simulation capture of 2D pygame output.</p>
 </div>
 </div>
-<div class="section" id="curses">
-<h3>Curses<a class="headerlink" href="#curses" title="Permalink to this headline">¶</a></h3>
-</div>
 <div class="section" id="plot">
 <h3>Plot<a class="headerlink" href="#plot" title="Permalink to this headline">¶</a></h3>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>To get matplotlib and scipy dependencies you can execute:</p>
+<div class="last highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">python3</span><span class="o">-</span><span class="n">scipy</span> <span class="n">python3</span><span class="o">-</span><span class="n">matplotlib</span>
+</pre></div>
+</div>
+</div>
+<p>Just for example, we want to display an plot with history of alive cells count. We create a new Terminal:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">synergine.core.connection.Terminal</span> <span class="kn">import</span> <span class="n">Terminal</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+
+
+<span class="k">class</span> <span class="nc">PlotTerminal</span><span class="p">(</span><span class="n">Terminal</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A very simple Terminal to see how many cells are alive in plot.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">context</span><span class="p">,</span> <span class="n">synergy_manager</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">context</span><span class="p">,</span> <span class="n">synergy_manager</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">ion</span><span class="p">()</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_max_alive</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">def</span> <span class="nf">receive</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">actions_done</span><span class="p">):</span>
+        <span class="n">objects</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_synergy_manager</span><span class="o">.</span><span class="n">get_objects</span><span class="p">()</span>
+        <span class="n">alive_objects</span> <span class="o">=</span> <span class="p">[</span><span class="n">obj</span> <span class="k">for</span> <span class="n">obj</span> <span class="ow">in</span> <span class="n">objects</span> <span class="k">if</span> <span class="n">obj</span><span class="o">.</span><span class="n">is_alive</span><span class="p">()]</span>
+        <span class="n">cycle</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_context</span><span class="o">.</span><span class="n">get_cycle</span><span class="p">()</span>
+
+        <span class="n">y</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">alive_objects</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">y</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">_max_alive</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_max_alive</span> <span class="o">=</span> <span class="n">y</span>
+
+        <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="n">cycle</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_max_alive</span><span class="p">])</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">cycle</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>And add it to our run configuration:</p>
+<div class="highlight-python"><div class="highlight"><pre>from lifegame.synergy.collection.LifeGameCollectionConfiguration import LifeGameCollectionConfiguration
+from xyzworld.Context import Context as XyzContext
+from xyworld.display.PygameDisplay import PygameDisplay
++from lifegame.PlotTerminal import PlotTerminal
+
+# ...
+
+-    &#39;connections&#39;: [PrintTerminal, PygameDisplay]
++    &#39;connections&#39;: [PrintTerminal, PygameDisplay, PlotTerminal],
+</pre></div>
+</div>
+<p>And let see result:</p>
+<div class="figure align-center">
+<img alt="_images/synergine_lifegame_plot.gif" src="_images/synergine_lifegame_plot.gif" />
+</div>
 </div>
 </div>
 </div>
@@ -556,14 +677,13 @@ Cycle 10: 20 cells alive, 1980 cells died.
 </ul>
 </li>
 <li><a class="reference internal" href="#collection">Collection</a></li>
-<li><a class="reference internal" href="#id2">Additional features</a></li>
+<li><a class="reference internal" href="#id1">Additional features</a></li>
 <li><a class="reference internal" href="#simple-terminal">Simple terminal</a></li>
 <li><a class="reference internal" href="#let-s-go">Let&#8217;s go</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#outputs">Outputs</a><ul>
 <li><a class="reference internal" href="#d-pygame">2D pygame</a></li>
-<li><a class="reference internal" href="#curses">Curses</a></li>
 <li><a class="reference internal" href="#plot">Plot</a></li>
 </ul>
 </li>
