@@ -29,7 +29,7 @@ config = {
     'terminal': {
         'pygame': {
             'visualisation': pygame_visualisation,
-            'window_size': (1024, 768),
+            'window_size': (700, 500),
             'display': {
                 'grid': {
                     'size': 20
