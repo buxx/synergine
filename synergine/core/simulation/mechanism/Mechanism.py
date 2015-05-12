@@ -28,7 +28,7 @@ class Mechanism():
             if context.get_cycle() % event.get_each_cycle() == 0:
                 concerned_objects_ids = get_chunk(context.get_total_chunk(),
                                                   context.get_current_chunk_position(),
-                                                  context.metas.collections.get(event.concern, allow_empty=True))
+                                                  context.metas.collections.get(event.get_concern(), allow_empty=True))
                 for object_id in concerned_objects_ids:
                     try:
                         event_parameters = self._get_object_parameters(object_id, context)

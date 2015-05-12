@@ -4,7 +4,7 @@ from tests.src.cst import COL_COMPUTABLE
 
 class TestEvent(Event):
 
-    concern = COL_COMPUTABLE
+    _concern = COL_COMPUTABLE
 
     def _prepare(self, object_id, context, parameters={}):
         return parameters

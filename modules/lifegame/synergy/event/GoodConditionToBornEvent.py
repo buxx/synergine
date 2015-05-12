@@ -9,14 +9,12 @@ class GoodConditionToBornEvent(AliveAroundEvent):
     This event is applied when born condition are here. So when exactly 3 alive cell are around of observed cell.
     """
 
-    concern = COL_DIED
-    """This event only concern died cells."""
+    _mechanism = AroundMechanism
+    """This event need to know what is around concerned cell. So we use AroundMechanism who give us list of around
+    objects ids."""
 
-    def __init__(self, actions):
-        super().__init__(actions)
-        #  This event need to know what is around concerned cell. So we use AroundMechanism who give us list of around
-        # objects ids.
-        self._mechanism = AroundMechanism
+    _concern = COL_DIED
+    """This event only concern died cells."""
 
     def _prepare(self, object_id, context, parameters={}):
         """

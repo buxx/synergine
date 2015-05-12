@@ -24,8 +24,8 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="top" title="Synergine 0.0.1 documentation" href="index.html" />
-    <link rel="next" title="Howto Project: LifeGame" href="LifeGame.html" />
-    <link rel="prev" title="Introduction" href="Introduction.html" /> 
+    <link rel="next" title="HowTo Project: LifeGame" href="LifeGame.html" />
+    <link rel="prev" title="Synergine’s documentation" href="index.html" /> 
   </head>
   <body>
     <div class="related">
@@ -35,13 +35,10 @@
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="LifeGame.html" title="Howto Project: LifeGame"
+          <a href="LifeGame.html" title="HowTo Project: LifeGame"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="Introduction.html" title="Introduction"
+          <a href="index.html" title="Synergine’s documentation"
              accesskey="P">previous</a> |</li>
         <li><a href="index.html">Synergine 0.0.1 documentation</a> &raquo;</li> 
       </ul>
@@ -53,15 +50,27 @@
           <div class="body">
             
   <div class="section" id="components">
-<h1>Components<a class="headerlink" href="#components" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="action">
-<h2>Action<a class="headerlink" href="#action" title="Permalink to this headline">¶</a></h2>
-</div>
-<div class="section" id="event">
-<h2>Event<a class="headerlink" href="#event" title="Permalink to this headline">¶</a></h2>
-</div>
+<span id="id1"></span><h1>Components<a class="headerlink" href="#components" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="event-and-action">
+<h2>Event and Action<a class="headerlink" href="#event-and-action" title="Permalink to this headline">¶</a></h2>
+<p>Event job is to trig Actions when wanted conditions are here [TODO réunis]. You can found here an example of implemented
+Event.</p>
 <div class="section" id="mechanism">
-<h2>Mechanism<a class="headerlink" href="#mechanism" title="Permalink to this headline">¶</a></h2>
+<h3>_mechanism<a class="headerlink" href="#mechanism" title="Permalink to this headline">¶</a></h3>
+<p>Mechanism class must be specified in <tt class="docutils literal"><span class="pre">_mechanism</span></tt> class attribute. Event parameters will be prepared by this Mechanism.</p>
+</div>
+<div class="section" id="concern">
+<h3>_concern<a class="headerlink" href="#concern" title="Permalink to this headline">¶</a></h3>
+<p>Event only observe concerned objects. You must specify COL identifier in the <tt class="docutils literal"><span class="pre">_concern</span></tt> class attribute.</p>
+</div>
+<div class="section" id="prepare">
+<h3>_prepare<a class="headerlink" href="#prepare" title="Permalink to this headline">¶</a></h3>
+<p>You must override this method and write your conditions to trig associated Actions. If event is not concerned, you
+must raise NotConcernedEvent.</p>
+</div>
+</div>
+<div class="section" id="id2">
+<h2>Mechanism<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 </div>
 <div class="section" id="context">
 <h2>Context<a class="headerlink" href="#context" title="Permalink to this headline">¶</a></h2>
@@ -92,9 +101,13 @@
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">Components</a><ul>
-<li><a class="reference internal" href="#action">Action</a></li>
-<li><a class="reference internal" href="#event">Event</a></li>
-<li><a class="reference internal" href="#mechanism">Mechanism</a></li>
+<li><a class="reference internal" href="#event-and-action">Event and Action</a><ul>
+<li><a class="reference internal" href="#mechanism">_mechanism</a></li>
+<li><a class="reference internal" href="#concern">_concern</a></li>
+<li><a class="reference internal" href="#prepare">_prepare</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id2">Mechanism</a></li>
 <li><a class="reference internal" href="#context">Context</a><ul>
 <li><a class="reference internal" href="#why-a-context-representation">Why a Context representation ?</a></li>
 </ul>
@@ -108,11 +121,11 @@
 </ul>
 
   <h4>Previous topic</h4>
-  <p class="topless"><a href="Introduction.html"
-                        title="previous chapter">Introduction</a></p>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">Synergine&#8217;s documentation</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="LifeGame.html"
-                        title="next chapter">Howto Project: LifeGame</a></p>
+                        title="next chapter">HowTo Project: LifeGame</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
     <li><a href="_sources/Components.txt"
@@ -142,13 +155,10 @@
           <a href="genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="LifeGame.html" title="Howto Project: LifeGame"
+          <a href="LifeGame.html" title="HowTo Project: LifeGame"
              >next</a> |</li>
         <li class="right" >
-          <a href="Introduction.html" title="Introduction"
+          <a href="index.html" title="Synergine’s documentation"
              >previous</a> |</li>
         <li><a href="index.html">Synergine 0.0.1 documentation</a> &raquo;</li> 
       </ul>

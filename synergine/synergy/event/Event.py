@@ -4,15 +4,20 @@ from synergine.core.simulation.mechanism.Mechanism import Mechanism
 
 class Event():
 
-    concern = None
+    _mechanism = Mechanism
+    _concern = None
     _each_cycle = 1
 
     def __init__(self, actions):
         self._actions = actions
-        self._mechanism = Mechanism
 
-    def get_mechanism_class(self):
-        return self._mechanism
+    @classmethod
+    def get_mechanism(cls):
+        return cls._mechanism
+
+    @classmethod
+    def get_concern(cls):
+        return cls._concern
 
     @classmethod
     def get_each_cycle(cls):

@@ -1,3 +1,5 @@
+.. _LifeGame:
+
 HowTo Project: LifeGame
 ***********************
 
@@ -172,6 +174,8 @@ All needed algorithms are here. To be able to see something, we write a very sim
 Let's go
 --------
 
+.. _LifeGame.run_conf1:
+
 We now need to prepare configuration and run script for our simulation::
 
     from os import getcwd
@@ -236,7 +240,7 @@ You can create all terminals you want. Some example:
 .. include:: ../../modules/lifegame/display/pygame_visualisation.py
    :literal:
 
-And add it to our run configuration::
+And add it to :ref:`run configuration <LifeGame.run_conf1>`::
 
     from lifegame.synergy.LifeGameSimulation import LifeGameSimulation
     from lifegame.synergy.collection.LifeGameCollectionConfiguration import LifeGameCollectionConfiguration
@@ -276,17 +280,17 @@ Plot
 
 .. Note::
 
-    To get matplotlib and scipy dependencies you can execute:
+    To get matplotlib and scipy dependencies on debian-like system you can execute:
 
     >>> sudo apt-get install python3-scipy python3-matplotlib
 
 
-Just for example, we want to display an plot with history of alive cells count. We create a new Terminal:
+For example, we want to display a plot with history of alive cells count. We create a new Terminal:
 
 .. include:: ../../modules/lifegame/PlotTerminal.py
    :literal:
 
-And add it to our run configuration::
+And add it to :ref:`run configuration <LifeGame.run_conf1>`::
 
     from lifegame.synergy.collection.LifeGameCollectionConfiguration import LifeGameCollectionConfiguration
     from xyzworld.Context import Context as XyzContext

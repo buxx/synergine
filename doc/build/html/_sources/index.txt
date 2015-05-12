@@ -1,26 +1,30 @@
-.. Synergine documentation master file, created by
-   sphinx-quickstart on Thu Apr 30 07:49:04 2015.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
-
 Synergine's documentation
 *******************************
+
+What is synergine
+=================
 
 .. Note::
 
     Synergy project is in development version. Source code and documentation can change without retro-compatibility or warning.
 
-Contents:
+Synergine is a framework designed to run interaction between independent objects. Example project is available
+:ref:`in this documentation <LifeGame>` and another `here <https://github.com/buxx/intelligine>`_.
+
+Different components of synergine are :ref:`described here <Components>`. But in few words it include (or will include):
+
+* Event based system: Describe interaction between simulation objects with event and actions.
+* Multiprocessing: Execute your simulation on different processes and slave computers.
+
+Contents
+========
 
 .. toctree::
    :maxdepth: 2
 
-   Introduction
    Components
    LifeGame
    BuiltinModules
-
-TODO: Link between rst
 
 Indices and tables
 ==================

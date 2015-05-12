@@ -4,7 +4,7 @@ from lifegame.cst import COL_ALL
 
 class TimePassEvent(Event):
 
-    concern = COL_ALL
+    _concern = COL_ALL
     """All cell are concerned"""
 
     def _prepare(self, obj, context, parameters={}):

@@ -6,9 +6,6 @@ from tests.src.TestSimulation import TestSimulation
 
 class LonelinessSuicideEvent(TestEvent):
 
-    def __init__(self, actions):
-        super().__init__(actions)
-
     def _prepare(self, object_id, context, parameters={}):
         if self._has_friends_with_beans(context):
             raise NotConcernedEvent()

@@ -10,14 +10,12 @@ class NotGoodConditionToPersistEvent(AliveAroundEvent):
     of observed cell.
     """
 
-    concern = COL_ALIVE
-    """This event only concern alive cells."""
+    _mechanism = AroundMechanism
+    """This event need to know what is around concerned cell. So we use AroundMechanism who give us list of around
+    objects ids."""
 
-    def __init__(self, actions):
-        super().__init__(actions)
-        #  This event need to know what is around concerned cell. So we use AroundMechanism who give us list of around
-        # objects ids.
-        self._mechanism = AroundMechanism
+    _concern = COL_ALIVE
+    """This event only concern alive cells."""
 
     def _prepare(self, object_id, context, parameters={}):
         """

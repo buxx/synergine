@@ -9,7 +9,7 @@ class RandomRedEvent(Event):
     Illustration of double state usage (concern)
     """
 
-    concern = COL_ALL
+    _concern = COL_ALL
 
     def _prepare(self, obj, context, parameters={}):
         if random.randint(0, 50) == 50:
