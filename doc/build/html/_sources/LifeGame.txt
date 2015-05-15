@@ -68,6 +68,8 @@ In additional of "Conway's Game of Life" rules, we will represent differently in
 SynergyObjects
 --------------
 
+.. _LifeGame.Cell:
+
 We need: A Cell.
 
 .. include:: ../../modules/lifegame/synergy/object/Cell.py
@@ -79,27 +81,35 @@ We need: A Cell.
 
 And no more for our SynergyObjects.
 
+.. _LifeGame.EventActions:
+
 Events and Actions
 ------------------
 
 AliveAroundEvent
 ++++++++++++++++
 
-Events/Actions will be "born" and "die". These actions will need to know how many alice cells are around the concerned
+.. _LifeGame.Event.AliveAroundEvent:
+
+Events/Actions will be "born" and "die". These actions will need to know how many alive cells are around the concerned
 cell. So we write AliveAroundEvent event:
 
 .. include:: ../../modules/lifegame/synergy/event/AliveAroundEvent.py
    :literal:
 
-Ou born and die event will be child of this event.
+Born and die event will be child of this event.
 
 Born
 ++++
+
+.. _LifeGame.Event.Born:
 
 The born event:
 
 .. include:: ../../modules/lifegame/synergy/event/GoodConditionToBornEvent.py
    :literal:
+
+.. _LifeGame.Action.Born:
 
 And his action:
 

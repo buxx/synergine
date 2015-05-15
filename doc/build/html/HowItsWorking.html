@@ -1,0 +1,166 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>How it’s working &mdash; Synergine 0.0.1 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Synergine 0.0.1 documentation" href="index.html" />
+    <link rel="next" title="Components" href="Components.html" />
+    <link rel="prev" title="Synergine’s documentation" href="index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="Components.html" title="Components"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Synergine’s documentation"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Synergine 0.0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="how-it-s-working">
+<h1>How it&#8217;s working<a class="headerlink" href="#how-it-s-working" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>Synergine is designed to simulate interaction between object in time. With iterations (<tt class="docutils literal"><span class="pre">cycles</span></tt>) synergine execute your events and associated actions.</p>
+</div>
+<div class="section" id="synergies-object">
+<h2>Synergies object<a class="headerlink" href="#synergies-object" title="Permalink to this headline">¶</a></h2>
+<p>Your simulation have to be populated by <tt class="docutils literal"><span class="pre">SynergyObject</span></tt>. These objects will evolute according of your events.</p>
+<p>You can found usage example in <a class="reference internal" href="LifeGame.html#lifegame-cell"><em>LifeGame HowTo</em></a>.</p>
+<div class="section" id="cycles">
+<h3>Cycles<a class="headerlink" href="#cycles" title="Permalink to this headline">¶</a></h3>
+<p>Each cycle, synergine will repeat this procedure:</p>
+<div class="highlight-python"><div class="highlight"><pre># Main process
+actions = empty list
+
+# Sub processes
+for each mechanism in mechanisms:
+    for each event in events associated to mechanism:
+        if event is trig:
+            add event actions to actions
+
+# Main processes
+for each action in actions:
+    execute action
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="mechanisms-events-and-actions">
+<h2>Mechanisms, Events and Actions<a class="headerlink" href="#mechanisms-events-and-actions" title="Permalink to this headline">¶</a></h2>
+<p>Your synergies objects will evolute according of your event, when actions are executed. To optimize compute timing, mechanisms have been introduced. The principle: One mechanism compute once what multiple events need.</p>
+<p>You can found usage example in <a class="reference internal" href="LifeGame.html#lifegame-eventactions"><em>LifeGame HowTo</em></a>.</p>
+</div>
+<div class="section" id="context-metas">
+<h2>Context, Metas<a class="headerlink" href="#context-metas" title="Permalink to this headline">¶</a></h2>
+<p>To optimize parallel computing, simulation information have to be stored in <a class="reference internal" href="Components.html#components-metas"><em>metas data</em></a>. The data are used by Mechanisms and Event to do their job.</p>
+<p>You can find usage example of metas data in:</p>
+<ul class="simple">
+<li><a class="reference internal" href="LifeGame.html#lifegame-cell"><em>LifeGame Cell</em></a> where metas data are feed (see <tt class="docutils literal"><span class="pre">context.metas</span></tt> usages).</li>
+<li><a class="reference internal" href="LifeGame.html#lifegame-event-born"><em>LifeGame Born Event</em></a> where <tt class="docutils literal"><span class="pre">Event</span></tt> concern the <tt class="docutils literal"><span class="pre">COL_DIED</span></tt> collection of synergies object.</li>
+<li><a class="reference internal" href="LifeGame.html#lifegame-event-alivearoundevent"><em>LifeGame AliveAroundEvent</em></a> where <tt class="docutils literal"><span class="pre">_get_alive_cell_around_count</span></tt> method read metas data (see <tt class="docutils literal"><span class="pre">context.metas</span></tt> usage)</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">How it&#8217;s working</a><ul>
+<li><a class="reference internal" href="#introduction">Introduction</a></li>
+<li><a class="reference internal" href="#synergies-object">Synergies object</a><ul>
+<li><a class="reference internal" href="#cycles">Cycles</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#mechanisms-events-and-actions">Mechanisms, Events and Actions</a></li>
+<li><a class="reference internal" href="#context-metas">Context, Metas</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">Synergine&#8217;s documentation</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="Components.html"
+                        title="next chapter">Components</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/HowItsWorking.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="Components.html" title="Components"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Synergine’s documentation"
+             >previous</a> |</li>
+        <li><a href="index.html">Synergine 0.0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2015, Bastien Sevajol.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>

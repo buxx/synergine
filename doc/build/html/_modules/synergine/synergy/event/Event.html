@@ -1,0 +1,164 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>synergine.synergy.event.Event &mdash; Synergine 0.0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../../../../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../',
+        VERSION:     '0.0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+    <link rel="top" title="Synergine 0.0.1 documentation" href="../../../../index.html" />
+    <link rel="up" title="Module code" href="../../../index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li><a href="../../../../index.html">Synergine 0.0.1 documentation</a> &raquo;</li>
+          <li><a href="../../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for synergine.synergy.event.Event</h1><div class="highlight"><pre>
+<span class="kn">from</span> <span class="nn">synergine.core.exceptions</span> <span class="kn">import</span> <span class="n">NotConcernedEvent</span>
+<span class="kn">from</span> <span class="nn">synergine.core.simulation.mechanism.Mechanism</span> <span class="kn">import</span> <span class="n">Mechanism</span>
+
+
+<div class="viewcode-block" id="Event"><a class="viewcode-back" href="../../../../Components.html#synergine.synergy.event.Event.Event">[docs]</a><span class="k">class</span> <span class="nc">Event</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Event are called by mechanisms and trig associated actions if conditions matches.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">_mechanism</span> <span class="o">=</span> <span class="n">Mechanism</span>
+    <span class="sd">&quot;&quot;&quot;Mechanism class who run this event with prepared parameters&quot;&quot;&quot;</span>
+    <span class="n">_concern</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="sd">&quot;&quot;&quot;The COL id of concerned synergies objects&quot;&quot;&quot;</span>
+    <span class="n">_each_cycle</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="sd">&quot;&quot;&quot;Event ca be executed each x cycle if needed&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">actions</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_actions</span> <span class="o">=</span> <span class="n">actions</span>
+
+    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="Event.get_mechanism"><a class="viewcode-back" href="../../../../Components.html#synergine.synergy.event.Event.Event.get_mechanism">[docs]</a>    <span class="k">def</span> <span class="nf">get_mechanism</span><span class="p">(</span><span class="n">cls</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        :return: Mechanism class who will run this event</span>
+<span class="sd">        :rtype: Mechanism</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">cls</span><span class="o">.</span><span class="n">_mechanism</span>
+</div>
+    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="Event.get_concern"><a class="viewcode-back" href="../../../../Components.html#synergine.synergy.event.Event.Event.get_concern">[docs]</a>    <span class="k">def</span> <span class="nf">get_concern</span><span class="p">(</span><span class="n">cls</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        :return: COL name if concerned synergies objects</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">cls</span><span class="o">.</span><span class="n">_concern</span>
+</div>
+    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="Event.get_each_cycle"><a class="viewcode-back" href="../../../../Components.html#synergine.synergy.event.Event.Event.get_each_cycle">[docs]</a>    <span class="k">def</span> <span class="nf">get_each_cycle</span><span class="p">(</span><span class="n">cls</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        :return: The number of each cycle where execute this event</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">cls</span><span class="o">.</span><span class="n">_each_cycle</span>
+</div>
+<div class="viewcode-block" id="Event.observe"><a class="viewcode-back" href="../../../../Components.html#synergine.synergy.event.Event.Event.observe">[docs]</a>    <span class="k">def</span> <span class="nf">observe</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">object_id</span><span class="p">,</span> <span class="n">context</span><span class="p">,</span> <span class="n">parameters</span><span class="o">=</span><span class="p">{}):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Return actions who have to be executed.</span>
+
+<span class="sd">        :param object_id: The id of observed synergy object</span>
+<span class="sd">        :param context: The Context</span>
+<span class="sd">        :param parameters: Mechanism prepared dict of parameters</span>
+<span class="sd">        :return: list of actions</span>
+<span class="sd">        :rtype: list (of Action)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">active_actions</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">parameters</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_prepare</span><span class="p">(</span><span class="n">object_id</span><span class="p">,</span> <span class="n">context</span><span class="p">,</span> <span class="n">parameters</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">action</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_actions</span><span class="p">:</span>
+                <span class="n">action_object</span> <span class="o">=</span> <span class="n">action</span><span class="p">(</span><span class="n">object_id</span><span class="p">,</span> <span class="n">parameters</span><span class="p">)</span>
+                <span class="n">active_actions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">action_object</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">NotConcernedEvent</span><span class="p">:</span>
+            <span class="k">pass</span>  <span class="c"># Object not concerned by this event</span>
+
+        <span class="k">return</span> <span class="n">active_actions</span>
+</div>
+<div class="viewcode-block" id="Event._prepare"><a class="viewcode-back" href="../../../../Components.html#synergine.synergy.event.Event.Event._prepare">[docs]</a>    <span class="k">def</span> <span class="nf">_prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">object_id</span><span class="p">,</span> <span class="n">context</span><span class="p">,</span> <span class="n">parameters</span><span class="o">=</span><span class="p">{}):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Return dict with parameters for actions</span>
+
+<span class="sd">        :param object_id: The id of observed synergy object</span>
+<span class="sd">        :param context: The Context</span>
+<span class="sd">        :param parameters: Mechanism prepared dict of parameters</span>
+<span class="sd">        :raise: NotConcernedEvent</span>
+<span class="sd">        :return:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span></div></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li><a href="../../../../index.html">Synergine 0.0.1 documentation</a> &raquo;</li>
+          <li><a href="../../../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2015, Bastien Sevajol.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>

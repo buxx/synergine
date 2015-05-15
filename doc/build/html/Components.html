@@ -25,7 +25,7 @@
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="top" title="Synergine 0.0.1 documentation" href="index.html" />
     <link rel="next" title="HowTo Project: LifeGame" href="LifeGame.html" />
-    <link rel="prev" title="Synergine’s documentation" href="index.html" /> 
+    <link rel="prev" title="How it’s working" href="HowItsWorking.html" /> 
   </head>
   <body>
     <div class="related">
@@ -38,7 +38,7 @@
           <a href="LifeGame.html" title="HowTo Project: LifeGame"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="index.html" title="Synergine’s documentation"
+          <a href="HowItsWorking.html" title="How it’s working"
              accesskey="P">previous</a> |</li>
         <li><a href="index.html">Synergine 0.0.1 documentation</a> &raquo;</li> 
       </ul>
@@ -52,30 +52,316 @@
   <div class="section" id="components">
 <span id="id1"></span><h1>Components<a class="headerlink" href="#components" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="event-and-action">
-<h2>Event and Action<a class="headerlink" href="#event-and-action" title="Permalink to this headline">¶</a></h2>
-<p>Event job is to trig Actions when wanted conditions are here [TODO réunis]. You can found here an example of implemented
-Event.</p>
+<span id="components-event-actions"></span><h2>Event and Action<a class="headerlink" href="#event-and-action" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="event">
+<span id="components-event"></span><h3>Event<a class="headerlink" href="#event" title="Permalink to this headline">¶</a></h3>
+<p>Event job is to trig Actions when conditions matches.</p>
 <div class="section" id="mechanism">
-<h3>_mechanism<a class="headerlink" href="#mechanism" title="Permalink to this headline">¶</a></h3>
-<p>Mechanism class must be specified in <tt class="docutils literal"><span class="pre">_mechanism</span></tt> class attribute. Event parameters will be prepared by this Mechanism.</p>
+<h4>_mechanism<a class="headerlink" href="#mechanism" title="Permalink to this headline">¶</a></h4>
+<p><a class="reference internal" href="#components-mechanism"><em>Mechanism</em></a> class must be specified in <tt class="docutils literal"><span class="pre">_mechanism</span></tt> class attribute. Event parameters will be prepared by this Mechanism.</p>
 </div>
 <div class="section" id="concern">
-<h3>_concern<a class="headerlink" href="#concern" title="Permalink to this headline">¶</a></h3>
-<p>Event only observe concerned objects. You must specify COL identifier in the <tt class="docutils literal"><span class="pre">_concern</span></tt> class attribute.</p>
+<h4>_concern<a class="headerlink" href="#concern" title="Permalink to this headline">¶</a></h4>
+<p>Event only observe concerned objects. You must specify <a class="reference internal" href="#components-col"><em>COL</em></a> identifier in the <tt class="docutils literal"><span class="pre">_concern</span></tt> class attribute.</p>
+<p>TODO: COL</p>
 </div>
 <div class="section" id="prepare">
-<h3>_prepare<a class="headerlink" href="#prepare" title="Permalink to this headline">¶</a></h3>
+<h4>_prepare<a class="headerlink" href="#prepare" title="Permalink to this headline">¶</a></h4>
 <p>You must override this method and write your conditions to trig associated Actions. If event is not concerned, you
-must raise NotConcernedEvent.</p>
+must raise <a class="reference internal" href="#components-exceptions"><em>NotConcernedEvent exception</em></a>.</p>
+</div>
+<div class="section" id="the-event-class">
+<h4>The Event class<a class="headerlink" href="#the-event-class" title="Permalink to this headline">¶</a></h4>
+<p>Events must be child class of <tt class="docutils literal"><span class="pre">synergine.synergy.event.Event.Event</span></tt>:</p>
+<dl class="class">
+<dt id="synergine.synergy.event.Event.Event">
+<em class="property">class </em><tt class="descclassname">synergine.synergy.event.Event.</tt><tt class="descname">Event</tt><big>(</big><em>actions</em><big>)</big><a class="reference internal" href="_modules/synergine/synergy/event/Event.html#Event"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#synergine.synergy.event.Event.Event" title="Permalink to this definition">¶</a></dt>
+<dd><p>Event are called by mechanisms and trig associated actions if conditions matches.</p>
+<dl class="attribute">
+<dt id="synergine.synergy.event.Event.Event._concern">
+<tt class="descname">_concern</tt><em class="property"> = None</em><a class="headerlink" href="#synergine.synergy.event.Event.Event._concern" title="Permalink to this definition">¶</a></dt>
+<dd><p>The COL id of concerned synergies objects</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="synergine.synergy.event.Event.Event._each_cycle">
+<tt class="descname">_each_cycle</tt><em class="property"> = 1</em><a class="headerlink" href="#synergine.synergy.event.Event.Event._each_cycle" title="Permalink to this definition">¶</a></dt>
+<dd><p>Event ca be executed each x cycle if needed</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="synergine.synergy.event.Event.Event._mechanism">
+<tt class="descname">_mechanism</tt><a class="headerlink" href="#synergine.synergy.event.Event.Event._mechanism" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mechanism class who run this event with prepared parameters</p>
+<p>alias of <tt class="xref py py-class docutils literal"><span class="pre">Mechanism</span></tt></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="synergine.synergy.event.Event.Event._prepare">
+<tt class="descname">_prepare</tt><big>(</big><em>object_id</em>, <em>context</em>, <em>parameters={}</em><big>)</big><a class="reference internal" href="_modules/synergine/synergy/event/Event.html#Event._prepare"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#synergine.synergy.event.Event.Event._prepare" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return dict with parameters for actions</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>object_id</strong> &#8211; The id of observed synergy object</li>
+<li><strong>context</strong> &#8211; The Context</li>
+<li><strong>parameters</strong> &#8211; Mechanism prepared dict of parameters</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raise:</th><td class="field-body"><p class="first">NotConcernedEvent</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="synergine.synergy.event.Event.Event.get_concern">
+<em class="property">classmethod </em><tt class="descname">get_concern</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/synergine/synergy/event/Event.html#Event.get_concern"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#synergine.synergy.event.Event.Event.get_concern" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">COL name if concerned synergies objects</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="synergine.synergy.event.Event.Event.get_each_cycle">
+<em class="property">classmethod </em><tt class="descname">get_each_cycle</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/synergine/synergy/event/Event.html#Event.get_each_cycle"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#synergine.synergy.event.Event.Event.get_each_cycle" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The number of each cycle where execute this event</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="synergine.synergy.event.Event.Event.get_mechanism">
+<em class="property">classmethod </em><tt class="descname">get_mechanism</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/synergine/synergy/event/Event.html#Event.get_mechanism"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#synergine.synergy.event.Event.Event.get_mechanism" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Mechanism class who will run this event</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">Mechanism</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="synergine.synergy.event.Event.Event.observe">
+<tt class="descname">observe</tt><big>(</big><em>object_id</em>, <em>context</em>, <em>parameters={}</em><big>)</big><a class="reference internal" href="_modules/synergine/synergy/event/Event.html#Event.observe"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#synergine.synergy.event.Event.Event.observe" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return actions who have to be executed.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>object_id</strong> &#8211; The id of observed synergy object</li>
+<li><strong>context</strong> &#8211; The Context</li>
+<li><strong>parameters</strong> &#8211; Mechanism prepared dict of parameters</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">list of actions</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">list (of Action)</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="example">
+<span id="components-action"></span><h4>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h4>
+<p>You can found <a class="reference internal" href="LifeGame.html#lifegame-event-born"><em>here</em></a> an example of implemented Event:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">lifegame.synergy.event.AliveAroundEvent</span> <span class="kn">import</span> <span class="n">AliveAroundEvent</span>
+<span class="kn">from</span> <span class="nn">synergine.core.exceptions</span> <span class="kn">import</span> <span class="n">NotConcernedEvent</span>
+<span class="kn">from</span> <span class="nn">xyzworld.mechanism.AroundMechanism</span> <span class="kn">import</span> <span class="n">AroundMechanism</span>
+<span class="kn">from</span> <span class="nn">lifegame.cst</span> <span class="kn">import</span> <span class="n">ALIVE</span><span class="p">,</span> <span class="n">COL_DIED</span>
+
+
+<span class="k">class</span> <span class="nc">GoodConditionToBornEvent</span><span class="p">(</span><span class="n">AliveAroundEvent</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This event is applied when born condition are here. So when exactly 3 alive cell are around of observed cell.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">_mechanism</span> <span class="o">=</span> <span class="n">AroundMechanism</span>
+    <span class="sd">&quot;&quot;&quot;This event need to know what is around concerned cell. So we use AroundMechanism who give us list of around</span>
+<span class="sd">    objects ids.&quot;&quot;&quot;</span>
+
+    <span class="n">_concern</span> <span class="o">=</span> <span class="n">COL_DIED</span>
+    <span class="sd">&quot;&quot;&quot;This event only concern died cells.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">_prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">object_id</span><span class="p">,</span> <span class="n">context</span><span class="p">,</span> <span class="n">parameters</span><span class="o">=</span><span class="p">{}):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        According to “Conway’s Game of Life”, event match if exactly 3 around cell are alive.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">cell_near_count</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_alive_cell_around_count</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">parameters</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">cell_near_count</span> <span class="ow">is</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">parameters</span>
+        <span class="c">#  If event not match, we must raise an NotConcernedEvent.</span>
+        <span class="k">raise</span> <span class="n">NotConcernedEvent</span><span class="p">()</span>
+</pre></div>
 </div>
 </div>
-<div class="section" id="id2">
-<h2>Mechanism<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="action">
+<h3>Action<a class="headerlink" href="#action" title="Permalink to this headline">¶</a></h3>
+<p><tt class="docutils literal"><span class="pre">Action</span></tt> own the code intended for modify synergies objects.</p>
+<div class="section" id="listen">
+<h4>_listen<a class="headerlink" href="#listen" title="Permalink to this headline">¶</a></h4>
+<p>They have to listen an <a class="reference internal" href="#components-event"><em>Event</em></a>. Action <tt class="docutils literal"><span class="pre">_listen</span></tt> class attribute must be contain an <a class="reference internal" href="#components-event"><em>Event</em></a> class.</p>
+</div>
+<div class="section" id="depend">
+<h4>_depend<a class="headerlink" href="#depend" title="Permalink to this headline">¶</a></h4>
+<p>If the <tt class="docutils literal"><span class="pre">Action</span></tt> must be executed after other actions, you can list them in Action <tt class="docutils literal"><span class="pre">_depend</span></tt> class attribute.</p>
+</div>
+<div class="section" id="run">
+<h4>Run<a class="headerlink" href="#run" title="Permalink to this headline">¶</a></h4>
+<p>The execution code of <tt class="docutils literal"><span class="pre">Action</span></tt> have to be write in <tt class="docutils literal"><span class="pre">run</span></tt> method.</p>
+</div>
+<div class="section" id="the-action-class">
+<h4>The Action class<a class="headerlink" href="#the-action-class" title="Permalink to this headline">¶</a></h4>
+<p>Actions must be child class of <tt class="docutils literal"><span class="pre">synergine.synergy.event.Action.Action</span></tt>.</p>
+<dl class="class">
+<dt id="synergine.synergy.event.Action.Action">
+<em class="property">class </em><tt class="descclassname">synergine.synergy.event.Action.</tt><tt class="descname">Action</tt><big>(</big><em>object_id</em>, <em>parameters</em><big>)</big><a class="reference internal" href="_modules/synergine/synergy/event/Action.html#Action"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#synergine.synergy.event.Action.Action" title="Permalink to this definition">¶</a></dt>
+<dd><p><tt class="docutils literal"><span class="pre">Action</span></tt> own the code intended for modify synergies objects.</p>
+<dl class="attribute">
+<dt id="synergine.synergy.event.Action.Action._depend">
+<tt class="descname">_depend</tt><em class="property"> = []</em><a class="headerlink" href="#synergine.synergy.event.Action.Action._depend" title="Permalink to this definition">¶</a></dt>
+<dd><p>List of <tt class="docutils literal"><span class="pre">Action</span></tt> who need to be executed before this.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="synergine.synergy.event.Action.Action._listen">
+<tt class="descname">_listen</tt><em class="property"> = None</em><a class="headerlink" href="#synergine.synergy.event.Action.Action._listen" title="Permalink to this definition">¶</a></dt>
+<dd><p>The <tt class="docutils literal"><span class="pre">Event</span></tt> class to listen.</p>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="synergine.synergy.event.Action.Action.get_dependencies">
+<em class="property">classmethod </em><tt class="descname">get_dependencies</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/synergine/synergy/event/Action.html#Action.get_dependencies"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#synergine.synergy.event.Action.Action.get_dependencies" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">List of <tt class="docutils literal"><span class="pre">Action</span></tt> who need to be executed before this.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">list (of <tt class="docutils literal"><span class="pre">Action</span></tt>)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="synergine.synergy.event.Action.Action.get_listened_class">
+<em class="property">classmethod </em><tt class="descname">get_listened_class</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/synergine/synergy/event/Action.html#Action.get_listened_class"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#synergine.synergy.event.Action.Action.get_listened_class" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The listened <tt class="docutils literal"><span class="pre">Event</span></tt> class.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">synergine.synergy.Event.Event</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="synergine.synergy.event.Action.Action.get_object_id">
+<tt class="descname">get_object_id</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/synergine/synergy/event/Action.html#Action.get_object_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#synergine.synergy.event.Action.Action.get_object_id" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The concerned synergy object id</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="synergine.synergy.event.Action.Action.run">
+<tt class="descname">run</tt><big>(</big><em>obj</em>, <em>context</em>, <em>synergy_manager</em><big>)</big><a class="reference internal" href="_modules/synergine/synergy/event/Action.html#Action.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#synergine.synergy.event.Action.Action.run" title="Permalink to this definition">¶</a></dt>
+<dd><p>The execution code of <tt class="docutils literal"><span class="pre">Action</span></tt> have to be write in <tt class="docutils literal"><span class="pre">run</span></tt> method.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>obj</strong> &#8211; The synergy concerned object</li>
+<li><strong>context</strong> &#8211; The Context</li>
+<li><strong>synergy_manager</strong> &#8211; SynergyObjectManager</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="components-mechanism">
+<span id="id2"></span><h4>Example<a class="headerlink" href="#components-mechanism" title="Permalink to this headline">¶</a></h4>
+<p>You can found <a class="reference internal" href="LifeGame.html#lifegame-action-born"><em>here</em></a> an example of implemented Event:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">synergine.synergy.event.Action</span> <span class="kn">import</span> <span class="n">Action</span>
+<span class="kn">from</span> <span class="nn">lifegame.synergy.event.GoodConditionToBornEvent</span> <span class="kn">import</span> <span class="n">GoodConditionToBornEvent</span>
+
+
+<span class="k">class</span> <span class="nc">BornAction</span><span class="p">(</span><span class="n">Action</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This action change state of Cell into alive.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">_listen</span> <span class="o">=</span> <span class="n">GoodConditionToBornEvent</span>
+    <span class="sd">&quot;&quot;&quot;This action listen the GoodConditionToBornEvent&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">,</span> <span class="n">context</span><span class="p">,</span> <span class="n">synergy_manager</span><span class="p">):</span>
+        <span class="n">obj</span><span class="o">.</span><span class="n">set_alive</span><span class="p">(</span><span class="bp">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id3">
+<h2>Mechanism<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>Mechanism prepare data for associated <a class="reference internal" href="#components-event"><em>Events</em></a>. It&#8217;s role is to compute once what multiple <a class="reference internal" href="#components-event"><em>Events</em></a> will need.</p>
 </div>
 <div class="section" id="context">
-<h2>Context<a class="headerlink" href="#context" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="why-a-context-representation">
-<h3>Why a Context representation ?<a class="headerlink" href="#why-a-context-representation" title="Permalink to this headline">¶</a></h3>
+<span id="components-context"></span><h2>Context<a class="headerlink" href="#context" title="Permalink to this headline">¶</a></h2>
+<p>See [LINK] here for more details.</p>
+<div class="section" id="metas">
+<span id="components-metas"></span><h3>Metas<a class="headerlink" href="#metas" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="col">
+<span id="components-col"></span><h3>COL<a class="headerlink" href="#col" title="Permalink to this headline">¶</a></h3>
 </div>
 </div>
 <div class="section" id="synergyobject">
@@ -88,7 +374,7 @@ must raise NotConcernedEvent.</p>
 <h2>Signals<a class="headerlink" href="#signals" title="Permalink to this headline">¶</a></h2>
 </div>
 <div class="section" id="exceptions">
-<h2>Exceptions<a class="headerlink" href="#exceptions" title="Permalink to this headline">¶</a></h2>
+<span id="components-exceptions"></span><h2>Exceptions<a class="headerlink" href="#exceptions" title="Permalink to this headline">¶</a></h2>
 </div>
 </div>
 
@@ -102,14 +388,28 @@ must raise NotConcernedEvent.</p>
   <ul>
 <li><a class="reference internal" href="#">Components</a><ul>
 <li><a class="reference internal" href="#event-and-action">Event and Action</a><ul>
+<li><a class="reference internal" href="#event">Event</a><ul>
 <li><a class="reference internal" href="#mechanism">_mechanism</a></li>
 <li><a class="reference internal" href="#concern">_concern</a></li>
 <li><a class="reference internal" href="#prepare">_prepare</a></li>
+<li><a class="reference internal" href="#the-event-class">The Event class</a></li>
+<li><a class="reference internal" href="#example">Example</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id2">Mechanism</a></li>
+<li><a class="reference internal" href="#action">Action</a><ul>
+<li><a class="reference internal" href="#listen">_listen</a></li>
+<li><a class="reference internal" href="#depend">_depend</a></li>
+<li><a class="reference internal" href="#run">Run</a></li>
+<li><a class="reference internal" href="#the-action-class">The Action class</a></li>
+<li><a class="reference internal" href="#components-mechanism">Example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id3">Mechanism</a></li>
 <li><a class="reference internal" href="#context">Context</a><ul>
-<li><a class="reference internal" href="#why-a-context-representation">Why a Context representation ?</a></li>
+<li><a class="reference internal" href="#metas">Metas</a></li>
+<li><a class="reference internal" href="#col">COL</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#synergyobject">SynergyObject</a></li>
@@ -121,8 +421,8 @@ must raise NotConcernedEvent.</p>
 </ul>
 
   <h4>Previous topic</h4>
-  <p class="topless"><a href="index.html"
-                        title="previous chapter">Synergine&#8217;s documentation</a></p>
+  <p class="topless"><a href="HowItsWorking.html"
+                        title="previous chapter">How it&#8217;s working</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="LifeGame.html"
                         title="next chapter">HowTo Project: LifeGame</a></p>
@@ -158,7 +458,7 @@ must raise NotConcernedEvent.</p>
           <a href="LifeGame.html" title="HowTo Project: LifeGame"
              >next</a> |</li>
         <li class="right" >
-          <a href="index.html" title="Synergine’s documentation"
+          <a href="HowItsWorking.html" title="How it’s working"
              >previous</a> |</li>
         <li><a href="index.html">Synergine 0.0.1 documentation</a> &raquo;</li> 
       </ul>
