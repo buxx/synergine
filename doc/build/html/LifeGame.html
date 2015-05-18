@@ -130,17 +130,18 @@ to create further generations.
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">collection</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_alive</span> <span class="o">=</span> <span class="bp">False</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_alive_since</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
-        <span class="n">context</span><span class="o">.</span><span class="n">metas</span><span class="o">.</span><span class="n">collections</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_id</span><span class="p">(),</span> <span class="n">COL_ALL</span><span class="p">)</span>
-        <span class="n">context</span><span class="o">.</span><span class="n">metas</span><span class="o">.</span><span class="n">collections</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_id</span><span class="p">(),</span> <span class="n">COL_DIED</span><span class="p">)</span>
-        <span class="n">context</span><span class="o">.</span><span class="n">metas</span><span class="o">.</span><span class="n">states</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_id</span><span class="p">(),</span> <span class="n">DIED</span><span class="p">)</span>  <span class="c"># By default, a cell is dead</span>
+        <span class="c"># By default, a cell is dead</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_add_col</span><span class="p">(</span><span class="n">COL_ALL</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_add_col</span><span class="p">(</span><span class="n">COL_DIED</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_add_state</span><span class="p">(</span><span class="n">DIED</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">set_alive</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alive</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="sd">        Change the state of Cell.</span>
 
-<span class="sd">        :param alive: Foo</span>
-<span class="sd">        :return: Void</span>
+<span class="sd">        :param alive: Alive boolean</span>
+<span class="sd">        :return:</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="c">#  When alive state of Cell change, self._alive is reinitialized</span>
@@ -150,16 +151,18 @@ to create further generations.
         <span class="c"># We update states to.</span>
         <span class="k">if</span> <span class="n">alive</span><span class="p">:</span>
             <span class="c"># State of cell is now ALIVE</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_context</span><span class="o">.</span><span class="n">metas</span><span class="o">.</span><span class="n">states</span><span class="o">.</span><span class="n">add_remove</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_id</span><span class="p">(),</span> <span class="n">ALIVE</span><span class="p">,</span> <span class="n">DIED</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_add_state</span><span class="p">(</span><span class="n">ALIVE</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_remove_state</span><span class="p">(</span><span class="n">DIED</span><span class="p">)</span>
             <span class="c"># Cell is now in COL_ALIVE collection</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_context</span><span class="o">.</span><span class="n">metas</span><span class="o">.</span><span class="n">collections</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_id</span><span class="p">(),</span> <span class="n">COL_ALIVE</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_context</span><span class="o">.</span><span class="n">metas</span><span class="o">.</span><span class="n">collections</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_id</span><span class="p">(),</span> <span class="n">COL_DIED</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_add_col</span><span class="p">(</span><span class="n">COL_ALIVE</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_remove_col</span><span class="p">(</span><span class="n">COL_DIED</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="c"># State of cell is now DIED</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_context</span><span class="o">.</span><span class="n">metas</span><span class="o">.</span><span class="n">states</span><span class="o">.</span><span class="n">add_remove</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_id</span><span class="p">(),</span> <span class="n">DIED</span><span class="p">,</span> <span class="n">ALIVE</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_add_state</span><span class="p">(</span><span class="n">DIED</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_remove_state</span><span class="p">(</span><span class="n">ALIVE</span><span class="p">)</span>
             <span class="c"># Cell is now in COL_DIED collection</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_context</span><span class="o">.</span><span class="n">metas</span><span class="o">.</span><span class="n">collections</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_id</span><span class="p">(),</span> <span class="n">COL_DIED</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_context</span><span class="o">.</span><span class="n">metas</span><span class="o">.</span><span class="n">collections</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_id</span><span class="p">(),</span> <span class="n">COL_ALIVE</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_add_col</span><span class="p">(</span><span class="n">COL_DIED</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_remove_col</span><span class="p">(</span><span class="n">COL_ALIVE</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">is_alive</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_alive</span>

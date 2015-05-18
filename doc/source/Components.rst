@@ -98,26 +98,26 @@ Mechanism
 
 Mechanism prepare data for associated :ref:`Events <Components.Event>`. It's role is to compute once what multiple :ref:`Events <Components.Event>` will need.
 
+Mechanisms must be child of:
+
+.. autoclass:: synergine.core.simulation.mechanism.Mechanism.Mechanism
+   :members:
+   :undoc-members:
+   :private-members:
+
 .. _Components.Context:
-
-Context
-=======
-
-See [LINK] here for more details.
-
 .. _Components.Metas:
-
-Metas
------
-
 .. _Components.COL:
 
-COL
-----
+Context, Metas
+==============
 
+Context is designed to contain data (in ``metas attribute``) and method representing simulation. You can found information about it :ref:`here <HowItsWorkrking.Context_Metas>` and example of Context class :ref:`here <ModuleXyzworld.Context>`.
 
 SynergyObject
 =============
+
+
 
 Display
 =======

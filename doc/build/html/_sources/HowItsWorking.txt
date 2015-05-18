@@ -41,6 +41,8 @@ You can found usage example in :ref:`LifeGame HowTo <LifeGame.EventActions>`.
 Context, Metas
 ==============
 
+.. _HowItsWorkrking.Context_Metas:
+
 To optimize parallel computing, simulation information have to be stored in :ref:`metas data <Components.Metas>`. The data are used by Mechanisms and Event to do their job.
 
 You can find usage example of metas data in:

@@ -353,16 +353,95 @@ must raise <a class="reference internal" href="#components-exceptions"><em>NotCo
 <div class="section" id="id3">
 <h2>Mechanism<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
 <p>Mechanism prepare data for associated <a class="reference internal" href="#components-event"><em>Events</em></a>. It&#8217;s role is to compute once what multiple <a class="reference internal" href="#components-event"><em>Events</em></a> will need.</p>
+<p>Mechanisms must be child of:</p>
+<dl class="class">
+<dt id="synergine.core.simulation.mechanism.Mechanism.Mechanism">
+<em class="property">class </em><tt class="descclassname">synergine.core.simulation.mechanism.Mechanism.</tt><tt class="descname">Mechanism</tt><big>(</big><em>events</em><big>)</big><a class="reference internal" href="_modules/synergine/core/simulation/mechanism/Mechanism.html#Mechanism"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#synergine.core.simulation.mechanism.Mechanism.Mechanism" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mechanism prepare data for associated events.
+The principle: One mechanism compute once what multiple events need.</p>
+<dl class="method">
+<dt id="synergine.core.simulation.mechanism.Mechanism.Mechanism._get_computed_object_event_parameters">
+<tt class="descname">_get_computed_object_event_parameters</tt><big>(</big><em>object_id</em>, <em>context</em><big>)</big><a class="reference internal" href="_modules/synergine/core/simulation/mechanism/Mechanism.html#Mechanism._get_computed_object_event_parameters"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#synergine.core.simulation.mechanism.Mechanism.Mechanism._get_computed_object_event_parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>(You must override this method in child-class.)
+Compute concerned object event parameters.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>object_id</strong> &#8211; Concerned object id</li>
+<li><strong>context</strong> &#8211; The Context</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Concerned object event parameters</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="synergine.core.simulation.mechanism.Mechanism.Mechanism._get_object_parameters">
+<tt class="descname">_get_object_parameters</tt><big>(</big><em>object_id</em>, <em>context</em><big>)</big><a class="reference internal" href="_modules/synergine/core/simulation/mechanism/Mechanism.html#Mechanism._get_object_parameters"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#synergine.core.simulation.mechanism.Mechanism.Mechanism._get_object_parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return concerned object parameters for event.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>object_id</strong> &#8211; Concerned object if</li>
+<li><strong>context</strong> &#8211; The Context</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">parameters who will be used by event</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="synergine.core.simulation.mechanism.Mechanism.Mechanism._run_events">
+<tt class="descname">_run_events</tt><big>(</big><em>context</em><big>)</big><a class="reference internal" href="_modules/synergine/core/simulation/mechanism/Mechanism.html#Mechanism._run_events"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#synergine.core.simulation.mechanism.Mechanism.Mechanism._run_events" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return Action according to this mechanism events.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>context</strong> &#8211; The Context</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">list (of Action)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="synergine.core.simulation.mechanism.Mechanism.Mechanism.run">
+<tt class="descname">run</tt><big>(</big><em>context</em><big>)</big><a class="reference internal" href="_modules/synergine/core/simulation/mechanism/Mechanism.html#Mechanism.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#synergine.core.simulation.mechanism.Mechanism.Mechanism.run" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prepare new mechanism cycle and return Action according to this mechanism events.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>context</strong> &#8211; </td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Actions to run this cycle</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">list (of Action objects)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
 </div>
-<div class="section" id="context">
-<span id="components-context"></span><h2>Context<a class="headerlink" href="#context" title="Permalink to this headline">¶</a></h2>
-<p>See [LINK] here for more details.</p>
-<div class="section" id="metas">
-<span id="components-metas"></span><h3>Metas<a class="headerlink" href="#metas" title="Permalink to this headline">¶</a></h3>
-</div>
-<div class="section" id="col">
-<span id="components-col"></span><h3>COL<a class="headerlink" href="#col" title="Permalink to this headline">¶</a></h3>
-</div>
+<div class="section" id="context-metas">
+<span id="components-col"></span><span id="components-metas"></span><span id="components-context"></span><h2>Context, Metas<a class="headerlink" href="#context-metas" title="Permalink to this headline">¶</a></h2>
+<p>Context is designed to contain data (in <tt class="docutils literal"><span class="pre">metas</span> <span class="pre">attribute</span></tt>) and method representing simulation. You can found information about it <a class="reference internal" href="HowItsWorking.html#howitsworkrking-context-metas"><em>here</em></a> and example of Context class <a class="reference internal" href="ModuleXyzworld.html#modulexyzworld-context"><em>here</em></a>.</p>
 </div>
 <div class="section" id="synergyobject">
 <h2>SynergyObject<a class="headerlink" href="#synergyobject" title="Permalink to this headline">¶</a></h2>
@@ -407,11 +486,7 @@ must raise <a class="reference internal" href="#components-exceptions"><em>NotCo
 </ul>
 </li>
 <li><a class="reference internal" href="#id3">Mechanism</a></li>
-<li><a class="reference internal" href="#context">Context</a><ul>
-<li><a class="reference internal" href="#metas">Metas</a></li>
-<li><a class="reference internal" href="#col">COL</a></li>
-</ul>
-</li>
+<li><a class="reference internal" href="#context-metas">Context, Metas</a></li>
 <li><a class="reference internal" href="#synergyobject">SynergyObject</a></li>
 <li><a class="reference internal" href="#display">Display</a></li>
 <li><a class="reference internal" href="#signals">Signals</a></li>

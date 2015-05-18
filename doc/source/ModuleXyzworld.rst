@@ -33,6 +33,16 @@ Mechanisms
    :undoc-members:
    :private-members:
 
+.. _ModuleXyzworld.Context:
+
+Context
+=======
+
+.. autoclass:: xyzworld.Context.Context
+   :members:
+   :undoc-members:
+   :private-members:
+
 Displays
 ========
 
