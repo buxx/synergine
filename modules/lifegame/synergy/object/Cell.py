@@ -16,17 +16,18 @@ class Cell(XyzSynergyObject):
         super().__init__(collection, context)
         self._alive = False
         self._alive_since = -1
-        context.metas.collections.add(self.get_id(), COL_ALL)
-        context.metas.collections.add(self.get_id(), COL_DIED)
-        context.metas.states.add(self.get_id(), DIED)  # By default, a cell is dead
+        # By default, a cell is dead
+        self._add_col(COL_ALL)
+        self._add_col(COL_DIED)
+        self._add_state(DIED)
 
     def set_alive(self, alive):
         """
 
         Change the state of Cell.
 
-        :param alive: Foo
-        :return: Void
+        :param alive: Alive boolean
+        :return:
         """
 
         #  When alive state of Cell change, self._alive is reinitialized
@@ -36,16 +37,18 @@ class Cell(XyzSynergyObject):
         # We update states to.
         if alive:
             # State of cell is now ALIVE
-            self._context.metas.states.add_remove(self.get_id(), ALIVE, DIED)
+            self._add_state(ALIVE)
+            self._remove_state(DIED)
             # Cell is now in COL_ALIVE collection
-            self._context.metas.collections.add(self.get_id(), COL_ALIVE)
-            self._context.metas.collections.remove(self.get_id(), COL_DIED)
+            self._add_col(COL_ALIVE)
+            self._remove_col(COL_DIED)
         else:
             # State of cell is now DIED
-            self._context.metas.states.add_remove(self.get_id(), DIED, ALIVE)
+            self._add_state(DIED)
+            self._remove_state(ALIVE)
             # Cell is now in COL_DIED collection
-            self._context.metas.collections.add(self.get_id(), COL_DIED)
-            self._context.metas.collections.remove(self.get_id(), COL_ALIVE)
+            self._add_col(COL_DIED)
+            self._remove_col(COL_ALIVE)
 
     def is_alive(self):
         return self._alive

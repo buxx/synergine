@@ -4,7 +4,9 @@ from xyzworld.cst import POSITION, POSITIONS, PREVIOUS_DIRECTION, BLOCKED_SINCE
 
 class SynergyObject(BaseSynergyObject):
     """
+
     This SynergyObject is designed to support a tri-dimensional environment.
+
     """
 
     def __init__(self, collection, context):
