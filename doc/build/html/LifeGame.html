@@ -35,6 +35,9 @@
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
           <a href="BuiltinModules.html" title="Builtin Modules"
              accesskey="N">next</a> |</li>
         <li class="right" >
@@ -54,7 +57,7 @@
 <div class="section" id="objective">
 <h2>Objective<a class="headerlink" href="#objective" title="Permalink to this headline">¶</a></h2>
 <p>This howto will help you to discover synergine with a simple implementation. We will only show you the code of main
-logic. But all not displayed code here is described in main documentation. TODO: lien vers builtin modules</p>
+logic. But all not displayed code here is described in main documentation.</p>
 <p>The howto project implement the &#8220;Conway&#8217;s Game of Life&#8221;.</p>
 <p>From Wikipedia, the free encyclopedia:</p>
 <div class="highlight-python"><div class="highlight"><pre>The Game of Life, also known simply as Life, is a cellular automaton devised by
@@ -109,10 +112,24 @@ to create further generations.
 <li>A born cell since more 2 cycles</li>
 </ul>
 </div>
+<div class="section" id="constants">
+<h3>Constants<a class="headerlink" href="#constants" title="Permalink to this headline">¶</a></h3>
+<p>First, we have to prepare some constants to feed our <a class="reference internal" href="Components.html#components-metas"><em>metas data</em></a>. There it is:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">synergine.lib.eint</span> <span class="kn">import</span> <span class="n">IncrementedNamedInt</span>
+
+<span class="n">ALIVE</span> <span class="o">=</span> <span class="n">IncrementedNamedInt</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;lifegame.alive&#39;</span><span class="p">)</span>
+<span class="n">DIED</span> <span class="o">=</span> <span class="n">IncrementedNamedInt</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;lifegame.died&#39;</span><span class="p">)</span>
+
+<span class="n">COL_DIED</span> <span class="o">=</span> <span class="n">IncrementedNamedInt</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;lifegame.col.died&#39;</span><span class="p">)</span>
+<span class="n">COL_ALIVE</span> <span class="o">=</span> <span class="n">IncrementedNamedInt</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;lifegame.col.alive&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
 <div class="section" id="synergyobjects">
 <h3>SynergyObjects<a class="headerlink" href="#synergyobjects" title="Permalink to this headline">¶</a></h3>
 <p id="lifegame-cell">We need: A Cell.</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">lifegame.cst</span> <span class="kn">import</span> <span class="n">COL_ALL</span><span class="p">,</span> <span class="n">DIED</span><span class="p">,</span> <span class="n">ALIVE</span><span class="p">,</span> <span class="n">COL_DIED</span><span class="p">,</span> <span class="n">COL_ALIVE</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">synergine.cst</span> <span class="kn">import</span> <span class="n">COL_ALL</span>
+<span class="kn">from</span> <span class="nn">lifegame.cst</span> <span class="kn">import</span> <span class="n">DIED</span><span class="p">,</span> <span class="n">ALIVE</span><span class="p">,</span> <span class="n">COL_DIED</span><span class="p">,</span> <span class="n">COL_ALIVE</span>
 <span class="kn">from</span> <span class="nn">xyzworld.SynergyObject</span> <span class="kn">import</span> <span class="n">SynergyObject</span> <span class="k">as</span> <span class="n">XyzSynergyObject</span>
 
 
@@ -131,7 +148,6 @@ to create further generations.
         <span class="bp">self</span><span class="o">.</span><span class="n">_alive</span> <span class="o">=</span> <span class="bp">False</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_alive_since</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
         <span class="c"># By default, a cell is dead</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_add_col</span><span class="p">(</span><span class="n">COL_ALL</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_add_col</span><span class="p">(</span><span class="n">COL_DIED</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_add_state</span><span class="p">(</span><span class="n">DIED</span><span class="p">)</span>
 
@@ -425,13 +441,9 @@ cell. So we write AliveAroundEvent event:</p>
 </div>
 <p>Who listen a simple event:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">synergine.synergy.event.Event</span> <span class="kn">import</span> <span class="n">Event</span>
-<span class="kn">from</span> <span class="nn">lifegame.cst</span> <span class="kn">import</span> <span class="n">COL_ALL</span>
 
 
 <span class="k">class</span> <span class="nc">TimePassEvent</span><span class="p">(</span><span class="n">Event</span><span class="p">):</span>
-
-    <span class="n">_concern</span> <span class="o">=</span> <span class="n">COL_ALL</span>
-    <span class="sd">&quot;&quot;&quot;All cell are concerned&quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="nf">_prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">,</span> <span class="n">context</span><span class="p">,</span> <span class="n">parameters</span><span class="o">=</span><span class="p">{}):</span>
         <span class="c"># All cells are concerned</span>
@@ -519,8 +531,8 @@ Cycle 10: 20 cells alive, 1980 cells died.
 <h2>Outputs<a class="headerlink" href="#outputs" title="Permalink to this headline">¶</a></h2>
 <p>You can create all terminals you want. Some example:</p>
 <div class="section" id="d-pygame">
-<h3>2D pygame<a class="headerlink" href="#d-pygame" title="Permalink to this headline">¶</a></h3>
-<p><a class="reference internal" href="ModuleXyzworld.html#modulexyzworld"><em>Xyzworld module</em></a> delivery a ready to use <a class="reference internal" href="ModuleXyzworld.html#modulexyzworld-display-pygamedisplay"><em>xyzworld.display.PygameDisplay.PygameDisplay</em></a>. We just need to prepare a display configuration for it:</p>
+<span id="lifegame-pygame"></span><h3>2D pygame<a class="headerlink" href="#d-pygame" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference internal" href="ModuleXyzworld.html#modulexyzworld"><em>Xyzworld module</em></a> delivery a ready to use <em class="xref std std-ref">xyzworld.display.PygameDisplay.PygameDisplay</em>. We just need to prepare a display configuration for it:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">xyworld.display.object.pygame.PygameImage</span> <span class="kn">import</span> <span class="n">PygameImage</span>
 <span class="kn">from</span> <span class="nn">lifegame.synergy.object.Cell</span> <span class="kn">import</span> <span class="n">Cell</span>
 <span class="kn">from</span> <span class="nn">os</span> <span class="kn">import</span> <span class="n">getcwd</span>
@@ -667,6 +679,7 @@ from xyworld.display.PygameDisplay import PygameDisplay
 <li><a class="reference internal" href="#content-of-simulation">Content of simulation</a><ul>
 <li><a class="reference internal" href="#simulation">Simulation</a></li>
 <li><a class="reference internal" href="#additional-features">Additional features</a></li>
+<li><a class="reference internal" href="#constants">Constants</a></li>
 <li><a class="reference internal" href="#synergyobjects">SynergyObjects</a></li>
 <li><a class="reference internal" href="#events-and-actions">Events and Actions</a><ul>
 <li><a class="reference internal" href="#alivearoundevent">AliveAroundEvent</a></li>
@@ -724,6 +737,9 @@ from xyworld.display.PygameDisplay import PygameDisplay
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
              >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
         <li class="right" >
           <a href="BuiltinModules.html" title="Builtin Modules"
              >next</a> |</li>

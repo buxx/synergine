@@ -47,6 +47,6 @@ To optimize parallel computing, simulation information have to be stored in :ref
 
 You can find usage example of metas data in:
 
-* :ref:`LifeGame Cell <LifeGame.Cell>` where metas data are feed (see ``context.metas`` usages).
+* :ref:`LifeGame Cell <LifeGame.Cell>` where metas data are feed (see ``self.add_col``, ``self.remove_col``, ``self.add_state``, ``self.remove_state`` usages).
 * :ref:`LifeGame Born Event <LifeGame.Event.Born>` where ``Event`` concern the ``COL_DIED`` collection of synergies object.
 * :ref:`LifeGame AliveAroundEvent <LifeGame.Event.AliveAroundEvent>` where ``_get_alive_cell_around_count`` method read metas data (see ``context.metas`` usage)

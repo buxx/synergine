@@ -7,7 +7,7 @@ Objective
 =========
 
 This howto will help you to discover synergine with a simple implementation. We will only show you the code of main
-logic. But all not displayed code here is described in main documentation. TODO: lien vers builtin modules
+logic. But all not displayed code here is described in main documentation.
 
 The howto project implement the "Conway's Game of Life".
 
@@ -64,6 +64,14 @@ In additional of "Conway's Game of Life" rules, we will represent differently in
 * A just born cell
 * A born cell since 2 cycles
 * A born cell since more 2 cycles
+
+Constants
+---------
+
+First, we have to prepare some constants to feed our :ref:`metas data <Components.Metas>`. There it is:
+
+.. include:: ../../modules/lifegame/cst.py
+   :literal:
 
 SynergyObjects
 --------------
@@ -241,6 +249,8 @@ Outputs
 =======
 
 You can create all terminals you want. Some example:
+
+.. _LifeGame.Pygame:
 
 2D pygame
 ---------

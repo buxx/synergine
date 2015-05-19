@@ -33,6 +33,9 @@
         <li class="right" style="margin-right: 10px">
           <a href="../../../../genindex.html" title="General Index"
              accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
         <li><a href="../../../../index.html">Synergine 0.0.1 documentation</a> &raquo;</li>
           <li><a href="../../../index.html" accesskey="U">Module code</a> &raquo;</li> 
       </ul>
@@ -46,6 +49,7 @@
   <h1>Source code for synergine.synergy.event.Event</h1><div class="highlight"><pre>
 <span class="kn">from</span> <span class="nn">synergine.core.exceptions</span> <span class="kn">import</span> <span class="n">NotConcernedEvent</span>
 <span class="kn">from</span> <span class="nn">synergine.core.simulation.mechanism.Mechanism</span> <span class="kn">import</span> <span class="n">Mechanism</span>
+<span class="kn">from</span> <span class="nn">synergine.cst</span> <span class="kn">import</span> <span class="n">COL_ALL</span>
 
 
 <div class="viewcode-block" id="Event"><a class="viewcode-back" href="../../../../Components.html#synergine.synergy.event.Event.Event">[docs]</a><span class="k">class</span> <span class="nc">Event</span><span class="p">():</span>
@@ -55,7 +59,7 @@
 
     <span class="n">_mechanism</span> <span class="o">=</span> <span class="n">Mechanism</span>
     <span class="sd">&quot;&quot;&quot;Mechanism class who run this event with prepared parameters&quot;&quot;&quot;</span>
-    <span class="n">_concern</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="n">_concern</span> <span class="o">=</span> <span class="n">COL_ALL</span>
     <span class="sd">&quot;&quot;&quot;The COL id of concerned synergies objects&quot;&quot;&quot;</span>
     <span class="n">_each_cycle</span> <span class="o">=</span> <span class="mi">1</span>
     <span class="sd">&quot;&quot;&quot;Event ca be executed each x cycle if needed&quot;&quot;&quot;</span>
@@ -152,6 +156,9 @@
         <li class="right" style="margin-right: 10px">
           <a href="../../../../genindex.html" title="General Index"
              >index</a></li>
+        <li class="right" >
+          <a href="../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
         <li><a href="../../../../index.html">Synergine 0.0.1 documentation</a> &raquo;</li>
           <li><a href="../../../index.html" >Module code</a> &raquo;</li> 
       </ul>

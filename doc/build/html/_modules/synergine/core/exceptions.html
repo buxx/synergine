@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>xyzworld.mechanism.PositionedAroundMechanism &mdash; Synergine 0.0.1 documentation</title>
+    <title>synergine.core.exceptions &mdash; Synergine 0.0.1 documentation</title>
     
     <link rel="stylesheet" href="../../../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
@@ -46,29 +46,30 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <h1>Source code for xyzworld.mechanism.PositionedAroundMechanism</h1><div class="highlight"><pre>
-<span class="kn">from</span> <span class="nn">synergine.core.simulation.mechanism.Mechanism</span> <span class="kn">import</span> <span class="n">Mechanism</span>
-<span class="kn">from</span> <span class="nn">xyzworld.cst</span> <span class="kn">import</span> <span class="o">*</span>
-
-
-<div class="viewcode-block" id="PositionedAroundMechanism"><a class="viewcode-back" href="../../../ModuleXyzworld.html#xyzworld.mechanism.PositionedAroundMechanism.PositionedAroundMechanism">[docs]</a><span class="k">class</span> <span class="nc">PositionedAroundMechanism</span><span class="p">(</span><span class="n">Mechanism</span><span class="p">):</span>
+  <h1>Source code for synergine.core.exceptions</h1><div class="highlight"><pre>
+<div class="viewcode-block" id="EventException"><a class="viewcode-back" href="../../../Components.html#synergine.core.exceptions.EventException">[docs]</a><span class="k">class</span> <span class="nc">EventException</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Compute near object ids with position of concerned object.</span>
+
+<span class="sd">    Event related Exception</span>
+
 <span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">pass</span>
 
-<div class="viewcode-block" id="PositionedAroundMechanism._get_computed_object_event_parameters"><a class="viewcode-back" href="../../../ModuleXyzworld.html#xyzworld.mechanism.PositionedAroundMechanism.PositionedAroundMechanism._get_computed_object_event_parameters">[docs]</a>    <span class="k">def</span> <span class="nf">_get_computed_object_event_parameters</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">object_id</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="NotConcernedEvent"><a class="viewcode-back" href="../../../Components.html#synergine.core.exceptions.NotConcernedEvent">[docs]</a><span class="k">class</span> <span class="nc">NotConcernedEvent</span><span class="p">(</span><span class="n">EventException</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
 
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Exception raised when concerned ``SynergyObject`` is not concerned by Event.</span>
 
-<span class="sd">        :param object_id: Concerned object id</span>
-<span class="sd">        :param context: Context object</span>
-<span class="sd">        :return: Near objects ids, organized by positions:</span>
-<span class="sd">                 {&#39;objects_ids_near_by_positions&#39;: {(z, x, y): [0, 1, 2, ...], ...}}</span>
-<span class="sd">        :rtype: dict</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">object_point</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">metas</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">POSITION</span><span class="p">,</span> <span class="n">object_id</span><span class="p">)</span>
-        <span class="n">objects_ids_near</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">get_objects_ids_by_position_near_point</span><span class="p">(</span><span class="n">object_point</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-        <span class="k">return</span> <span class="p">{</span><span class="s">&#39;objects_ids_near_by_positions&#39;</span><span class="p">:</span> <span class="n">objects_ids_near</span><span class="p">}</span></div></div>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="UselessMechanism"><a class="viewcode-back" href="../../../Components.html#synergine.core.exceptions.UselessMechanism">[docs]</a><span class="k">class</span> <span class="nc">UselessMechanism</span><span class="p">(</span><span class="n">EventException</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Exception raised when concerned ``SynergyObject`` is not concerned by this Mechanism.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">pass</span></div>
 </pre></div>
 
           </div>

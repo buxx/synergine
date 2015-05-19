@@ -19,6 +19,10 @@ Different components of synergine are :ref:`described here <Components>`. But in
 Contents
 ========
 
+TODO
+* lister les attributs d'instance
+* Garder le nom des constantes
+
 .. toctree::
    :maxdepth: 2
 

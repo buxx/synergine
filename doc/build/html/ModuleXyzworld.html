@@ -35,6 +35,9 @@
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
           <a href="BuiltinModules.html" title="Builtin Modules"
              accesskey="P">previous</a> |</li>
         <li><a href="index.html">Synergine 0.0.1 documentation</a> &raquo;</li>
@@ -191,36 +194,95 @@ TODO: Directions pythons files must be move in xyz module.</p>
 <dl class="class">
 <dt id="xyzworld.Context.Context">
 <em class="property">class </em><tt class="descclassname">xyzworld.Context.</tt><tt class="descname">Context</tt><a class="reference internal" href="_modules/xyzworld/Context.html#Context"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#xyzworld.Context.Context" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="method">
+<dd><p>Context override offering 2D and 3D metas data exploitation methods.</p>
+<dl class="method">
 <dt id="xyzworld.Context.Context.get_around_points_of">
 <tt class="descname">get_around_points_of</tt><big>(</big><em>point</em>, <em>distance=1</em><big>)</big><a class="reference internal" href="_modules/xyzworld/Context.html#Context.get_around_points_of"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#xyzworld.Context.Context.get_around_points_of" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Return positions around a point.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>point</strong> &#8211; (z, x, y) tuple</li>
+<li><strong>distance</strong> &#8211; Distance to compute</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">list of (z, x, y) positions</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">list</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 <dl class="method">
 <dt id="xyzworld.Context.Context.get_around_points_of_point">
 <tt class="descname">get_around_points_of_point</tt><big>(</big><em>point</em><big>)</big><a class="reference internal" href="_modules/xyzworld/Context.html#Context.get_around_points_of_point"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#xyzworld.Context.Context.get_around_points_of_point" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Return positions around a point with distance of 1.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>point</strong> &#8211; (z, x, y) tuple</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">list of (z, x, y) positions</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">list</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 <dl class="method">
 <dt id="xyzworld.Context.Context.get_objects_ids_by_position_near_point">
 <tt class="descname">get_objects_ids_by_position_near_point</tt><big>(</big><em>point</em>, <em>distance=1</em><big>)</big><a class="reference internal" href="_modules/xyzworld/Context.html#Context.get_objects_ids_by_position_near_point"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#xyzworld.Context.Context.get_objects_ids_by_position_near_point" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Return objects ids positioned around a point, ordered by positions.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>point</strong> &#8211; (z, x, y) tuple</li>
+<li><strong>distance</strong> &#8211; ! not used at the moment</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">dict with by position key: list of <tt class="docutils literal"><span class="pre">SynergyObject</span></tt> ids</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 <dl class="method">
 <dt id="xyzworld.Context.Context.get_objects_ids_near_point">
 <tt class="descname">get_objects_ids_near_point</tt><big>(</big><em>point</em>, <em>distance=1</em><big>)</big><a class="reference internal" href="_modules/xyzworld/Context.html#Context.get_objects_ids_near_point"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#xyzworld.Context.Context.get_objects_ids_near_point" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
+<dd><p>Return objects ids positioned around a point.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>point</strong> &#8211; (z, x, y) tuple</li>
+<li><strong>distance</strong> &#8211; ! not used at the moment</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">list of <tt class="docutils literal"><span class="pre">SynergyObject</span></tt> ids</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">list</p>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
-</div>
-<div class="section" id="displays">
-<h2>Displays<a class="headerlink" href="#displays" title="Permalink to this headline">¶</a></h2>
-<p>TODO: xyworld -&gt; xyzworld;</p>
-<span class="target" id="modulexyzworld-display-pygamedisplay"><span id="modulexyzworld-displays"></span></span><dl class="class">
-<dt id="xyzworld.display.Pygame.Pygame">
-<em class="property">class </em><tt class="descclassname">xyzworld.display.Pygame.</tt><tt class="descname">Pygame</tt><big>(</big><em>config</em>, <em>context</em>, <em>synergy_manager</em><big>)</big><a class="reference internal" href="_modules/xyzworld/display/Pygame.html#Pygame"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#xyzworld.display.Pygame.Pygame" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+</dd></dl>
 
 </div>
 </div>
@@ -237,7 +299,6 @@ TODO: Directions pythons files must be move in xyz module.</p>
 <li><a class="reference internal" href="#synergyobject">SynergyObject</a></li>
 <li><a class="reference internal" href="#mechanisms">Mechanisms</a></li>
 <li><a class="reference internal" href="#context">Context</a></li>
-<li><a class="reference internal" href="#displays">Displays</a></li>
 </ul>
 </li>
 </ul>
@@ -273,6 +334,9 @@ TODO: Directions pythons files must be move in xyz module.</p>
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
              >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
         <li class="right" >
           <a href="BuiltinModules.html" title="Builtin Modules"
              >previous</a> |</li>

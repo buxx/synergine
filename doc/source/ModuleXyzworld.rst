@@ -42,16 +42,3 @@ Context
    :members:
    :undoc-members:
    :private-members:
-
-Displays
-========
-
-TODO: xyworld -> xyzworld;
-
-.. _ModuleXyzworld.Displays:
-.. _ModuleXyzworld.Display.PygameDisplay:
-
-.. autoclass:: xyzworld.display.Pygame.Pygame
-   :members:
-   :undoc-members:
-   :private-members:
