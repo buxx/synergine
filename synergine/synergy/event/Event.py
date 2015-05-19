@@ -1,5 +1,6 @@
 from synergine.core.exceptions import NotConcernedEvent
 from synergine.core.simulation.mechanism.Mechanism import Mechanism
+from synergine.cst import COL_ALL
 
 
 class Event():
@@ -9,7 +10,7 @@ class Event():
 
     _mechanism = Mechanism
     """Mechanism class who run this event with prepared parameters"""
-    _concern = None
+    _concern = COL_ALL
     """The COL id of concerned synergies objects"""
     _each_cycle = 1
     """Event ca be executed each x cycle if needed"""

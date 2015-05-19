@@ -3,8 +3,22 @@ from xyzworld.cst import *
 
 
 class Context(BaseContext):
+    """
 
-    def get_objects_ids_near_point(self, point, distance=1): # TODO distance
+    Context override offering 2D and 3D metas data exploitation methods.
+
+    """
+
+    def get_objects_ids_near_point(self, point, distance=1):  # TODO distance
+        """
+
+        Return objects ids positioned around a point.
+
+        :param point: (z, x, y) tuple
+        :param distance: ! not used at the moment
+        :return: list of ``SynergyObject`` ids
+        :rtype: list
+        """
         objects_ids_arounds = []
         for point_around in self.get_around_points_of_point(point):
             point_objects_ids = self.metas.list.get(POSITIONS, point_around, allow_empty=True)
@@ -13,6 +27,14 @@ class Context(BaseContext):
         return objects_ids_arounds
 
     def get_objects_ids_by_position_near_point(self, point, distance=1): # TODO distance
+        """
+
+        Return objects ids positioned around a point, ordered by positions.
+
+        :param point: (z, x, y) tuple
+        :param distance: ! not used at the moment
+        :return: dict with by position key: list of ``SynergyObject`` ids
+        """
         objects_ids_arounds_by_point = {}
         for point_around in self.get_around_points_of_point(point):
             objects_ids_arounds_by_point[point_around] = []
@@ -23,6 +45,15 @@ class Context(BaseContext):
 
     # TODO: Ces methodes de points devrait etre ailleurs
     def get_around_points_of(self, point, distance=1):
+        """
+
+        Return positions around a point.
+
+        :param point: (z, x, y) tuple
+        :param distance: Distance to compute
+        :return: list of (z, x, y) positions
+        :rtype: list
+        """
         start_x = point[1] - distance
         start_y = point[2] - distance
         #start_z = point[0] - distance
@@ -37,6 +68,14 @@ class Context(BaseContext):
         return points
 
     def get_around_points_of_point(self, point):
+        """
+
+        Return positions around a point with distance of 1.
+
+        :param point: (z, x, y) tuple
+        :return: list of (z, x, y) positions
+        :rtype: list
+        """
         pos = point
         pz = pos[0]
         px = pos[1]

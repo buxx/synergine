@@ -1,4 +1,5 @@
-from lifegame.cst import COL_ALL, DIED, ALIVE, COL_DIED, COL_ALIVE
+from synergine.cst import COL_ALL
+from lifegame.cst import DIED, ALIVE, COL_DIED, COL_ALIVE
 from xyzworld.SynergyObject import SynergyObject as XyzSynergyObject
 
 
@@ -17,7 +18,6 @@ class Cell(XyzSynergyObject):
         self._alive = False
         self._alive_since = -1
         # By default, a cell is dead
-        self._add_col(COL_ALL)
         self._add_col(COL_DIED)
         self._add_state(DIED)
 

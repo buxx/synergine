@@ -1,17 +1,20 @@
+from synergine.cst import COL_ALL
 from synergine.synergy.object.SynergyObjectInterface import SynergyObjectInterface
 from synergine.lib.eint import IncrementedNamedInt
 
 
 class SynergyObject(SynergyObjectInterface):
-
-    SIGNAL_CREATED = 'object.created'
-    SIGNAL_DELETED = 'object.deleted'
+    """
+    :ivar _collection: Foo
+    :ivar _cycle_frequency: Bar
+    """
 
     def __init__(self, collection, context):
         self._collection = collection
         self._cycle_frequency = 1
         self._id = IncrementedNamedInt.get(self)
         self._context = context
+        self._add_col(COL_ALL)
 
     def _add_state(self, state):
         """
