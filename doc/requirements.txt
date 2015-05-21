@@ -1,1 +1,2 @@
-synergine==0.0.1
+synergine
+synergine_lifegame

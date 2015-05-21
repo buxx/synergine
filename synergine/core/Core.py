@@ -21,7 +21,7 @@ class Core():
     _configuration_manager = ConfigurationManager()
 
     @classmethod
-    def start_core(cls, config, modules_path='module'):
+    def start_core(cls, config, modules_path=None):
         core = cls(config, modules_path)
         have_to_be_runned_by = core.have_to_be_runned_by()
         if have_to_be_runned_by:
@@ -33,11 +33,12 @@ class Core():
     def get_configuration_manager(cls):
         return cls._configuration_manager
 
-    def __init__(self, config: dict, modules_path):
+    def __init__(self, config: dict, modules_path=None):
         """
 
         :param config: dict containing the config. Will be used to instanciate ConfigurationManager)
         :param modules_path: path of modules. To retrieve module config
+        TODO: obsolete ?
         :return: Core
         """
         self._load_configuration(modules_path, config)
@@ -59,13 +60,14 @@ class Core():
         self._initialize_connecteds()
 
     def _load_configuration(self, modules_path, app_config):
-        modules = [file for file in listdir(modules_path) if isdir(join_path(modules_path, file))]
-        for module in modules:
-            try:
-                module_config_module = import_module(modules_path + '.' + module + '.config')
-                self._configuration_manager.load(module_config_module.config)
-            except ImportError:
-                pass
+        if modules_path:
+            modules = [file for file in listdir(modules_path) if isdir(join_path(modules_path, file))]
+            for module in modules:
+                try:
+                    module_config_module = import_module(modules_path + '.' + module + '.config')
+                    self._configuration_manager.load(module_config_module.config)
+                except ImportError:
+                    pass
         self._configuration_manager.load(app_config)
 
     def run(self, screen=None):

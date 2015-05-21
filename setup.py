@@ -3,7 +3,7 @@ import synergine
 
 setup(
     name='synergine',
-    version='0.0.1',
+    version='0.0.1.3',
     packages=find_packages(),
     author='Bastien Sevajol',
     author_email="synergine@bux.fr",

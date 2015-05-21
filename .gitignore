@@ -7,3 +7,5 @@ nbproject
 sandbox
 /profile
 lsprofcalltree.py
+*.egg*
+build/
