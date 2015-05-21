@@ -3,11 +3,10 @@ from sys import path as ppath
 ppath.insert(1,getcwd()+'/modules')
 
 import unittest
-from lifegame.test.LifeGameTestSuite import LifeGameTestSuite
 from tests.TestSuite import TestSuite
 
 runnable = unittest.TestSuite()
-tests_suites = [TestSuite(), LifeGameTestSuite()]
+tests_suites = [TestSuite()]
 
 for testsuite in tests_suites:
     for test_case in testsuite.get_test_cases():

@@ -1,6 +1,6 @@
 import unittest
-from xyworld.display.DisplayZone import DisplayZone
-from xyzworld.SynergyObject import SynergyObject as XyzSynergyObject
+from synergine_xyz.display.DisplayZone import DisplayZone
+from synergine_xyz.SynergyObject import SynergyObject as XyzSynergyObject
 from synergine.core.cycle.Context import Context
 
 
