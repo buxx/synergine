@@ -1,2 +1,3 @@
-synergine
-synergine_lifegame
+synergine>=0.0.1
+synergine_lifegame>=0.0.1
+synergine_xyz>=0.0.1
