@@ -5,6 +5,7 @@ setup(
     name='synergine',
     version='0.0.1.3',
     packages=find_packages(),
+    install_requires=[],
     author='Bastien Sevajol',
     author_email="synergine@bux.fr",
     description='Synergy simulation framework',
