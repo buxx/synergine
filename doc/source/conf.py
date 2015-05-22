@@ -13,16 +13,32 @@
 # All configuration values have a default; values that are commented out
 # serve to show the default.
 
-import sys
-import os
-from sys import path as ppath
-ppath.insert(1, '/home/bux/Projets/synergine/')
-ppath.insert(1, '/home/bux/Projets/synergine/modules')
 
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #sys.path.insert(0, os.path.abspath('.'))
+
+import os
+import sys
+import urllib3
+from urllib3.exceptions import HTTPError
+from git import Repo
+
+# Include path for 'synergine'
+sys.path.insert(0, os.path.abspath('../../'))
+# Include path for cloned repos (see after)
+sys.path.insert(0, os.path.abspath('.'))
+
+try:
+    http = urllib3.PoolManager()
+    r = http.request('GET', 'http://github.com/')
+    if r.status == 200:
+        # TODO: remove dirs before clone
+        Repo.clone_from('https://github.com/buxx/synergine_xyz', 'synergine_xyz')
+        Repo.clone_from('https://github.com/buxx/synergine_lifegame', 'synergine_lifegame')
+except HTTPError as err:
+    pass
 
 # -- General configuration ------------------------------------------------
 
@@ -108,7 +124,7 @@ pygments_style = 'sphinx'
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
-html_theme = 'default'
+html_theme = 'alabaster'
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the

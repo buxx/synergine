@@ -10,7 +10,7 @@ SynergyObject
 
 .. _ModuleXyzworld.SynergyObject:
 
-.. autoclass:: xyzworld.SynergyObject.SynergyObject
+.. autoclass:: synergine_xyz.SynergyObject.SynergyObject
    :members:
    :undoc-members:
    :private-members:
@@ -21,14 +21,14 @@ Mechanisms
 .. _ModuleXyzworld.Mechanisms:
 .. _ModuleXyzworld.Mechanism.AroundMechanism:
 
-.. autoclass:: xyzworld.mechanism.AroundMechanism.AroundMechanism
+.. autoclass:: synergine_xyz.mechanism.AroundMechanism.AroundMechanism
    :members:
    :undoc-members:
    :private-members:
 
 .. _ModuleXyzworld.Mechanisme.PositionedAroundMechanism:
 
-.. autoclass:: xyzworld.mechanism.PositionedAroundMechanism.PositionedAroundMechanism
+.. autoclass:: synergine_xyz.mechanism.PositionedAroundMechanism.PositionedAroundMechanism
    :members:
    :undoc-members:
    :private-members:
@@ -38,7 +38,7 @@ Mechanisms
 Context
 =======
 
-.. autoclass:: xyzworld.Context.Context
+.. autoclass:: synergine_xyz.Context.Context
    :members:
    :undoc-members:
    :private-members:

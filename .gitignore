@@ -9,3 +9,7 @@ sandbox
 lsprofcalltree.py
 *.egg*
 build/
+dist/
+doc/source/synergine_lifegame/
+doc/source/synergine_xyz/
+doc/build

@@ -42,7 +42,7 @@ Example
 
 You can found :ref:`here <LifeGame.Event.Born>` an example of implemented ``Event``:
 
-.. include:: ../../modules/lifegame/synergy/event/GoodConditionToBornEvent.py
+.. include:: ./synergine_lifegame/synergine_lifegame/synergy/event/GoodConditionToBornEvent.py
    :literal:
 
 .. _Components.Action:
@@ -81,7 +81,7 @@ Example
 
 You can found :ref:`here <LifeGame.Action.Born>` an example of implemented ``Action``:
 
-.. include:: ../../modules/lifegame/synergy/event/BornAction.py
+.. include:: ./synergine_lifegame/synergine_lifegame/synergy/event/BornAction.py
    :literal:
 
 Mechanism
@@ -101,7 +101,7 @@ Example
 
 You can found :ref:`here <LifeGame.Action.Born>` an example of implemented ``Mechanism``:
 
-.. include:: ../../modules/xyzworld/mechanism/AroundMechanism.py
+.. include:: ./synergine_xyz/synergine_xyz/mechanism/AroundMechanism.py
    :literal:
 
 .. _Components.Context:
@@ -144,7 +144,7 @@ Display
 
 Ready-to-use DisplayObjects are available:
 
-* xyzworld.display.Pygame.Pygame (you can found example usage :ref:`here <LifeGame.Pygame>`)
+* synergine_xyz.display.Pygame.Pygame (you can found example usage :ref:`here <LifeGame.Pygame>`)
 * xywold.display.CursesDisplay.CursesDisplay
 
 .. _Components.Signals:

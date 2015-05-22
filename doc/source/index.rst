@@ -19,9 +19,11 @@ Different components of synergine are :ref:`described here <Components>`. But in
 Contents
 ========
 
-TODO
+TODO:
+
 * lister les attributs d'instance
 * Garder le nom des constantes
+* Modifier LifeGame HowTo pour nommer les fichiers; install des dependances (pip, virtualenv tuto link) , lien vers depot lifegame
 
 .. toctree::
    :maxdepth: 2

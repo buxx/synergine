@@ -1,3 +1,5 @@
 synergine>=0.0.1
 synergine_lifegame>=0.0.1
 synergine_xyz>=0.0.1
+GitPython==1.0.1
+urllib3==1.10.4
