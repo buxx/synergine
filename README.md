@@ -21,7 +21,7 @@ You can found documentation [here](http://synergine.readthedocs.org/en/latest/)
 
 [More about life game](http://en.wikipedia.org/wiki/Conway%27s_Game_of_Life)
 
-[![Lifegame](https://raw.githubusercontent.com/buxx/synergine/master/doc/images/synergine_lifegame_plot.gif)](https://raw.githubusercontent.com/buxx/synergine/master/doc/images/synergine_lifegame.gif) 
+[![Lifegame](https://raw.githubusercontent.com/buxx/synergine/master/doc/images/synergine_lifegame_plot.gif)](https://raw.githubusercontent.com/buxx/synergine/master/doc/images/synergine_lifegame_plot.gif) 
 
 ### Intelligine: Social bug simulation
 
