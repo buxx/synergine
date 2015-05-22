@@ -5,6 +5,10 @@ Synergine
 
 Synergine is a [synergy](https://en.wikipedia.org/wiki/Synergy)/[stigmergy](https://en.wikipedia.org/wiki/Stigmergy) simulation framework. 
 
+## Documentation
+
+You can found documentation [here](http://synergine.readthedocs.org/en/latest/)
+
 ## Features
 
 * Event based system
@@ -17,7 +21,7 @@ Synergine is a [synergy](https://en.wikipedia.org/wiki/Synergy)/[stigmergy](http
 
 [More about life game](http://en.wikipedia.org/wiki/Conway%27s_Game_of_Life)
 
-[![Lifegame](https://raw.githubusercontent.com/buxx/synergine/master/doc/images/synergine_lifegame.gif)](https://raw.githubusercontent.com/buxx/synergine/master/doc/images/synergine_lifegame.gif) 
+[![Lifegame](https://raw.githubusercontent.com/buxx/synergine/master/doc/images/synergine_lifegame_plot.gif)](https://raw.githubusercontent.com/buxx/synergine/master/doc/images/synergine_lifegame.gif) 
 
 ### Intelligine: Social bug simulation
 
