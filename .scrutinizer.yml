@@ -6,7 +6,7 @@ checks:
             indentation: '4 spaces'
         format_mixed_indentation: true
         format_line_too_long:
-            max_length: '79'
+            max_length: '120'
         imports_relative_import: true
         imports_wildcard_import: true
         format_bad_whitespace: true
