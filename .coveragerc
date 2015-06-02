@@ -3,6 +3,7 @@ omit =
     */tests*
     config.py
     main.py
+    *site-packages/*
 [report]
 exclude_lines =
     raise NotImplementedError
