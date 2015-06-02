@@ -10,8 +10,8 @@ class TestTerminal(BaseTestSimulation):
     def setUp(self):
         self._connection = TestRunerDisplay
 
-    def _get_set_up_simulation(self):
-        return TestSimulationSimulation([TestCollection(TestCollectionConfiguration())])
+    def _get_set_up_simulations(self):
+        return [TestSimulationSimulation([TestCollection(TestCollectionConfiguration())])]
 
     def test_encapsulated_run(self):
         core = self.get_core()
