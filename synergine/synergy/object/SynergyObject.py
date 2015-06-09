@@ -16,7 +16,7 @@ class SynergyObject(SynergyObjectInterface):
         self._context = context
         self._add_col(COL_ALL)
 
-    def _add_state(self, state):
+    def _add_state(self, state, **kwargs):
         """
 
         Shortcut to  self._context.metas.states.add
@@ -24,9 +24,9 @@ class SynergyObject(SynergyObjectInterface):
         :param state: State
         :return:
         """
-        self._context.metas.states.add(self.get_id(), state)
+        self._context.metas.states.add(self.get_id(), state, **kwargs)
 
-    def _remove_state(self, state):
+    def _remove_state(self, state, **kwargs):
         """
 
         Shortcut to  self._context.metas.states.remove
@@ -34,9 +34,9 @@ class SynergyObject(SynergyObjectInterface):
         :param state: State
         :return:
         """
-        self._context.metas.states.remove(self.get_id(), state)
+        self._context.metas.states.remove(self.get_id(), state, **kwargs)
 
-    def _add_col(self, col):
+    def _add_col(self, col, **kwargs):
         """
 
         Shortcut to  self._context.metas.collections.add
@@ -44,9 +44,9 @@ class SynergyObject(SynergyObjectInterface):
         :param col: COL
         :return:
         """
-        self._context.metas.collections.add(self.get_id(), col)
+        self._context.metas.collections.add(self.get_id(), col, **kwargs)
 
-    def _remove_col(self, col):
+    def _remove_col(self, col, **kwargs):
         """
 
         Shortcut to  self._context.metas.collections.remove
@@ -54,7 +54,7 @@ class SynergyObject(SynergyObjectInterface):
         :param col: COL
         :return:
         """
-        self._context.metas.collections.remove(self.get_id(), col)
+        self._context.metas.collections.remove(self.get_id(), col, **kwargs)
 
     def get_collection(self):
         """
