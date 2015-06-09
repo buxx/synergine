@@ -21,6 +21,7 @@ class Visualisation():
         if object_class not in self._visualisation_config['objects']:
             self._visualisation_config['objects'][object_class] = {
                 'default': None,
-                'callbacks': [][:]
+                'callbacks': [],
+                'modifiers': []
             }
         self._visualisation_config['objects'][object_class]['default'] = object_image

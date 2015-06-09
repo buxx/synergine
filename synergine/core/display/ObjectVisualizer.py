@@ -24,8 +24,15 @@ class ObjectVisualizer():
                 callback_return = callback(obj, self._context)
                 # TODO: Exception au lieu de False
                 if callback_return is not False:
-                    return callback_return
-        return visualisation_definition['default']
+                    return self._apply_modifiers_on_visual(visualisation_definition, obj, callback_return)
+        return self._apply_modifiers_on_visual(visualisation_definition, obj, visualisation_definition['default'])
+
+    def _apply_modifiers_on_visual(self, visualisation_definition, obj, visual):
+        new_visual = visual
+        if 'modifiers' in visualisation_definition:
+            for modifier in visualisation_definition['modifiers']:
+                new_visual = modifier(obj, self._context, visual)
+        return new_visual
 
     def get_surface(self, surface_name, parameters={}):
         surface_definition = self._get_surface_definition(surface_name)
