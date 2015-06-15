@@ -16,7 +16,7 @@ class MetaValue():
 
     def unset(self, name, subject):
         metas = self._get_metas(name)
-        del (state[subject])
+        del(metas[subject])
 
     def have(self, name, subject):
         metas = self._get_metas(name)
