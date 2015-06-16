@@ -14,6 +14,8 @@ class Event():
     """The COL id of concerned synergies objects"""
     _each_cycle = 1
     """Event ca be executed each x cycle if needed"""
+    _first_cycle_force = False
+    """Event will be executed at first cycle regardless of _each_cycle"""
 
     def __init__(self, actions):
         self._actions = actions
@@ -42,6 +44,10 @@ class Event():
         :return: The number of each cycle where execute this event
         """
         return cls._each_cycle
+
+    @classmethod
+    def is_first_cycle_force(cls):
+        return cls._first_cycle_force
 
     def observe(self, object_id, context, parameters={}):
         """

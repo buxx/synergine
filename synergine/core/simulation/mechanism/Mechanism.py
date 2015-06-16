@@ -47,7 +47,8 @@ class Mechanism():
         """
         actions = []
         for event in self._events:
-            if context.get_cycle() % event.get_each_cycle() == 0:
+            if context.get_cycle() % event.get_each_cycle() == 0 \
+               or (event.is_first_cycle_force() and context.get_cycle() == 1):
                 concerned_objects_ids = get_chunk(context.get_total_chunk(),
                                                   context.get_current_chunk_position(),
                                                   context.metas.collections.get(event.get_concern(), allow_empty=True))
