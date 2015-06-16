@@ -38,6 +38,19 @@ class Action():
         """
         return self._object_id
 
+    @classmethod
+    def cycle_pre_run(cls, context, synergy_manager):
+        """
+
+        This class method will be executed each cycle, one time by action class.
+        Useful fo apply some tricks before this synergies objects action.
+
+        :param context:
+        :param synergy_manager:
+        :return:
+        """
+        pass
+
     def run(self, obj, context, synergy_manager):
         """
 

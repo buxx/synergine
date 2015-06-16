@@ -38,6 +38,7 @@ class CycleCalculator():
     def _compute_events(self):
         for step_key, mechanisms in enumerate(self._event_manager.get_mechanisms_steps()):
             actions = self._get_computeds_objects(step_key)
+            self._apply_cycle_actions(actions)
             self._apply_actions(actions)
 
     def _get_computeds_objects(self, step_key):
@@ -82,7 +83,28 @@ class CycleCalculator():
                 actions.append(mechanism_action)
         return actions
 
+    def _apply_cycle_actions(self, actions):
+        """
+
+        Execute actions cycle run.
+
+        :param actions:
+        :return:
+        """
+        executed_cycle_classes = []
+        for action in actions:
+            if type(action) not in executed_cycle_classes:
+                action.cycle_pre_run(self._context, self._synergy_manager)
+                executed_cycle_classes.append(type(action))
+
     def _apply_actions(self, actions):
+        """
+
+        Execute all actions run.
+
+        :param actions: list of actions
+        :return:
+        """
         for action in actions:
             obj = self._synergy_manager.get_map().get_object(action.get_object_id())
             try:

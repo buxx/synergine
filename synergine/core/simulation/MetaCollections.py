@@ -37,6 +37,12 @@ class MetaCollections():
         collection = self.get(name, subject, allow_empty)
         return value in collection
 
+    def unset(self, name, subject, allow_empty=False):
+        metas = self.get_collection(name)
+        if subject not in metas and allow_empty:
+            return
+        del(metas[subject])
+
     def clean(self, name):
         metas = self.get_collection(name)
         cleaned_metas = dict(metas)
