@@ -10,7 +10,7 @@ except (IOError, ImportError):
 
 setup(
     name='synergine',
-    version='0.0.1.9',
+    version='0.0.1.10',
     packages=find_packages(),
     install_requires=[],
     author='Bastien Sevajol',
