@@ -68,3 +68,6 @@ class Terminal():
 
     def terminate(self):
         pass
+
+    def get_context(self):
+        return self._context
