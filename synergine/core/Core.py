@@ -10,6 +10,7 @@ from os import listdir
 from os.path import isdir, join as join_path
 from importlib import import_module
 from synergine.core.Signals import Signals
+from random import seed
 
 
 class Core():
@@ -42,6 +43,7 @@ class Core():
         :return: Core
         """
         self._load_configuration(modules_path, config)
+        self._initialize_global_parameters(config)
         self._context = self._configuration_manager.get('app.classes.Context', Context)()
         self._context.metas.reset()
         Signals.reset()
@@ -69,6 +71,11 @@ class Core():
                 except ImportError:
                     pass
         self._configuration_manager.load(app_config)
+
+    def _initialize_global_parameters(self, config):
+        random_seed = self._configuration_manager.get('engine.debug.seed', None)
+        if random_seed:
+            seed(random_seed)
 
     def run(self, screen=None):
         if screen:
