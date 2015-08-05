@@ -30,7 +30,7 @@ class CycleCalculator():
 
     def compute(self):
         self._cycle += 1
-        print('cycle: ', self._cycle)
+        #print('cycle: ', self._cycle)
         self._current_cycle_actions_done = []
         self._compute_events()
         return self._current_cycle_actions_done
