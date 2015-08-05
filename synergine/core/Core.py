@@ -73,8 +73,8 @@ class Core():
         self._configuration_manager.load(app_config)
 
     def _initialize_global_parameters(self, config):
-        random_seed = self._configuration_manager.get('engine.debug.seed', None)
-        if random_seed:
+        random_seed = self._configuration_manager.get('engine.debug.seed', '__no_set__')
+        if random_seed != '__no_set__':
             seed(random_seed)
 
     def run(self, screen=None):
