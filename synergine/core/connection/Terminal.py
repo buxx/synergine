@@ -71,3 +71,6 @@ class Terminal():
 
     def get_context(self):
         return self._context
+
+    def get_synergy_manager(self):
+        return self._synergy_manager
