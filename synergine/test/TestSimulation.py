@@ -16,7 +16,8 @@ class TestSimulation(unittest.TestCase):
                 'fpsmax': True,
                 'debug': {
                     'mainprocess': main_process,
-                    'cycles': cycles
+                    'cycles': cycles,
+                    'seed': 42
                 }
             },
             'simulations': self._get_set_up_simulations(),
