@@ -33,6 +33,7 @@ class CycleCalculator():
         #print('cycle: ', self._cycle)
         self._current_cycle_actions_done = []
         self._compute_events()
+        self._compute_simulations_end_cycle()
         return self._current_cycle_actions_done
 
     def _compute_events(self):
@@ -113,6 +114,10 @@ class CycleCalculator():
                 self._current_cycle_actions_done.append(action)
             except ActionAborted:
                 pass
+
+    def _compute_simulations_end_cycle(self):
+        for simulation in self._synergy_manager.get_simulations():
+            simulation.end_cycle(self._context)
 
     def end(self):
         self._process_manager.stop()
