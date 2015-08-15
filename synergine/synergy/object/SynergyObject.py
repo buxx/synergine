@@ -13,8 +13,8 @@ class SynergyObject(SynergyObjectInterface):
         self._collection = collection
         self._cycle_frequency = 1
         self._id = IncrementedNamedInt.get(self)
-        self._add_col(COL_ALL)
         self._context = context
+        self._add_col(COL_ALL)
 
     def _add_state(self, state, **kwargs):
         """
