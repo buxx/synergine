@@ -12,11 +12,8 @@ class SynergyObject(SynergyObjectInterface):
     def __init__(self, collection, context):
         self._collection = collection
         self._cycle_frequency = 1
-        if not from_id:
-            self._id = IncrementedNamedInt.get(self)
-            self._add_col(COL_ALL)
-        else:
-            self._id = from_id
+        self._id = IncrementedNamedInt.get(self)
+        self._add_col(COL_ALL)
         self._context = context
 
     def _add_state(self, state, **kwargs):
