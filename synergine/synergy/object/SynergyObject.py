@@ -9,15 +9,15 @@ class SynergyObject(SynergyObjectInterface):
     :ivar _cycle_frequency: Bar
     """
 
-    def __init__(self, collection, context, forced_id=None):
+    def __init__(self, collection, context, from_id=None):
         self._collection = collection
         self._cycle_frequency = 1
-        if not forced_id:
+        if not from_id:
             self._id = IncrementedNamedInt.get(self)
+            self._add_col(COL_ALL)
         else:
-            self._id = forced_id
+            self._id = from_id
         self._context = context
-        self._add_col(COL_ALL)
 
     def _add_state(self, state, **kwargs):
         """
