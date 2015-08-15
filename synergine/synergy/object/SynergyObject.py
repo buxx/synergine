@@ -9,7 +9,7 @@ class SynergyObject(SynergyObjectInterface):
     :ivar _cycle_frequency: Bar
     """
 
-    def __init__(self, collection, context, from_id=None):
+    def __init__(self, collection, context):
         self._collection = collection
         self._cycle_frequency = 1
         if not from_id:
