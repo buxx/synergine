@@ -21,6 +21,7 @@
 
 import os
 import sys
+import shutil
 import urllib3
 from urllib3.exceptions import HTTPError
 from git import Repo
@@ -35,6 +36,14 @@ try:
     r = http.request('GET', 'http://github.com/')
     if r.status == 200:
         # TODO: remove dirs before clone
+        try:
+            shutil.rmtree('synergine_xyz')
+        except OSError:
+            pass
+        try:
+            shutil.rmtree('synergine_lifegame')
+        except OSError:
+            pass
         Repo.clone_from('https://github.com/buxx/synergine_xyz', 'synergine_xyz')
         Repo.clone_from('https://github.com/buxx/synergine_lifegame', 'synergine_lifegame')
 except HTTPError as err:
