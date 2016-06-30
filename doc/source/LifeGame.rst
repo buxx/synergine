@@ -260,7 +260,7 @@ We now need to prepare configuration and run script for our simulation (**run.py
 
     if __name__ == '__main__':
         # Run simulation
-        Core.start_core(config, modules_path='modules')
+        Core.start_core(config)
 
 We execute script and, tadaaa::
 
