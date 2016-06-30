@@ -238,10 +238,10 @@ Let's go
 We now need to prepare configuration and run script for our simulation (**run.py**) ::
 
     from synergine.core.Core import Core
-    from lifegame.PrintTerminal import PrintTerminal
-    from lifegame.synergy.collection.LifeGameCollection import LifeGameCollection
-    from lifegame.synergy.LifeGameSimulation import LifeGameSimulation
-    from lifegame.synergy.collection.LifeGameCollectionConfiguration import LifeGameCollectionConfiguration
+    from synergine_lifegame.PrintTerminal import PrintTerminal
+    from synergine_lifegame.synergy.collection.LifeGameCollection import LifeGameCollection
+    from synergine_lifegame.synergy.LifeGameSimulation import LifeGameSimulation
+    from synergine_lifegame.synergy.collection.LifeGameCollectionConfiguration import LifeGameCollectionConfiguration
     from synergine_xyz.Context import Context as XyzContext
 
     config = {
