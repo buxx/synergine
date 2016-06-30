@@ -73,12 +73,19 @@ In additional of "Conway's Game of Life" rules, we will represent differently in
 * A born cell since 2 cycles
 * A born cell since more 2 cycles
 
+Prerequisite
+------------
+
+To correctly follow this tutorial, remember to work with Python 3.4 interpreter and create in your project directory a
+``synergine_lifegame`` (sources files will be placed in) directory. Different command are executed from your
+project directory.
+
 Constants
 ---------
 
 First, we have to prepare some constants to feed our :ref:`metas data <Components.Metas>`. There it is:
 
-**cst.py**:
+**synergine_lifegame/cst.py**:
 
 .. include:: ./synergine_lifegame/synergine_lifegame/cst.py
    :literal:
@@ -90,7 +97,7 @@ SynergyObjects
 
 We need: A Cell.
 
-**synergy/object/Cell.py**:
+**synergine_lifegame/synergy/object/Cell.py**:
 
 .. include:: ./synergine_lifegame/synergine_lifegame/synergy/object/Cell.py
    :literal:
@@ -114,7 +121,7 @@ AliveAroundEvent
 Events/Actions will be "born" and "die". These actions will need to know how many alive cells are around the concerned
 cell. So we write AliveAroundEvent event:
 
-**synergy/event/AliveAroundEvent.py**:
+**synergine_lifegame/synergy/event/AliveAroundEvent.py**:
 
 .. include:: ./synergine_lifegame/synergine_lifegame/synergy/event/AliveAroundEvent.py
    :literal:
@@ -128,7 +135,7 @@ Born
 
 The born event:
 
-**synergy/event/GoodConditionToBornEvent.py**:
+**synergine_lifegame/synergy/event/GoodConditionToBornEvent.py**:
 
 .. include:: ./synergine_lifegame/synergine_lifegame/synergy/event/GoodConditionToBornEvent.py
    :literal:
@@ -137,7 +144,7 @@ The born event:
 
 And his action:
 
-**synergy/event/BornAction.py**:
+**synergine_lifegame/synergy/event/BornAction.py**:
 
 .. include:: ./synergine_lifegame/synergine_lifegame/synergy/event/BornAction.py
    :literal:
@@ -147,14 +154,14 @@ Die
 
 The die event:
 
-**synergy/event/NotGoodConditionToPersistEvent.py**:
+**synergine_lifegame/synergy/event/NotGoodConditionToPersistEvent.py**:
 
 .. include:: ./synergine_lifegame/synergine_lifegame/synergy/event/NotGoodConditionToPersistEvent.py
    :literal:
 
 And his action:
 
-**synergy/event/DieAction.py**:
+**synergine_lifegame/synergy/event/DieAction.py**:
 
 .. include:: ./synergine_lifegame/synergine_lifegame/synergy/event/DieAction.py
    :literal:
@@ -169,21 +176,21 @@ Collection
 
 Our Cells must be contained by a Collection.
 
-**synergy/collection/LifeGameCollection.py**:
+**synergine_lifegame/synergy/collection/LifeGameCollection.py**:
 
 .. include:: ./synergine_lifegame/synergine_lifegame/synergy/collection/LifeGameCollection.py
    :literal:
 
 The collection must have a configuration (to populate his synergies objects).
 
-**synergy/collection/LifeGameCollectionConfiguration.py**:
+**synergine_lifegame/synergy/collection/LifeGameCollectionConfiguration.py**:
 
 .. include:: ./synergine_lifegame/synergine_lifegame/synergy/collection/LifeGameCollectionConfiguration.py
    :literal:
 
 And a Simulation container.
 
-**synergy/LifeGameSimulation.py**:
+**synergine_lifegame/synergy/LifeGameSimulation.py**:
 
 .. include:: ./synergine_lifegame/synergine_lifegame/synergy/LifeGameSimulation.py
    :literal:
@@ -201,14 +208,14 @@ According to our additional features::
 
 We must add an Action who have to increment age of alive cells:
 
-**synergy/event/TimePassAction.py**:
+**synergine_lifegame/synergy/event/TimePassAction.py**:
 
 .. include:: ./synergine_lifegame/synergine_lifegame/synergy/event/TimePassAction.py
    :literal:
 
 Who listen a simple event:
 
-**synergy/event/TimePassEvent.py**:
+**synergine_lifegame/synergy/event/TimePassEvent.py**:
 
 .. include:: ./synergine_lifegame/synergine_lifegame/synergy/event/TimePassEvent.py
    :literal:
@@ -218,7 +225,7 @@ Simple terminal
 
 All needed algorithms are here. To be able to see something, we write a very simple output like this:
 
-**PrintTerminal.py**:
+**synergine_lifegame/PrintTerminal.py**:
 
 .. include:: ./synergine_lifegame/synergine_lifegame/PrintTerminal.py
    :literal:
@@ -282,7 +289,7 @@ You can create all terminals you want. Some example:
 
 :ref:`Xyzworld module <ModuleXyzworld>` delivery a ready to use PygameDisplay. We just need to prepare a display configuration for it:
 
-**display/pygame_visualisation.py**:
+**synergine_lifegame/display/pygame_visualisation.py**:
 
 .. include:: ./synergine_lifegame/synergine_lifegame/display/pygame_visualisation.py
    :literal:
@@ -334,7 +341,7 @@ Plot
 
 For example, we want to display a plot with history of alive cells count. We create a new Terminal:
 
-**PlotTerminal.py**:
+**synergine_lifegame/PlotTerminal.py**:
 
 .. include:: ./synergine_lifegame/synergine_lifegame/PlotTerminal.py
    :literal:
