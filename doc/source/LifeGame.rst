@@ -238,6 +238,7 @@ Let's go
 We now need to prepare configuration and run script for our simulation (**run.py**) ::
 
     from synergine.core.Core import Core
+
     from synergine_lifegame.PrintTerminal import PrintTerminal
     from synergine_lifegame.synergy.collection.LifeGameCollection import LifeGameCollection
     from synergine_lifegame.synergy.LifeGameSimulation import LifeGameSimulation
@@ -306,7 +307,7 @@ And add it to :ref:`run configuration <LifeGame.run_conf1>` (**run.py**) ::
     from lifegame.synergy.collection.LifeGameCollectionConfiguration import LifeGameCollectionConfiguration
     from synergine_xyz.Context import Context as XyzContext
     +from synergine_xyz.display.PygameDisplay import PygameDisplay
-    +from lifegame.display.pygame_visualisation import visualisation as pygame_visualisation
+    +from synergine_lifegame.display.pygame_visualisation import visualisation as pygame_visualisation
 
     # ...
 
@@ -327,6 +328,8 @@ And add it to :ref:`run configuration <LifeGame.run_conf1>` (**run.py**) ::
     }
 
     if __name__ == '__main__'
+
+Then unzip these :download:`images <../resources/pygame_lifegame_images.zip>` into **synergine_lifegame/display/pygame/** folder.
 
 When we run our simulation we can now see a beautiful 2D render :
 
@@ -357,7 +360,7 @@ And add it to :ref:`run configuration <LifeGame.run_conf1>` (**run.py**) ::
     from lifegame.synergy.collection.LifeGameCollectionConfiguration import LifeGameCollectionConfiguration
     from synergine_xyz.Context import Context as XyzContext
     from synergine_xyz.display.PygameDisplay import PygameDisplay
-    +from lifegame.PlotTerminal import PlotTerminal
+    +from synergine_lifegame.PlotTerminal import PlotTerminal
 
     # ...
 
