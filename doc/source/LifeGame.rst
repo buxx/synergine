@@ -375,3 +375,5 @@ And let see result:
 
 .. figure::  ../images/synergine_lifegame_plot.gif
    :align:   center
+
+You are now ready to use synergine. You can visit `intelligine <https://github.com/buxx/intelligine/>`_ project to see advanced usage of synergine.
