@@ -287,6 +287,12 @@ You can create all terminals you want. Some example:
 2D pygame
 ---------
 
+.. Note::
+
+    To install PyGame for Python 3.x you can follow `these steps <http://www.pygame.org/wiki/CompileUbuntu>`_:
+
+    >>> sudo apt-get install python3-scipy python3-matplotlib
+
 :ref:`Xyzworld module <ModuleXyzworld>` delivery a ready to use PygameDisplay. We just need to prepare a display configuration for it:
 
 **synergine_lifegame/display/pygame_visualisation.py**:
