@@ -347,6 +347,10 @@ Plot
 
     >>> sudo apt-get install python3-scipy python3-matplotlib
 
+    Then, install matplotlib with pip with:
+
+    >>> pip install matplotlib
+
 
 For example, we want to display a plot with history of alive cells count. We create a new Terminal:
 
