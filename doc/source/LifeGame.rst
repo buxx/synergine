@@ -266,17 +266,17 @@ We now need to prepare configuration and run script for our simulation (**run.py
 We execute script and, tadaaa::
 
     python3.4 run.py
-    Cycle 0: 7 cells alive, 1993 cells died.
-    Cycle 1: 7 cells alive, 1993 cells died.
-    Cycle 2: 9 cells alive, 1991 cells died.
-    Cycle 3: 9 cells alive, 1991 cells died.
-    Cycle 4: 10 cells alive, 1990 cells died.
-    Cycle 5: 12 cells alive, 1988 cells died.
-    Cycle 6: 11 cells alive, 1989 cells died.
-    Cycle 7: 16 cells alive, 1984 cells died.
-    Cycle 8: 15 cells alive, 1985 cells died.
-    Cycle 9: 23 cells alive, 1977 cells died.
-    Cycle 10: 20 cells alive, 1980 cells died.
+    Cycle 0: 7 cells alive, 1993 dead cells.
+    Cycle 1: 7 cells alive, 1993 dead cells.
+    Cycle 2: 9 cells alive, 1991 dead cells.
+    Cycle 3: 9 cells alive, 1991 dead cells.
+    Cycle 4: 10 cells alive, 1990 dead cells.
+    Cycle 5: 12 cells alive, 1988 dead cells.
+    Cycle 6: 11 cells alive, 1989 dead cells.
+    Cycle 7: 16 cells alive, 1984 dead cells.
+    Cycle 8: 15 cells alive, 1985 dead cells.
+    Cycle 9: 23 cells alive, 1977 dead cells.
+    Cycle 10: 20 cells alive, 1980 dead cells.
 
 Outputs
 =======
@@ -291,8 +291,6 @@ You can create all terminals you want. Some example:
 .. Note::
 
     To install PyGame for Python 3.x you can follow `these steps <http://www.pygame.org/wiki/CompileUbuntu>`_:
-
-    >>> sudo apt-get install python3-scipy python3-matplotlib
 
 :ref:`Xyzworld module <ModuleXyzworld>` delivery a ready to use PygameDisplay. We just need to prepare a display configuration for it:
 
